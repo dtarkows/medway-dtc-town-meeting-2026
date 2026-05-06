@@ -1,0 +1,341 @@
+{
+  "meta": {
+    "meeting_type": "ATM",
+    "date": "May 9, 2016",
+    "year": "2016",
+    "theme_id": "2016_atm",
+    "source_pdf": "2016-05-09 Annual Town Meeting Minutes.pdf"
+  },
+  "articles": [
+    {
+      "num": 1,
+      "title": "Approve Exelon PILOT",
+      "summary": "To see if the Town will vote to authorize the Board of Selectmen to execute the negotiated Payment In Lieu of Taxes (PILOT) agreement with Exelon West Medway, LLC and/or Exelon West Medway II, LLC (Exelon) for the new generation facilities proposed to be constructed and installed at Exelon\u2019s existin...",
+      "category": "PILOT",
+      "amount": null,
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town will vote to authorize the Board of Selectmen to execute the negotiated Payment In Lieu of Taxes (PILOT) agreement with Exelon West Medway, LLC and/or Exelon West Medway II, LLC (Exelon) for the new generation facilities proposed to be constructed and installed at Exelon\u2019s existing West Medway Generating Site on Summer Street, or act in any manner relating thereto."
+    },
+    {
+      "num": 2,
+      "title": "ESCO Stabilization Reserve Transfer",
+      "summary": "To see if the Town will vote to transfer the sum of $38,546 from the ESCO Stabilization Fund to the Fiscal Year 2017 Debt Service expense account for the purpose of funding ESCO related debt service, or act in any manner relating thereto.",
+      "category": "Financial",
+      "amount": 38546,
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town will vote to transfer the sum of $38,546 from the ESCO Stabilization Fund to the Fiscal Year 2017 Debt Service expense account for the purpose of funding ESCO related debt service, or act in any manner relating thereto."
+    },
+    {
+      "num": 3,
+      "title": "Appropriation: FY17 Operating Budget",
+      "summary": "To see if the Town will vote to fix the salary and compensation of all elected officers of the Town, provide for a Reserve Fund, and determine what sums of money the Town will raise and appropriate, including appropriation from available funds, to defray charges and expenses of the May 9, 2016 Town ...",
+      "category": "Budget",
+      "amount": null,
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town will vote to fix the salary and compensation of all elected officers of the Town, provide for a Reserve Fund, and determine what sums of money the Town will raise and appropriate, including appropriation from available funds, to defray charges and expenses of the May 9, 2016 Town including debt and interest, for the Fiscal Year ending June 30, 2017, or to act in any manner relating thereto."
+    },
+    {
+      "num": 4,
+      "title": "Appropriation: FY17 Water Enterprise Fund",
+      "summary": "To see if the Town will vote to raise and appropriate or transfer from available funds the sum of $2,499,354 for the maintenance of the Water Department Enterprise Fund as follows, or to act in any manner relating thereto: Direct Costs Amount Salaries $ 647,208 Expenses 600,210 Debt 979,575 Direct C...",
+      "category": "Budget",
+      "amount": 2499354,
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town will vote to raise and appropriate or transfer from available funds the sum of $2,499,354 for the maintenance of the Water Department Enterprise Fund as follows, or to act in any manner relating thereto: Direct Costs Amount Salaries $ 647,208 Expenses 600,210 Debt 979,575 Direct Costs Total $2,226,993 Indirect Costs And further to raise and appropriate or transfer from available funds the sum of $272,361 for indirect costs consisting of health insurance, workers\u2019 compensation, Medicare, liability insurance, administrative and operational services. Indirect Costs Total $272,3"
+    },
+    {
+      "num": 5,
+      "title": "Appropriation: FY17 Sewer Enterprise Fund",
+      "summary": "May 9, 2016 To see if the Town will vote to raise and appropriate or transfer from available funds the sum of $1,553,935 for the maintenance of the Sewer Department Enterprise Fund as follows, or to act in any manner relating thereto: Direct Costs Amount Salaries $ 224,924 Expenses 979,400 Debt 250...",
+      "category": "Budget",
+      "amount": 1553935,
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "May 9, 2016 To see if the Town will vote to raise and appropriate or transfer from available funds the sum of $1,553,935 for the maintenance of the Sewer Department Enterprise Fund as follows, or to act in any manner relating thereto: Direct Costs Amount Salaries $ 224,924 Expenses 979,400 Debt 250,836 Direct Costs Total $1,455,160 Indirect Costs And further to raise and appropriate or transfer from available funds the sum of $98,775 for indirect costs consisting of health insurance, workers\u2019 compensation, Medicare, liability insurance, administrative and operational services. Indirect Costs T"
+    },
+    {
+      "num": 6,
+      "title": "Appropriation: FY17 Solid Waste Enterprise Fund",
+      "summary": "To see if the Town will vote to raise and appropriate or transfer from available funds a sum of $1,585,094 to operate the Solid Waste/Recycling Department Enterprise Fund as follows, or to act in any manner relating thereto.",
+      "category": "Budget",
+      "amount": 125169,
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town will vote to raise and appropriate or transfer from available funds a sum of $1,585,094 to operate the Solid Waste/Recycling Department Enterprise Fund as follows, or to act in any manner relating thereto. Direct Costs Amount Salaries $ 331,679 Expenses 1,113,620 Debt 14,626 Direct Costs Total $1,459,925 Indirect Costs May 9, 2016 And further to raise and appropriate or transfer from available funds the sum of $125,169 for indirect costs consisting of health insurance, workers\u2019 compensation, Medicare, liability insurance, administrative and operational services. Indirect Cos"
+    },
+    {
+      "num": 7,
+      "title": "Appropriation: FY17 Ambulance Enterprise Fund",
+      "summary": "To see if the Town will vote to raise and appropriate or transfer from available funds the sum of $759,464 to operate the Ambulance Enterprise Fund as follows, or act in any manner relating thereto.",
+      "category": "Budget",
+      "amount": 759464,
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town will vote to raise and appropriate or transfer from available funds the sum of $759,464 to operate the Ambulance Enterprise Fund as follows, or act in any manner relating thereto. Direct Costs Amount Salaries $412,173 Expenses 185,012 Debt 38,300 Direct Costs Total $635,485 Indirect Costs And further to raise and appropriate or transfer from available funds the sum of $128,979 for indirect costs consisting of health insurance, workers\u2019 compensation, Medicare, liability insurance, administrative and operational services. Indirect Costs Total $128,979 Total $764,464 And furthe"
+    },
+    {
+      "num": 8,
+      "title": "Free Cash Appropriation: Capital and Other Items",
+      "summary": "To see if the Town will vote to appropriate the sum of $1,607,657 from Certified Free Cash for the purpose of funding the following capital and other items, including associated engineering, personnel, maintenance and legal service costs; said appropriations to be expended by June 30, 2017, with une...",
+      "category": "Capital",
+      "amount": 1607657,
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town will vote to appropriate the sum of $1,607,657 from Certified Free Cash for the purpose of funding the following capital and other items, including associated engineering, personnel, maintenance and legal service costs; said appropriations to be expended by June 30, 2017, with unexpended funds as of June 30, 2017 being returned to the General Fund, or act in any manner relating thereto: Project Department Cost Various Road/Sidewalk Improvements DPS/HWY $750,000 Medium Duty Dump Truck (replacement) DPS/HWY 78,000 Light Duty Dump Truck (replacement) DPS/HWY 50,000 Medium Duty "
+    },
+    {
+      "num": 9,
+      "title": "Capital Program: Information Services",
+      "summary": "To see if the Town will vote to transfer $100,000 from Certified Free Cash and to raise and appropriate $43,000 to fund a capital improvement program in the amount of $143,000 for the Town of Medway Information Services Department for Fiscal Year 2017, or act in any manner relating thereto.",
+      "category": "Capital",
+      "amount": 100000,
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town will vote to transfer $100,000 from Certified Free Cash and to raise and appropriate $43,000 to fund a capital improvement program in the amount of $143,000 for the Town of Medway Information Services Department for Fiscal Year 2017, or act in any manner relating thereto. May 9, 2016"
+    },
+    {
+      "num": 10,
+      "title": "Water Enterprise - Equipment",
+      "summary": "To see if the Town will vote to transfer from Fiscal Year 2015 Water Enterprise Retained Earnings the sum of $201,000 for Fiscal Year 2017 from the Water Enterprise Fund for the purpose of funding the purchase of the following capital items, or act in any manner relating thereto: Project Department ...",
+      "category": "Enterprise Budget",
+      "amount": 201000,
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town will vote to transfer from Fiscal Year 2015 Water Enterprise Retained Earnings the sum of $201,000 for Fiscal Year 2017 from the Water Enterprise Fund for the purpose of funding the purchase of the following capital items, or act in any manner relating thereto: Project Department Cost Pickup Truck (replacement) WATER $ 41,000 Dump Truck (replacement) WATER 95,000 Gate Valve Vacuum Box WATER 65,000 Total $201,000 PUBLIC SERVICES DEPT."
+    },
+    {
+      "num": 11,
+      "title": "Replacement Ambulance",
+      "summary": "To see if the Town will vote to appropriate the amount of $260,000 for the purpose of purchasing an ambulance and associated equipment; and that to meet this appropriation, the amount of $120,000 be transferred from available funds, and the Town Treasurer, with the approval of the Board of Selectmen...",
+      "category": "Capital",
+      "amount": 260000,
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town will vote to appropriate the amount of $260,000 for the purpose of purchasing an ambulance and associated equipment; and that to meet this appropriation, the amount of $120,000 be transferred from available funds, and the Town Treasurer, with the approval of the Board of Selectmen, be authorized to borrow $140,000 under General Laws Chapter 44, section 7, or any other enabling law, and to authorize the Board of Selectmen and Town officers to take all related actions necessary or appropriate to carry out this article, or to act in any manner relating thereto. FIRE/EMS DEPTS."
+    },
+    {
+      "num": 12,
+      "title": "Fiscal Stability Transfer \u2013 Security Improvements at Elementary Schools",
+      "summary": "To see if the Town will vote to transfer from the Fiscal Stability Fund the sum of $529,000 to fund security improvements at the Burke-Memorial Elementary School and the McGovern Elementary School, or act in any manner relating thereto. May 9, 2016",
+      "category": "Financial",
+      "amount": 529000,
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town will vote to transfer from the Fiscal Stability Fund the sum of $529,000 to fund security improvements at the Burke-Memorial Elementary School and the McGovern Elementary School, or act in any manner relating thereto. May 9, 2016"
+    },
+    {
+      "num": 13,
+      "title": "Borrowing: Board of Health Water Pollution Abatement Projects",
+      "summary": "To see if the Town will vote to borrow the sum of $200,000 for the purpose of financing the following water pollution abatement facility projects: to repair, replace and/or upgrade residential septic systems, or residential connections to existing municipal sewer, pursuant to agreements with the Boa...",
+      "category": "Capital",
+      "amount": 200000,
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town will vote to borrow the sum of $200,000 for the purpose of financing the following water pollution abatement facility projects: to repair, replace and/or upgrade residential septic systems, or residential connections to existing municipal sewer, pursuant to agreements with the Board of Health and residential property owners, including, without limitation, all costs thereof as defined in Section 1 of Chapter 29C of the General By-laws, and that to meet this appropriation, the Town Treasurer, with the approval of the Board of Selectmen, be authorized to borrow $200,000 under G"
+    },
+    {
+      "num": 14,
+      "title": "Appropriation: Medway Day",
+      "summary": "To see if the Town will vote to raise and appropriate the sum of $9,500 for Medway Day, or act in any manner relating thereto.",
+      "category": "General",
+      "amount": 9500,
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town will vote to raise and appropriate the sum of $9,500 for Medway Day, or act in any manner relating thereto."
+    },
+    {
+      "num": 15,
+      "title": "Fund OPEB Trust",
+      "summary": "To see if the Town will vote to raise and appropriate the sum of $100,000 to the Town of Medway Other Post-Employment Benefits (OPEB) Trust account, or act in any manner relating thereto.",
+      "category": "General",
+      "amount": 100000,
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town will vote to raise and appropriate the sum of $100,000 to the Town of Medway Other Post-Employment Benefits (OPEB) Trust account, or act in any manner relating thereto."
+    },
+    {
+      "num": 16,
+      "title": "Create Athletic Fields Stabilization Fund; Transfer $25,000",
+      "summary": "To see if the Town will vote to create a new Athletic Fields Stabilization Fund, and, further, vote to transfer the sum of $25,000 from the Parks Revolving Fund, Hanlon Field Account, to the Athletic Fields Stabilization Fund, or act in any manner relating thereto. May 9, 2016",
+      "category": "Financial",
+      "amount": 25000,
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town will vote to create a new Athletic Fields Stabilization Fund, and, further, vote to transfer the sum of $25,000 from the Parks Revolving Fund, Hanlon Field Account, to the Athletic Fields Stabilization Fund, or act in any manner relating thereto. May 9, 2016"
+    },
+    {
+      "num": 17,
+      "title": "Authorize Revolving Funds",
+      "summary": "To see if the Town will vote to authorize the following revolving funds pursuant to Chapter 44, section 53E\u00bd of the Massachusetts General Laws for Fiscal Year 2017 as follows: FUND REVENUE AUTHORITY USE OF FUND SPENDING SOURCE TO SPEND LIMIT Parks and Permit Fees Board of Parks Self-supporting recre...",
+      "category": "Capital",
+      "amount": 150000,
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town will vote to authorize the following revolving funds pursuant to Chapter 44, section 53E\u00bd of the Massachusetts General Laws for Fiscal Year 2017 as follows: FUND REVENUE AUTHORITY USE OF FUND SPENDING SOURCE TO SPEND LIMIT Parks and Permit Fees Board of Parks Self-supporting recreation $150,000 Recreation Commissioners and parks services Council on Donations/fees paid Council on Pay for dial-a-ride van $114,000 Aging by riders and Aging service for seniors and GATRA disabled; shuttle service reimbursement to Norfolk commuter rail station, and other necessary transportation s"
+    },
+    {
+      "num": 18,
+      "title": "Appropriation: Community Preservation Committee",
+      "summary": "To see if the Town will vote to act on the report of the Community Preservation Committee for the Fiscal Year 2017 Community Preservation budget and to appropriate, or reserve for later appropriations, monies from the Community Preservation Fund annual revenues or available funds for the administrat...",
+      "category": "Community Preservation",
+      "amount": null,
+      "sb": "To Be Determined",
+      "fc": "To Be Determined",
+      "text": "To see if the Town will vote to act on the report of the Community Preservation Committee for the Fiscal Year 2017 Community Preservation budget and to appropriate, or reserve for later appropriations, monies from the Community Preservation Fund annual revenues or available funds for the administrative expenses of the Community Preservation Committee, the payment of debt service, the undertaking of community preservation projects and all other necessary and proper expenses for the Fiscal Year 2017, or act in any manner relating thereto. May 9, 2016"
+    },
+    {
+      "num": 19,
+      "title": "CPA Funds: Trail Design and Engineering",
+      "summary": "To see if the Town will vote to transfer the sum of $10,000 from Community Preservation Act Fund Open Space Reserves, to supplement the sum of $35,000 appropriated at the 2015 Fall Town Meeting, to the Open Space Committee for the purpose of designing and engineering a trail system and boardwalks fr...",
+      "category": "Financial",
+      "amount": 10000,
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town will vote to transfer the sum of $10,000 from Community Preservation Act Fund Open Space Reserves, to supplement the sum of $35,000 appropriated at the 2015 Fall Town Meeting, to the Open Space Committee for the purpose of designing and engineering a trail system and boardwalks from the Medway High School Athletic Fields to Lovering Street, or to act in any manner relating thereto. OPEN SPACE COMMITTEE"
+    },
+    {
+      "num": 20,
+      "title": "CPA Funds: Historical Document Preservation",
+      "summary": "To see if the Town will vote to transfer from Community Preservation Historical Reserve funds the sum of $28,493 to the Historical Commission for the purpose of funding the preservation of historical documents, or act in any manner relating thereto. HISTORICAL COMMISSION",
+      "category": "Financial",
+      "amount": 28493,
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town will vote to transfer from Community Preservation Historical Reserve funds the sum of $28,493 to the Historical Commission for the purpose of funding the preservation of historical documents, or act in any manner relating thereto. HISTORICAL COMMISSION"
+    },
+    {
+      "num": 21,
+      "title": "CPA Funds: Choate Park and Other Recreation Improvements",
+      "summary": "To see if the Town will vote to raise and appropriate, borrow, and/or transfer from Community Preservation Funds a sum of money not to exceed $450,000 for the purpose of funding design and engineering services and the preparation of public bid documents for the purpose of making improvements, includ...",
+      "category": "Financial",
+      "amount": 450000,
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town will vote to raise and appropriate, borrow, and/or transfer from Community Preservation Funds a sum of money not to exceed $450,000 for the purpose of funding design and engineering services and the preparation of public bid documents for the purpose of making improvements, including accessibility enhancements, to recreational facilities at Choate Park, the Medway Middle School, Cassidy Fields, and Oakland Park, and for the payment of all other costs incidental and related thereto, and to authorize the Board of Selectmen and Town officers to take all related actions necessar"
+    },
+    {
+      "num": 22,
+      "title": "Accept Gift of Land and Fund Related Acquisition Costs",
+      "summary": "To see if the Town will vote to authorize the Board of Selectmen to acquire by gift or purchase and to accept the deed to the Town of a fee simple interest in all or a portion of the parcel of land located at 115R Holliston Street, Medway, Norfolk County, MA, identified on the Town of Medway Assesso...",
+      "category": "Financial",
+      "amount": 9500,
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town will vote to authorize the Board of Selectmen to acquire by gift or purchase and to accept the deed to the Town of a fee simple interest in all or a portion of the parcel of land located at 115R Holliston Street, Medway, Norfolk County, MA, identified on the Town of Medway Assessors Map 31, Parcel 005-0001, containing 5.910 acres more or less, which land is now owned by John David Health Facility, upon such terms and conditions as the Board of Selectmen shall determine to be appropriate, to be used for general municipal purposes, and to transfer the sum of May 9, 2016 $9,500"
+    },
+    {
+      "num": 23,
+      "title": "Authorization to Pursue Municipal Aggregation",
+      "summary": "To see if the Town will vote to grant the Board of Selectmen authority to initiate the municipal aggregation process pursuant to chapter 164, section 134 of the Massachusetts General Laws, or any other enabling authority, to include, but not be limited to, researching, developing and entering into a...",
+      "category": "General",
+      "amount": null,
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town will vote to grant the Board of Selectmen authority to initiate the municipal aggregation process pursuant to chapter 164, section 134 of the Massachusetts General Laws, or any other enabling authority, to include, but not be limited to, researching, developing and entering into a contract, or contracts, to aggregate the electricity load of the residents and businesses within the Town of Medway and for other related services, including consulting services, independently, or in joint action with other municipalities for terms of more than three years, and for such considerati"
+    },
+    {
+      "num": 24,
+      "title": "Amend General Bylaw \u2013 Hunting on Town Land",
+      "summary": "To see if the Town will vote to amend Medway General By-Laws Section 12.20 (a) by replacing the text in said section in the entirety with the following: (a) No person shall fire or discharge any firearm within the limits of any school, park, playground, or other Town and/or private property, or hunt...",
+      "category": "Bylaw",
+      "amount": null,
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town will vote to amend Medway General By-Laws Section 12.20 (a) by replacing the text in said section in the entirety with the following: (a) No person shall fire or discharge any firearm within the limits of any school, park, playground, or other Town and/or private property, or hunt or fire or discharge any firearm on private property without written consent of the owner or legal occupant thereof, or in the case of Town property from the Chief of Police. Or to act in any manner relating thereto. OPEN SPACE COMMITTEE"
+    },
+    {
+      "num": 25,
+      "title": "Easement Acceptances: Neelon Lane and Charles View Lane",
+      "summary": "To see if the Town will vote to accept: A Perpetual Easement for public access and maintenance by the Town of Medway on and over the extension of Neelon Lane, shown as \u201cAccess and Maintenance Easement (6,863 S.F.)\u201d on a plan of land entitled, \u2018Definitive Plan \u201cCharles River Village\u201d Open Space Resid...",
+      "category": "Community Preservation",
+      "amount": null,
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town will vote to accept: A Perpetual Easement for public access and maintenance by the Town of Medway on and over the extension of Neelon Lane, shown as \u201cAccess and Maintenance Easement (6,863 S.F.)\u201d on a plan of land entitled, \u2018Definitive Plan \u201cCharles River Village\u201d Open Space Residential May 9, 2016 Development (OSRD) in Medway, Massachusetts Date: November 20, 2012 Revise Dates: February 15, 2013, and May 30, 2013 prepared by O\u2019Driscoll Land Surveying Co.\u2019, recorded with the Norfolk County Registry of Deeds in Plan Book 624, Page 5, for all purposes for which public ways may"
+    },
+    {
+      "num": 26,
+      "title": "Amend General Bylaws: Design Review Committee",
+      "summary": "To see if the Town of Medway will vote to amend the Medway General Bylaws, Section 2.15 Design Review Committee as follows. Items to be deleted are noted with a strikethrough. Items to be added are noted in bold text.",
+      "category": "Capital",
+      "amount": null,
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town of Medway will vote to amend the Medway General Bylaws, Section 2.15 Design Review Committee as follows. Items to be deleted are noted with a strikethrough. Items to be added are noted in bold text. Section 2.15 \u2013 Design Review Committee (a) Establishment - There shall be a Design Review Committee (DRC) consisting of at least five (5) and up to seven voting members who reside in Medway who and shall be sworn to the faithful performance of their duties. The DRC may also have up to three non-voting advisors who reside and/or work in Medway. (b) Mission - To serve the people of"
+    },
+    {
+      "num": 27,
+      "title": "Amend General Bylaws: New Section - Parking & Storage of Recreational\nand Commercial Vehicles",
+      "summary": "To see if the Town of Medway will vote to amend the Medway General By-laws by adding the following Section 12.26 in Article XII: Section 12. 26 Regulation of Parking and Storage of Recreational and Commercial Vehicles (a) Purpose - The purpose of this By-law is to regulate the on-street parking of c...",
+      "category": "Bylaw",
+      "amount": null,
+      "sb": "To Be Determined",
+      "fc": "To Be Determined",
+      "text": "To see if the Town of Medway will vote to amend the Medway General By-laws by adding the following Section 12.26 in Article XII: Section 12. 26 Regulation of Parking and Storage of Recreational and Commercial Vehicles (a) Purpose - The purpose of this By-law is to regulate the on-street parking of certain commercial and recreational vehicles and the outdoor parking/storage of unregistered vehicles and certain commercial vehicles. This By-law is adopted to promote safe vehicular traffic, to preserve peace and good order, to protect the character of residential neighborhoods, to promote the aest"
+    },
+    {
+      "num": 28,
+      "title": "Amend Zoning Bylaw: Accessory Family Dwelling Unit",
+      "summary": "To see if the Town of Medway will vote to amend the Zoning Bylaw by deleting SECTION 8.2 Accessory Family Dwelling Unit in its entirety and replacing it as follows: Note that eliminated text is shown with a strikethrough and new text is shown in bold. 8.2 ACCESSORY FAMILY DWELLING UNIT A. Purposes.",
+      "category": "Bylaw",
+      "amount": null,
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town of Medway will vote to amend the Zoning Bylaw by deleting SECTION 8.2 Accessory Family Dwelling Unit in its entirety and replacing it as follows: Note that eliminated text is shown with a strikethrough and new text is shown in bold. 8.2 ACCESSORY FAMILY DWELLING UNIT A. Purposes. The purposes of this sub-section Accessory Family Dwelling Unit bylaw are to: 1. establish an option for the creation of Accessory Family Dwelling units to provide suitable housing assist Medway residents with creating suitable housing to accommodate for a family member and/or a caregiver for a fami"
+    },
+    {
+      "num": 29,
+      "title": "Amend Zoning Bylaw: Site Plan Review",
+      "summary": "To see if the Town will vote to amend the Medway Zoning Bylaw by deleting sub- SECTION 3.5 Site Plan Review and replacing it as follows: Note the text to be deleted is indicated with a strikethrough and new or relocated text is indicated in bold. 3.5.",
+      "category": "Capital",
+      "amount": null,
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town will vote to amend the Medway Zoning Bylaw by deleting sub- SECTION 3.5 Site Plan Review and replacing it as follows: Note the text to be deleted is indicated with a strikethrough and new or relocated text is indicated in bold. 3.5. SITE PLAN REVIEW 3.5.1 Purposes Site plan review is a means of managing the aesthetics and environmental impacts of land use by the regulation of permitted uses, not their prohibition. Its purpose is to: May 9, 2016 \uf0b7 assure protection of the public interest consistent with a reasonable use of the site for the purposes permitted in the district; "
+    },
+    {
+      "num": 30,
+      "title": "Amend Zoning Bylaw: Editing Zoning Bylaws",
+      "summary": "To see if the Town of Medway will vote to amend the Medway Zoning Bylaw by adding a new Section 1.7 as follows: 1.7 FORMAT The Planning and Economic Development Coordinator, under the auspices of the Planning and Economic Development Board, is authorized to edit this Zoning Bylaw for format only thr...",
+      "category": "Bylaw",
+      "amount": null,
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town of Medway will vote to amend the Medway Zoning Bylaw by adding a new Section 1.7 as follows: 1.7 FORMAT The Planning and Economic Development Coordinator, under the auspices of the Planning and Economic Development Board, is authorized to edit this Zoning Bylaw for format only through use of bold, italics, underscores, bullets, font style, font size, spacing, and other similar editing measures to improve the Bylaw\u2019s readability and ease of use without changing the text, section and heading titles, numbering, or content in any manner; and to clearly denote those terms through"
+    },
+    {
+      "num": 31,
+      "title": "Amend Zoning Bylaw: New Section - Zoning District Boundaries",
+      "summary": "To see if the Town will vote to amend the Medway Zoning Bylaw by adding a new Section 4.4 as follows: 4.4 ZONING DISTRICT BOUNDARIES Where a zoning district boundary line is shown on the Zoning Map as being within a public or private street or right-of-way, the center line of the street or right-of-way shall be the zoning district boundary line.",
+      "category": "Bylaw",
+      "amount": null,
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town will vote to amend the Medway Zoning Bylaw by adding a new Section 4.4 as follows: 4.4 ZONING DISTRICT BOUNDARIES Where a zoning district boundary line is shown on the Zoning Map as being within a public or private street or right-of-way, the center line of the street or right-of-way shall be the zoning district boundary line. Or to act in any manner relating thereto."
+    },
+    {
+      "num": 32,
+      "title": "Amend Zoning Bylaw: Definitions",
+      "summary": "To see if the Town of Medway will vote to amend the Zoning Bylaw by deleting item F. Building Height from Section 6.2. General Provisions and inserting the following definition in alphabetical order in SECTION 2 DEFINITIONS: Building Height \u2013 The vertical distance from grade plane to the average height of the highest roof surface.",
+      "category": "Capital",
+      "amount": null,
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town of Medway will vote to amend the Zoning Bylaw by deleting item F. Building Height from Section 6.2. General Provisions and inserting the following definition in alphabetical order in SECTION 2 DEFINITIONS: Building Height \u2013 The vertical distance from grade plane to the average height of the highest roof surface. And by inserting the following definitions in alphabetical order in SECTION 2 DEFINITIONS: May 9, 2016 Garage, private residential: A structure which is accessory to a residential building and used by the residents thereof for personal household storage and/or the pa"
+    },
+    {
+      "num": 33,
+      "title": "Amend Zoning Bylaw: Prohibited Uses",
+      "summary": "To see if the Town will vote to amend SECTION 5.2 of the Zoning Bylaw by inserting the following to Sub-Section 5.2 B. PROHIBITED USES: B. 13. Self-Storage Facilities And by revising the identification of item B. 13 to become B. 14, or act in any manner relating thereto. May 9, 2016 May 9, 2016",
+      "category": "Bylaw",
+      "amount": null,
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town will vote to amend SECTION 5.2 of the Zoning Bylaw by inserting the following to Sub-Section 5.2 B. PROHIBITED USES: B. 13. Self-Storage Facilities And by revising the identification of item B. 13 to become B. 14, or act in any manner relating thereto. May 9, 2016 May 9, 2016"
+    }
+  ]
+}

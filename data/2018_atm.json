@@ -1,0 +1,281 @@
+{
+  "meta": {
+    "meeting_type": "ATM",
+    "date": "May 21, 2018",
+    "year": "2018",
+    "theme_id": "2018_atm",
+    "source_pdf": "2018-05-21 Annual Town Meeting Minutes.pdf"
+  },
+  "articles": [
+    {
+      "num": 1,
+      "title": "ESCO Stabilization Reserve Transfer",
+      "summary": "To see if the Town will vote to transfer the sum of $9,655 from the ESCO Stabilization Fund to the Fiscal Year 2019 Debt Service expense account for the purpose of funding ESCO related debt service, or act in any manner relating thereto.",
+      "category": "Financial",
+      "amount": 9655,
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town will vote to transfer the sum of $9,655 from the ESCO Stabilization Fund to the Fiscal Year 2019 Debt Service expense account for the purpose of funding ESCO related debt service, or act in any manner relating thereto."
+    },
+    {
+      "num": 2,
+      "title": "Debt Stabilization Fund Transfer",
+      "summary": "To see if the Town will vote to transfer the sum of $450,000 from the Debt Stabilization Fund to the Fiscal Year 2019 Debt Service expense account for the purpose of offsetting a portion of debt exclusion projects, or act in any manner relating thereto.",
+      "category": "Financial",
+      "amount": 450000,
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town will vote to transfer the sum of $450,000 from the Debt Stabilization Fund to the Fiscal Year 2019 Debt Service expense account for the purpose of offsetting a portion of debt exclusion projects, or act in any manner relating thereto."
+    },
+    {
+      "num": 3,
+      "title": "Appropriation: FY19 Operating Budget",
+      "summary": "To see if the Town will vote to fix the salary and compensation of all elected officers of the Town, provide for a Reserve Fund, and determine what sums of money the Town will raise and appropriate, including appropriation from available funds, to defray charges and expenses of the Town including de...",
+      "category": "Budget",
+      "amount": null,
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town will vote to fix the salary and compensation of all elected officers of the Town, provide for a Reserve Fund, and determine what sums of money the Town will raise and appropriate, including appropriation from available funds, to defray charges and expenses of the Town including debt and interest, for the Fiscal Year ending June 30, 2019, or act in any manner relating thereto."
+    },
+    {
+      "num": 4,
+      "title": "Appropriation: FY19 Water Enterprise Fund",
+      "summary": "To see if the Town will vote to raise and appropriate or transfer from available funds the sum of $2,826,692 for the maintenance of the Water Department Enterprise Fund as follows, or act in any manner relating thereto.",
+      "category": "Budget",
+      "amount": 2826692,
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town will vote to raise and appropriate or transfer from available funds the sum of $2,826,692 for the maintenance of the Water Department Enterprise Fund as follows, or act in any manner relating thereto. Direct Costs Amount Salaries $ 697,206 Expenses 650,450 Debt 1,173,020 Direct Costs Total $ 2,520,676 Indirect Costs Indirect costs consisting of health insurance, workers\u2019 compensation, Medicare, liability insurance, administrative and operational services. Indirect Costs Total $306,016 Total $2,826,692 And further that the above listed appropriations be funded as follows: Fee"
+    },
+    {
+      "num": 5,
+      "title": "Appropriation: FY19 Sewer Enterprise Fund",
+      "summary": "To see if the Town will vote to raise and appropriate or transfer from available funds the sum of $1,851,076 for the maintenance of the Sewer Department Enterprise Fund as follows, or act in any manner relating thereto.",
+      "category": "Budget",
+      "amount": 1851076,
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town will vote to raise and appropriate or transfer from available funds the sum of $1,851,076 for the maintenance of the Sewer Department Enterprise Fund as follows, or act in any manner relating thereto. Direct Costs Amount Salaries $ 253,171 Expenses 1,122,350 Debt 355,072 Direct Costs Total $1,730,593 Indirect Costs Indirect costs consisting of health insurance, workers\u2019 compensation, Medicare, liability insurance, administrative and operational services. Indirect Costs Total $120,483 Total $1,851,076 And further that the above listed appropriations be funded as follows: Fees"
+    },
+    {
+      "num": 6,
+      "title": "Appropriation: FY19 Solid Waste Enterprise Fund",
+      "summary": "To see if the Town will vote to raise and appropriate or transfer from available funds the sum of $1,212,561 to operate the Solid Waste/Recycling Department Enterprise Fund as follows, or act in any manner relating thereto.",
+      "category": "Budget",
+      "amount": 1212561,
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town will vote to raise and appropriate or transfer from available funds the sum of $1,212,561 to operate the Solid Waste/Recycling Department Enterprise Fund as follows, or act in any manner relating thereto. Direct Costs Amount Salaries $ 40,335 Expenses 1,138,550 Direct Costs Total $1,178,885 Indirect Costs Indirect costs consisting of health insurance, workers\u2019 compensation, Medicare, liability insurance, administrative and operational services. Indirect Costs Total $ 33,676 Total $1,212,561 And further that the above listed appropriations be funded as follows: Trash Recyclin"
+    },
+    {
+      "num": 7,
+      "title": "Appropriation: FY19 Ambulance Enterprise Fund",
+      "summary": "To see if the Town will vote to raise and appropriate or transfer from available funds the sum of $825,706 to operate the Ambulance Enterprise Fund as follows, or act in any manner relating thereto.",
+      "category": "Budget",
+      "amount": 825706,
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town will vote to raise and appropriate or transfer from available funds the sum of $825,706 to operate the Ambulance Enterprise Fund as follows, or act in any manner relating thereto. Direct Costs Amount Salaries $406,322 Expenses 204,100 Debt 65,000 Direct Costs Total $675,422 Indirect Costs Indirect costs consisting of health insurance, workers\u2019 compensation, Medicare, liability insurance, administrative and operational services. Indirect Costs Total $150,284 Total $825,706 And further that the above listed appropriations be funded as follows: General Fund Appropriation $150,0"
+    },
+    {
+      "num": 8,
+      "title": "Free Cash Appropriation: Capital and Other Items",
+      "summary": "To see if the Town will vote to appropriate the sum of $2,065,231 from Certified Free Cash for the purpose of funding the following capital and other items, including associated engineering, personnel, maintenance and legal service costs; said appropriations to be expended by June 30, 2019, with une...",
+      "category": "Capital",
+      "amount": 2065231,
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town will vote to appropriate the sum of $2,065,231 from Certified Free Cash for the purpose of funding the following capital and other items, including associated engineering, personnel, maintenance and legal service costs; said appropriations to be expended by June 30, 2019, with unexpended funds as of June 30, 2019 being returned to the General Fund, or act in any manner relating thereto. Project Department Cost Various Road and Sidewalk Repair DPS $750,000 Replace Front End Loader DPS $189,000 Replace Street Sweeper DPS $290,000 Purchase Stander Mower DPS $ 8,500 Replace 2 Tr"
+    },
+    {
+      "num": 9,
+      "title": "Raise & Appropriate: Roads & Sidewalks",
+      "summary": "To see if the Town will vote to raise and appropriate the sum of $800,000 for the purposes of making repairs to various roads, sidewalks, bridges and related appurtenances, and to fund, as needed, design, engineering, and construction management services, or act in any manner relating thereto.",
+      "category": "Capital",
+      "amount": 800000,
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town will vote to raise and appropriate the sum of $800,000 for the purposes of making repairs to various roads, sidewalks, bridges and related appurtenances, and to fund, as needed, design, engineering, and construction management services, or act in any manner relating thereto."
+    },
+    {
+      "num": 10,
+      "title": "Transfer \u2013 Retained Earnings \u2013 Sewer Enterprise",
+      "summary": "To see if the Town will vote to transfer the sum of $200,000 from Sewer Enterprise Fund retained earnings for the purpose of funding the following Fiscal Year 2019 project(s), including associated engineering, personnel, maintenance and legal services costs: Project Department Cost Various Sewer Col...",
+      "category": "Enterprise Budget",
+      "amount": 200000,
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town will vote to transfer the sum of $200,000 from Sewer Enterprise Fund retained earnings for the purpose of funding the following Fiscal Year 2019 project(s), including associated engineering, personnel, maintenance and legal services costs: Project Department Cost Various Sewer Collection Projects SEWER $200,000 Total $200,000 Or act in any manner relating thereto. PUBLIC SERVICES DEPT."
+    },
+    {
+      "num": 11,
+      "title": "Transfer \u2013 Retained Earnings \u2013 Water Enterprise",
+      "summary": "To see if the Town will vote to transfer the sum of $163,000 from Water Enterprise Fund retained earnings for the purpose of funding the following Fiscal Year 2019 project(s), including associated engineering, personnel, maintenance and legal services costs: Project Department Cost Replace Truck (20...",
+      "category": "Enterprise Budget",
+      "amount": 163000,
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town will vote to transfer the sum of $163,000 from Water Enterprise Fund retained earnings for the purpose of funding the following Fiscal Year 2019 project(s), including associated engineering, personnel, maintenance and legal services costs: Project Department Cost Replace Truck (2004 F-250 4x4) WATER $45,000 Purchase Backhoe WATER $118,000 Total $163,000 Or act in any manner relating thereto. PUBLIC SERVICES DEPT."
+    },
+    {
+      "num": 12,
+      "title": "Borrowing \u2013 Water Enterprise",
+      "summary": "To see if the Town will vote to raise and appropriate, borrow or transfer from available Water Enterprise funds the sum of $1,224,000 for the purpose of funding a supply line from the Village Street well to the Populatic well site and the installation of a second well at the Populatic well site, inc...",
+      "category": "Enterprise Budget",
+      "amount": 1224000,
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town will vote to raise and appropriate, borrow or transfer from available Water Enterprise funds the sum of $1,224,000 for the purpose of funding a supply line from the Village Street well to the Populatic well site and the installation of a second well at the Populatic well site, including the associated engineering, personnel, maintenance, construction and legal service costs, any premium received upon the sale of any bonds or notes approved by this vote, less any such premium applied to the payment of the costs of issuance of such bonds or notes, may be applied to the payment"
+    },
+    {
+      "num": 13,
+      "title": "Borrowing \u2013 General Fund \u2013 School Repairs",
+      "summary": "To see if the Town will vote to raise and appropriate, borrow or transfer from available funds for Fiscal Year 2019 the sum of $705,000 for the purpose of funding the replacement of boilers at the McGovern and Memorial Schools, including associated design, engineering, permitting, and legal services...",
+      "category": "Capital",
+      "amount": 705000,
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town will vote to raise and appropriate, borrow or transfer from available funds for Fiscal Year 2019 the sum of $705,000 for the purpose of funding the replacement of boilers at the McGovern and Memorial Schools, including associated design, engineering, permitting, and legal services costs, any premium received upon the sale of any bonds or notes approved by this vote, less any such premium applied to the payment of the costs of issuance of such bonds or notes, may be applied to the payment of costs approved by this vote in accordance with Chapter 44, Section 20 of the General "
+    },
+    {
+      "num": 14,
+      "title": "Free Cash Transfer to General Stabilization",
+      "summary": "To see if the Town will vote to transfer the sum of $100,000 from Certified Free Cash to the General Stabilization Fund, or act in any manner relating thereto.",
+      "category": "Financial",
+      "amount": 100000,
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town will vote to transfer the sum of $100,000 from Certified Free Cash to the General Stabilization Fund, or act in any manner relating thereto."
+    },
+    {
+      "num": 15,
+      "title": "Appropriation: OPEB Trust",
+      "summary": "To see if the Town will vote to raise and appropriate the sum of $300,000 to the Town of Medway Other Post-Employment Benefits (OPEB) Trust account, or act in any manner relating thereto.",
+      "category": "General",
+      "amount": 300000,
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town will vote to raise and appropriate the sum of $300,000 to the Town of Medway Other Post-Employment Benefits (OPEB) Trust account, or act in any manner relating thereto."
+    },
+    {
+      "num": 16,
+      "title": "Appropriation: Medway Day",
+      "summary": "To see if the Town will vote to raise and appropriate the sum of $9,500 for Medway Day, or act in any manner relating thereto.",
+      "category": "General",
+      "amount": 9500,
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town will vote to raise and appropriate the sum of $9,500 for Medway Day, or act in any manner relating thereto."
+    },
+    {
+      "num": 17,
+      "title": "Appropriation: Community Preservation Committee",
+      "summary": "To see if the Town will vote to act on the report of the Community Preservation Committee for the Fiscal Year 2019 Community Preservation budget and to appropriate, or reserve for later appropriations, monies from the Community Preservation Fund annual revenues or available funds for the administrat...",
+      "category": "Financial",
+      "amount": 15000,
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town will vote to act on the report of the Community Preservation Committee for the Fiscal Year 2019 Community Preservation budget and to appropriate, or reserve for later appropriations, monies from the Community Preservation Fund annual revenues or available funds for the administrative expenses of the Community Preservation Committee, the payment of debt service, the undertaking of community preservation projects and all other necessary and proper expenses for the Fiscal Year 2019, as follows: CPC Administrative Expenses $15,000 CPC Salaries 5,000 CPC Debt Expense 454,525 Tran"
+    },
+    {
+      "num": 18,
+      "title": "Amend General Bylaws \u2013 Revolving Funds; Authorize FY19 Spending\nLimits",
+      "summary": "To see if the Town will vote, pursuant to Massachusetts General Laws Chapter 44, Section 53E1/2, to amend the General Bylaws Article XXX, Revolving Funds, by further defining existing revolving funds and inserting a new revolving fund as shown in bold italics as follows: ARTICLE XXX Revolving Funds ...",
+      "category": "Budget",
+      "amount": 300000,
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town will vote, pursuant to Massachusetts General Laws Chapter 44, Section 53E1/2, to amend the General Bylaws Article XXX, Revolving Funds, by further defining existing revolving funds and inserting a new revolving fund as shown in bold italics as follows: ARTICLE XXX Revolving Funds There are hereby established in the Town of Medway pursuant to the provisions of General Laws Chapter 44, Section 53E\u00bd, the following Revolving Funds: Program or Purpose Authorized Department Receipts Representative or Board to Spend Self-supporting parks and Department of Fees and charges received "
+    },
+    {
+      "num": 19,
+      "title": "Establish Special Education Stabilization Fund",
+      "summary": "To see if the Town will vote to accept the provisions of Massachusetts General Laws Chapter 40, Section 13E, to establish a reserved fund to be utilized for unanticipated or unbudgeted costs of special education, out-of-district tuition or transportation, or act in any manner relating thereto.",
+      "category": "Financial",
+      "amount": null,
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town will vote to accept the provisions of Massachusetts General Laws Chapter 40, Section 13E, to establish a reserved fund to be utilized for unanticipated or unbudgeted costs of special education, out-of-district tuition or transportation, or act in any manner relating thereto. SCHOOL DEPARTMENT"
+    },
+    {
+      "num": 20,
+      "title": "Conveyance of Real Property to Medway Redevelopment Authority",
+      "summary": "To see if the Town will vote to transfer to the Board of Selectmen for the purpose of disposition by sale, lease, or otherwise, the parcels of Town-owned property in the Oak Grove Urban Renewal Area as shown on the Oak Grove Urban Renewal Plan, produced by BSC Group, dated March 2017, and approved b...",
+      "category": "Financial",
+      "amount": null,
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town will vote to transfer to the Board of Selectmen for the purpose of disposition by sale, lease, or otherwise, the parcels of Town-owned property in the Oak Grove Urban Renewal Area as shown on the Oak Grove Urban Renewal Plan, produced by BSC Group, dated March 2017, and approved by the Department of Housing and Community Development on August 18, 2017, on file with the Town Clerk, from the board or officer currently having care, custody, management, and control of said town-owned land; and further, to authorize the Board of Selectmen to sell, convey, or transfer to the Medwa"
+    },
+    {
+      "num": 21,
+      "title": "Discontinue Public Way \u2013 Portion of Alder St",
+      "summary": "To see if the Town will vote to discontinue as a public way a portion of Alder Street, shown as parcel No. T-2 on a plan entitled \u201cLayout and Discontinuance Plan, Alder Street and Trotter Drive, Medway, Massachusetts\u201d, dated June 4, 1988, recorded at the Norfolk County Registry of Deeds in Plan Book 464, Plan No.",
+      "category": "Land/Property",
+      "amount": null,
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town will vote to discontinue as a public way a portion of Alder Street, shown as parcel No. T-2 on a plan entitled \u201cLayout and Discontinuance Plan, Alder Street and Trotter Drive, Medway, Massachusetts\u201d, dated June 4, 1988, recorded at the Norfolk County Registry of Deeds in Plan Book 464, Plan No. 180 of 1999, and to abandon the Town\u2019s easement in said portion of Alder Street discontinued as a public way, and to authorize the Board of Selectmen to execute any documents to accomplish said discontinuance and abandonment, and to file at the Norfolk County Registry of Deeds any doc"
+    },
+    {
+      "num": 22,
+      "title": "Amend Zoning Bylaw: Registered Marijuana Dispensary",
+      "summary": "To see if the Town will vote to amend the Zoning Bylaw, Section 8.9 Registered Marijuana Dispensary as follows. Text to be deleted is shown with a strikethrough. New text is shown as underlined. 8.9 REGISTERED MEDICAL MARIJUANA FACILITIES DISPENSARY A. Purposes.",
+      "category": "Capital",
+      "amount": null,
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town will vote to amend the Zoning Bylaw, Section 8.9 Registered Marijuana Dispensary as follows. Text to be deleted is shown with a strikethrough. New text is shown as underlined. 8.9 REGISTERED MEDICAL MARIJUANA FACILITIES DISPENSARY A. Purposes. The purposes of this Section are to address possible adverse public health and safety consequences and impacts on the quality of life of the Town of Medway related to the passage of Chapter 369 of the Acts of 2012; provide for the limited establishment of a Registered Medical Marijuana Facility Dispensary (RMD) (RMMF) in an appropriate"
+    },
+    {
+      "num": 23,
+      "title": "Amend Zoning Bylaw: Definitions; Delete Temporary Moratorium on\nNon-Medical Marijuana Establishments",
+      "summary": "To see if the Town will vote to amend the Zoning Bylaw by revising SECTION 2 DEFINITIONS as follows: By adding the following definition: Recreational Marijuana Social Consumption Establishment: A Recreational Marijuana Social Consumption Establishment may purchase marijuana from licensed recreationa...",
+      "category": "Capital",
+      "amount": null,
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town will vote to amend the Zoning Bylaw by revising SECTION 2 DEFINITIONS as follows: By adding the following definition: Recreational Marijuana Social Consumption Establishment: A Recreational Marijuana Social Consumption Establishment may purchase marijuana from licensed recreational marijuana establishments and sell single servings of marijuana to consumers for consumption on the premises. And by adding the highlighted text to the following existing definitions: Recreational Marijuana Retailer: An entity licensed to purchase and deliver marijuana and marijuana products from m"
+    },
+    {
+      "num": 24,
+      "title": "Amend Zoning Bylaw: Site Plan Review",
+      "summary": "To see if the Town will vote to amend portions of Section 3.5 Site Plan Review of the Zoning Bylaw as follows: Deleted text is shown with a strikethrough; new text is shown as underlined.",
+      "category": "Capital",
+      "amount": null,
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town will vote to amend portions of Section 3.5 Site Plan Review of the Zoning Bylaw as follows: Deleted text is shown with a strikethrough; new text is shown as underlined. 3.5 SITE PLAN REVIEW 3.5.1 Purposes Site plan review is a means of managing the aesthetics and environmental impacts of land use by the regulation of permitted uses, not their prohibition. Its purpose is to: \uf0b7 provide a standard process to review proposed development and redevelopment projects for compliance with the Medway Zoning Bylaw \uf0b7 assure protection of the public interest consistent with a reasonable u"
+    },
+    {
+      "num": 25,
+      "title": "Amend Zoning Map: District Boundaries",
+      "summary": "To see if the Town of Medway will vote to rezone the following parcels as shown on the map titled Proposed Boundary Changes to AR-I & AR-II Zoning Districts dated February 18, 2018 which is on file with the Town Clerk: and to amend the Zoning Map accordingly, such that: The following split zoned par...",
+      "category": "Bylaw",
+      "amount": null,
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town of Medway will vote to rezone the following parcels as shown on the map titled Proposed Boundary Changes to AR-I & AR-II Zoning Districts dated February 18, 2018 which is on file with the Town Clerk: and to amend the Zoning Map accordingly, such that: The following split zoned parcels shall be rezoned so that the portion which is presently zoned Agricultural Residential I district shall be rezoned to Agricultural Residential II district, so that the entire parcel is zoned Agricultural Residential II: Medway Address Assessor\u2019s Parcel Current Owner Parcel ID # Size 36RF Loveri"
+    },
+    {
+      "num": 26,
+      "title": "Accept Easement: Pine Ridge Drive",
+      "summary": "To see if the Town will vote to accept: A Non-Exclusive Perpetual Access Easement on and over a portion of Pine Ridge Drive shown as \u201cProp. 24 Wide Public Access Easement\u201d including three adjacent parking spaces and A Non-Exclusive Perpetual Access Easement on and over a portion of Parcel B shown as...",
+      "category": "Community Preservation",
+      "amount": null,
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town will vote to accept: A Non-Exclusive Perpetual Access Easement on and over a portion of Pine Ridge Drive shown as \u201cProp. 24 Wide Public Access Easement\u201d including three adjacent parking spaces and A Non-Exclusive Perpetual Access Easement on and over a portion of Parcel B shown as \u201cProp, 20\u2019 Wide Public Access Easement for purposes of enabling Town employees and officials and members of the public to access Parcel C Open Space, all as shown on a plan of land entitled \u201cVillage at Pine Ridge Open Space Residential Development (OSRD)\u201d in Medway, MA dated March 28, 2006, last re"
+    },
+    {
+      "num": 27,
+      "title": "Street Acceptance, Land Conveyance and Infrastructure Acceptance \u2013\nCandlewood Drive and Island Road Subdivisions",
+      "summary": "To see if the Town will vote to accept as public ways, the following streets as laid out by the Board of Selectmen and as shown on a plan or plans on file in the Office of the Town Clerk: Candlewood Drive as laid out by a vote of the Board of Selectmen and shown on a plan entitled \u201c\u2018As-Built\u2019 Accept...",
+      "category": "Capital",
+      "amount": null,
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town will vote to accept as public ways, the following streets as laid out by the Board of Selectmen and as shown on a plan or plans on file in the Office of the Town Clerk: Candlewood Drive as laid out by a vote of the Board of Selectmen and shown on a plan entitled \u201c\u2018As-Built\u2019 Acceptance Plan Candlewood Drive Medway, MA\u201d, dated January 7, 1999, prepared by Engineering, Surveying, and Planning Associates, excluding from said layout the unconstructed portion of Candlewood Drive abutting Lots 8, 9, and 10, as shown on said plan. Island Road in its entirety as laid out by a vote of"
+    }
+  ]
+}

@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Medway Special Town Meeting — June 8, 2020</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* ── Theme colors (injected per meeting) ─────────────────────────────── */
+    :root {
+      --g1:    #4a3a1a;
+      --g2:    #7c6428;
+      --acc:   #7c6428;
+      --light: #faf5ea;
+      --tbg:   #f7f4ec;
+      --tbo:   #e0d0a0;
+    }
+
+    /* ── Reset & base ─────────────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Inter', sans-serif; background: #eef2f7; color: #1a2e4a; min-height: 100vh; }
+
+    /* ── Header ───────────────────────────────────────────────────────────── */
+    .header {
+      background: linear-gradient(135deg, var(--g1) 0%, var(--g2) 100%);
+      color: white; padding: 2.5rem 2rem 2rem; text-align: center;
+    }
+    .back-link {
+      display: inline-flex; align-items: center; gap: .35rem;
+      font-size: .75rem; font-weight: 600; color: rgba(255,255,255,.7);
+      text-decoration: none; letter-spacing: .04em;
+      margin-bottom: 1rem; transition: color .15s;
+    }
+    .back-link::before { content: '←'; }
+    .back-link:hover { color: white; }
+    .eyebrow { font-size: .72rem; font-weight: 600; letter-spacing: .18em; text-transform: uppercase; opacity: .65; margin-bottom: .5rem; }
+    .header h1 { font-size: 1.9rem; font-weight: 700; margin-bottom: .4rem; }
+    .header .meta { font-size: .88rem; opacity: .75; }
+
+    /* ── Stats bar ────────────────────────────────────────────────────────── */
+    .stats-bar { display: flex; gap: 1rem; padding: 1.2rem 2rem; background: var(--light); justify-content: center; flex-wrap: wrap; }
+    .stat-card { text-align: center; padding: .5rem 1.2rem; }
+    .stat-card .label { font-size: .68rem; font-weight: 600; text-transform: uppercase; letter-spacing: .1em; color: var(--acc); opacity: .8; }
+    .stat-card .value { font-size: 1.4rem; font-weight: 700; color: var(--g1); }
+    .stat-card .sub   { font-size: .7rem; color: #7a8fa6; }
+
+    /* ── Controls ─────────────────────────────────────────────────────────── */
+    .container { max-width: 1100px; margin: 0 auto; padding: 1.5rem 1.5rem 4rem; }
+    .controls { margin-bottom: 1.25rem; }
+    .controls-label { font-size: .68rem; font-weight: 700; text-transform: uppercase; letter-spacing: .12em; color: #7a8fa6; margin-bottom: .6rem; }
+    .filter-buttons { display: flex; flex-wrap: wrap; gap: .45rem; }
+    .filter-btn {
+      padding: .3rem .85rem; border-radius: 999px; border: 1.5px solid #d0dae6;
+      background: white; font-family: inherit; font-size: .75rem; font-weight: 500;
+      color: #546475; cursor: pointer; transition: all .15s;
+    }
+    .filter-btn:hover  { border-color: var(--acc); color: var(--acc); }
+    .filter-btn.active { background: var(--acc); border-color: var(--acc); color: white; font-weight: 600; }
+
+    /* ── Table ────────────────────────────────────────────────────────────── */
+    .table-wrap  { background: white; border-radius: 14px; box-shadow: 0 1px 3px rgba(0,0,0,.07), 0 4px 12px rgba(0,0,0,.04); overflow: hidden; }
+    .table-scroll { overflow-x: auto; }
+    table  { width: 100%; border-collapse: collapse; }
+    thead  { background: var(--tbg); border-bottom: 2px solid var(--tbo); }
+    th     { padding: .75rem 1rem; text-align: left; font-size: .72rem; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--g1); white-space: nowrap; }
+    th.sortable { cursor: pointer; user-select: none; }
+    th.sortable:hover { color: var(--acc); }
+    th.sortable .sort-icon { margin-left: 4px; font-size: .7rem; opacity: .45; }
+    th.sorted-asc  .sort-icon, th.sorted-desc .sort-icon { opacity: 1; color: var(--acc); }
+    th.sorted-asc  .sort-icon::after { content: '▲'; }
+    th.sorted-desc .sort-icon::after { content: '▼'; }
+    th:not(.sorted-asc):not(.sorted-desc) .sort-icon::after { content: '⇅'; }
+    th.amount-col { text-align: right; }
+    td { padding: .9rem 1rem; vertical-align: top; border-bottom: 1px solid #edf2ef; font-size: .875rem; line-height: 1.55; }
+    tr:last-child td { border-bottom: none; }
+    tr:hover td { background: #fafcfb; }
+    tr.hidden { display: none; }
+
+    /* ── Article cell ─────────────────────────────────────────────────────── */
+    .article-num     { font-size: .78rem; font-weight: 700; color: var(--acc); white-space: nowrap; }
+    .article-title   { font-weight: 600; color: #1a2e4a; margin-bottom: .3rem; }
+    .article-summary { color: #546475; font-size: .82rem; line-height: 1.5; }
+    .article-recs    { display: flex; align-items: center; gap: .45rem; margin-top: .45rem; flex-wrap: wrap; }
+    .rec-label       { font-size: .7rem; font-weight: 600; color: #7a8fa6; white-space: nowrap; }
+    .full-text-btn {
+      display: inline-flex; align-items: center; gap: .3rem;
+      margin-top: .55rem; padding: 0; border: none; background: none;
+      font-family: inherit; font-size: .75rem; font-weight: 600;
+      color: var(--acc); cursor: pointer; opacity: .65; transition: opacity .15s, gap .15s;
+    }
+    .full-text-btn:hover { opacity: 1; gap: .45rem; }
+    .full-text-btn::after { content: '→'; }
+
+    /* ── Amount column ────────────────────────────────────────────────────── */
+    .amount-col   { text-align: right; }
+    .amount-value { font-weight: 700; color: var(--g1); font-variant-numeric: tabular-nums; white-space: nowrap; }
+    .amount-tbd   { color: #9aa8b8; font-style: italic; font-size: .82rem; }
+    .amount-na    { color: #b8c4ce; font-size: .82rem; }
+
+    /* ── Category badges ──────────────────────────────────────────────────── */
+    .cat-badge { display: inline-block; padding: .22rem .7rem; border-radius: 999px; font-size: .72rem; font-weight: 600; white-space: nowrap; }
+    .cat-budget    { background: #e8f5e3; color: #2a6a20; }
+    .cat-capital   { background: #e8eef9; color: #2a3a80; }
+    .cat-financial { background: #fff3e0; color: #a05000; }
+    .cat-enterprise{ background: #f3e8f9; color: #6a2a80; }
+    .cat-zoning    { background: #fce8e8; color: #a01818; }
+    .cat-bylaws    { background: #e8f5e3; color: #1a6a38; }
+    .cat-cpa       { background: #e8f9f5; color: #1a6a5a; }
+    .cat-admin     { background: #f0f0f0; color: #505050; }
+    .cat-energy    { background: #fffbe6; color: #806600; }
+    .cat-petition  { background: #f9f0e8; color: #804020; }
+    .cat-infra     { background: #e8f0f9; color: #204080; }
+
+    /* ── Recommendation badges ────────────────────────────────────────────── */
+    .rec-badge       { display: inline-block; padding: .2rem .55rem; border-radius: 999px; font-size: .72rem; font-weight: 600; white-space: nowrap; }
+    .rec-approve     { background: #e3f0e8; color: #1a6a2a; }
+    .rec-disapprove  { background: #fce8e8; color: #a01818; }
+    .rec-tbd         { background: #f0f0f0; color: #6a6a6a; }
+    .rec-pass        { background: #fff3e0; color: #a05000; }
+    .rec-na          { color: #aaa; font-style: italic; font-size: .82rem; }
+
+    .no-results  { text-align: center; padding: 3rem 2rem; color: #9aa8b8; font-size: .92rem; }
+    .page-footer { text-align: center; padding: 1.5rem 1rem; color: #9aa8b8; font-size: .75rem; }
+
+    /* ── Modal ────────────────────────────────────────────────────────────── */
+    #article-modal { display: none; position: fixed; inset: 0; z-index: 1000; align-items: center; justify-content: center; padding: 1rem; }
+    #article-modal.open { display: flex; }
+    .modal-backdrop { position: fixed; inset: 0; background: rgba(10,20,40,.55); backdrop-filter: blur(3px); }
+    .modal-card {
+      position: relative; z-index: 1; background: white; border-radius: 16px;
+      width: min(760px, 100%); max-height: min(84vh, 740px);
+      display: flex; flex-direction: column;
+      box-shadow: 0 24px 64px rgba(0,0,0,.28), 0 4px 16px rgba(0,0,0,.12);
+      animation: modalIn .2s ease;
+    }
+    @keyframes modalIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
+    .modal-close {
+      position: absolute; top: .9rem; right: 1rem; width: 32px; height: 32px;
+      border-radius: 50%; border: none; background: #f0f4f8; font-size: 1rem;
+      cursor: pointer; display: flex; align-items: center; justify-content: center; color: #546475;
+      transition: background .15s;
+    }
+    .modal-close:hover { background: #e0e8f0; }
+    .modal-header { padding: 1.5rem 2rem 1rem; border-bottom: 1px solid #edf2ef; }
+    .modal-eyebrow { font-size: .7rem; font-weight: 700; text-transform: uppercase; letter-spacing: .14em; color: var(--acc); margin-bottom: .4rem; }
+    .modal-title   { font-size: 1.1rem; font-weight: 700; color: #1a2e4a; line-height: 1.35; padding-right: 2rem; }
+    .modal-body    { padding: 1.25rem 2rem 1.5rem; overflow-y: auto; flex: 1; }
+    .modal-recs    { display: flex; gap: 1.5rem; margin-bottom: 1rem; flex-wrap: wrap; }
+    .modal-rec-label { font-size: .68rem; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; color: #7a8fa6; margin-bottom: .3rem; }
+    pre#modal-text { white-space: pre-wrap; font-family: inherit; font-size: .88rem; color: #2a3a50; line-height: 1.7; }
+
+    @media (max-width: 680px) {
+      .header h1 { font-size: 1.35rem; }
+      td, th { padding: .7rem .65rem; }
+      .modal-header, .modal-body { padding-left: 1.25rem; padding-right: 1.25rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="header">
+    <a class="back-link" href="../index.html">All meetings</a>
+    <div class="eyebrow">Town of Medway, Massachusetts</div>
+    <h1>Special Town Meeting</h1>
+    <div class="meta">June 8, 2020 &nbsp;·&nbsp; Medway High School &nbsp;·&nbsp; 7:00 PM</div>
+  </div>
+
+  <div class="stats-bar">
+    <div class="stat-card"><div class="label">Articles</div><div class="value">8</div><div class="sub">Warrant articles</div></div><div class="stat-card"><div class="label">Specified Appropriations</div><div class="value">$333K+</div><div class="sub">Identified dollar amounts</div></div><div class="stat-card"><div class="label">Categories</div><div class="value">3</div><div class="sub">Topics covered</div></div>
+  </div>
+
+  <div class="container">
+    <div class="controls">
+      <div class="controls-label">Filter by Category</div>
+      <div class="filter-buttons">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="Capital">Capital</button>
+        <button class="filter-btn" data-filter="Financial">Financial</button>
+        <button class="filter-btn" data-filter="General">General</button>
+      </div>
+    </div>
+
+    <div class="table-wrap">
+      <div class="table-scroll">
+        <table>
+          <thead>
+            <tr>
+              <th style="width:60px">#</th>
+              <th>Article</th>
+              <th style="width:160px">Category</th>
+              <th class="amount-col sortable" id="amt-th" style="width:140px">Amount <span class="sort-icon"></span></th>
+            </tr>
+          </thead>
+          <tbody id="article-tbody">
+            <tr data-category="Financial">
+  <td><span class="article-num">Art. 1</span></td>
+  <td>
+    <div class="article-title">Free Cash Transfer: Snow and Ice Deficit</div>
+    <div class="article-summary">To see if the Town will vote to transfer a sum of money from available funds and/or Certified Free Cash for the purpose of funding the Snow & Ice Fiscal Year 2020 appropriation deficit, or act in any manner relating thereto. DEPARTMENT OF PUBLIC SERVICES</div>
+    <div class="article-recs"><span class="rec-label">SB:</span> <span class="rec-badge rec-tbd" title="Dismiss">Dismiss</span><span class="rec-label" style="margin-left:.2rem">FinCom:</span> <span class="rec-badge rec-tbd" title="Dismiss">Dismiss</span></div>
+    <button class="full-text-btn" data-key="1">Full text</button>
+  </td>
+  <td><span class="cat-badge cat-financial">Financial</span></td>
+  <td class="amount-col"><span class="amount-tbd">TBD</span></td>
+</tr>
+            <tr data-category="Financial">
+  <td><span class="article-num">Art. 2</span></td>
+  <td>
+    <div class="article-title">Prior Year Bills</div>
+    <div class="article-summary">To see if the Town will vote to transfer a sum of money for the purpose of paying prior year, unpaid bills of the Town, or act in any manner relating thereto.</div>
+    <div class="article-recs"><span class="rec-label">SB:</span> <span class="rec-badge rec-approve">Approve</span><span class="rec-label" style="margin-left:.2rem">FinCom:</span> <span class="rec-badge rec-approve">Approve</span></div>
+    <button class="full-text-btn" data-key="2">Full text</button>
+  </td>
+  <td><span class="cat-badge cat-financial">Financial</span></td>
+  <td class="amount-col"><span class="amount-tbd">TBD</span></td>
+</tr>
+            <tr data-category="Financial" data-amount="193919">
+  <td><span class="article-num">Art. 3</span></td>
+  <td>
+    <div class="article-title">Transfer to Ambulance Receipts Reserved Account</div>
+    <div class="article-summary">To see if the Town will vote to transfer $193,919 from Ambulance Enterprise Account Retained Earnings to the Ambulance Receipts Reserved for Appropriation Fund, or act in any manner relating thereto.</div>
+    <div class="article-recs"><span class="rec-label">SB:</span> <span class="rec-badge rec-approve">Approve</span><span class="rec-label" style="margin-left:.2rem">FinCom:</span> <span class="rec-badge rec-approve">Approve</span></div>
+    <button class="full-text-btn" data-key="3">Full text</button>
+  </td>
+  <td><span class="cat-badge cat-financial">Financial</span></td>
+  <td class="amount-col"><span class="amount-value">$193,919</span></td>
+</tr>
+            <tr data-category="Capital" data-amount="84600">
+  <td><span class="article-num">Art. 4</span></td>
+  <td>
+    <div class="article-title">Repurpose Monetary Article – Police Dept</div>
+    <div class="article-summary">To see if the Town will vote to transfer the amount of $84,600 appropriated by the vote taken under Article 7 of the May 13, 2019 Annual Town Meeting for police portable radio replacement, which amount is no longer needed for such purpose, for the purpose of purchasing furniture and undertaking elec...</div>
+    <div class="article-recs"><span class="rec-label">SB:</span> <span class="rec-badge rec-approve">Approve</span><span class="rec-label" style="margin-left:.2rem">FinCom:</span> <span class="rec-badge rec-approve">Approve</span></div>
+    <button class="full-text-btn" data-key="4">Full text</button>
+  </td>
+  <td><span class="cat-badge cat-capital">Capital</span></td>
+  <td class="amount-col"><span class="amount-value">$84,600</span></td>
+</tr>
+            <tr data-category="Financial" data-amount="24174">
+  <td><span class="article-num">Art. 5</span></td>
+  <td>
+    <div class="article-title">Repurpose Monetary Article – Library</div>
+    <div class="article-summary">To see if the Town will vote to transfer the amount of $24,174 appropriated by the vote taken under Article 7 of the May 13, 2019 Annual Town Meeting for sewer line rerouting at the library, which amount is no longer needed for such purpose, for the purpose of completing roof improvements at the lib...</div>
+    <div class="article-recs"><span class="rec-label">SB:</span> <span class="rec-badge rec-approve">Approve</span><span class="rec-label" style="margin-left:.2rem">FinCom:</span> <span class="rec-badge rec-approve">Approve</span></div>
+    <button class="full-text-btn" data-key="5">Full text</button>
+  </td>
+  <td><span class="cat-badge cat-financial">Financial</span></td>
+  <td class="amount-col"><span class="amount-value">$24,174</span></td>
+</tr>
+            <tr data-category="Capital" data-amount="30000">
+  <td><span class="article-num">Art. 6</span></td>
+  <td>
+    <div class="article-title">Repurpose Monetary Article – School Dept</div>
+    <div class="article-summary">To see if the Town will vote to transfer the sum of $30,000 from the funds appropriated for water heater replacement at the McGovern School by the vote taken under Article 7 of the May 13, 2019 Annual Town Meeting, which amount is no longer need for such purpose, to supplement the amount appropriate...</div>
+    <div class="article-recs"><span class="rec-label">SB:</span> <span class="rec-badge rec-approve">Approve</span><span class="rec-label" style="margin-left:.2rem">FinCom:</span> <span class="rec-badge rec-approve">Approve</span></div>
+    <button class="full-text-btn" data-key="6">Full text</button>
+  </td>
+  <td><span class="cat-badge cat-capital">Capital</span></td>
+  <td class="amount-col"><span class="amount-value">$30,000</span></td>
+</tr>
+            <tr data-category="General">
+  <td><span class="article-num">Art. 7</span></td>
+  <td>
+    <div class="article-title">Authorize Five Year Contract for Electric and Utilities</div>
+    <div class="article-summary">To see if the Town will vote to authorize the Board of Selectmen to enter into a contract for a term not to exceed five years for electricity and natural gas utilities supply and services, or act in any manner relating thereto. May 11, 2020</div>
+    <div class="article-recs"><span class="rec-label">SB:</span> <span class="rec-badge rec-approve">Approve</span><span class="rec-label" style="margin-left:.2rem">FinCom:</span> <span class="rec-badge rec-approve">Approve</span></div>
+    <button class="full-text-btn" data-key="7">Full text</button>
+  </td>
+  <td><span class="cat-badge cat-admin">General</span></td>
+  <td class="amount-col"><span class="amount-tbd">TBD</span></td>
+</tr>
+            <tr data-category="Financial">
+  <td><span class="article-num">Art. 8</span></td>
+  <td>
+    <div class="article-title">Appropriation: COVID-19 Response</div>
+    <div class="article-summary">To see if the Town will vote to raise and appropriate and/or transfer from available funds, including but not limited to, a transfer from the stabilization fund, a sum of money for the purpose of addressing municipal and school costs and/or revenue shortfall related to the Fiscal Year 2020 COVID-19 ...</div>
+    <div class="article-recs"><span class="rec-label">SB:</span> <span class="rec-badge rec-approve">Approve</span><span class="rec-label" style="margin-left:.2rem">FinCom:</span> <span class="rec-badge rec-approve">Approve</span></div>
+    <button class="full-text-btn" data-key="8">Full text</button>
+  </td>
+  <td><span class="cat-badge cat-financial">Financial</span></td>
+  <td class="amount-col"><span class="amount-tbd">TBD</span></td>
+</tr>
+          </tbody>
+        </table>
+        <div class="no-results" id="no-results" style="display:none">No articles match this filter.</div>
+      </div>
+    </div>
+
+    <div class="page-footer">
+      Source: Town of Medway Warrant &nbsp;·&nbsp; June 8, 2020<br>
+      <span style="font-size:.7rem;opacity:.8;">Content produced with AI assistance and reviewed for accuracy, but not 100% independently verified. Consult official town documents for authoritative information.</span>
+    </div>
+  </div>
+
+  <!-- Modal -->
+  <div id="article-modal">
+    <div class="modal-backdrop" onclick="closeModal()"></div>
+    <div class="modal-card">
+      <button class="modal-close" onclick="closeModal()">✕</button>
+      <div class="modal-header">
+        <div class="modal-eyebrow" id="modal-eyebrow"></div>
+        <div class="modal-title"  id="modal-title"></div>
+      </div>
+      <div class="modal-body">
+        <div class="modal-recs" id="modal-recs"></div>
+        <pre id="modal-text"></pre>
+      </div>
+    </div>
+  </div>
+
+  <script>
+  const articleData = {"1": {"title": "Free Cash Transfer: Snow and Ice Deficit", "text": "To see if the Town will vote to transfer a sum of money from available funds and/or Certified Free Cash for the purpose of funding the Snow & Ice Fiscal Year 2020 appropriation deficit, or act in any manner relating thereto. DEPARTMENT OF PUBLIC SERVICES", "sb": "Dismiss", "fc": "Dismiss"}, "2": {"title": "Prior Year Bills", "text": "To see if the Town will vote to transfer a sum of money for the purpose of paying prior year, unpaid bills of the Town, or act in any manner relating thereto.", "sb": "Approve", "fc": "Approve"}, "3": {"title": "Transfer to Ambulance Receipts Reserved Account", "text": "To see if the Town will vote to transfer $193,919 from Ambulance Enterprise Account Retained Earnings to the Ambulance Receipts Reserved for Appropriation Fund, or act in any manner relating thereto.", "sb": "Approve", "fc": "Approve"}, "4": {"title": "Repurpose Monetary Article – Police Dept", "text": "To see if the Town will vote to transfer the amount of $84,600 appropriated by the vote taken under Article 7 of the May 13, 2019 Annual Town Meeting for police portable radio replacement, which amount is no longer needed for such purpose, for the purpose of purchasing furniture and undertaking electrical upgrades for the Police Department and any incidental or related costs, or act in any manner relating thereto.", "sb": "Approve", "fc": "Approve"}, "5": {"title": "Repurpose Monetary Article – Library", "text": "To see if the Town will vote to transfer the amount of $24,174 appropriated by the vote taken under Article 7 of the May 13, 2019 Annual Town Meeting for sewer line rerouting at the library, which amount is no longer needed for such purpose, for the purpose of completing roof improvements at the library and any incidental or related costs, or act in any manner relating thereto.", "sb": "Approve", "fc": "Approve"}, "6": {"title": "Repurpose Monetary Article – School Dept", "text": "To see if the Town will vote to transfer the sum of $30,000 from the funds appropriated for water heater replacement at the McGovern School by the vote taken under Article 7 of the May 13, 2019 Annual Town Meeting, which amount is no longer need for such purpose, to supplement the amount appropriated for the handicap ramp repair at the Memorial School also by the vote under Article 7 of the May 13, 2019 Annual Town Meeting, or act in any manner relating thereto. SCHOOL DEPARTMENT", "sb": "Approve", "fc": "Approve"}, "7": {"title": "Authorize Five Year Contract for Electric and Utilities", "text": "To see if the Town will vote to authorize the Board of Selectmen to enter into a contract for a term not to exceed five years for electricity and natural gas utilities supply and services, or act in any manner relating thereto. May 11, 2020", "sb": "Approve", "fc": "Approve"}, "8": {"title": "Appropriation: COVID-19 Response", "text": "To see if the Town will vote to raise and appropriate and/or transfer from available funds, including but not limited to, a transfer from the stabilization fund, a sum of money for the purpose of addressing municipal and school costs and/or revenue shortfall related to the Fiscal Year 2020 COVID-19 operations response, and further to transfer said sum to the Fiscal Year 2020 Reserve Fund, or act in any manner relating thereto. May 11, 2020", "sb": "Approve", "fc": "Approve"}};
+
+  function openModal(key) {
+    const d = articleData[String(key)];
+    if (!d) return;
+    document.getElementById('modal-eyebrow').textContent = 'Article ' + key;
+    document.getElementById('modal-title').textContent   = d.title;
+    document.getElementById('modal-text').textContent    = d.text;
+    const recsEl = document.getElementById('modal-recs');
+    recsEl.innerHTML = recHtml('Select Board', d.sb) + recHtml('Finance Committee', d.fc);
+    document.getElementById('article-modal').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function recHtml(label, val) {
+    let cls = 'rec-na', txt = '—';
+    if      (val === 'Approve')               { cls = 'rec-approve';    txt = 'Approve'; }
+    else if (val === 'Disapprove')            { cls = 'rec-disapprove'; txt = 'Disapprove'; }
+    else if (val === 'Pass Over')             { cls = 'rec-pass';       txt = 'Pass Over'; }
+    else if (val === 'To Be Determined')      { cls = 'rec-tbd';        txt = 'TBD'; }
+    else if (val && val !== '—')              { cls = 'rec-tbd';        txt = val; }
+    return `<div><div class="modal-rec-label">${label}</div><span class="rec-badge ${cls}">${txt}</span></div>`;
+  }
+
+  function closeModal() {
+    document.getElementById('article-modal').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  document.querySelectorAll('.full-text-btn').forEach(btn => {
+    btn.addEventListener('click', e => { e.stopPropagation(); openModal(btn.dataset.key); });
+  });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+  // ── Filter ──────────────────────────────────────────────────────────────
+  document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const f = btn.dataset.filter;
+      let visible = 0;
+      document.querySelectorAll('#article-tbody tr').forEach(row => {
+        const show = f === 'all' || row.dataset.category === f;
+        row.classList.toggle('hidden', !show);
+        if (show) visible++;
+      });
+      document.getElementById('no-results').style.display = visible === 0 ? 'block' : 'none';
+    });
+  });
+
+  // ── Sort by amount ───────────────────────────────────────────────────────
+  let sortDir = null;
+  document.getElementById('amt-th').addEventListener('click', () => {
+    sortDir = sortDir !== 'asc' ? 'asc' : 'desc';
+    document.getElementById('amt-th').className = 'amount-col sortable sorted-' + sortDir;
+    const tbody = document.getElementById('article-tbody');
+    const rows  = [...tbody.querySelectorAll('tr')];
+    rows.sort((a, b) => {
+      const aA = parseFloat(a.dataset.amount), bA = parseFloat(b.dataset.amount);
+      if (isNaN(aA) && isNaN(bA)) return 0;
+      if (isNaN(aA)) return 1;
+      if (isNaN(bA)) return -1;
+      return sortDir === 'asc' ? aA - bA : bA - aA;
+    });
+    rows.forEach(r => tbody.appendChild(r));
+  });
+  </script>
+</body>
+</html>

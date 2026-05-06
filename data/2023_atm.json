@@ -1,0 +1,391 @@
+{
+  "meta": {
+    "meeting_type": "ATM",
+    "date": "May 8, 2023",
+    "year": "2023",
+    "theme_id": "2023_atm",
+    "source_pdf": "2023-05-08 Annual Town Meeting Warrant.pdf"
+  },
+  "articles": [
+    {
+      "num": 1,
+      "title": "Debt Stabilization Fund Transfer",
+      "summary": "Transfers $75,000 from the Debt Stabilization Fund to the FY2024 operating budget to offset debt exclusion project costs.",
+      "category": "Financial",
+      "amount": 75000,
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town will vote to transfer the sum of $75,000 from the Debt Stabilization Fund to the Fiscal Year 2024 operating budget for the purpose of offsetting a portion of debt exclusion projects, or act in any manner relating thereto."
+    },
+    {
+      "num": 2,
+      "title": "Transfer from Ambulance Receipts to General Fund",
+      "summary": "Transfers $750,000 from Ambulance Receipts Reserved for Appropriation to the FY2024 General Fund Operating Budget.",
+      "category": "Financial",
+      "amount": 750000,
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town will vote to transfer $750,000 from Ambulance Receipts Reserved for Appropriation to the Fiscal Year 2024 General Fund Operating Budget, or act in any manner relating thereto."
+    },
+    {
+      "num": 3,
+      "title": "Appropriation: FY24 Operating Budget",
+      "summary": "Sets salaries for elected officers and appropriates funds to cover all Town charges, expenses, and debt for the fiscal year ending June 30, 2024.",
+      "category": "Budget",
+      "amount": null,
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town will vote to fix the salary and compensation of all elected officers of the Town, provide for a Reserve Fund, and determine what sums of money the Town will raise and appropriate, including appropriation from available funds, to defray charges and expenses of the Town including debt and interest, for the Fiscal Year ending June 30, 2024, or act in any manner relating thereto."
+    },
+    {
+      "num": 4,
+      "title": "Appropriation: FY24 Water Enterprise Fund",
+      "summary": "Appropriates $5,037,397 to operate the Water Department Enterprise Fund for FY2024, funded by user fees ($4,650,000) and retained earnings ($387,397).",
+      "category": "Enterprise Budget",
+      "amount": 5037397,
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town will vote to raise and appropriate or transfer from available funds the sum of $5,037,397 for the maintenance of the Water Department Enterprise Fund (Salaries $970,996 / Expenses $702,900 / Debt $2,888,513 / Indirect $474,988), funded by user fees ($4,650,000) and retained earnings ($387,397), or act in any manner relating thereto."
+    },
+    {
+      "num": 5,
+      "title": "Appropriation: FY24 Sewer Enterprise Fund",
+      "summary": "Appropriates $1,951,368 to operate the Sewer Enterprise Fund for FY2024, funded by user fees ($1,930,105) and sewer betterment transfer ($21,263).",
+      "category": "Enterprise Budget",
+      "amount": 1951368,
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town will vote to raise and appropriate or transfer from available funds the sum of $1,951,368 for the maintenance of the Sewer Department Enterprise Fund (Salaries $270,511 / Expenses $1,288,550 / Debt $232,706 / Indirect $159,601), funded by user fees ($1,930,105) and sewer betterment transfer ($21,263), or act in any manner relating thereto."
+    },
+    {
+      "num": 6,
+      "title": "Appropriation: FY24 Solid Waste Enterprise Fund",
+      "summary": "Appropriates $1,928,455 to operate the Solid Waste/Recycling Enterprise Fund for FY2024, funded by trash fees ($1,570,000) and retained earnings ($358,455).",
+      "category": "Enterprise Budget",
+      "amount": 1928455,
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town will vote to raise and appropriate or transfer from available funds the sum of $1,928,455 to operate the Solid Waste/Recycling Department Enterprise Fund (Salaries $215,212 / Expenses $1,526,000 / Debt $50,056 / Indirect $137,187), funded by trash/recycling fees ($1,570,000) and retained earnings ($358,455), or act in any manner relating thereto."
+    },
+    {
+      "num": 7,
+      "title": "Free Cash Appropriation: Capital and Other Items",
+      "summary": "Appropriates $2,739,311 from Certified Free Cash for over 30 capital projects spanning police, schools, DPW, fire, and library needs.",
+      "category": "Capital",
+      "amount": 2739311,
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town will vote to appropriate the sum of $2,739,311 from Certified Free Cash for capital and other items, including: Emergency Communications Equipment ($29,274), Ballistic Vests ($37,576), ECW Replacement ($30,666), Technology Equipment ($75,000), Infrastructure Equipment ($50,000), Roads and Sidewalks ($750,000), Replace 2005 International ($210,000), Replace Wacker Loader ($134,400), Bridge Asset Management ($70,000), Replace 2001 International ($152,400), Garage Roof Repair Community Farm ($5,000), Irrigation Well Study ($58,200), Replace Brush 2 ($97,000), Library Parking Lot Curb ($30,000), Library Flagstone ($30,000), Door Replacement Senior Center ($39,630), Replace HS Water Heater ($135,700), Middle School Library Upgrades ($50,000), McGovern Tile Abatement ($178,320), Chimney Stack Memorial School ($5,000), Police/Fire/Town Hall Feasibility Study ($85,000), Musical Equipment HS ($24,000), and others, or act in any manner relating thereto."
+    },
+    {
+      "num": 8,
+      "title": "Raise & Appropriate: Roads & Sidewalks",
+      "summary": "Raises and appropriates $800,000 for repairs to roads, sidewalks, bridges, and related infrastructure.",
+      "category": "Capital",
+      "amount": 800000,
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town will vote to raise and appropriate the sum of $800,000 for the purposes of making repairs to various roads, sidewalks, bridges and related appurtenances, and to fund, as needed, design, engineering, and construction management services, and for the payment of all other costs incidental and related thereto, or act in any manner relating thereto."
+    },
+    {
+      "num": 9,
+      "title": "Appropriation: OPEB Trust",
+      "summary": "Raises and appropriates $300,000 to the Town's Other Post-Employment Benefits (OPEB) Trust account.",
+      "category": "Financial",
+      "amount": 300000,
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town will vote to raise and appropriate the sum of $300,000 to the Town of Medway Other Post-Employment Benefits (OPEB) Trust account, or act in any manner relating thereto."
+    },
+    {
+      "num": 10,
+      "title": "Appropriation: General Stabilization",
+      "summary": "Raises and appropriates $100,000 to the General Stabilization Fund.",
+      "category": "Financial",
+      "amount": 100000,
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town will vote to raise and appropriate or transfer from available funds the sum of $100,000 to be allocated to the General Stabilization Fund, or act in any manner relating thereto."
+    },
+    {
+      "num": 11,
+      "title": "Capital Stabilization Transfer: McGovern School Roof Replacement",
+      "summary": "Transfers funds from the Capital Stabilization Fund for design, engineering, and construction of the McGovern Elementary School roof (amount TBD).",
+      "category": "Capital",
+      "amount": null,
+      "sb": "Approve",
+      "fc": "To Be Determined",
+      "text": "To see if the Town will vote to transfer a sum of money from the Capital Stabilization Fund for the purpose of design, engineering, and construction of the McGovern Elementary School roof, and for the payment of all other costs incidental and related thereto, or act in any manner relating thereto."
+    },
+    {
+      "num": 12,
+      "title": "Field Stabilization Transfer: Hanlon Track & Field Design",
+      "summary": "Transfers $85,500 from the Field Stabilization Fund to fund design and engineering for the Hanlon track and field replacement.",
+      "category": "Capital",
+      "amount": 85500,
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town will vote to transfer $85,500 from the Field Stabilization Fund for the purpose of funding design and engineering services for the replacement of the Hanlon track and field, and for the payment of all other costs incidental and related thereto, or act in any manner relating thereto."
+    },
+    {
+      "num": 13,
+      "title": "Water and Sewer Enterprise: Asset Management Plan",
+      "summary": "Appropriates $250,000 for a water, wastewater, and stormwater asset management plan, including matching funds for a MassDEP grant.",
+      "category": "Capital",
+      "amount": 250000,
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town will vote to raise and appropriate, borrow or transfer from available funds the sum of $250,000 for the purpose of completing a water, wastewater, and stormwater asset management plan, including to provide matching funds for a reimbursable grant from the Massachusetts Department of Environmental Protection, and to authorize acceptance of the full amount of said grant, or act in any manner relating thereto."
+    },
+    {
+      "num": 14,
+      "title": "Transfer from Ambulance Receipts to Capital Items",
+      "summary": "Transfers $6,000 from Ambulance Receipts for the purchase of CPR mannequins with feedback capability.",
+      "category": "Capital",
+      "amount": 6000,
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town will vote to transfer from Ambulance Receipts Reserved for Appropriation the sum of $6,000 for the purchase of CPR mannequins with feedback, and for the payment of all other costs incidental and related thereto, or act in any manner relating thereto."
+    },
+    {
+      "num": 15,
+      "title": "Appropriation: Community Preservation Committee",
+      "summary": "Approves the CPA FY2024 budget of $513,275 for administration, debt service, affordable housing, historic resources (Gravestone Restoration $60,000, Signs $4,000), and 50 Winthrop St Survey ($4,500).",
+      "category": "CPA/Open Space",
+      "amount": 513275,
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town will vote to act on the report of the Community Preservation Committee for the Fiscal Year 2024 Community Preservation budget appropriating: CPC Expenses ($15,000), CPC Salaries ($5,000), CPC Debt Expense ($404,775), AH Trust Coordinator Salary ($10,000), AH Trust Expenses ($10,000), Gravestone Restoration Project ($60,000), Historic Property Signs ($4,000), and 50 Winthrop St Survey ($4,500); plus 10% reserves for open space, community housing, and historical preservation, or act in any manner relating thereto."
+    },
+    {
+      "num": 16,
+      "title": "Revolving Funds: Authorize FY24 Spending Limits",
+      "summary": "Sets FY2024 spending limits for revolving funds: parks/rec ($490,000), senior transportation ($130,000), library printer ($3,000), library meeting room ($1,000), Thayer Homestead ($95,000), tobacco compliance ($2,500).",
+      "category": "Administrative",
+      "amount": "—",
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town will vote, pursuant to Massachusetts General Laws Chapter 44, Section 53E½, to set Fiscal Year 2024 spending limits for revolving funds: parks and recreation ($490,000), dial-a-ride/senior transportation ($130,000), library printer/copier/fax ($3,000), library meeting room ($1,000), Thayer Homestead ($95,000), and tobacco license compliance inspections ($2,500), or act in any manner relating thereto."
+    },
+    {
+      "num": 17,
+      "title": "Amend Zoning Bylaws: Central Business District Affordability",
+      "summary": "Allows the Planning Board to grant a special permit for a lower affordable housing percentage (min. 10%) in CBD mixed-use developments where required set-asides exceed 10%, when the project provides community benefits.",
+      "category": "Zoning",
+      "amount": "—",
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town will vote to amend the Zoning Bylaw, Section 10.3.D.6, to allow the Planning and Economic Development Board to grant a special permit providing for a lower percentage of affordable units (not less than 10%) than required by Section 8.6, where the required percentage exceeds 10%, if the Board finds the permit is in the best interests of the Town, provides additional design or community benefits, or integrates street-facing ground-floor non-residential uses along Main Street; the Decision Criteria in Section 3.4.C do not apply to such special permits, or act in any manner related thereto."
+    },
+    {
+      "num": 18,
+      "title": "Amend Zoning Bylaws: Electric Vehicle Parking",
+      "summary": "Adds EV, EV Ready Space, and EVSE definitions; requires EV charging stations in commercial/multi-family developments with 15+ spaces on a graduated scale; requires EV Ready spaces per the 2023 Stretch Code.",
+      "category": "Zoning",
+      "amount": "—",
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town will vote to amend the Zoning Bylaw by adding definitions for Electric Vehicle (EV), Electric Vehicle Ready Parking Space, and Electric Vehicle Supply Equipment (EVSE), and by updating Section 7.1.1.E.4 to require EV charging stations in commercial, industrial, municipal, and multi-family developments with 15 or more parking spaces on a graduated scale (1 space for 15–25 spaces up to 2% for over 500), and to require EV Ready spaces per 225 CMR Chapters 22 and 23, or act in any manner related thereto."
+    },
+    {
+      "num": 19,
+      "title": "Amend Zoning Bylaws: Oak Grove and Central Business District",
+      "summary": "Updates dimensional standards for rowhouse, mixed-use, and commercial building types in the Oak Grove Park District; removes the Rowhouse on Separate Lot option from the Central Business District.",
+      "category": "Zoning",
+      "amount": "—",
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town will vote to amend the Zoning Bylaw by amending Oak Grove Park Districts Tables 9.4.C.1.A through 9.4.C.1.C to update lot size minimums, frontage, setback, and design standards for rowhouse (on common lot: 3,000 SF min, 40 ft frontage), mixed-use, general commercial, fabrication/flex, and civic building types; and by removing the Rowhouse on Separate Lot option from Central Business District Section 10.4.C.1 and re-lettering remaining subsections, or act in any manner related thereto."
+    },
+    {
+      "num": 20,
+      "title": "Amend Zoning Bylaws: Dimensional Regulations",
+      "summary": "Adds a 'Footprint' definition; allows steps, porches (≤30 sq ft), eaves, and cornices to project into setbacks; clarifies that accessory building footprint is compared to the principal building's footprint.",
+      "category": "Zoning",
+      "amount": "—",
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town will vote to amend the Zoning Bylaw by: (1) adding definition of 'Footprint' (land area covered by a structure at ground level) in Section 2; (2) adding Section 6.2.F.5 allowing steps, porches (not exceeding 30 sq ft), eaves, cornices, windowsills, and belt courses to project into required setbacks; and (3) amending Section 6.3.C so accessory building area comparison references the principal building's footprint, or act in any manner related thereto."
+    },
+    {
+      "num": 21,
+      "title": "Amend Zoning Bylaws: Create Agricultural Residential III District",
+      "summary": "Creates a new AR-III zoning district (10,000 sq ft min lot) and re-zones parcels on approximately 15 streets — Gorwin Drive, Karen Avenue, Main Street, and others — from their current districts to AR-III.",
+      "category": "Zoning",
+      "amount": "—",
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town will vote to amend the Zoning Bylaw by creating an Agricultural Residential III (AR-III) district with a minimum lot area of 10,000 sq ft (or 30,000 in certain overlay circumstances), amending Table 1 and Table 2 to add AR-III column, and to rezone parcels on: Beatrice Lane, Carole Lane, Coffee Street, Douglas Street, Gorwin Drive, Holliston Street, Karen Avenue, Lee Lane, Main Street, Meryl Street, Richard Road, Robin Circle, Kenart Road, Koyview Place, and Kenney Drive, as shown on amended zoning maps, or act in any manner related thereto."
+    },
+    {
+      "num": 22,
+      "title": "Amend Zoning Bylaws: Groundwater Protection — Metal Roofs",
+      "summary": "Prohibits installation of certain metal roofs within the Groundwater Protection Overlay District unless they meet stormwater pollution-prevention standards; exempts roofs of 200 sq ft or less.",
+      "category": "Zoning",
+      "amount": "—",
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town will vote to amend Zoning Bylaw Section 5.6.3.E.2 to prohibit installation of metal roofs (as defined in the Massachusetts Stormwater Handbook) on new or existing structures within Zone II or Interim Wellhead Protection Areas unless the roof meets specified pollution prevention measures for infiltration of runoff; this prohibition does not apply to roofs of 200 square feet or less, or act in any manner related thereto."
+    },
+    {
+      "num": 23,
+      "title": "Amend Zoning Bylaws: Housekeeping",
+      "summary": "Replaces 'Town Administrator' with 'Town Manager' throughout; updates the director title; removes Host Community Agreement requirements for marijuana facilities; clarifies sidewalk payment-in-lieu obligations.",
+      "category": "Zoning",
+      "amount": "—",
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town will vote to amend the Zoning Bylaw by: (1) changing 'Town Administrator' to 'Town Manager' throughout; (2) updating director title to 'Director, Community and Economic Development'; (3) deleting Host Community Agreement requirements for Registered Medical Marijuana and Recreational Marijuana facilities (Sections 8.9.O and 8.10.O); and (4) amending Section 3.5.4.I.3 to clarify that sidewalk construction may be fulfilled by construction elsewhere, payment-in-lieu, or a combination, or act in any manner related thereto."
+    },
+    {
+      "num": 24,
+      "title": "Amend Zoning Bylaws: Home Based Businesses",
+      "summary": "Reorganizes and updates the Home-Based Business bylaw — clarifies definitions, parking and setback requirements for commercial vehicles, delivery hours (8am–8pm), and adds owner-occupancy and registration requirements.",
+      "category": "Zoning",
+      "amount": "—",
+      "sb": "Approve",
+      "fc": "To Be Determined",
+      "text": "To see if the Town will vote to amend Zoning Bylaw Section 8.3 Home Based Business to: reorganize and retitle sections; clarify that business use is subordinate (max 20% or 1,000 sq ft); prohibit outside storage; limit parking to 2 off-street spaces; restrict commercial vehicles to no more than 2 Class 3 vehicles and prohibit Class 4+; limit deliveries to 8am–8pm; require owner-occupancy; and add a reference to Business Certificate registration under G.L. c. 110, or act in any manner related thereto."
+    },
+    {
+      "num": 25,
+      "title": "Amend Zoning Bylaws: Construction Contracting Services Use",
+      "summary": "Adds 'Construction Contracting Services' as a defined use allowed by-right in Business and Industrial districts and by special permit in commercial districts, with all equipment and materials stored indoors.",
+      "category": "Zoning",
+      "amount": "—",
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town will vote to amend the Zoning Bylaw by adding a definition of 'Construction Contracting Services' and by allowing such uses by right in Business Industrial, West Industrial, East Industrial, and Oak Grove Business Park districts, and by special permit in the Central Business District, Neighborhood Commercial, and Village Commercial Districts (limited to 3 commercial vehicles in VC), prohibited in all other districts, or act in any manner related thereto."
+    },
+    {
+      "num": 26,
+      "title": "Amend Zoning Bylaws: Solar — Herbicides and Battery Storage",
+      "summary": "Prohibits herbicides/pesticides for vegetation management at ground-mounted solar installations; expands the definition of 'Ground-Mounted Solar Electric Installation' to include incidental battery storage.",
+      "category": "Zoning",
+      "amount": "—",
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town will vote to amend Zoning Bylaw Section 8.11 by: (1) amending Section 8.11.G.3 to prohibit herbicides and pesticides for controlling vegetation or animals at ground-mounted solar installations except as preempted by state or federal law; and (2) expanding the definition in Section 8.11.B of 'Ground-Mounted Solar Electric Installation' to include batteries incidental and necessary for storage of solar energy generated by the installation, or act in any manner related thereto."
+    },
+    {
+      "num": 27,
+      "title": "Amend General Bylaws: Minor Clerical Changes",
+      "summary": "Makes clerical, grammatical, and limited substantive changes to the General Bylaws to align with the Charter and state law, per the Bylaw Review Committee report.",
+      "category": "General Bylaws",
+      "amount": "—",
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town will vote to amend the General Bylaws by making clerical, grammatical and other minor changes such as spelling or tense, and other limited substantive changes to bring the Bylaws into accord with the Charter and state law, with text to be inserted shown in bold and text to be deleted shown in strikethrough, all as set forth in the report of the Bylaw Review Committee on file with the Town Clerk, or act in any manner relating thereto."
+    },
+    {
+      "num": 28,
+      "title": "Amend General Bylaws: Fire Department",
+      "summary": "Updates the Fire Department bylaw — replaces 'Administrator' with 'Manager,' renames Fire Dispatch, requires key access boxes for central-monitored buildings, sets new fines for alarm malfunctions.",
+      "category": "General Bylaws",
+      "amount": "—",
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town will vote to amend the General Bylaws, Article III Fire Department, by deleting references to Town 'Administrator' and replacing with Town 'Manager'; replacing 'NED' with Medway Fire 'Dispatch'; inserting a section requiring key access boxes for buildings reporting to Fire Dispatch; inserting new fines for failing to provide required information to the Fire Chief; increasing fines for fire alarm malfunctions after the third occurrence; and codifying an exemption for panel trouble signals, or act in any manner relating thereto."
+    },
+    {
+      "num": 29,
+      "title": "Amend General Bylaws: Repairs to Private Ways",
+      "summary": "Clarifies the petition process for private way repairs, removes the betterment assessment prohibition, revises minimum footage thresholds, and drops the requirement for 100% abutter consent.",
+      "category": "General Bylaws",
+      "amount": "—",
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town will vote to amend the General Bylaws, Article X Repairs to Private Ways, clarifying the process for abutters to seek repairs to private ways, removing the prohibition against betterment assessments, revising the minimum linear footage abutters need to own to petition, and removing the requirement that 100% of immediate abutters must petition, or act in any manner relating thereto."
+    },
+    {
+      "num": 30,
+      "title": "Amend General Bylaws: Fire Lanes",
+      "summary": "Replaces the Fire Lanes bylaw in its entirety with updated language reflecting current requirements and enforcement procedures.",
+      "category": "General Bylaws",
+      "amount": "—",
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town will vote to amend the General Bylaws, Article XI Fire Lanes, by deleting the text in its entirety and inserting a new section with updated language reflecting current fire lane requirements and circumstances, as set forth in the Bylaw Review Committee report on file with the Town Clerk, or act in any manner relating thereto."
+    },
+    {
+      "num": 31,
+      "title": "Amend General Bylaws: Roadway Access",
+      "summary": "Requires concrete or asphalt for commercial, industrial, and residential driveway aprons; expressly prohibits placement of basketball equipment and similar items in the public way.",
+      "category": "General Bylaws",
+      "amount": "—",
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town will vote to amend the General Bylaws, Article XII Section 12.9 Roadway Access, to require use of concrete or asphalt only for commercial, industrial and residential driveway aprons, and to expressly prohibit the placement of basketball and other equipment in the public way, or act in any manner relating thereto."
+    },
+    {
+      "num": 32,
+      "title": "Amend General Bylaws: Dog Bylaw",
+      "summary": "Replaces the dog bylaw entirely with updated provisions covering licensing, updated fees, leash requirements, waste removal, nuisance/dangerous dog procedures, and non-criminal fines.",
+      "category": "General Bylaws",
+      "amount": "—",
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town will vote to amend the General Bylaws by deleting Section 12.16 Dog Bylaw, renumbering it as Section 13.16, and inserting a comprehensive new dog bylaw addressing: annual and kennel licensing with updated fees, prohibiting dogs from being unleashed onto others' property or Town public property, requiring prompt removal of dog feces, updating Animal Control Officer references, designating the Police Chief as hearing officer for nuisance/dangerous dog complaints, and establishing non-criminal disposition fines, or act in any manner relating thereto."
+    },
+    {
+      "num": 33,
+      "title": "Amend General Bylaws: Underground Fuel and Chemical Storage Tanks",
+      "summary": "Strengthens the underground storage tank bylaw — adds Fire Department as enforcer, updates hazardous material definitions, requires new systems to meet current specifications, mandates periodic leak testing.",
+      "category": "General Bylaws",
+      "amount": "—",
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town will vote to amend the General Bylaws, Article XIV Prevention of Leakage of Underground Fuel or Chemical Storage Tanks and Systems, by adding the Fire Department as an enforcing authority, updating the definition of Hazardous Material, mandating that new underground storage systems meet certain Fire Department and state regulatory specifications, and including periodic leak testing requirements, or act in any manner relating thereto."
+    },
+    {
+      "num": 34,
+      "title": "Amend General Bylaws: Town Clerk Fees",
+      "summary": "Updates the Town Clerk fee schedule as set forth in the Bylaw Review Committee report on file with the Town Clerk.",
+      "category": "General Bylaws",
+      "amount": "—",
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town will vote to amend the General Bylaws, Article XV Town Clerk Fees, to update the fee schedule as set forth in a document on file with the Town Clerk, as set forth in the report of the Bylaw Review Committee, or act in any manner relating thereto."
+    },
+    {
+      "num": 35,
+      "title": "Amend General Bylaws: Delete Audit Committee Article",
+      "summary": "Deletes Article XIX Audit Committee from the General Bylaws in its entirety.",
+      "category": "General Bylaws",
+      "amount": "—",
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town will vote to amend the General Bylaws by deleting Article XIX Audit Committee in its entirety, or act in any manner relating thereto."
+    },
+    {
+      "num": 36,
+      "title": "Amend General Bylaws: Delete Town Administrator Article",
+      "summary": "Deletes Article XXIII Town Administrator from the General Bylaws in its entirety, reflecting the transition to Town Manager under the new charter.",
+      "category": "General Bylaws",
+      "amount": "—",
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town will vote to amend the General Bylaws by deleting Article XXIII Town Administrator in its entirety, or act in any manner relating thereto."
+    },
+    {
+      "num": 37,
+      "title": "Amend General Bylaws: Water Use Restrictions",
+      "summary": "Updates the Water Use Restrictions bylaw — removes redundant language, replaces the Water and Sewer Commission with the Select Board, consolidates outdoor ban provisions, and clarifies irrigation system liability in public rights-of-way.",
+      "category": "General Bylaws",
+      "amount": "—",
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town will vote to amend the General Bylaws Article XXIV Water Use Restrictions by deleting repetitious language, replacing 'Town Water and Sewer Commission' with 'Select Board', consolidating two sections on activities prohibited during outdoor water bans, and clarifying that privately owned irrigation systems cannot be installed in public roadways or rights-of-way and that damage to such systems is the owner's responsibility, or act in any manner relating thereto."
+    },
+    {
+      "num": 38,
+      "title": "Citizens' Petition: Change Columbus Day to Indigenous Peoples' Day",
+      "summary": "Citizens' petition to rename Columbus Day to 'Indigenous Peoples' Day' on all Town calendars, notices, and media to honor Indigenous Peoples. Select Board recommended Disapprove; Finance Committee issued no recommendation.",
+      "category": "Citizens' Petition",
+      "amount": "—",
+      "sb": "Disapprove",
+      "fc": "—",
+      "text": "To see if the Town will vote to change the name on all town calendars, notices and announcements including all print or digital media distributed by Town Departments, Boards and Committees, of the federal and state holiday known as 'Columbus Day' to 'Indigenous Peoples' Day', falling annually on the second Monday in October. In naming this day, Medway commemorates the struggles, celebrates the resilience and contributions, and honors the wishes of the Indigenous Peoples who were the first inhabitants of these lands.\n\nCITIZENS' PETITION — Select Board recommended Disapprove. Finance Committee did not issue a recommendation."
+    }
+  ]
+}

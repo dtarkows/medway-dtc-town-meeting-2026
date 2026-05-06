@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Town of Medway — Budget Trends 2016–2026</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Inter', sans-serif; background: #eef2f7; color: #1a2e4a; min-height: 100vh; }
+
+    /* ── Header ── */
+    .header {
+      background: linear-gradient(135deg, #1a2e4a 0%, #2a4a6a 100%);
+      color: white; padding: 3.5rem 2rem 3rem; text-align: center;
+    }
+    .header .eyebrow { font-size: .72rem; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; opacity: .65; margin-bottom: .7rem; }
+    .header h1 { font-size: 2.2rem; font-weight: 700; margin-bottom: .6rem; }
+    .header .sub { font-size: .95rem; opacity: .72; max-width: 540px; margin: 0 auto; line-height: 1.6; }
+    .seal { font-size: 3rem; margin-bottom: 1rem; display: block; }
+
+    /* ── Nav ── */
+    .back-bar { background: #1a2e4a; border-top: 1px solid rgba(255,255,255,.1); padding: .6rem 2rem; }
+    .back-link {
+      display: inline-flex; align-items: center; gap: .4rem;
+      color: rgba(255,255,255,.75); font-size: .78rem; font-weight: 500;
+      text-decoration: none; letter-spacing: .02em;
+    }
+    .back-link:hover { color: white; }
+
+    /* ── Layout ── */
+    .container { max-width: 1100px; margin: 0 auto; padding: 2.5rem 1.5rem 5rem; }
+
+    /* ── Section headers ── */
+    .section-header { margin-bottom: 1.5rem; }
+    .section-title {
+      font-size: 1.45rem; font-weight: 700; color: #1a2e4a;
+      display: flex; align-items: center; gap: .75rem; margin-bottom: .35rem;
+    }
+    .section-pill {
+      display: inline-flex; align-items: center; justify-content: center;
+      padding: .2rem .75rem; border-radius: 999px; font-size: .72rem;
+      font-weight: 700; letter-spacing: .06em; text-transform: uppercase;
+    }
+    .pill-atm { background: #e8f5e3; color: #2a6a20; }
+    .pill-stm { background: #e8eef9; color: #2a3a80; }
+    .section-desc { font-size: .87rem; color: #546475; line-height: 1.65; max-width: 720px; }
+
+    /* ── Chart cards ── */
+    .chart-card {
+      background: white; border-radius: 16px; padding: 1.75rem 2rem 1.5rem;
+      box-shadow: 0 1px 3px rgba(0,0,0,.07), 0 4px 12px rgba(0,0,0,.04);
+      margin-bottom: 1.5rem;
+    }
+    .chart-card-header { margin-bottom: 1.25rem; }
+    .chart-card-title { font-size: 1.05rem; font-weight: 700; color: #1a2e4a; margin-bottom: .25rem; }
+    .chart-card-sub { font-size: .8rem; color: #7a8fa6; line-height: 1.5; }
+
+    /* ── Legend ── */
+    .legend-row {
+      display: flex; flex-wrap: wrap; gap: .5rem 1.25rem;
+      margin-top: 1rem; padding-top: 1rem; border-top: 1px solid #e8edf4;
+    }
+    .legend-item { display: flex; align-items: center; gap: .4rem; font-size: .75rem; color: #546475; }
+    .legend-swatch { width: 12px; height: 12px; border-radius: 3px; flex-shrink: 0; }
+
+    /* ── Notes ── */
+    .chart-note { font-size: .75rem; color: #9aa8b8; margin-top: .85rem; line-height: 1.5; }
+    .chart-note strong { color: #7a8fa6; }
+
+    /* ── STM section spacing ── */
+    .stm-section { margin-top: 3rem; }
+    .stm-section .chart-card { border-top: 4px solid #2a3a80; }
+    .atm-section .chart-card { border-top: 4px solid #2a6a20; }
+
+    /* ── Divider ── */
+    .section-divider { border: none; border-top: 2px dashed #d0dbe8; margin: 2.5rem 0; }
+
+    /* ── Intro card ── */
+    .intro-card {
+      background: white; border-radius: 14px; padding: 1.4rem 1.75rem;
+      box-shadow: 0 1px 3px rgba(0,0,0,.07), 0 4px 12px rgba(0,0,0,.04);
+      margin-bottom: 2.5rem; border-top: 3px solid #2a4a6a;
+    }
+    .intro-card p { font-size: .88rem; color: #546475; line-height: 1.7; }
+    .intro-card p + p { margin-top: .65rem; }
+
+    /* ── Footer ── */
+    .page-footer { text-align: center; padding: 2rem 1rem; color: #9aa8b8; font-size: .75rem; }
+  </style>
+</head>
+<body>
+
+<div class="header">
+  <span class="seal">&#x1F4CA;</span>
+  <div class="eyebrow">Town of Medway, Massachusetts</div>
+  <h1>Budget Trends 2016–2026</h1>
+  <p class="sub">Year-over-year changes in recurring warrant articles from Annual and Special Town Meetings.</p>
+</div>
+
+<div class="back-bar">
+  <a class="back-link" href="index.html">&#x2190; All meetings</a>
+</div>
+
+<div class="container">
+
+  <div class="intro-card">
+    <p>These charts track budget lines that recur across multiple Annual Town Meetings (2016–2026) and Special Town Meetings (2020–2022, 2023, 2024, 2026 — no STM was held in 2025). Each bar represents the dollar amount appropriated or transferred as voted at that year's meeting.</p>
+    <p>The <strong>Operating Budget</strong> (the main appropriation article) is not shown here because the final figure is voted at the meeting floor and does not appear in the warrant. Enterprise fund totals, capital programs, and recurring financial transfers are tracked instead. Dollar amounts come directly from the official warrant text.</p>
+  </div>
+
+  <!-- ATM SECTION -->
+  <div class="atm-section">
+    <div class="section-header">
+      <div class="section-title">
+        <span class="section-pill pill-atm">Annual Town Meeting</span>
+        Recurring Appropriations
+      </div>
+      <p class="section-desc">Articles that appear at every Annual Town Meeting. Grouped by subject area. Hover any bar for the exact dollar figure.</p>
+    </div>
+
+    <div class="chart-card">
+      <div class="chart-card-header">
+        <div class="chart-card-title">Enterprise Funds</div>
+        <div class="chart-card-sub">Annual operating appropriations for Water, Sewer, and Solid Waste enterprise funds (FY2024–FY2027)</div>
+      </div>
+      <canvas id="chartEnterprise" height="110"></canvas>
+      <div class="legend-row" id="legendEnterprise"></div>
+    </div>
+
+    <div class="chart-card">
+      <div class="chart-card-header">
+        <div class="chart-card-title">Capital &amp; Infrastructure</div>
+        <div class="chart-card-sub">Free Cash capital appropriation (varies by year based on available balance) and the annual roads &amp; sidewalks program</div>
+      </div>
+      <canvas id="chartCapital" height="90"></canvas>
+      <div class="legend-row" id="legendCapital"></div>
+    </div>
+
+    <div class="chart-card">
+      <div class="chart-card-header">
+        <div class="chart-card-title">Recurring Financial Appropriations</div>
+        <div class="chart-card-sub">Stabilization funds, trust contributions, and recurring transfers voted at each Annual Town Meeting</div>
+      </div>
+      <canvas id="chartRecurring" height="110"></canvas>
+      <div class="legend-row" id="legendRecurring"></div>
+      <p class="chart-note" id="noteRecurring"></p>
+    </div>
+
+  </div>
+
+  <div class="page-footer">
+    Town of Medway &middot; Data compiled from official town warrants &middot; <a href="index.html" style="color:#9aa8b8">Back to archive</a><br>
+    <span style="font-size:.7rem;opacity:.8;">Content produced with AI assistance and reviewed for accuracy, but not 100% independently verified. Consult official town documents for authoritative information.</span>
+  </div>
+
+</div>
+
+<script>
+// ─── Data (generated by gen.py trends) ───────────────────────────────────────
+const ATM_YEARS = ["2016", "2017", "2018", "2019", "2020", "2021", "2022", "2023", "2024", "2025", "2026"];
+const STM_YEARS = [];
+
+const ENTERPRISE_SERIES = [
+  { label: "Water Enterprise Fund", data: [2499354, 2522849, 2826692, 3102333, 3564134, 4084312, 4673560, 5037397, 5438224, 5450046, 5605353] },
+  { label: "Sewer Enterprise Fund", data: [1553935, 1659630, 1851076, 1900891, 1860315, 1818876, 1892374, 1951368, 2040739, 2091991, 2205536] },
+  { label: "Solid Waste Enterprise Fund", data: [125169, 169764, 1212561, 1270261, 1462135, 1652336, 1804050, 1928455, 1821866, 1934953, 1978393] },
+];
+
+const CAPITAL_SERIES = [
+  { label: "Free Cash: Capital Projects", data: [1607657, 1717954, 2065231, 2723173, 1768121, 2020421, 2184916, 2739311, 2503752, 2619608, 2993711] },
+  { label: "Roads & Sidewalks", data: [null, null, 800000, 800000, 800000, 800000, 800000, 800000, 800000, 800000, 800000] },
+];
+
+const RECURRING_SERIES = [
+  { label: "Ambulance Receipts \u2192 General Fund", data: [null, null, null, 500000, 600000, 630000, 700000, 750000, 767000, 795000, 1010000] },
+  { label: "OPEB Trust", data: [100000, 100000, 300000, 300000, 300000, 300000, 300000, 300000, 300000, 300000, 300000] },
+  { label: "General Stabilization", data: [null, 100000, 100000, 100000, 100000, 100000, 100000, 100000, 100000, 100000, 100000] },
+  { label: "Community Preservation Committee", data: [null, 15000, 15000, 15000, 15000, 15000, 15000, 513275, 439975, 411175, 645850] },
+  { label: "Debt Stabilization Transfer", data: [null, null, 450000, 392000, 341000, 288000, 113000, 75000, 39000, 21800, null] },
+];
+
+
+// ─── Chart builder ───────────────────────────────────────────────────────────
+
+function fmtDollar(v) {
+  if (v === null || v === undefined) return 'N/A';
+  return '$' + Math.round(v).toLocaleString('en-US');
+}
+
+function fmtAxis(v) {
+  if (v >= 1000000) return '$' + (v / 1000000).toFixed(v % 1000000 === 0 ? 0 : 2) + 'M';
+  if (v >= 1000)    return '$' + (v / 1000).toFixed(0) + 'K';
+  return '$' + v;
+}
+
+// Year colors — consistent across all charts
+var YEAR_COLORS = {
+  '2023': { bg: 'rgba(43,95,150,0.82)',  border: '#2b5f96' },
+  '2024': { bg: 'rgba(38,122,104,0.82)', border: '#267a68' },
+  '2025': { bg: 'rgba(74,48,160,0.82)',  border: '#4a30a0' },
+  '2026': { bg: 'rgba(46,107,80,0.82)',  border: '#2e6b50' },
+};
+
+// series  = [{label, data[]}, ...]  where data is indexed to years[]
+// Transpose so x-axis = series names, each dataset = one year
+function buildDatasets(years, series) {
+  return years.map(function(yr, yi) {
+    var c = YEAR_COLORS[yr] || { bg: 'rgba(100,100,100,0.7)', border: '#666' };
+    return {
+      label: yr,
+      data: series.map(function(s) { return s.data[yi] != null ? s.data[yi] : null; }),
+      backgroundColor: c.bg,
+      borderColor: c.border,
+      borderWidth: 1.5,
+      borderRadius: 4,
+      borderSkipped: false,
+    };
+  });
+}
+
+// Legend shows years, not series names
+function buildLegend(containerId, years) {
+  var el = document.getElementById(containerId);
+  years.forEach(function(yr) {
+    var c = YEAR_COLORS[yr] || { border: '#666' };
+    var item = document.createElement('div');
+    item.className = 'legend-item';
+    item.innerHTML =
+      '<span class="legend-swatch" style="background:' + c.border + '"></span>' +
+      '<span>' + yr + '</span>';
+    el.appendChild(item);
+  });
+}
+
+var BASE_OPTIONS = {
+  responsive: true,
+  interaction: { mode: 'index', intersect: false },
+  plugins: {
+    legend: { display: false },
+    tooltip: {
+      callbacks: {
+        label: function(ctx) {
+          var v = ctx.parsed.y;
+          if (v === null || v === undefined) return ctx.dataset.label + ': N/A';
+          return ctx.dataset.label + ': ' + fmtDollar(v);
+        }
+      }
+    }
+  },
+  scales: {
+    x: { grid: { display: false }, ticks: { font: { size: 12 } } },
+    y: {
+      grid: { color: 'rgba(0,0,0,.06)' },
+      ticks: { font: { size: 11 }, callback: fmtAxis },
+      beginAtZero: true
+    }
+  }
+};
+
+// labels = series names (x-axis), years = year strings (one dataset each)
+function makeChart(id, years, series) {
+  var ctx = document.getElementById(id).getContext('2d');
+  new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: series.map(function(s) { return s.label; }),
+      datasets: buildDatasets(years, series),
+    },
+    options: BASE_OPTIONS,
+  });
+}
+
+makeChart('chartEnterprise', ATM_YEARS, ENTERPRISE_SERIES);
+makeChart('chartCapital',    ATM_YEARS, CAPITAL_SERIES);
+makeChart('chartRecurring',  ATM_YEARS, RECURRING_SERIES);
+
+buildLegend('legendEnterprise', ATM_YEARS);
+buildLegend('legendCapital',    ATM_YEARS);
+buildLegend('legendRecurring',  ATM_YEARS);
+</script>
+</body>
+</html>

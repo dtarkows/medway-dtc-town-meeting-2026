@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Medway Annual Town Meeting — May 11, 2026</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* ── Theme colors (injected per meeting) ─────────────────────────────── */
+    :root {
+      --g1:    #1b3d2f;
+      --g2:    #2e6b50;
+      --acc:   #2e6b50;
+      --light: #eef6f2;
+      --tbg:   #f0f6f2;
+      --tbo:   #c8e4d8;
+    }
+
+    /* ── Reset & base ─────────────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Inter', sans-serif; background: #eef2f7; color: #1a2e4a; min-height: 100vh; }
+
+    /* ── Header ───────────────────────────────────────────────────────────── */
+    .header {
+      background: linear-gradient(135deg, var(--g1) 0%, var(--g2) 100%);
+      color: white; padding: 2.5rem 2rem 2rem; text-align: center;
+    }
+    .back-link {
+      display: inline-flex; align-items: center; gap: .35rem;
+      font-size: .75rem; font-weight: 600; color: rgba(255,255,255,.7);
+      text-decoration: none; letter-spacing: .04em;
+      margin-bottom: 1rem; transition: color .15s;
+    }
+    .back-link::before { content: '←'; }
+    .back-link:hover { color: white; }
+    .eyebrow { font-size: .72rem; font-weight: 600; letter-spacing: .18em; text-transform: uppercase; opacity: .65; margin-bottom: .5rem; }
+    .header h1 { font-size: 1.9rem; font-weight: 700; margin-bottom: .4rem; }
+    .header .meta { font-size: .88rem; opacity: .75; }
+
+    /* ── Stats bar ────────────────────────────────────────────────────────── */
+    .stats-bar { display: flex; gap: 1rem; padding: 1.2rem 2rem; background: var(--light); justify-content: center; flex-wrap: wrap; }
+    .stat-card { text-align: center; padding: .5rem 1.2rem; }
+    .stat-card .label { font-size: .68rem; font-weight: 600; text-transform: uppercase; letter-spacing: .1em; color: var(--acc); opacity: .8; }
+    .stat-card .value { font-size: 1.4rem; font-weight: 700; color: var(--g1); }
+    .stat-card .sub   { font-size: .7rem; color: #7a8fa6; }
+
+    /* ── Controls ─────────────────────────────────────────────────────────── */
+    .container { max-width: 1100px; margin: 0 auto; padding: 1.5rem 1.5rem 4rem; }
+    .controls { margin-bottom: 1.25rem; }
+    .controls-label { font-size: .68rem; font-weight: 700; text-transform: uppercase; letter-spacing: .12em; color: #7a8fa6; margin-bottom: .6rem; }
+    .filter-buttons { display: flex; flex-wrap: wrap; gap: .45rem; }
+    .filter-btn {
+      padding: .3rem .85rem; border-radius: 999px; border: 1.5px solid #d0dae6;
+      background: white; font-family: inherit; font-size: .75rem; font-weight: 500;
+      color: #546475; cursor: pointer; transition: all .15s;
+    }
+    .filter-btn:hover  { border-color: var(--acc); color: var(--acc); }
+    .filter-btn.active { background: var(--acc); border-color: var(--acc); color: white; font-weight: 600; }
+
+    /* ── Table ────────────────────────────────────────────────────────────── */
+    .table-wrap  { background: white; border-radius: 14px; box-shadow: 0 1px 3px rgba(0,0,0,.07), 0 4px 12px rgba(0,0,0,.04); overflow: hidden; }
+    .table-scroll { overflow-x: auto; }
+    table  { width: 100%; border-collapse: collapse; }
+    thead  { background: var(--tbg); border-bottom: 2px solid var(--tbo); }
+    th     { padding: .75rem 1rem; text-align: left; font-size: .72rem; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--g1); white-space: nowrap; }
+    th.sortable { cursor: pointer; user-select: none; }
+    th.sortable:hover { color: var(--acc); }
+    th.sortable .sort-icon { margin-left: 4px; font-size: .7rem; opacity: .45; }
+    th.sorted-asc  .sort-icon, th.sorted-desc .sort-icon { opacity: 1; color: var(--acc); }
+    th.sorted-asc  .sort-icon::after { content: '▲'; }
+    th.sorted-desc .sort-icon::after { content: '▼'; }
+    th:not(.sorted-asc):not(.sorted-desc) .sort-icon::after { content: '⇅'; }
+    th.amount-col { text-align: right; }
+    td { padding: .9rem 1rem; vertical-align: top; border-bottom: 1px solid #edf2ef; font-size: .875rem; line-height: 1.55; }
+    tr:last-child td { border-bottom: none; }
+    tr:hover td { background: #fafcfb; }
+    tr.hidden { display: none; }
+
+    /* ── Article cell ─────────────────────────────────────────────────────── */
+    .article-num     { font-size: .78rem; font-weight: 700; color: var(--acc); white-space: nowrap; }
+    .article-title   { font-weight: 600; color: #1a2e4a; margin-bottom: .3rem; }
+    .article-summary { color: #546475; font-size: .82rem; line-height: 1.5; }
+    .article-recs    { display: flex; align-items: center; gap: .45rem; margin-top: .45rem; flex-wrap: wrap; }
+    .rec-label       { font-size: .7rem; font-weight: 600; color: #7a8fa6; white-space: nowrap; }
+    .full-text-btn {
+      display: inline-flex; align-items: center; gap: .3rem;
+      margin-top: .55rem; padding: 0; border: none; background: none;
+      font-family: inherit; font-size: .75rem; font-weight: 600;
+      color: var(--acc); cursor: pointer; opacity: .65; transition: opacity .15s, gap .15s;
+    }
+    .full-text-btn:hover { opacity: 1; gap: .45rem; }
+    .full-text-btn::after { content: '→'; }
+
+    /* ── Amount column ────────────────────────────────────────────────────── */
+    .amount-col   { text-align: right; }
+    .amount-value { font-weight: 700; color: var(--g1); font-variant-numeric: tabular-nums; white-space: nowrap; }
+    .amount-tbd   { color: #9aa8b8; font-style: italic; font-size: .82rem; }
+    .amount-na    { color: #b8c4ce; font-size: .82rem; }
+
+    /* ── Category badges ──────────────────────────────────────────────────── */
+    .cat-badge { display: inline-block; padding: .22rem .7rem; border-radius: 999px; font-size: .72rem; font-weight: 600; white-space: nowrap; }
+    .cat-budget    { background: #e8f5e3; color: #2a6a20; }
+    .cat-capital   { background: #e8eef9; color: #2a3a80; }
+    .cat-financial { background: #fff3e0; color: #a05000; }
+    .cat-enterprise{ background: #f3e8f9; color: #6a2a80; }
+    .cat-zoning    { background: #fce8e8; color: #a01818; }
+    .cat-bylaws    { background: #e8f5e3; color: #1a6a38; }
+    .cat-cpa       { background: #e8f9f5; color: #1a6a5a; }
+    .cat-admin     { background: #f0f0f0; color: #505050; }
+    .cat-energy    { background: #fffbe6; color: #806600; }
+    .cat-petition  { background: #f9f0e8; color: #804020; }
+    .cat-infra     { background: #e8f0f9; color: #204080; }
+
+    /* ── Recommendation badges ────────────────────────────────────────────── */
+    .rec-badge       { display: inline-block; padding: .2rem .55rem; border-radius: 999px; font-size: .72rem; font-weight: 600; white-space: nowrap; }
+    .rec-approve     { background: #e3f0e8; color: #1a6a2a; }
+    .rec-disapprove  { background: #fce8e8; color: #a01818; }
+    .rec-tbd         { background: #f0f0f0; color: #6a6a6a; }
+    .rec-pass        { background: #fff3e0; color: #a05000; }
+    .rec-na          { color: #aaa; font-style: italic; font-size: .82rem; }
+
+    .no-results  { text-align: center; padding: 3rem 2rem; color: #9aa8b8; font-size: .92rem; }
+    .page-footer { text-align: center; padding: 1.5rem 1rem; color: #9aa8b8; font-size: .75rem; }
+
+    /* ── Modal ────────────────────────────────────────────────────────────── */
+    #article-modal { display: none; position: fixed; inset: 0; z-index: 1000; align-items: center; justify-content: center; padding: 1rem; }
+    #article-modal.open { display: flex; }
+    .modal-backdrop { position: fixed; inset: 0; background: rgba(10,20,40,.55); backdrop-filter: blur(3px); }
+    .modal-card {
+      position: relative; z-index: 1; background: white; border-radius: 16px;
+      width: min(760px, 100%); max-height: min(84vh, 740px);
+      display: flex; flex-direction: column;
+      box-shadow: 0 24px 64px rgba(0,0,0,.28), 0 4px 16px rgba(0,0,0,.12);
+      animation: modalIn .2s ease;
+    }
+    @keyframes modalIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
+    .modal-close {
+      position: absolute; top: .9rem; right: 1rem; width: 32px; height: 32px;
+      border-radius: 50%; border: none; background: #f0f4f8; font-size: 1rem;
+      cursor: pointer; display: flex; align-items: center; justify-content: center; color: #546475;
+      transition: background .15s;
+    }
+    .modal-close:hover { background: #e0e8f0; }
+    .modal-header { padding: 1.5rem 2rem 1rem; border-bottom: 1px solid #edf2ef; }
+    .modal-eyebrow { font-size: .7rem; font-weight: 700; text-transform: uppercase; letter-spacing: .14em; color: var(--acc); margin-bottom: .4rem; }
+    .modal-title   { font-size: 1.1rem; font-weight: 700; color: #1a2e4a; line-height: 1.35; padding-right: 2rem; }
+    .modal-body    { padding: 1.25rem 2rem 1.5rem; overflow-y: auto; flex: 1; }
+    .modal-recs    { display: flex; gap: 1.5rem; margin-bottom: 1rem; flex-wrap: wrap; }
+    .modal-rec-label { font-size: .68rem; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; color: #7a8fa6; margin-bottom: .3rem; }
+    pre#modal-text { white-space: pre-wrap; font-family: inherit; font-size: .88rem; color: #2a3a50; line-height: 1.7; }
+
+    @media (max-width: 680px) {
+      .header h1 { font-size: 1.35rem; }
+      td, th { padding: .7rem .65rem; }
+      .modal-header, .modal-body { padding-left: 1.25rem; padding-right: 1.25rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="header">
+    <a class="back-link" href="../index.html">All meetings</a>
+    <div class="eyebrow">Town of Medway, Massachusetts</div>
+    <h1>Annual Town Meeting</h1>
+    <div class="meta">May 11, 2026 &nbsp;·&nbsp; Medway High School &nbsp;·&nbsp; 7:30 PM</div>
+  </div>
+
+  <div class="stats-bar">
+    <div class="stat-card"><div class="label">Articles</div><div class="value">26</div><div class="sub">Warrant articles</div></div><div class="stat-card"><div class="label">Specified Appropriations</div><div class="value">$23.2M+</div><div class="sub">Identified dollar amounts</div></div><div class="stat-card"><div class="label">Categories</div><div class="value">10</div><div class="sub">Topics covered</div></div>
+  </div>
+
+  <div class="container">
+    <div class="controls">
+      <div class="controls-label">Filter by Category</div>
+      <div class="filter-buttons">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="Budget">Budget</button>
+        <button class="filter-btn" data-filter="CPA / Open Space">CPA / Open Space</button>
+        <button class="filter-btn" data-filter="Capital">Capital</button>
+        <button class="filter-btn" data-filter="Energy">Energy</button>
+        <button class="filter-btn" data-filter="Enterprise Budget">Enterprise Budget</button>
+        <button class="filter-btn" data-filter="Financial">Financial</button>
+        <button class="filter-btn" data-filter="Land &amp; Property">Land &amp; Property</button>
+        <button class="filter-btn" data-filter="Personnel &amp; Policy">Personnel &amp; Policy</button>
+        <button class="filter-btn" data-filter="Public Safety">Public Safety</button>
+        <button class="filter-btn" data-filter="Zoning">Zoning</button>
+      </div>
+    </div>
+
+    <div class="table-wrap">
+      <div class="table-scroll">
+        <table>
+          <thead>
+            <tr>
+              <th style="width:60px">#</th>
+              <th>Article</th>
+              <th style="width:160px">Category</th>
+              <th class="amount-col sortable" id="amt-th" style="width:140px">Amount <span class="sort-icon"></span></th>
+            </tr>
+          </thead>
+          <tbody id="article-tbody">
+            <tr data-category="CPA / Open Space" data-amount="5620000">
+  <td><span class="article-num">Art. 1</span></td>
+  <td>
+    <div class="article-title">Purchase Winthrop St Properties with CPA Funds</div>
+    <div class="article-summary">Authorizes the purchase of approximately 78.7 acres across four Winthrop Street parcels. Funded by $2.87M from the Community Preservation Fund and $2.75M in borrowing; land to be held for CPA-eligible open space, recreation, or housing purposes.</div>
+    <div class="article-recs"><span class="rec-label">SB:</span> <span class="rec-badge rec-approve">Approve</span><span class="rec-label" style="margin-left:.2rem">FinCom:</span> <span class="rec-badge rec-approve">Approve</span></div>
+    <button class="full-text-btn" data-key="1">Full text</button>
+  </td>
+  <td><span class="cat-badge cat-cpa">CPA / Open Space</span></td>
+  <td class="amount-col"><span class="amount-value">$5,620,000</span></td>
+</tr>
+            <tr data-category="Financial" data-amount="1010000">
+  <td><span class="article-num">Art. 2</span></td>
+  <td>
+    <div class="article-title">Transfer from Ambulance Receipts to General Fund</div>
+    <div class="article-summary">Transfers ambulance billing revenue into the FY27 General Fund operating budget, offsetting the amount that must be raised through property taxes.</div>
+    <div class="article-recs"><span class="rec-label">SB:</span> <span class="rec-badge rec-approve">Approve</span><span class="rec-label" style="margin-left:.2rem">FinCom:</span> <span class="rec-badge rec-approve">Approve</span></div>
+    <button class="full-text-btn" data-key="2">Full text</button>
+  </td>
+  <td><span class="cat-badge cat-financial">Financial</span></td>
+  <td class="amount-col"><span class="amount-value">$1,010,000</span></td>
+</tr>
+            <tr data-category="Budget">
+  <td><span class="article-num">Art. 3</span></td>
+  <td>
+    <div class="article-title">Appropriation: FY27 Operating Budget</div>
+    <div class="article-summary">Sets salaries for elected officials and appropriates all Town department operating expenses for the fiscal year ending June 30, 2027. The total amount is determined through the budget presentation at Town Meeting.</div>
+    <div class="article-recs"><span class="rec-label">SB:</span> <span class="rec-badge rec-approve">Approve</span><span class="rec-label" style="margin-left:.2rem">FinCom:</span> <span class="rec-badge rec-approve">Approve</span></div>
+    <button class="full-text-btn" data-key="3">Full text</button>
+  </td>
+  <td><span class="cat-badge cat-budget">Budget</span></td>
+  <td class="amount-col"><span class="amount-tbd">TBD</span></td>
+</tr>
+            <tr data-category="Enterprise Budget" data-amount="5605353">
+  <td><span class="article-num">Art. 4</span></td>
+  <td>
+    <div class="article-title">Appropriation: FY27 Water Enterprise Fund</div>
+    <div class="article-summary">Funds Water Department operations including salaries ($1.13M), expenses ($929K), debt service ($3.03M), and indirect costs ($514K). Fully funded by water user fees — no tax levy impact.</div>
+    <div class="article-recs"><span class="rec-label">SB:</span> <span class="rec-badge rec-approve">Approve</span><span class="rec-label" style="margin-left:.2rem">FinCom:</span> <span class="rec-badge rec-approve">Approve</span></div>
+    <button class="full-text-btn" data-key="4">Full text</button>
+  </td>
+  <td><span class="cat-badge cat-enterprise">Enterprise Budget</span></td>
+  <td class="amount-col"><span class="amount-value">$5,605,353</span></td>
+</tr>
+            <tr data-category="Enterprise Budget" data-amount="2205536">
+  <td><span class="article-num">Art. 5</span></td>
+  <td>
+    <div class="article-title">Appropriation: FY27 Sewer Enterprise Fund</div>
+    <div class="article-summary">Funds Sewer Department operations including salaries, expenses, debt service, and indirect costs. Primarily funded by sewer user fees with a small sewer betterment transfer — no direct tax levy impact.</div>
+    <div class="article-recs"><span class="rec-label">SB:</span> <span class="rec-badge rec-approve">Approve</span><span class="rec-label" style="margin-left:.2rem">FinCom:</span> <span class="rec-badge rec-approve">Approve</span></div>
+    <button class="full-text-btn" data-key="5">Full text</button>
+  </td>
+  <td><span class="cat-badge cat-enterprise">Enterprise Budget</span></td>
+  <td class="amount-col"><span class="amount-value">$2,205,536</span></td>
+</tr>
+            <tr data-category="Enterprise Budget" data-amount="1978393">
+  <td><span class="article-num">Art. 6</span></td>
+  <td>
+    <div class="article-title">Appropriation: FY27 Solid Waste Enterprise Fund</div>
+    <div class="article-summary">Funds the Solid Waste/Recycling Department operations. Primarily funded by trash bag fees ($1.73M) with a retained earnings contribution ($248K) — no direct tax levy impact.</div>
+    <div class="article-recs"><span class="rec-label">SB:</span> <span class="rec-badge rec-approve">Approve</span><span class="rec-label" style="margin-left:.2rem">FinCom:</span> <span class="rec-badge rec-approve">Approve</span></div>
+    <button class="full-text-btn" data-key="6">Full text</button>
+  </td>
+  <td><span class="cat-badge cat-enterprise">Enterprise Budget</span></td>
+  <td class="amount-col"><span class="amount-value">$1,978,393</span></td>
+</tr>
+            <tr data-category="Capital" data-amount="2993711">
+  <td><span class="article-num">Art. 7</span></td>
+  <td>
+    <div class="article-title">Free Cash Appropriation: Capital and Other Items</div>
+    <div class="article-summary">Appropriates $2.99M from Certified Free Cash for 30 one-time capital items spanning IT ($342K), Police ($107K), Fire ($123K), Schools ($520K), DPW ($1.47M), Library ($70K), and Parks &amp; Rec ($50K).</div>
+    <div class="article-recs"><span class="rec-label">SB:</span> <span class="rec-badge rec-approve">Approve</span><span class="rec-label" style="margin-left:.2rem">FinCom:</span> <span class="rec-badge rec-approve">Approve</span></div>
+    <button class="full-text-btn" data-key="7">Full text</button>
+  </td>
+  <td><span class="cat-badge cat-capital">Capital</span></td>
+  <td class="amount-col"><span class="amount-value">$2,993,711</span></td>
+</tr>
+            <tr data-category="Capital" data-amount="50000">
+  <td><span class="article-num">Art. 8</span></td>
+  <td>
+    <div class="article-title">Athletic Fields Stabilization Transfer for Field Design</div>
+    <div class="article-summary">Transfers funds from the Athletic Fields Stabilization Fund to pay for the design of turf field replacements at Lamson and North Fields at Medway High School.</div>
+    <div class="article-recs"><span class="rec-label">SB:</span> <span class="rec-badge rec-approve">Approve</span><span class="rec-label" style="margin-left:.2rem">FinCom:</span> <span class="rec-badge rec-approve">Approve</span></div>
+    <button class="full-text-btn" data-key="8">Full text</button>
+  </td>
+  <td><span class="cat-badge cat-capital">Capital</span></td>
+  <td class="amount-col"><span class="amount-value">$50,000</span></td>
+</tr>
+            <tr data-category="Capital" data-amount="1800000">
+  <td><span class="article-num">Art. 9</span></td>
+  <td>
+    <div class="article-title">Water Enterprise Borrowing – Lovering Tank Rehabilitation</div>
+    <div class="article-summary">Authorizes borrowing to rehabilitate the Lovering Street water storage tank, including engineering, design, project management, and construction costs.</div>
+    <div class="article-recs"><span class="rec-label">SB:</span> <span class="rec-badge rec-approve">Approve</span><span class="rec-label" style="margin-left:.2rem">FinCom:</span> <span class="rec-badge rec-approve">Approve</span></div>
+    <button class="full-text-btn" data-key="9">Full text</button>
+  </td>
+  <td><span class="cat-badge cat-capital">Capital</span></td>
+  <td class="amount-col"><span class="amount-value">$1,800,000</span></td>
+</tr>
+            <tr data-category="Capital" data-amount="45000">
+  <td><span class="article-num">Art. 10</span></td>
+  <td>
+    <div class="article-title">Water Retained Earnings Transfer – Replace Ford Ranger</div>
+    <div class="article-summary">Transfers Water Enterprise retained earnings to purchase a replacement Ford Ranger pickup truck for Water Department operations.</div>
+    <div class="article-recs"><span class="rec-label">SB:</span> <span class="rec-badge rec-approve">Approve</span><span class="rec-label" style="margin-left:.2rem">FinCom:</span> <span class="rec-badge rec-approve">Approve</span></div>
+    <button class="full-text-btn" data-key="10">Full text</button>
+  </td>
+  <td><span class="cat-badge cat-capital">Capital</span></td>
+  <td class="amount-col"><span class="amount-value">$45,000</span></td>
+</tr>
+            <tr data-category="Capital" data-amount="800000">
+  <td><span class="article-num">Art. 11</span></td>
+  <td>
+    <div class="article-title">Raise & Appropriate: Roads & Sidewalks</div>
+    <div class="article-summary">Raises and appropriates funds for repairs to Town roads, sidewalks, bridges, and related infrastructure, including design, engineering, and construction management services.</div>
+    <div class="article-recs"><span class="rec-label">SB:</span> <span class="rec-badge rec-approve">Approve</span><span class="rec-label" style="margin-left:.2rem">FinCom:</span> <span class="rec-badge rec-approve">Approve</span></div>
+    <button class="full-text-btn" data-key="11">Full text</button>
+  </td>
+  <td><span class="cat-badge cat-capital">Capital</span></td>
+  <td class="amount-col"><span class="amount-value">$800,000</span></td>
+</tr>
+            <tr data-category="Financial" data-amount="300000">
+  <td><span class="article-num">Art. 12</span></td>
+  <td>
+    <div class="article-title">Appropriation: OPEB Trust</div>
+    <div class="article-summary">Contributes to the Town's Other Post-Employment Benefits trust, which pre-funds future obligations for retiree health insurance and other post-employment benefits.</div>
+    <div class="article-recs"><span class="rec-label">SB:</span> <span class="rec-badge rec-approve">Approve</span><span class="rec-label" style="margin-left:.2rem">FinCom:</span> <span class="rec-badge rec-approve">Approve</span></div>
+    <button class="full-text-btn" data-key="12">Full text</button>
+  </td>
+  <td><span class="cat-badge cat-financial">Financial</span></td>
+  <td class="amount-col"><span class="amount-value">$300,000</span></td>
+</tr>
+            <tr data-category="Financial" data-amount="100000">
+  <td><span class="article-num">Art. 13</span></td>
+  <td>
+    <div class="article-title">Appropriation: General Stabilization</div>
+    <div class="article-summary">Adds to the Town's General Stabilization Fund (the municipal "rainy day fund") to maintain fiscal reserves for unexpected expenses or future capital needs.</div>
+    <div class="article-recs"><span class="rec-label">SB:</span> <span class="rec-badge rec-approve">Approve</span><span class="rec-label" style="margin-left:.2rem">FinCom:</span> <span class="rec-badge rec-approve">Approve</span></div>
+    <button class="full-text-btn" data-key="13">Full text</button>
+  </td>
+  <td><span class="cat-badge cat-financial">Financial</span></td>
+  <td class="amount-col"><span class="amount-value">$100,000</span></td>
+</tr>
+            <tr data-category="CPA / Open Space" data-amount="645850">
+  <td><span class="article-num">Art. 14</span></td>
+  <td>
+    <div class="article-title">Appropriation: Community Preservation Committee</div>
+    <div class="article-summary">Authorizes the FY27 CPA budget of $645,850 for administrative costs and debt service, plus mandatory 10% reserves ($165,694 each) for Open Space, Community Housing, and Historic Preservation.</div>
+    <div class="article-recs"><span class="rec-label">SB:</span> <span class="rec-badge rec-approve">Approve</span><span class="rec-label" style="margin-left:.2rem">FinCom:</span> <span class="rec-badge rec-approve">Approve</span></div>
+    <button class="full-text-btn" data-key="14">Full text</button>
+  </td>
+  <td><span class="cat-badge cat-cpa">CPA / Open Space</span></td>
+  <td class="amount-col"><span class="amount-value">$645,850</span></td>
+</tr>
+            <tr data-category="Financial">
+  <td><span class="article-num">Art. 15</span></td>
+  <td>
+    <div class="article-title">Revolving Funds – Authorize FY27 Spending Limits</div>
+    <div class="article-summary">Sets FY27 spending caps for 11 self-supporting revolving funds covering parks &amp; rec ($900K), senior/disabled transit ($135K), school transportation ($300K), tree preservation, cemetery, Thayer Homestead ($95K), and others.</div>
+    <div class="article-recs"><span class="rec-label">SB:</span> <span class="rec-badge rec-approve">Approve</span><span class="rec-label" style="margin-left:.2rem">FinCom:</span> <span class="rec-badge rec-approve">Approve</span></div>
+    <button class="full-text-btn" data-key="15">Full text</button>
+  </td>
+  <td><span class="cat-badge cat-financial">Financial</span></td>
+  <td class="amount-col"><span class="amount-na">—</span></td>
+</tr>
+            <tr data-category="Energy">
+  <td><span class="article-num">Art. 16</span></td>
+  <td>
+    <div class="article-title">Medway Energy Center PILOT Authorization</div>
+    <div class="article-summary">Authorizes the Select Board to sign a Payment In Lieu of Taxes agreement with Medway Energy Center, LLC for a battery energy storage system proposed at 15 West Street.</div>
+    <div class="article-recs"><span class="rec-label">SB:</span> <span class="rec-badge rec-approve">Approve</span><span class="rec-label" style="margin-left:.2rem">FinCom:</span> <span class="rec-badge rec-approve">Approve</span></div>
+    <button class="full-text-btn" data-key="16">Full text</button>
+  </td>
+  <td><span class="cat-badge cat-energy">Energy</span></td>
+  <td class="amount-col"><span class="amount-na">—</span></td>
+</tr>
+            <tr data-category="Personnel &amp; Policy">
+  <td><span class="article-num">Art. 17</span></td>
+  <td>
+    <div class="article-title">Accept MGL C. 41, Sec. 111M and 111N, EMT Injury Leave and Indemnification</div>
+    <div class="article-summary">Accepts state law provisions protecting EMTs from losing pay when injured on duty and indemnifying them for certain related expenses (MGL c.41 §§111M &amp; 111N).</div>
+    <div class="article-recs"><span class="rec-label">SB:</span> <span class="rec-badge rec-approve">Approve</span><span class="rec-label" style="margin-left:.2rem">FinCom:</span> <span class="rec-badge rec-approve">Approve</span></div>
+    <button class="full-text-btn" data-key="17">Full text</button>
+  </td>
+  <td><span class="cat-badge cat-admin">Personnel &amp; Policy</span></td>
+  <td class="amount-col"><span class="amount-na">—</span></td>
+</tr>
+            <tr data-category="Personnel &amp; Policy">
+  <td><span class="article-num">Art. 18</span></td>
+  <td>
+    <div class="article-title">Authorization of Superintendent of Schools to Execute Contracts in Excess of Three Years</div>
+    <div class="article-summary">Allows the School Superintendent to award non-personnel contracts up to five years (currently capped at three) when approved by a 4-member School Committee vote.</div>
+    <div class="article-recs"><span class="rec-label">SB:</span> <span class="rec-badge rec-approve">Approve</span><span class="rec-label" style="margin-left:.2rem">FinCom:</span> <span class="rec-badge rec-approve">Approve</span></div>
+    <button class="full-text-btn" data-key="18">Full text</button>
+  </td>
+  <td><span class="cat-badge cat-admin">Personnel &amp; Policy</span></td>
+  <td class="amount-col"><span class="amount-na">—</span></td>
+</tr>
+            <tr data-category="Land &amp; Property">
+  <td><span class="article-num">Art. 19</span></td>
+  <td>
+    <div class="article-title">Transfer 17 Colonial Road to Conservation Commission</div>
+    <div class="article-summary">Transfers a 9.8-acre parcel (acquired by the Town via tax foreclosure in 1977) to the Conservation Commission for permanent protection as open space and passive recreation.</div>
+    <div class="article-recs"><span class="rec-label">SB:</span> <span class="rec-badge rec-approve">Approve</span><span class="rec-label" style="margin-left:.2rem">FinCom:</span> <span class="rec-badge rec-approve">Approve</span></div>
+    <button class="full-text-btn" data-key="19">Full text</button>
+  </td>
+  <td><span class="cat-badge cat-admin">Land &amp; Property</span></td>
+  <td class="amount-col"><span class="amount-na">—</span></td>
+</tr>
+            <tr data-category="Land &amp; Property">
+  <td><span class="article-num">Art. 20</span></td>
+  <td>
+    <div class="article-title">13 Populatic Street Disposition</div>
+    <div class="article-summary">Authorizes the Select Board to sell or lease a 4.2-acre town-owned parcel at 13 Populatic Street, with terms to be determined by the Select Board in the Town's best interest.</div>
+    <div class="article-recs"><span class="rec-label">SB:</span> <span class="rec-badge rec-approve">Approve</span><span class="rec-label" style="margin-left:.2rem">FinCom:</span> <span class="rec-badge rec-approve">Approve</span></div>
+    <button class="full-text-btn" data-key="20">Full text</button>
+  </td>
+  <td><span class="cat-badge cat-admin">Land &amp; Property</span></td>
+  <td class="amount-col"><span class="amount-na">—</span></td>
+</tr>
+            <tr data-category="Public Safety">
+  <td><span class="article-num">Art. 21</span></td>
+  <td>
+    <div class="article-title">Amend General Bylaws: Civil Fingerprinting</div>
+    <div class="article-summary">Creates a new bylaw authorizing the Police Department to conduct fingerprint-based criminal background checks for applicants for specific licenses: alcohol beverage managers, pawn dealers, second-hand goods dealers, ice cream truck vendors, and motor vehicle dealers.</div>
+    <div class="article-recs"><span class="rec-label">SB:</span> <span class="rec-badge rec-approve">Approve</span><span class="rec-label" style="margin-left:.2rem">FinCom:</span> <span class="rec-badge rec-approve">Approve</span></div>
+    <button class="full-text-btn" data-key="21">Full text</button>
+  </td>
+  <td><span class="cat-badge cat-admin">Public Safety</span></td>
+  <td class="amount-col"><span class="amount-na">—</span></td>
+</tr>
+            <tr data-category="Zoning">
+  <td><span class="article-num">Art. 22</span></td>
+  <td>
+    <div class="article-title">Amend Zoning Bylaws: Small Clean Energy Facilities</div>
+    <div class="article-summary">Creates a consolidated local permitting pathway for small solar, wind, and battery storage projects in compliance with state Chapter 239 of the Acts of 2024. Effective October 1, 2026.</div>
+    <div class="article-recs"><span class="rec-label">SB:</span> <span class="rec-badge rec-approve">Approve</span><span class="rec-label" style="margin-left:.2rem">FinCom:</span> <span class="rec-badge rec-approve">Approve</span></div>
+    <button class="full-text-btn" data-key="22">Full text</button>
+  </td>
+  <td><span class="cat-badge cat-zoning">Zoning</span></td>
+  <td class="amount-col"><span class="amount-na">—</span></td>
+</tr>
+            <tr data-category="Zoning">
+  <td><span class="article-num">Art. 23</span></td>
+  <td>
+    <div class="article-title">Amend Zoning Bylaws: Central Business Uses</div>
+    <div class="article-summary">Changes the zoning bylaw to allow car washes by special permit in the Central Business District, where they are currently prohibited entirely.</div>
+    <div class="article-recs"><span class="rec-label">SB:</span> <span class="rec-badge rec-approve">Approve</span><span class="rec-label" style="margin-left:.2rem">FinCom:</span> <span class="rec-badge rec-approve">Approve</span></div>
+    <button class="full-text-btn" data-key="23">Full text</button>
+  </td>
+  <td><span class="cat-badge cat-zoning">Zoning</span></td>
+  <td class="amount-col"><span class="amount-na">—</span></td>
+</tr>
+            <tr data-category="Zoning">
+  <td><span class="article-num">Art. 24</span></td>
+  <td>
+    <div class="article-title">Amend Zoning Bylaws: Oak Grove/Central Business District Dimensional Regulations</div>
+    <div class="article-summary">Updates design standards for mixed-use, commercial, and civic buildings in the Oak Grove/Central Business District — removes max street-facing wall widths, increases gas station footprint allowance, and raises height cap for municipal buildings to 70 feet.</div>
+    <div class="article-recs"><span class="rec-label">SB:</span> <span class="rec-badge rec-approve">Approve</span><span class="rec-label" style="margin-left:.2rem">FinCom:</span> <span class="rec-badge rec-approve">Approve</span></div>
+    <button class="full-text-btn" data-key="24">Full text</button>
+  </td>
+  <td><span class="cat-badge cat-zoning">Zoning</span></td>
+  <td class="amount-col"><span class="amount-na">—</span></td>
+</tr>
+            <tr data-category="Zoning">
+  <td><span class="article-num">Art. 25</span></td>
+  <td>
+    <div class="article-title">Amend Zoning Bylaws: Municipal Buildings and Uses</div>
+    <div class="article-summary">Allows the Planning Board to grant special permits relaxing dimensional requirements for municipal buildings such as fire stations and police stations, enabling better site design while preserving neighborhood review.</div>
+    <div class="article-recs"><span class="rec-label">SB:</span> <span class="rec-badge rec-approve">Approve</span><span class="rec-label" style="margin-left:.2rem">FinCom:</span> <span class="rec-badge rec-approve">Approve</span></div>
+    <button class="full-text-btn" data-key="25">Full text</button>
+  </td>
+  <td><span class="cat-badge cat-zoning">Zoning</span></td>
+  <td class="amount-col"><span class="amount-na">—</span></td>
+</tr>
+            <tr data-category="Zoning">
+  <td><span class="article-num">Art. 26</span></td>
+  <td>
+    <div class="article-title">Amend Zoning Bylaws: Housekeeping</div>
+    <div class="article-summary">Makes technical corrections to the Zoning Bylaw: streamlines administrative site plan review, adds an appeal provision for the Multi-Family Overlay District, and updates sign illumination language.</div>
+    <div class="article-recs"><span class="rec-label">SB:</span> <span class="rec-badge rec-approve">Approve</span><span class="rec-label" style="margin-left:.2rem">FinCom:</span> <span class="rec-badge rec-approve">Approve</span></div>
+    <button class="full-text-btn" data-key="26">Full text</button>
+  </td>
+  <td><span class="cat-badge cat-zoning">Zoning</span></td>
+  <td class="amount-col"><span class="amount-na">—</span></td>
+</tr>
+          </tbody>
+        </table>
+        <div class="no-results" id="no-results" style="display:none">No articles match this filter.</div>
+      </div>
+    </div>
+
+    <div class="page-footer">
+      Source: Town of Medway Warrant &nbsp;·&nbsp; May 11, 2026<br>
+      <span style="font-size:.7rem;opacity:.8;">Content produced with AI assistance and reviewed for accuracy, but not 100% independently verified. Consult official town documents for authoritative information.</span>
+    </div>
+  </div>
+
+  <!-- Modal -->
+  <div id="article-modal">
+    <div class="modal-backdrop" onclick="closeModal()"></div>
+    <div class="modal-card">
+      <button class="modal-close" onclick="closeModal()">✕</button>
+      <div class="modal-header">
+        <div class="modal-eyebrow" id="modal-eyebrow"></div>
+        <div class="modal-title"  id="modal-title"></div>
+      </div>
+      <div class="modal-body">
+        <div class="modal-recs" id="modal-recs"></div>
+        <pre id="modal-text"></pre>
+      </div>
+    </div>
+  </div>
+
+  <script>
+  const articleData = {"1": {"title": "Purchase Winthrop St Properties with CPA Funds", "text": "To see if the Town will vote to raise and appropriate, transfer from available funds or borrow, including transfer from the Community Preservation Fund revenues or available funds, the sum of $5,620,000 for the purchase, and acceptance of the deed to the Town, of a fee simple interest in all or a portion of the below listed properties, including any structures thereon, and for additional costs including but not limited to engineering, site preparation, environmental remediation, structure removal, legal fees, and any related incidental costs and expenses, said properties located at:\n\n  • 25 Winthrop Street, Parcel 38-010, containing 38.010 acres, more or less\n  • 33 Winthrop Street, Parcel 39-001, containing 8.00 acres, more or less\n  • 34 Winthrop Street, Parcel 30-006, containing 0.720 acres, more or less\n  • 38 Winthrop Street, Parcel 30-005, containing 32.00 acres, more or less\n\ncurrently believed to be owned by the Shady Oaks Realty Trust, upon such terms and conditions as the Select Board shall determine to be in the best interest of the Town, such properties to be held under the care, custody, management and control of the Select Board for the purposes authorized under the Community Preservation Act, G.L. c. 44B, and that prior to committing any portion of the properties to any of such uses, areas of the properties designated for specific uses shall be clearly identified and dedicated by subsequent votes of Town Meeting therefor; and to fund such appropriation, to transfer $2,870,000 from the Community Preservation Fund's General Reserves, and to authorize the Town Treasurer, with the approval of the Select Board, to borrow $2,750,000 pursuant to G.L. c 44, §§7 or 8, the Community Preservation Act, and/or any other enabling authority; and further, to authorize the Select Board to convey a permanent deed restriction in such properties in accordance with G.L. c. 44B, §12 and G.L. c. 184, §§31-33; and to authorize the Select Board and Town officers to execute all documents and take all related actions necessary or appropriate to carry out this acquisition, including the submission, on behalf of the Town, of any and all applications deemed necessary for grants and/or reimbursements from any state or federal programs and to receive and accept such grants or reimbursements for this purpose, and/or any other purposes in any way connected with the scope of this Article, or act in any manner relating thereto.", "sb": "Approve", "fc": "Approve"}, "2": {"title": "Transfer from Ambulance Receipts to General Fund", "text": "To see if the Town will vote to transfer $1,010,000 from Ambulance Receipts Reserved for Appropriation to the Fiscal Year 2027 General Fund Operating Budget, or act in any manner relating thereto.", "sb": "Approve", "fc": "Approve"}, "3": {"title": "Appropriation: FY27 Operating Budget", "text": "To see if the Town will vote to fix the salary and compensation of all elected officers of the Town, provide for a Reserve Fund, and determine what sums of money the Town will raise and appropriate, including appropriation from available funds, to defray charges and expenses of the Town including debt and interest, for the Fiscal Year ending June 30, 2027, or act in any manner relating thereto.", "sb": "Approve", "fc": "Approve"}, "4": {"title": "Appropriation: FY27 Water Enterprise Fund", "text": "To see if the Town will vote to raise and appropriate or transfer from available funds the sum of $5,605,353 for the maintenance of the Water Department Enterprise Fund in Fiscal Year 2027 as follows, or act in any manner relating thereto.\n\nDIRECT COSTS:\n  Salaries:              $1,129,172\n  Expenses:                $929,200\n  Debt:                  $3,032,861\n  Direct Costs Total:    $5,091,233\n\nINDIRECT COSTS (health insurance, workers' compensation, Medicare,\n  liability insurance, administrative and operational services):\n  Indirect Costs Total:    $514,120\n\nTOTAL:                   $5,605,353\n\nFUNDING:\n  Fees for Service [User Fees]: $5,605,353", "sb": "Approve", "fc": "Approve"}, "5": {"title": "Appropriation: FY27 Sewer Enterprise Fund", "text": "To see if the Town will vote to raise and appropriate or transfer from available funds the sum of $2,205,536 for the maintenance of the Sewer Department Enterprise Fund in Fiscal Year 2027 as follows, or act in any manner relating thereto.\n\nDIRECT COSTS:\n  Salaries:                $319,186\n  Expenses:              $1,517,100\n  Debt:                    $192,499\n  Direct Costs Total:    $2,028,735\n\nINDIRECT COSTS:\n  Indirect Costs Total:    $176,801\n\nTOTAL:                   $2,205,536\n\nFUNDING:\n  Fees for Service [User Fees]: $2,183,108\n  Sewer Betterment Transfer:       $22,428\n  Total:                         $2,205,536", "sb": "Approve", "fc": "Approve"}, "6": {"title": "Appropriation: FY27 Solid Waste Enterprise Fund", "text": "To see if the Town will vote to raise and appropriate or transfer from available funds the sum of $1,978,393 to operate the Solid Waste/Recycling Department Enterprise Fund in Fiscal Year 2027 as follows, or act in any manner relating thereto.\n\nDIRECT COSTS:\n  Salaries:                $103,070\n  Expenses:              $1,692,000\n  Debt Service:             $45,218\n  Direct Costs Total:    $1,840,288\n\nINDIRECT COSTS:\n  Indirect Costs Total:    $138,105\n\nTOTAL:                   $1,978,393\n\nFUNDING:\n  Trash Recycling Fees/Bag Revenues: $1,730,000\n  Retained Earnings:                   $248,393\n  Total:                             $1,978,393", "sb": "Approve", "fc": "Approve"}, "7": {"title": "Free Cash Appropriation: Capital and Other Items", "text": "To see if the Town will vote to appropriate the sum of $2,993,711 from Certified Free Cash for the purpose of funding the following capital and other items, including associated engineering, personnel, maintenance, and legal service costs, and for the payment of all other costs incidental or related thereto:\n\nINFORMATION TECHNOLOGY:\n  Technology Equipment:                          $75,000\n  Security Systems:                              $67,000\n  Infrastructure Equipment:                      $85,000\n  Projection Equipment:                          $75,000\n  Battery Backup System for IT Infrastructure:   $40,000\n\nPOLICE DEPARTMENT:\n  Emergency Communications Equipment:            $45,200\n  Electronic Control Weapon (ECW) Replacement:   $27,929\n  AXON VR Training System:                       $33,807\n\nFIRE DEPARTMENT:\n  Replace Car 1:                                $105,000\n  Technology Equipment:                          $18,000\n\nSCHOOL DEPARTMENT:\n  Middle School Cafeteria VCT Replacement:      $250,000\n  Replace 2017 F250 Pickup Truck:                $75,000\n  Replace 2014 Student Transportation Sedan 3:   $70,000\n  District Improvements – Interior Painting:     $75,000\n  District Improvements – Furniture:             $50,000\n\nDEPARTMENT OF PUBLIC WORKS:\n  Drainage Improvements (Lr Memorial Fld, Ash, Applegate & Fairway): $100,000\n  McGovern School Parking Lot Replacement:      $351,775\n  Roads and Sidewalks:                          $750,000\n  Sidewalk Design Improvements (Village, Granite, Walker): $125,000\n  Battery Backup for Traffic Lights (4):         $95,000\n  Replace 221 – 2016 Ford F350:                  $90,000\n  Playground Improvements – North St and Winthrop St: $50,000\n  Replace 302 – 2015 Ford F350 4x4:              $90,000\n  Burke, Memorial, & Middle School Irrigation:   $70,000\n  Replace Idylbrook Irrigation:                  $25,000\n  Cemetery Tomb Rehabilitation:                  $35,000\n\nLIBRARY:\n  Makerspace Device Exhaust:                     $15,000\n  Emergency Door Replacement:                    $10,000\n  New Furniture – Patron Seating:                $10,000\n  Consultant to Advise on Improving Inside Spaces: $10,000\n  Library Computers (20) and Printer/Copier (1): $25,000\n\nPARKS & RECREATION:\n  Design High School Turf Fields (2):            $50,000\n\nFREE CASH TOTAL:                             $2,993,711\n\nOr act in any manner relating thereto.", "sb": "Approve", "fc": "Approve"}, "8": {"title": "Athletic Fields Stabilization Transfer for Field Design", "text": "To see if the Town will vote to transfer $50,000 from the Athletic Fields Stabilization Fund for the purpose of designing the turf replacement of Lamson and North Fields at Medway High School.", "sb": "Approve", "fc": "Approve"}, "9": {"title": "Water Enterprise Borrowing – Lovering Tank Rehabilitation", "text": "To see if the Town will vote to raise and appropriate, borrow or transfer from available funds the sum of $1,800,000 for the purpose of funding the rehabilitation of the Lovering Street Water Tank, including engineering, design and project management services, site preparation, and for the payment of all other costs incidental and related thereto; and further, to authorize the Board of Selectmen to apply for, accept and expend any county, state or federal grant for this purpose, or act in any manner relating thereto.", "sb": "Approve", "fc": "Approve"}, "10": {"title": "Water Retained Earnings Transfer – Replace Ford Ranger", "text": "To see if the Town will vote to transfer $45,000 from Water Enterprise Retained Earnings for the purpose of purchasing a Ford Ranger truck, or act in any manner relating thereto.", "sb": "Approve", "fc": "Approve"}, "11": {"title": "Raise & Appropriate: Roads & Sidewalks", "text": "To see if the Town will vote to raise and appropriate the sum of $800,000 for the purposes of making repairs to various roads, sidewalks, bridges, and related appurtenances, and to fund, as needed, design, engineering, and construction management services, and for the payment of all other costs incidental and related thereto, or act in any manner relating thereto.", "sb": "Approve", "fc": "Approve"}, "12": {"title": "Appropriation: OPEB Trust", "text": "To see if the Town will vote to raise and appropriate or transfer from available funds the sum of $300,000 to the Town of Medway Other Post-Employment Benefits (OPEB) Trust account, or act in any manner relating thereto.", "sb": "Approve", "fc": "Approve"}, "13": {"title": "Appropriation: General Stabilization", "text": "To see if the Town will vote to raise and appropriate or transfer from available funds the sum of $100,000 to be allocated to the General Stabilization Fund, or act in any manner relating thereto.", "sb": "Approve", "fc": "Approve"}, "14": {"title": "Appropriation: Community Preservation Committee", "text": "To see if the Town will vote to act on the report of the Community Preservation Committee for the Fiscal Year 2027 Community Preservation budget and to appropriate, or reserve for later appropriations, monies from the Community Preservation Fund annual revenues or available funds for the administrative expenses of the Community Preservation Committee, the payment of debt service, the undertaking of community preservation projects and all other necessary and proper expenses for the Fiscal Year 2027, as follows:\n\nCPA ADMINISTRATION:\n  CPC Expenses:               $15,000\n  CPC Salaries:                $5,000\n  CPC Debt Expense:          $625,850\n  Total Direct Costs:        $645,850\n\nRESERVES (10% of Estimated Fund Revenues):\n  Open Space:                $165,694\n  Community Housing:         $165,694\n  Historical Preservation:   $165,694\n\nOr act in any manner relating thereto.", "sb": "Approve", "fc": "Approve"}, "15": {"title": "Revolving Funds – Authorize FY27 Spending Limits", "text": "To see if the Town will vote, pursuant to Massachusetts General Laws Chapter 44, Section 53E½, to set the Fiscal Year 2027 spending limits for revolving funds as follows:\n\n  Self-supporting parks and recreation services,\n    including salaries and benefits:                    $900,000\n  Dial-a-ride van service for seniors and disabled;\n    shuttle service to Norfolk commuter rail station,\n    and other necessary transportation services:        $135,000\n  Library printer, copier and fax expenses:              $3,200\n  Library meeting room:                                  $1,000\n  Thayer Homestead partial self-support of property,\n    including salaries and benefits:                     $95,000\n  School Transportation:                               $300,000\n  Tree Preservation:                                    $50,000\n  Sidewalk construction:                                $20,000\n  Planting Trees:                                       $20,000\n  Cemetery:                                             $50,000\n  Student Electronic Device Repair:                     $25,000\n\nOr act in any manner relating thereto.", "sb": "Approve", "fc": "Approve"}, "16": {"title": "Medway Energy Center PILOT Authorization", "text": "To see if the Town will vote to authorize the Select Board to execute the negotiated Payment In Lieu of Taxes (PILOT) agreement with Medway Energy Center, LLC, for the new battery energy storage project proposed to be constructed and installed at 15 West Street, or act in any manner relating thereto.", "sb": "Approve", "fc": "Approve"}, "17": {"title": "Accept MGL C. 41, Sec. 111M and 111N, EMT Injury Leave and Indemnification", "text": "To see if the Town will vote to accept the provisions of Massachusetts General Laws chapter 41, sections 111M and 111N, relative to emergency medical technician leave without loss of pay while incapacitated and indemnification for certain expenses respectively, or act in any manner relating thereto.", "sb": "Approve", "fc": "Approve"}, "18": {"title": "Authorization of Superintendent of Schools to Execute Contracts in Excess of Three Years", "text": "To see if the Town will vote in accordance with the provisions of Massachusetts General Laws Chapter 30B, §12(b), to authorize the Superintendent of Schools to solicit and award contracts, except personnel contracts, for terms exceeding three years, including any renewal, extension or option, provided in each instance the longer term does not exceed five years and is determined to be in the best interest of the Town by vote of at least four (4) members of the School Committee, or act in any manner relating thereto.", "sb": "Approve", "fc": "Approve"}, "19": {"title": "Transfer 17 Colonial Road to Conservation Commission", "text": "To see if the Town will vote to transfer the property located at 17 Colonial Road, Assessor's parcel No. 02-023, acquired by the Town in 1977 by tax foreclosure instrument recorded at the Norfolk County Registry of Deeds at Book 5367, page 714, consisting of approximately 9.8 acres of land, to the care and custody of the Conservation Commission for open space, conservation, and passive recreational purposes, or act in any manner relating thereto.", "sb": "Approve", "fc": "Approve"}, "20": {"title": "13 Populatic Street Disposition", "text": "To see if the Town will vote to authorize the Select Board to convey by sale or lease all or a portion or portions of the fee title to or a lesser interest in the parcel of land located at 13 Populatic Street, identified as Parcel 61-052 on the Town of Medway's Assessors' Map and containing 4.2 acres more or less, including any structures, buildings, or fixtures thereon, said disposition to be undertaken in accordance with the provisions of G.L. c. 30B, sec. 16 upon such terms and conditions as the Select Board determine to be in the best interest of the Town; and further, to authorize the Select Board to enter into such agreements and execute such instruments as may be necessary to effectuate the foregoing; or act in any manner relating thereto.", "sb": "Approve", "fc": "Approve"}, "21": {"title": "Amend General Bylaws: Civil Fingerprinting", "text": "To see if the Town will vote to amend the General Bylaws to insert a new section X as follows, or act in any manner relating thereto.\n\nSECTION 1. PURPOSE AND SCOPE\nThis bylaw authorizes the Police Department to conduct state and national fingerprint-based criminal history checks for individuals applying for specific licenses in Town to enhance public safety, as authorized by Massachusetts General Laws Chapter 6, Section 172B½. The Police Department shall be authorized to use state and Federal Bureau of Investigation (\"FBI\") records, provided, however, that such records shall not be disseminated to unauthorized entities and shall be maintained and disclosed in accordance with all applicable law.\n\nThe bylaw further authorizes the Select Board, in consultation with the Chief of Police, to promulgate policies to implement this by-law, which may include establishment of submission deadlines, procedures for making recommendations to the licensing authority, methods for assessing or amending any such record, criteria for fitness determinations, security of information obtained, and penalties for failure to comply.\n\nSECTION 2. CRIMINAL HISTORY CHECK AUTHORIZATION\nThe Police Department shall conduct State and Federal Fingerprint-Based Criminal History checks for individuals applying for the following licenses:\n  • Manager of Alcohol Beverage License\n  • Dealer of Second-hand Articles\n  • Pawn Dealers\n  • Ice Cream Truck Vendors\n  • Motor Vehicle Dealers\n\nSECTION 3. USE OF CRIMINAL RECORDS BY LICENSING AUTHORITIES\nLicensing authorities shall utilize the results of fingerprint-based criminal record background checks for the sole purpose of determining the suitability of the subjects in connection with the specified license applications. A licensing authority may deny an application based on the results of a check if the results render the subject unsuitable for the proposed licensed activity.\n\nSECTION 4. FEES\nThe fee charged by the Police Department for conducting fingerprint-based criminal record background checks shall be $30 per fingerprinting and criminal history check. A portion of the fee shall be deposited into the Firearms Fingerprint Identity Verification Trust as specified in MGL c. 6, §172B½.", "sb": "Approve", "fc": "Approve"}, "22": {"title": "Amend Zoning Bylaws: Small Clean Energy Facilities", "text": "To see if the Town will vote to amend the Zoning Bylaw by inserting the following new section 3.6, Consolidated Local Permit for Small Clean Energy Facilities, or act in any manner relating thereto.\n\nSECTION 3.6: CONSOLIDATED LOCAL PERMIT FOR SMALL CLEAN ENERGY INFRASTRUCTURE FACILITIES\n\n3.6.1 Purpose\nThe purpose of this Section is to provide a Consolidated Local Permit process for Small Clean Energy Infrastructure Facilities that conforms to the requirements of Chapter 239 of the Acts of 2024 and other applicable state laws, and 225 CMR 29.00 and other applicable state regulations, while preserving all town bylaws and regulations applicable to such Facilities to the maximum extent allowed by law. The intent is to provide the greatest possible protection to the health and safety of residents, protection of the environment and natural resources, and to further the goals and policies of the Medway Master Plan.\n\n3.6.2 Definitions\n  • Consolidated Local Permit: A permit issued by the Town through the Director of Community and Economic Development for a SCEIF pursuant to Chapter 239 of the Acts of 2024, including all required local permits.\n  • Effective Date: October 1, 2026.\n  • Local Government Representative: The Director of Community and Economic Development.\n  • Small Clean Energy Infrastructure Facility (SCEIF): Includes:\n    (1) Small Clean Energy Generation Facilities: Solar or Wind facilities with nameplate capacity < 25 megawatts.\n    (2) Small Clean Energy Storage Facility: Energy storage system with rated capacity < 100 megawatt hours.\n    (3) Small Clean Transmission and Distribution Infrastructure Facility: As defined in 225 CMR 29.02.\n\n3.6.3 Applicability\nThis Section applies to all Consolidated Local Permit Applications submitted on or after October 1, 2026. An Applicant may elect, at its option, to file a Consolidated Local Permit application in lieu of seeking individual permits under other provisions of the Town's Zoning Bylaws.\n\n3.6.4 Application Process\nApplications must comply with pre-filing requirements under 225 CMR 29.07 and 29.08. A Consolidated Local Permit application submitted before completion of pre-filing requirements, or more than 60 days after, shall be automatically denied without prejudice.\n\n3.6.5 Completeness Review\nWithin thirty days of receipt, the Local Government Representative shall determine whether the application is complete. If incomplete, the Applicant has 30 days to cure deficiencies. If the Local Government Representative does not act within 30 days, the application is deemed complete.\n\n3.6.6 Review Timeline\nThe Local Government Representative shall issue a Certificate of Consolidated Local Permit within twelve months of the Filing Date. If not issued within twelve months, the Application shall be considered constructively approved.\n\n3.6.9 Abandonment\nA facility shall be considered abandoned when it ceases to operate consistently for more than twelve months.\n\n3.6.10 Decommissioning Fund\nPrior to construction, the project owner shall provide surety equal to 125% of a fully inclusive cost estimate for removal and remediation, prepared by a qualified engineer.", "sb": "Approve", "fc": "Approve"}, "23": {"title": "Amend Zoning Bylaws: Central Business Uses", "text": "To see if the Town will vote to amend the Zoning Bylaw, Section 5.4, Table 1 Schedule of Uses Section D, Business uses, by changing \"Car Wash\" from a prohibited use to a use allowed by special permit in the Central Business District.\n\nAnd by amending Section 10.4.C.1 by adding:\n  h. Car Wash: A Car Wash shall be subject to the dimensional and density requirements in Table 2.\n\nOr act in any manner related thereto.", "sb": "Approve", "fc": "Approve"}, "24": {"title": "Amend Zoning Bylaws: Oak Grove/Central Business District Dimensional Regulations", "text": "To see if the Town will vote to amend the Zoning Bylaw as follows:\n\n1. Amend Table 9.4.C.1.B by deleting the maximum Street Facing Wall width for Mixed Use Buildings and General Commercial Buildings.\n\n2. Amend Table 9.4.C.1.B by deleting the maximum Frontage, and by amending the maximum Building Footprint from 4,000 square feet to 6,000 square feet for Gas Station and Convenience Store.\n\n3. Amend Table 9.4.C.1.C by deleting the maximum Street Facing Wall Width for Fabrication or Flex Building and for Civic or Community Building, and by adding the following under \"4. Additional Standards\" for Civic or Community Building:\n\n  \"The maximum height for municipal buildings, including fire stations and police stations, notwithstanding Design Standard 3.1 above, shall be 3 stories/70 feet.\"\n\nOr act in any manner related thereto.", "sb": "Approve", "fc": "Approve"}, "25": {"title": "Amend Zoning Bylaws: Municipal Buildings and Uses", "text": "To see if the Town will vote to amend the Zoning Bylaw by adding the following new Section 6.2.H:\n\n\"The dimensional requirements for all municipal buildings and uses, including fire stations and police stations, set forth in this bylaw, including but not limited to setbacks, height, lot size, frontage, lot coverage, impervious coverage, open space, building size or footprint, buffer zones, and other dimensional requirements, including but not limited to, the provisions of Table 2, Dimensional and Density Regulations; Table 9.4.C.1.C; Sections 9.2.C and 10.2.E.3 Transitional Buffer Requirements, may be reduced by special permit from the Planning and Economic Development Board. This provision does not include relief from any parking space dimensional requirements.\n\nIn determining whether to grant a special permit under this section, the Board shall consider the following factors: whether the proposal provides for better site design; whether the proposal serves the public interest; whether the proposal will create any undue impacts on abutting properties; whether the proposal increases the protection of wetlands and other sensitive environmental areas; and whether the proposal helps to protect important topographical features and reduce land disturbance, filling, and cutting.\"\n\nOr act in any manner related thereto.", "sb": "Approve", "fc": "Approve"}, "26": {"title": "Amend Zoning Bylaws: Housekeeping", "text": "To see if the Town will vote to amend the Zoning Bylaw as follows:\n\n1. Amend Section 3.4.H.2 and Section 3.5.4.J.4:\nIf a proposed activity or use requires administrative site plan review and one or more special permits, the Special Permit Granting Authority shall serve as the Administrative Site Plan Review Team. Notwithstanding anything to the contrary in this bylaw, the deadline for acting on the Administrative Site Plan application shall be the same deadline as for the related special permit.\n\n2. Add a new Section 5.6.5.K (Multi-Family Overlay District):\nK. Any person aggrieved by the Board's decision may appeal to the court within 20 days of the date the decision is filed with the Town Clerk, as provided in G.L. c. 40A, §17.\n\n3. Amend Section 7.2.4.C.4:\nThe front faces of internally illuminated channel letter type signs shall have non-clear surfaces such that the light source is not directly visible.\n\nOr act in any manner related thereto.", "sb": "Approve", "fc": "Approve"}};
+
+  function openModal(key) {
+    const d = articleData[String(key)];
+    if (!d) return;
+    document.getElementById('modal-eyebrow').textContent = 'Article ' + key;
+    document.getElementById('modal-title').textContent   = d.title;
+    document.getElementById('modal-text').textContent    = d.text;
+    const recsEl = document.getElementById('modal-recs');
+    recsEl.innerHTML = recHtml('Select Board', d.sb) + recHtml('Finance Committee', d.fc);
+    document.getElementById('article-modal').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function recHtml(label, val) {
+    let cls = 'rec-na', txt = '—';
+    if      (val === 'Approve')               { cls = 'rec-approve';    txt = 'Approve'; }
+    else if (val === 'Disapprove')            { cls = 'rec-disapprove'; txt = 'Disapprove'; }
+    else if (val === 'Pass Over')             { cls = 'rec-pass';       txt = 'Pass Over'; }
+    else if (val === 'To Be Determined')      { cls = 'rec-tbd';        txt = 'TBD'; }
+    else if (val && val !== '—')              { cls = 'rec-tbd';        txt = val; }
+    return `<div><div class="modal-rec-label">${label}</div><span class="rec-badge ${cls}">${txt}</span></div>`;
+  }
+
+  function closeModal() {
+    document.getElementById('article-modal').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  document.querySelectorAll('.full-text-btn').forEach(btn => {
+    btn.addEventListener('click', e => { e.stopPropagation(); openModal(btn.dataset.key); });
+  });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+  // ── Filter ──────────────────────────────────────────────────────────────
+  document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const f = btn.dataset.filter;
+      let visible = 0;
+      document.querySelectorAll('#article-tbody tr').forEach(row => {
+        const show = f === 'all' || row.dataset.category === f;
+        row.classList.toggle('hidden', !show);
+        if (show) visible++;
+      });
+      document.getElementById('no-results').style.display = visible === 0 ? 'block' : 'none';
+    });
+  });
+
+  // ── Sort by amount ───────────────────────────────────────────────────────
+  let sortDir = null;
+  document.getElementById('amt-th').addEventListener('click', () => {
+    sortDir = sortDir !== 'asc' ? 'asc' : 'desc';
+    document.getElementById('amt-th').className = 'amount-col sortable sorted-' + sortDir;
+    const tbody = document.getElementById('article-tbody');
+    const rows  = [...tbody.querySelectorAll('tr')];
+    rows.sort((a, b) => {
+      const aA = parseFloat(a.dataset.amount), bA = parseFloat(b.dataset.amount);
+      if (isNaN(aA) && isNaN(bA)) return 0;
+      if (isNaN(aA)) return 1;
+      if (isNaN(bA)) return -1;
+      return sortDir === 'asc' ? aA - bA : bA - aA;
+    });
+    rows.forEach(r => tbody.appendChild(r));
+  });
+  </script>
+</body>
+</html>

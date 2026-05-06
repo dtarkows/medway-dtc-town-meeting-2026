@@ -1,0 +1,301 @@
+{
+  "meta": {
+    "meeting_type": "ATM",
+    "date": "May 12, 2025",
+    "year": "2025",
+    "theme_id": "2025_atm",
+    "source_pdf": "ATM-Warrant-with-Sig-Pg.pdf"
+  },
+  "articles": [
+    {
+      "num": 1,
+      "title": "Borrowing, CPA and Athletic Stabilization: Hanlon Track Construction",
+      "summary": "Authorizes $2,629,550 for the Hanlon track and field replacement: borrowing $1,687,000, CPA funds $642,550 (for non-turf elements), and Athletic Stabilization $300,000.",
+      "category": "Capital",
+      "amount": 2629550,
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town will vote to raise and appropriate, borrow, or transfer from available funds $2,629,550 for the replacement of the Hanlon track and field, light fixtures, fencing, and associated equipment at Medway High School; funded by: borrowing $1,687,000 under G.L. c. 44 §7, transferring $642,550 from CPA funds (for lights, fencing, and associated costs, specifically excluding the cost of acquisition of artificial turf), and transferring $300,000 from the Athletic Stabilization fund, or act in any manner relating thereto."
+    },
+    {
+      "num": 2,
+      "title": "Borrowing: Sports Field Needs Study",
+      "summary": "Authorizes $500,000 for a feasibility study on sports field needs for K–12 programming. Finance Committee: Approve only if Article 1 fails; Select Board: TBD.",
+      "category": "Capital",
+      "amount": 500000,
+      "sb": "To Be Determined",
+      "fc": "Approve if Art. 1 Fails",
+      "text": "To see if the Town will vote to raise and appropriate, borrow, or transfer from available funds $500,000 for the purpose of funding a feasibility study to determine the number, cost and location of sports fields needed in town to accommodate pre-K through grade 12 sports programming, and for the payment of all other costs incidental and related thereto, or act in any manner relating thereto.\n\nSelect Board: To be determined. Finance Committee: 'Approve if Article 1 Fails; Pass Over if Article 1 Passes.'"
+    },
+    {
+      "num": 3,
+      "title": "CPA Fund Appropriation: Pavilion at Cassidy Field",
+      "summary": "Transfers $115,000 from CPA funds for design and construction of a pavilion at Cassidy Field.",
+      "category": "CPA/Open Space",
+      "amount": 115000,
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town will vote to transfer $115,000 from available Community Preservation Act funds for the purpose of funding the design and construction of a pavilion at Cassidy Field, and for the payment of all other costs incidental and related thereto, or act in any manner relating thereto."
+    },
+    {
+      "num": 4,
+      "title": "Debt Stabilization Fund Transfer",
+      "summary": "Transfers $21,800 from the Debt Stabilization Fund to the FY2026 operating budget to offset debt exclusion project costs.",
+      "category": "Financial",
+      "amount": 21800,
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town will vote to transfer the sum of $21,800 from the Debt Stabilization Fund to the Fiscal Year 2026 operating budget for the purpose of offsetting a portion of the cost of debt exclusion projects, or act in any manner relating thereto."
+    },
+    {
+      "num": 5,
+      "title": "Transfer from Ambulance Receipts to General Fund",
+      "summary": "Transfers $795,000 from Ambulance Receipts Reserved for Appropriation to the FY2026 General Fund Operating Budget.",
+      "category": "Financial",
+      "amount": 795000,
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town will vote to transfer $795,000 from Ambulance Receipts Reserved for Appropriation to the Fiscal Year 2026 General Fund Operating Budget, or act in any manner relating thereto."
+    },
+    {
+      "num": 6,
+      "title": "Appropriation: FY26 Operating Budget",
+      "summary": "Sets salaries for elected officers and appropriates funds for all Town charges, expenses, and debt for the fiscal year ending June 30, 2026.",
+      "category": "Budget",
+      "amount": null,
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town will vote to fix the salary and compensation of all elected officers of the Town, provide for a Reserve Fund, and determine what sums of money the Town will raise and appropriate, including appropriation from available funds, to defray charges and expenses of the Town including debt and interest, for the Fiscal Year ending June 30, 2026, or act in any manner relating thereto."
+    },
+    {
+      "num": 7,
+      "title": "Appropriation: FY26 Water Enterprise Fund",
+      "summary": "Appropriates $5,450,046 to operate the Water Enterprise Fund for FY2026, funded by user fees ($5,215,046) and retained earnings ($235,000).",
+      "category": "Enterprise Budget",
+      "amount": 5450046,
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town will vote to raise and appropriate or transfer from available funds the sum of $5,450,046 for the maintenance of the Water Department Enterprise Fund for FY2026 (Salaries $1,113,395 / Expenses $908,300 / Debt $2,926,319 / Indirect $502,032), funded by user fees ($5,215,046) and retained earnings ($235,000), or act in any manner relating thereto."
+    },
+    {
+      "num": 8,
+      "title": "Appropriation: FY26 Sewer Enterprise Fund",
+      "summary": "Appropriates $2,091,991 to operate the Sewer Enterprise Fund for FY2026, funded by user fees ($2,070,092) and sewer betterment transfer ($21,899).",
+      "category": "Enterprise Budget",
+      "amount": 2091991,
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town will vote to raise and appropriate or transfer from available funds the sum of $2,091,991 for the maintenance of the Sewer Department Enterprise Fund for FY2026 (Salaries $318,078 / Expenses $1,386,600 / Debt $198,999 / Indirect $188,314), funded by user fees ($2,070,092) and sewer betterment transfer ($21,899), or act in any manner relating thereto."
+    },
+    {
+      "num": 9,
+      "title": "Appropriation: FY26 Solid Waste Enterprise Fund",
+      "summary": "Appropriates $1,934,953 to operate the Solid Waste/Recycling Enterprise Fund for FY2026, funded by trash fees ($1,634,953) and retained earnings ($300,000).",
+      "category": "Enterprise Budget",
+      "amount": 1934953,
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town will vote to raise and appropriate or transfer from available funds the sum of $1,934,953 to operate the Solid Waste/Recycling Department Enterprise Fund for FY2026 (Salaries $74,590 / Expenses $1,658,000 / Debt $46,831 / Indirect $150,532), funded by trash/recycling fees ($1,634,953) and retained earnings ($300,000), or act in any manner relating thereto."
+    },
+    {
+      "num": 10,
+      "title": "Free Cash Appropriation: Capital and Other Items",
+      "summary": "Appropriates $2,619,608 from Certified Free Cash for 20+ capital projects: roads ($750,000), DPW vehicles, fire gear/hoses, technology systems, school security, and others.",
+      "category": "Capital",
+      "amount": 2619608,
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town will vote to appropriate the sum of $2,619,608 from Certified Free Cash for capital and other items, including: Roads and Sidewalks ($750,000), Replace 2014 International ($260,000), Replace 2012 Backhoe ($154,000), Community Farm Pavilion ($19,000), Route 109/Richard Rd Engineering Study ($100,000), Replace HS Parking Lights ($200,000), Replace Parks Vehicle ($70,000), Replace 2011 Ford F-250 ($90,000), AED Replacement ($218,000), New Turnout Gear ($225,000), New Hoses and Nozzles ($100,000), Technology Equipment ($75,000), Security Systems Middle School ($25,000), Infrastructure Equipment ($50,000), ECW Replacement ($27,929), Emergency Communications ($43,814), Mobile Operations Trailer ($48,300), District Sidewalk Replacement ($41,265), Replace 2014 Facilities Vehicle ($50,000), and others, or act in any manner relating thereto."
+    },
+    {
+      "num": 11,
+      "title": "Transfer from Ambulance Receipts to Capital Items",
+      "summary": "Transfers $225,000 from Ambulance Receipts to purchase replacement heart monitors and LUCAS cardiopulmonary assist devices.",
+      "category": "Capital",
+      "amount": 225000,
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town will vote to transfer from Ambulance Receipts Reserved for Appropriation the sum of $225,000 for the purpose of purchasing replacement heart monitors and Lund University Cardiopulmonary Assist System (LUCAS) machines, and for the payment of all other costs incidental and related thereto, or act in any manner relating thereto."
+    },
+    {
+      "num": 12,
+      "title": "Raise & Appropriate: Roads & Sidewalks",
+      "summary": "Raises and appropriates $800,000 for repairs to roads, sidewalks, bridges, and related infrastructure.",
+      "category": "Capital",
+      "amount": 800000,
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town will vote to raise and appropriate the sum of $800,000 for the purposes of making repairs to various roads, sidewalks, bridges, and related appurtenances, and to fund, as needed, design, engineering, and construction management services, and for the payment of all other costs incidental and related thereto, or act in any manner relating thereto."
+    },
+    {
+      "num": 13,
+      "title": "Solid Waste Enterprise Retained Earnings: Recycling Center Wall",
+      "summary": "Transfers $35,000 from Solid Waste Enterprise retained earnings to replace a retaining wall at the Recycling Center.",
+      "category": "Capital",
+      "amount": 35000,
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town will vote to transfer from Solid Waste Enterprise Fund retained earnings the sum of $35,000 for the purpose of funding the replacement of a retaining wall at the Recycling Center, including engineering and construction costs, or act in any manner relating thereto."
+    },
+    {
+      "num": 14,
+      "title": "Borrowing: McGovern School Bathroom Upgrades",
+      "summary": "Authorizes $525,000 for design and construction of student and staff bathroom upgrades at McGovern Elementary School.",
+      "category": "Capital",
+      "amount": 525000,
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town will vote to raise and appropriate, borrow, or transfer from available funds the sum of $525,000 for the purpose of designing and constructing student and staff bathroom upgrades at the McGovern Elementary School, and for the payment of all other costs incidental and related thereto, or act in any manner relating thereto."
+    },
+    {
+      "num": 15,
+      "title": "Borrowing: High School Boiler Replacement",
+      "summary": "Authorizes $425,250 for replacement of a failing boiler at Medway High School.",
+      "category": "Capital",
+      "amount": 425250,
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town will vote to raise and appropriate, borrow, or transfer from available funds the sum of $425,250 for the purpose of replacing a failing boiler at Medway High School, and for the payment of all other costs incidental and related thereto, or act in any manner relating thereto."
+    },
+    {
+      "num": 16,
+      "title": "Free Cash Transfer: Medway Redevelopment Authority",
+      "summary": "Transfers $215,000 from Certified Free Cash to the Medway Redevelopment Authority for legal, appraisal, and technical costs related to land acquisition in the Oak Grove Urban Renewal Area.",
+      "category": "Financial",
+      "amount": 215000,
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town will vote to transfer $215,000 from Certified Free Cash to be expended by the Medway Redevelopment Authority for legal, appraisal, surveying, environmental investigation, title review, and other technical costs associated with land acquisition in the Oak Grove Urban Renewal Area, and for other administrative expenses of the Redevelopment Authority (including insurance and legal fees), or act in any manner related thereto."
+    },
+    {
+      "num": 17,
+      "title": "Appropriation: OPEB Trust",
+      "summary": "Raises and appropriates $300,000 to the Town's Other Post-Employment Benefits (OPEB) Trust.",
+      "category": "Financial",
+      "amount": 300000,
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town will vote to raise and appropriate or transfer from available funds the sum of $300,000 to the Town of Medway Other Post-Employment Benefits (OPEB) Trust account, or act in any manner relating thereto."
+    },
+    {
+      "num": 18,
+      "title": "Appropriation: General Stabilization",
+      "summary": "Raises and appropriates $100,000 to the General Stabilization Fund.",
+      "category": "Financial",
+      "amount": 100000,
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town will vote to raise and appropriate or transfer from available funds the sum of $100,000 to be allocated to the General Stabilization Fund, or act in any manner relating thereto."
+    },
+    {
+      "num": 19,
+      "title": "CPA Fund Appropriation: Miyawaki Mini-Forest at Idylbrook",
+      "summary": "Transfers $50,000 from CPA funds for a Miyawaki mini-forest at Idylbrook Field. Both Select Board and Finance Committee recommendations were TBD at time of warrant.",
+      "category": "CPA/Open Space",
+      "amount": 50000,
+      "sb": "To Be Determined",
+      "fc": "To Be Determined",
+      "text": "To see if the Town will vote to transfer $50,000 from available Community Preservation Act funds for the purpose of funding the establishment of a Miyawaki mini-forest at Idylbrook Field, and for the payment of all other costs incidental and related thereto, or act in any manner relating thereto.\n\nNote: Both Select Board and Finance Committee recommendations were 'To be determined' at time of warrant."
+    },
+    {
+      "num": 20,
+      "title": "CPA Fund Appropriation: Ide House Repair Project",
+      "summary": "Transfers $1,250,000 from CPA funds for the construction phase of preservation, repair, and restoration of the historic Ide House at 158 Main Street.",
+      "category": "CPA/Open Space",
+      "amount": 1250000,
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town will vote to transfer $1,250,000 from available Community Preservation Act funds for the purpose of funding the construction phase of the preservation, repair and restoration of the historic Ide House at 158 Main Street, and for the payment of all other costs incidental and related thereto, or act in any manner relating thereto."
+    },
+    {
+      "num": 21,
+      "title": "CPA Fund Appropriation: Trail Development at Charles River",
+      "summary": "Transfers $350,000 from CPA funds for trail development at the Charles River. Both Select Board and Finance Committee recommendations were TBD at time of warrant.",
+      "category": "CPA/Open Space",
+      "amount": 350000,
+      "sb": "To Be Determined",
+      "fc": "To Be Determined",
+      "text": "To see if the Town will vote to transfer $350,000 from available Community Preservation Act funds for the purpose of funding trail development at the Charles River, and for the payment of all other costs incidental and related thereto, or act in any manner relating thereto.\n\nNote: Both Select Board and Finance Committee recommendations were 'To be determined' at time of warrant."
+    },
+    {
+      "num": 22,
+      "title": "Appropriation: Community Preservation Committee",
+      "summary": "Approves the CPA FY2026 budget of $411,175 for CPC administration ($20,000) and debt expense ($391,175); plus 10% statutory reserves ($146,394 each for open space, community housing, and historic preservation).",
+      "category": "CPA/Open Space",
+      "amount": 411175,
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town will vote to act on the report of the Community Preservation Committee for the Fiscal Year 2026 Community Preservation budget appropriating: CPC Expenses ($15,000), CPC Salaries ($5,000), CPC Debt Expense ($391,175); plus 10% reserves for open space ($146,394), community housing ($146,394), and historical preservation ($146,394), or act in any manner relating thereto."
+    },
+    {
+      "num": 23,
+      "title": "Accept MGL c. 44, sec. 54(b): Trust Fund Investments",
+      "summary": "Accepts a state law provision allowing Town trust funds to be invested under the Massachusetts Prudent Investor Act standards.",
+      "category": "Administrative",
+      "amount": "—",
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town will vote to accept the provisions of Massachusetts General Laws Chapter 44, Section 54(b), to allow trust funds held in the custody of the Town to be invested under the standards of the Massachusetts Prudent Investor Act of Chapter 203C, or act in any manner relating thereto."
+    },
+    {
+      "num": 24,
+      "title": "Revolving Funds: Add New Funds; Authorize FY26 Spending Limits",
+      "summary": "Creates new revolving funds for sidewalk construction, tree planting, cemetery upkeep, and student device repair; sets FY2026 spending limits for all revolving funds including parks ($690,000) and school transportation ($300,000).",
+      "category": "Administrative",
+      "amount": "—",
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town will vote to create new revolving funds (Sidewalk construction, Planting Trees, Cemetery Upkeep, Student Electronic Device Repair) and set FY2026 spending limits: parks and recreation ($690,000), senior transportation ($130,000), school transportation ($300,000), Tree Preservation ($30,000), Sidewalk construction ($20,000), Planting Trees ($20,000), Cemetery ($50,000), Student Electronic Device Repair ($25,000), and others, or act in any manner relating thereto."
+    },
+    {
+      "num": 25,
+      "title": "Accept Public Ways: Little Tree Road and Rustic Road",
+      "summary": "Accepts Little Tree Road and Rustic Road as public ways per a June 2024 Street Acceptance Plan, including utilities except sewer infrastructure.",
+      "category": "Infrastructure",
+      "amount": null,
+      "sb": "Approve",
+      "fc": "To Be Determined",
+      "text": "To see if the Town will vote to accept as public ways Little Tree Road (from Milford Street, Station 0+00 to end at Station 10+44.82) and Rustic Road (from Summer Street, Station 0+00 to end at Station 6+26.33), as shown on the Street Acceptance Plan dated June 17, 2024 prepared by Tetra Tech; acceptance includes utilities except sewer utility infrastructure; authorizes the Select Board to acquire related easements, or act in any manner related thereto."
+    },
+    {
+      "num": 26,
+      "title": "Amend Zoning Bylaws: Housekeeping",
+      "summary": "Adds G.L. c. 41 §81Y/81Z appeals to ZBA powers; clarifies 3-year commencement period for special permits and site plan approvals; corrects surface parking location language.",
+      "category": "Zoning",
+      "amount": "—",
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town will vote to amend the Zoning Bylaw by: (1) adding G.L. c. 41 §81Y and §81Z appeals to Board of Appeals powers; (2) amending Section 5.5.B to extend the commencement period for special permits and site plan approvals to 3 years (with provisions for phased and redevelopment projects); and (3) correcting surface parking location language in Section 5.6.5.G.4, or act in any manner related thereto."
+    },
+    {
+      "num": 27,
+      "title": "Amend Zoning Bylaws: Accessory Dwelling Units",
+      "summary": "Updates ADU bylaw to comply with G.L. c. 40A §3A — allows ADUs by right in single-family zones, capped at 900 sq ft or half the principal dwelling, prohibits short-term rental use.",
+      "category": "Zoning",
+      "amount": "—",
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town will vote to amend the Zoning Bylaw by replacing the Accessory Family Dwelling Unit provisions with a new Accessory Dwelling Unit (ADU) section compliant with G.L. c. 40A §3A and 760 CMR 71.00; allowing ADUs by right in single-family residential zones; capped at the smaller of half the principal dwelling or 900 sq ft; prohibiting short-term rental; requiring one additional parking space (waived within 0.5 miles of transit), or act in any manner related thereto."
+    },
+    {
+      "num": 28,
+      "title": "Amend Zoning Bylaws: Floodplains",
+      "summary": "Updates flood plain district to reference the July 8, 2025 FEMA FIRM; corrects recreational vehicle requirements in AE Zones; deletes outdated special permit provisions (Section 5.6.1.K).",
+      "category": "Zoning",
+      "amount": "—",
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town will vote to amend Zoning Bylaw Section 5.6.1 Flood Plain District by: (1) updating FIRM effective date from July 16, 2015 to July 8, 2025; (2) correcting Section 5.6.1.E.6 to reference the 2025 FIS; (3) correcting recreational vehicle anchoring requirements in AE Zones; and (4) deleting Section 5.6.1.K Special Permits in its entirety, re-lettering remaining sections, or act in any manner related thereto."
+    },
+    {
+      "num": 29,
+      "title": "Citizens' Petition: Voter Identification at Town Meetings",
+      "summary": "Citizens' petition requiring registered voters to show identification (photo ID or other document verifying name and address) before voting at any Town Meeting.",
+      "category": "Citizens' Petition",
+      "amount": "—",
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town will vote to amend the General By-laws by adding a section requiring all registered voters to show some form of identification prior to voting at all Town Meetings. Identification must at minimum verify full name and address; acceptable forms include: Massachusetts driver's license, passport, student I.D., utility bill, library card, credit/debit card statement, lease or rental contract, mortgage or bank statement, or property tax bill.\n\nCITIZENS' PETITION — Both Select Board and Finance Committee recommended Approve."
+    }
+  ]
+}

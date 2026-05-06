@@ -1,0 +1,91 @@
+{
+  "meta": {
+    "meeting_type": "STM",
+    "date": "June 8, 2020",
+    "year": "2020",
+    "theme_id": "2020_stm",
+    "source_pdf": "2020-06-08 Special Town Meeting Minutes.pdf"
+  },
+  "articles": [
+    {
+      "num": 1,
+      "title": "Free Cash Transfer: Snow and Ice Deficit",
+      "summary": "To see if the Town will vote to transfer a sum of money from available funds and/or Certified Free Cash for the purpose of funding the Snow & Ice Fiscal Year 2020 appropriation deficit, or act in any manner relating thereto. DEPARTMENT OF PUBLIC SERVICES",
+      "category": "Financial",
+      "amount": null,
+      "sb": "Dismiss",
+      "fc": "Dismiss",
+      "text": "To see if the Town will vote to transfer a sum of money from available funds and/or Certified Free Cash for the purpose of funding the Snow & Ice Fiscal Year 2020 appropriation deficit, or act in any manner relating thereto. DEPARTMENT OF PUBLIC SERVICES"
+    },
+    {
+      "num": 2,
+      "title": "Prior Year Bills",
+      "summary": "To see if the Town will vote to transfer a sum of money for the purpose of paying prior year, unpaid bills of the Town, or act in any manner relating thereto.",
+      "category": "Financial",
+      "amount": null,
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town will vote to transfer a sum of money for the purpose of paying prior year, unpaid bills of the Town, or act in any manner relating thereto."
+    },
+    {
+      "num": 3,
+      "title": "Transfer to Ambulance Receipts Reserved Account",
+      "summary": "To see if the Town will vote to transfer $193,919 from Ambulance Enterprise Account Retained Earnings to the Ambulance Receipts Reserved for Appropriation Fund, or act in any manner relating thereto.",
+      "category": "Financial",
+      "amount": 193919,
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town will vote to transfer $193,919 from Ambulance Enterprise Account Retained Earnings to the Ambulance Receipts Reserved for Appropriation Fund, or act in any manner relating thereto."
+    },
+    {
+      "num": 4,
+      "title": "Repurpose Monetary Article \u2013 Police Dept",
+      "summary": "To see if the Town will vote to transfer the amount of $84,600 appropriated by the vote taken under Article 7 of the May 13, 2019 Annual Town Meeting for police portable radio replacement, which amount is no longer needed for such purpose, for the purpose of purchasing furniture and undertaking elec...",
+      "category": "Capital",
+      "amount": 84600,
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town will vote to transfer the amount of $84,600 appropriated by the vote taken under Article 7 of the May 13, 2019 Annual Town Meeting for police portable radio replacement, which amount is no longer needed for such purpose, for the purpose of purchasing furniture and undertaking electrical upgrades for the Police Department and any incidental or related costs, or act in any manner relating thereto."
+    },
+    {
+      "num": 5,
+      "title": "Repurpose Monetary Article \u2013 Library",
+      "summary": "To see if the Town will vote to transfer the amount of $24,174 appropriated by the vote taken under Article 7 of the May 13, 2019 Annual Town Meeting for sewer line rerouting at the library, which amount is no longer needed for such purpose, for the purpose of completing roof improvements at the lib...",
+      "category": "Financial",
+      "amount": 24174,
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town will vote to transfer the amount of $24,174 appropriated by the vote taken under Article 7 of the May 13, 2019 Annual Town Meeting for sewer line rerouting at the library, which amount is no longer needed for such purpose, for the purpose of completing roof improvements at the library and any incidental or related costs, or act in any manner relating thereto."
+    },
+    {
+      "num": 6,
+      "title": "Repurpose Monetary Article \u2013 School Dept",
+      "summary": "To see if the Town will vote to transfer the sum of $30,000 from the funds appropriated for water heater replacement at the McGovern School by the vote taken under Article 7 of the May 13, 2019 Annual Town Meeting, which amount is no longer need for such purpose, to supplement the amount appropriate...",
+      "category": "Capital",
+      "amount": 30000,
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town will vote to transfer the sum of $30,000 from the funds appropriated for water heater replacement at the McGovern School by the vote taken under Article 7 of the May 13, 2019 Annual Town Meeting, which amount is no longer need for such purpose, to supplement the amount appropriated for the handicap ramp repair at the Memorial School also by the vote under Article 7 of the May 13, 2019 Annual Town Meeting, or act in any manner relating thereto. SCHOOL DEPARTMENT"
+    },
+    {
+      "num": 7,
+      "title": "Authorize Five Year Contract for Electric and Utilities",
+      "summary": "To see if the Town will vote to authorize the Board of Selectmen to enter into a contract for a term not to exceed five years for electricity and natural gas utilities supply and services, or act in any manner relating thereto. May 11, 2020",
+      "category": "General",
+      "amount": null,
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town will vote to authorize the Board of Selectmen to enter into a contract for a term not to exceed five years for electricity and natural gas utilities supply and services, or act in any manner relating thereto. May 11, 2020"
+    },
+    {
+      "num": 8,
+      "title": "Appropriation: COVID-19 Response",
+      "summary": "To see if the Town will vote to raise and appropriate and/or transfer from available funds, including but not limited to, a transfer from the stabilization fund, a sum of money for the purpose of addressing municipal and school costs and/or revenue shortfall related to the Fiscal Year 2020 COVID-19 ...",
+      "category": "Financial",
+      "amount": null,
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town will vote to raise and appropriate and/or transfer from available funds, including but not limited to, a transfer from the stabilization fund, a sum of money for the purpose of addressing municipal and school costs and/or revenue shortfall related to the Fiscal Year 2020 COVID-19 operations response, and further to transfer said sum to the Fiscal Year 2020 Reserve Fund, or act in any manner relating thereto. May 11, 2020"
+    }
+  ]
+}

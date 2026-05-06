@@ -1,0 +1,91 @@
+{
+  "meta": {
+    "meeting_type": "STM",
+    "date": "May 13, 2024",
+    "year": "2024",
+    "theme_id": "2024_stm",
+    "source_pdf": "2024-05-13 Special Town Meeting Warrant.pdf"
+  },
+  "articles": [
+    {
+      "num": 1,
+      "title": "Prior Year Bills",
+      "summary": "Transfers available FY2024 funds to pay prior-year unpaid bills of the Town (exact amount was TBD at time of warrant).",
+      "category": "Financial",
+      "amount": null,
+      "sb": "To Be Determined",
+      "fc": "To Be Determined",
+      "text": "To see if the Town will vote to transfer a sum of money from available Fiscal Year 2024 funds for the purpose of paying prior year, unpaid bills of the Town, or act in any manner relating thereto."
+    },
+    {
+      "num": 2,
+      "title": "Free Cash Transfer: Cassidy Parking Lot Improvements",
+      "summary": "Transfers $200,000 from Certified Free Cash to supplement prior funding for the Cassidy parking lot improvements project.",
+      "category": "Capital",
+      "amount": 200000,
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town will vote to transfer $200,000 from Certified Free Cash to supplement the amount previously allocated to the Cassidy parking lot improvements project, or act in any manner relating thereto."
+    },
+    {
+      "num": 3,
+      "title": "Free Cash Transfer: Snow and Ice Deficit",
+      "summary": "Transfers funds from available sources to cover the FY2024 Snow & Ice appropriation deficit (amount TBD). Select Board recommended Pass Over; Finance Committee recommendation was TBD.",
+      "category": "Financial",
+      "amount": null,
+      "sb": "Pass Over",
+      "fc": "To Be Determined",
+      "text": "To see if the Town will vote to transfer a sum of money from available funds and/or Certified Free Cash for the purpose of funding the Snow & Ice Fiscal Year 2024 appropriation deficit, or act in any manner relating thereto.\n\nNote: Select Board recommended Pass Over. Finance Committee recommendation was To Be Determined."
+    },
+    {
+      "num": 4,
+      "title": "Ambulance Receipts Reserves: Purchase New Ambulance",
+      "summary": "Transfers $460,000 from Ambulance Receipts Reserves to purchase and equip a new ambulance.",
+      "category": "Capital",
+      "amount": 460000,
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town will vote to transfer $460,000 from Ambulance Receipts Reserves for the purpose of purchasing and equipping a new ambulance, and for the payment of all other incidental and related costs, or act in any manner relating thereto."
+    },
+    {
+      "num": 5,
+      "title": "Overlay Release: Dispatch Equipment and Capital Stabilization",
+      "summary": "Transfers $656,785 from Overlay Surplus — $456,785 for replacement public safety dispatch equipment and $200,000 to the Capital Stabilization Fund.",
+      "category": "Capital",
+      "amount": 656785,
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town will vote to transfer $656,785 from Overlay Surplus, with $456,785 directed to the purchase of replacement public safety dispatch equipment and $200,000 placed in the Capital Stabilization Fund, or act in any manner relating thereto."
+    },
+    {
+      "num": 6,
+      "title": "CPA Transfer: Medway Community Farm Structure",
+      "summary": "Transfers $50,000 from CPA funds to construct a multi-purpose recreational structure on Town-owned property at 50 Winthrop Street.",
+      "category": "CPA/Open Space",
+      "amount": 50000,
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town will vote to transfer $50,000 from Community Preservation Act funds for the purpose of constructing a multi-purpose recreational structure on Town-owned property at 50 Winthrop Street, and for the payment of all other incidental and related costs, or act in any manner relating thereto."
+    },
+    {
+      "num": 7,
+      "title": "Repurpose Water Project Funds: Oakland Street Pump House",
+      "summary": "Transfers $1,200,000 from prior authorization for a water treatment plant at 19 Populatic St (no longer needed) to fund a new pump house at Oakland Street.",
+      "category": "Capital",
+      "amount": 1200000,
+      "sb": "Approve",
+      "fc": "To Be Determined",
+      "text": "To see if the Town will vote to transfer $1,200,000 from the funds authorized under Article 11 of the May 9, 2022 Annual Town Meeting (originally for a water treatment plant at 19 Populatic St, no longer needed for that purpose) to fund the engineering, construction, and equipping of a new pump house at Oakland Street, and for the payment of all other incidental and related costs, or act in any manner relating thereto."
+    },
+    {
+      "num": 8,
+      "title": "Repurpose Monetary Articles: School Projects",
+      "summary": "Transfers $30,465.90 from unused balances of prior school capital articles to fund Memorial Roof Design.",
+      "category": "Capital",
+      "amount": 30465.9,
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town will vote to transfer $30,465.90 from unused balances of prior Town Meeting articles (school projects from 2020 ATM Art.7, 2022 ATM Art.7, 2023 ATM Art.7, and November 2023 FTM Art.8) to fund Memorial Roof Design ($30,465.90), or act in any manner relating thereto."
+    }
+  ]
+}

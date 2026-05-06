@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BESS PILOT Risk Analysis — Town of Medway</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Inter', sans-serif; background: #eef2f7; color: #1a2e4a; min-height: 100vh; }
+
+    .header {
+      background: linear-gradient(135deg, #1a2e4a 0%, #2a4a6a 100%);
+      color: white; padding: 3.5rem 2rem 3rem; text-align: center;
+    }
+    .header .eyebrow { font-size: .72rem; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; opacity: .65; margin-bottom: .7rem; }
+    .header h1 { font-size: 2rem; font-weight: 700; margin-bottom: .6rem; line-height: 1.25; }
+    .header .sub { font-size: .95rem; opacity: .72; max-width: 620px; margin: 0 auto; line-height: 1.6; }
+    .seal { font-size: 3rem; margin-bottom: 1rem; display: block; }
+
+    .back-bar { background: #1a2e4a; border-top: 1px solid rgba(255,255,255,.1); padding: .6rem 2rem; }
+    .back-link {
+      display: inline-flex; align-items: center; gap: .4rem;
+      color: rgba(255,255,255,.75); font-size: .78rem; font-weight: 500;
+      text-decoration: none; letter-spacing: .02em;
+    }
+    .back-link:hover { color: white; }
+
+    .container { max-width: 920px; margin: 0 auto; padding: 2.5rem 1.5rem 5rem; }
+
+    .card {
+      background: white; border-radius: 16px; padding: 2rem 2.25rem;
+      box-shadow: 0 1px 3px rgba(0,0,0,.07), 0 4px 12px rgba(0,0,0,.04);
+      margin-bottom: 1.75rem;
+    }
+
+    /* Part banners */
+    .part-banner {
+      border-radius: 12px; padding: 1rem 1.5rem; margin-bottom: 1.75rem;
+      font-size: .72rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase;
+    }
+    .part-banner.compare  { background: #e8eef9; color: #2a3a80; border-left: 4px solid #2a3a80; }
+    .part-banner.cost     { background: #fef7e8; color: #7a5a10; border-left: 4px solid #c49520; }
+    .part-banner.risk     { background: #fff0f0; color: #8a2020; border-left: 4px solid #b03030; }
+    .part-banner.fix      { background: #e8f5e3; color: #2a6a20; border-left: 4px solid #2a6a20; }
+
+    .card h2 { font-size: 1.2rem; font-weight: 700; color: #1a2e4a; margin-bottom: 1rem; padding-bottom: .5rem; border-bottom: 2px solid #e8edf4; }
+    .card h3 { font-size: .95rem; font-weight: 700; color: #1a2e4a; margin: 1.3rem 0 .45rem; }
+    .card h3:first-child { margin-top: 0; }
+    .card p { font-size: .88rem; color: #3a4e5e; line-height: 1.75; margin-bottom: .75rem; }
+    .card p:last-child { margin-bottom: 0; }
+    .card strong { font-weight: 600; color: #1a2e4a; }
+
+    /* Comparable project cards */
+    .comp-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1rem 0; }
+    @media (max-width: 700px) { .comp-grid { grid-template-columns: 1fr; } }
+    .comp-box {
+      background: #f4f7fb; border-radius: 12px; padding: 1rem 1.15rem;
+      border-left: 4px solid #2a4a6a;
+    }
+    .comp-box.highlight { border-left-color: #2a6a20; background: #f0fbf0; }
+    .comp-name { font-size: .82rem; font-weight: 700; color: #1a2e4a; margin-bottom: .35rem; }
+    .comp-detail { font-size: .78rem; color: #546475; line-height: 1.55; }
+    .comp-rate { font-size: 1.1rem; font-weight: 700; margin-top: .35rem; }
+    .comp-rate.green { color: #2a6a20; }
+    .comp-rate.blue  { color: #2a3a80; }
+    .comp-rate.gray  { color: #7a8fa6; }
+
+    /* Cost estimate strip */
+    .cost-strip {
+      background: linear-gradient(135deg, #5a3a10 0%, #8a6520 100%);
+      color: white; border-radius: 12px; padding: 1.15rem 1.5rem; margin: 1.15rem 0;
+      display: flex; gap: 1.5rem; flex-wrap: wrap;
+    }
+    .cost-item { flex: 1; min-width: 130px; }
+    .cost-label { font-size: .68rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; opacity: .75; margin-bottom: .2rem; }
+    .cost-amount { font-size: 1.2rem; font-weight: 700; }
+    .cost-sub { font-size: .72rem; opacity: .7; margin-top: .1rem; }
+
+    /* Inflation table */
+    .infl-table-wrap { overflow-x: auto; margin: 1rem 0; }
+    table { width: 100%; border-collapse: collapse; font-size: .82rem; }
+    thead tr { background: #1a2e4a; color: white; }
+    thead th { padding: .65rem .85rem; text-align: left; font-weight: 600; font-size: .76rem; letter-spacing: .04em; }
+    thead th:first-child { border-radius: 8px 0 0 0; }
+    thead th:last-child  { border-radius: 0 8px 0 0; }
+    tbody tr { border-bottom: 1px solid #e8edf4; }
+    tbody tr:nth-child(even) { background: #f7fafc; }
+    tbody tr:hover { background: #eef2f7; }
+    td { padding: .55rem .85rem; color: #3a4e5e; line-height: 1.4; }
+    td.label { font-weight: 600; color: #1a2e4a; }
+    td.loss  { color: #b03030; font-weight: 600; }
+    td.gain  { color: #2a6a20; font-weight: 600; }
+
+    /* Risk cards */
+    .risk-card {
+      border-radius: 12px; padding: 1.15rem 1.25rem; margin-bottom: 1rem;
+      background: #fff8f8; border-left: 4px solid #b03030;
+    }
+    .risk-num { font-size: .65rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: #b03030; margin-bottom: .25rem; }
+    .risk-title { font-size: .92rem; font-weight: 700; color: #1a2e4a; margin-bottom: .4rem; }
+    .risk-card p { font-size: .85rem; color: #3a4e5e; line-height: 1.7; margin-bottom: .5rem; }
+    .risk-card p:last-child { margin-bottom: 0; }
+
+    /* Fix items */
+    .fix-item {
+      border-radius: 10px; padding: 1rem 1.15rem; margin-bottom: .75rem;
+      background: #f0fbf0; border-left: 4px solid #2a8a40;
+    }
+    .fix-num { font-size: .65rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: #2a8a40; margin-bottom: .2rem; }
+    .fix-title { font-size: .88rem; font-weight: 700; color: #1a2e4a; margin-bottom: .3rem; }
+    .fix-item p { font-size: .83rem; color: #3a4e5e; line-height: 1.65; margin-bottom: 0; }
+
+    /* Observation blocks */
+    .obs { background: #f4f7fb; border-left: 3px solid #2a4a6a; border-radius: 0 8px 8px 0; padding: .85rem 1rem 1rem; margin-bottom: .85rem; }
+    .obs .obs-label { font-size: .68rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: #7a8fa6; margin-bottom: .3rem; }
+    .obs p { font-size: .85rem; margin-bottom: 0; }
+
+    /* Disclaimer + footer */
+    .disclaimer {
+      background: #f4f7fb; border-radius: 10px; padding: 1rem 1.25rem;
+      font-size: .8rem; color: #7a8fa6; line-height: 1.6; font-style: italic;
+      margin-top: 1.5rem;
+    }
+    .sources-card { margin-top: .5rem; }
+    .sources-card ul { list-style: none; padding: 0; }
+    .sources-card li { font-size: .82rem; color: #546475; line-height: 1.65; padding: .2rem 0 .2rem 1rem; position: relative; }
+    .sources-card li::before { content: '\2022'; position: absolute; left: 0; color: #9aa8b8; }
+    .page-footer { text-align: center; padding: 2rem 1rem; color: #9aa8b8; font-size: .75rem; }
+  </style>
+</head>
+<body>
+
+<div class="header">
+  <span class="seal">&#x26A0;&#xFE0F;</span>
+  <div class="eyebrow">Town of Medway, Massachusetts</div>
+  <h1>BESS PILOT Risk Analysis</h1>
+  <p class="sub">2026 West Street Agreement — Regional Comparison and Underappreciated Risks</p>
+</div>
+
+<div class="back-bar">
+  <a class="back-link" href="BESS PILOT Analysis.html">&#x2190; PILOT Agreement Analysis</a>
+</div>
+
+<div class="container">
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<!-- PART 1: COMPARABLES -->
+<!-- ═══════════════════════════════════════════════════════════════ -->
+
+<div class="part-banner compare">Part 1 &mdash; How Medway's Deal Compares to Recent New England BESS PILOTs</div>
+
+<div class="card">
+  <h2>Known Comparables</h2>
+  <p>Comparable data for BESS PILOT agreements in Massachusetts is limited because utility-scale battery storage is still new to the region. ISO New England's first major standalone BESS facility only recently came online. Two reference points are now available, and the state's 5,000 MW procurement mandate (signed into law November 2024) means many more will follow.</p>
+
+  <div class="comp-grid">
+    <div class="comp-box highlight">
+      <div class="comp-name">Medway — 2026 West Street (Hecate Energy)</div>
+      <div class="comp-detail">300 MW AC / 4-hour (1,200 MWh implied)<br>Annual total: $3,138,982<br>20-year total: $62.8M &middot; Flat, no escalator</div>
+      <div class="comp-rate green">$10,463/MW/year</div>
+    </div>
+    <div class="comp-box">
+      <div class="comp-name">Carver — Cranberry Point (approved Oct 2025)</div>
+      <div class="comp-detail">150 MW BESS<br>Annual total: &gt;$1.6 million<br>20-year term &middot; ~4% of town revenue</div>
+      <div class="comp-rate blue">~$10,667/MW/year</div>
+    </div>
+    <div class="comp-box">
+      <div class="comp-name">Medway — Prior Milford Street (Eolian, 2024)</div>
+      <div class="comp-detail">250 MW AC / 500 MWh<br>Annual total: $2,306,922<br>Never executed</div>
+      <div class="comp-rate gray">$9,228/MW/year</div>
+    </div>
+    <div class="comp-box">
+      <div class="comp-name">Tewksbury — Hillman Energy Center (proposed)</div>
+      <div class="comp-detail">125 MW / 500 MWh &middot; East Point Energy<br>20-year contract<br>Dollar figures not yet publicly confirmed</div>
+      <div class="comp-rate gray">TBD</div>
+    </div>
+  </div>
+</div>
+
+<div class="card">
+  <h2>What the Comparables Suggest</h2>
+  <div class="obs">
+    <div class="obs-label">Per-MW Positioning</div>
+    <p>Medway's 2026 rate ($10,463/MW/year) is within range of Carver's ($10,667/MW/year) but marginally lower — roughly $200/MW/year less. Over 300 MW and 20 years, that gap amounts to about <strong>$1.2 million in aggregate</strong>.</p>
+  </div>
+  <div class="obs">
+    <div class="obs-label">Shared Structural Weakness</div>
+    <p>Both deals are flat, fixed-payment contracts with no inflation adjustment over 20 years. This is the most consequential feature they share — and the most consequential risk.</p>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<!-- PART 2: COST vs. COMPENSATION -->
+<!-- ═══════════════════════════════════════════════════════════════ -->
+
+<div class="part-banner cost">Part 2 &mdash; Construction Cost vs. PILOT Revenue — Is Medway Being Fairly Compensated?</div>
+
+<div class="card">
+  <h2>What the Project Likely Costs to Build</h2>
+  <p>Industry sources (NREL, Ember, and market analysts) place utility-scale 4-hour LFP battery storage installation costs in the range of $800K–$1.2M per MW as of 2025–2026. For a 300 MW / 4-hour system:</p>
+
+  <div class="cost-strip">
+    <div class="cost-item">
+      <div class="cost-label">Conservative</div>
+      <div class="cost-amount">$240M</div>
+      <div class="cost-sub">at $800K/MW</div>
+    </div>
+    <div class="cost-item">
+      <div class="cost-label">Mid-Range</div>
+      <div class="cost-amount">$300M</div>
+      <div class="cost-sub">at $1M/MW</div>
+    </div>
+    <div class="cost-item">
+      <div class="cost-label">High</div>
+      <div class="cost-amount">$360M</div>
+      <div class="cost-sub">at $1.2M/MW</div>
+    </div>
+    <div class="cost-item">
+      <div class="cost-label">All-In Estimate</div>
+      <div class="cost-amount">$270–440M</div>
+      <div class="cost-sub">incl. transmission, land</div>
+    </div>
+  </div>
+
+  <p>These figures do not include the 2,755-foot 345kV overhead transmission line, substation, or land acquisition, which could add $30–80 million. A reasonable all-in capital cost estimate is <strong>$270–440 million</strong>.</p>
+</div>
+
+<div class="card">
+  <h2>Ad Valorem Taxation vs. PILOT</h2>
+  <p>In Year 1, before any depreciation, a $300 million assessed value at a hypothetical $18 per $1,000 tax rate would yield roughly <strong>$5.4 million</strong> — substantially more than the $3.14 million PILOT. The agreement explicitly states it is intended to reflect "full and fair cash value," yet the payment schedule implies an effective assessed value of approximately <strong>$170 million</strong>.</p>
+
+  <h3>The Depreciation Tradeoff</h3>
+  <p>The argument for a lower initial payment is that it does not decline over time. Under ad valorem taxation, the assessed value would fall as equipment depreciates — potentially to near zero, since battery systems have a functional life of 10–20 years. The PILOT locks in a flat $3.14 million through Year 20.</p>
+  <p>This is a genuine benefit. But it is only a good deal if the flat rate fairly splits the difference between high early-year value and low late-year value. Whether $3.14 million achieves that balance depends on assumptions about depreciation schedules, replacement investment, and discount rates that neither the PILOT agreement nor public discussions appear to address.</p>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<!-- PART 3: RISKS -->
+<!-- ═══════════════════════════════════════════════════════════════ -->
+
+<div class="part-banner risk">Part 3 &mdash; Risks the Town May Be Underweighting</div>
+
+<div class="card">
+  <h2>Inflation Erosion</h2>
+  <div class="risk-card">
+    <div class="risk-num">Risk 1 &mdash; The Single Largest Financial Risk</div>
+    <div class="risk-title">Fixed payments lose purchasing power every year</div>
+    <p>At 3% annual inflation, the real value of Year 20 payments drops to 57% of Year 1. The cumulative real value is roughly <strong>$48.1 million</strong>, not $62.8 million. At 4% inflation, it drops to <strong>$44.4 million</strong>.</p>
+  </div>
+
+  <div class="infl-table-wrap">
+    <table>
+      <thead><tr><th>Year</th><th>Nominal Payment</th><th>Real Value (2026 $)</th><th>Lost Purchasing Power</th></tr></thead>
+      <tbody>
+        <tr><td class="label">1</td><td>$3,138,982</td><td>$3,138,982</td><td>&mdash;</td></tr>
+        <tr><td class="label">5</td><td>$3,138,982</td><td>$2,789,000</td><td class="loss">&minus;$350,000</td></tr>
+        <tr><td class="label">10</td><td>$3,138,982</td><td>$2,406,000</td><td class="loss">&minus;$733,000</td></tr>
+        <tr><td class="label">15</td><td>$3,138,982</td><td>$2,075,000</td><td class="loss">&minus;$1,064,000</td></tr>
+        <tr><td class="label">20</td><td>$3,138,982</td><td>$1,790,000</td><td class="loss">&minus;$1,349,000</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="obs">
+    <div class="obs-label">What a reasonable escalator would look like</div>
+    <p>A 2% annual escalator would bring the 20-year nominal total to approximately <strong>$76.3 million</strong>. A CPI-linked adjustment would track actual inflation. Either mechanism is standard in long-term commercial leases. The absence of any escalator is a choice that favors the developer.</p>
+  </div>
+</div>
+
+<div class="card">
+  <h2>Battery Degradation &amp; Replacement</h2>
+  <div class="risk-card">
+    <div class="risk-num">Risk 2</div>
+    <div class="risk-title">Capital reinvestment is invisible to the town</div>
+    <p>Manufacturers typically guarantee no more than 2% annual capacity fade. After 15 years the system may retain only 70% capacity; after 20 years, roughly 65%. Replacement is likely during the PILOT term — potentially $50–150 million in reinvestment — but the flat PILOT captures none of it.</p>
+    <p>The capacity adjustment clause only triggers if the project expands beyond 305 MW. Replacing degraded batteries with newer modules that maintain 300 MW does <strong>not</strong> trigger a payment increase. The developer benefits from improved technology; the town does not.</p>
+  </div>
+</div>
+
+<div class="card">
+  <h2>Decommissioning Liability</h2>
+  <div class="risk-card">
+    <div class="risk-num">Risk 3</div>
+    <div class="risk-title">No decommissioning bond in the PILOT</div>
+    <p>Massachusetts model bylaws recommend requiring a surety bond at <strong>125% of estimated removal cost</strong>, funded before construction begins. Decommissioning a 300 MW facility on 11 acres could cost $5–15 million.</p>
+    <p>If decommissioning requirements exist in the HCA or special permit, the PILOT's "independence" clause (Section 11) means default under the HCA does not affect the PILOT. If the developer defaults on decommissioning but continues PILOT payments, does the town have adequate leverage to compel site restoration?</p>
+  </div>
+</div>
+
+<div class="card">
+  <h2>Project-Specific LLC Structure</h2>
+  <div class="risk-card">
+    <div class="risk-num">Risk 4</div>
+    <div class="risk-title">The PILOT is with the LLC, not the parent company</div>
+    <p>Medway Energy Center, LLC is a single-purpose entity. Hecate Energy LLC (the parent) has a strong track record — over 12 GW developed since 2012, with Hecate Grid backed by InfraRed Capital Partners. But the PILOT does not bind the parent.</p>
+    <p>If the project becomes uneconomic, the LLC can be dissolved without exposing the parent company's assets. The town's remedy — reverting to ad valorem taxation — is meaningless if the LLC is insolvent or the facility is abandoned. The PILOT includes no parent company guarantee, letter of credit, or credit enhancement.</p>
+  </div>
+</div>
+
+<div class="card">
+  <h2>Missing DOR Deadline</h2>
+  <div class="risk-card">
+    <div class="risk-num">Risk 5</div>
+    <div class="risk-title">Open-ended condition precedent creates legal ambiguity</div>
+    <p>The prior Milford Street draft required DOR approval within 30 days. This agreement sets no deadline. If DOR delays or requests revisions, the agreement exists in a gray area — voted by Town Meeting, signed by the Select Board, but not legally effective.</p>
+    <p>During this period, the developer may proceed with permitting and construction that creates community expectations and political pressure. If DOR requires material changes, the town may be in a weakened negotiating position because the project is already underway.</p>
+  </div>
+</div>
+
+<div class="card">
+  <h2>No Revenue Sharing</h2>
+  <div class="risk-card">
+    <div class="risk-num">Risk 6</div>
+    <div class="risk-title">The town captures none of the project's upside</div>
+    <p>Battery storage revenue is driven by energy arbitrage, capacity payments, and ancillary services in ISO-NE markets. These have significant upside potential as fossil fuel retirements accelerate and Massachusetts pursues 5,000 MW of storage by 2030.</p>
+    <p>If the project earns $80 million/year in market revenue, the town still receives $3.14 million. Some municipal agreements include modest revenue-sharing provisions (1–2% of gross revenue above a threshold). This PILOT has none.</p>
+  </div>
+</div>
+
+<div class="card">
+  <h2>Environmental &amp; Infrastructure Impacts</h2>
+  <div class="risk-card">
+    <div class="risk-num">Risk 7</div>
+    <div class="risk-title">47 acres of forested land conversion is uncompensated</div>
+    <p>Eleven acres of forest clearing and 47 acres of project footprint represent lost carbon sequestration, stormwater absorption, habitat, and aesthetic value. The PILOT includes no environmental mitigation component. Some HCAs include tree replacement ratios or conservation fund contributions — it is unclear whether Medway's HCA does.</p>
+  </div>
+
+  <div class="risk-card">
+    <div class="risk-num">Risk 8</div>
+    <div class="risk-title">Overhead 345kV transmission line may affect property values</div>
+    <p>The 2,755-foot overhead line is a permanent visual change, unlike the prior project's underground transmission. The PILOT includes no fund to compensate abutters for potential diminution in value. The line runs through Eversource parcels via easement — the town has no direct control over its maintenance or appearance.</p>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<!-- PART 4: WHAT A STRONGER DEAL LOOKS LIKE -->
+<!-- ═══════════════════════════════════════════════════════════════ -->
+
+<div class="part-banner fix">Part 4 &mdash; What a Stronger Agreement Would Include</div>
+
+<div class="card">
+  <h2>Recommended Provisions</h2>
+  <p>Based on the risks identified above, a stronger PILOT for the town would include some or all of the following. None would make the project uneconomic. Many are standard in comparable public-private agreements.</p>
+
+  <div class="fix-item">
+    <div class="fix-num">Provision 1</div>
+    <div class="fix-title">Inflation Escalator</div>
+    <p>2% annual increase or CPI-linked adjustment, applied to the base PILOT and CPA. Would bring 20-year nominal total to ~$76.3M vs. $62.8M.</p>
+  </div>
+
+  <div class="fix-item">
+    <div class="fix-num">Provision 2</div>
+    <div class="fix-title">Capital Reinvestment Clause</div>
+    <p>If the developer invests more than a threshold (e.g., $20M) in battery replacement or capacity augmentation, the PILOT is recalculated based on updated investment.</p>
+  </div>
+
+  <div class="fix-item">
+    <div class="fix-num">Provision 3</div>
+    <div class="fix-title">Decommissioning Surety</div>
+    <p>Bond or letter of credit at 125% of estimated removal cost, funded before COD, updated every 5 years.</p>
+  </div>
+
+  <div class="fix-item">
+    <div class="fix-num">Provision 4</div>
+    <div class="fix-title">Parent Company Guarantee</div>
+    <p>Hecate Energy LLC (or a creditworthy affiliate) guarantees the LLC's PILOT obligations.</p>
+  </div>
+
+  <div class="fix-item">
+    <div class="fix-num">Provision 5</div>
+    <div class="fix-title">DOR Approval Deadline</div>
+    <p>60 or 90 days after Town Meeting vote, with automatic termination if not achieved.</p>
+  </div>
+
+  <div class="fix-item">
+    <div class="fix-num">Provision 6</div>
+    <div class="fix-title">Revenue-Sharing Provision</div>
+    <p>A modest 1–2% of gross revenue above a defined threshold, payable annually.</p>
+  </div>
+
+  <div class="fix-item">
+    <div class="fix-num">Provision 7</div>
+    <div class="fix-title">Environmental Mitigation Fund</div>
+    <p>One-time or annual contribution to a conservation or tree replacement fund, sized to acreage cleared.</p>
+  </div>
+
+  <div class="fix-item">
+    <div class="fix-num">Provision 8</div>
+    <div class="fix-title">Property Value Protection</div>
+    <p>Fund or abatement mechanism for abutting property owners who demonstrate diminution in value from the transmission line or facility.</p>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<!-- SOURCES -->
+<!-- ═══════════════════════════════════════════════════════════════ -->
+
+<div class="card sources-card">
+  <h2>Sources &amp; Methodology</h2>
+  <ul>
+    <li>2026 PILOT Agreement — Town of Medway and Medway Energy Center, LLC (signed April 6, 2026)</li>
+    <li>2024 draft PILOT Agreement — Town of Medway and Medway Grid, LLC (March 18, 2024, unexecuted)</li>
+    <li>Town of Carver PILOT approval for Cranberry Point 150 MW BESS (October 2025)</li>
+    <li>Tewksbury Hillman Energy Center BESS proposal (125 MW, East Point Energy)</li>
+    <li>NREL Cost Projections for Utility-Scale Battery Storage (2025 Update)</li>
+    <li>Massachusetts Clean Energy Act of 2024 (5,000 MW storage mandate)</li>
+    <li>Massachusetts DOER Model BESS Bylaw (decommissioning surety guidance)</li>
+    <li>Ember global battery storage cost tracking</li>
+    <li>Hecate Energy / Hecate Grid corporate disclosures</li>
+  </ul>
+  <p style="margin-top:.85rem">Dollar figures for the Medway PILOTs are taken directly from the agreements. Construction cost estimates use NREL and industry ranges. Inflation calculations use standard compound discounting. The Carver per-MW figure is derived from publicly reported total payment and capacity.</p>
+</div>
+
+<div class="disclaimer">
+  This analysis is intended to inform Town Meeting deliberation. It is not legal or financial advice. Residents should consult the full PILOT agreement and seek independent professional review before forming a position.
+</div>
+
+</div>
+
+<div class="page-footer">
+  Town of Medway &middot; BESS PILOT Risk Analysis &middot; April 2026 &middot; <a href="BESS PILOT Analysis.html" style="color:#9aa8b8">PILOT Agreement Analysis</a><br>
+  <span style="font-size:.7rem;opacity:.8;">Content produced with AI assistance and reviewed for accuracy, but not 100% independently verified. Consult official town documents for authoritative information.</span>
+</div>
+
+</body>
+</html>

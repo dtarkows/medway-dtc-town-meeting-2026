@@ -1,0 +1,91 @@
+{
+  "meta": {
+    "meeting_type": "STM",
+    "date": "May 8, 2023",
+    "year": "2023",
+    "theme_id": "2023_stm",
+    "source_pdf": "2023-05-08 Special Town Meeting Warrant.pdf"
+  },
+  "articles": [
+    {
+      "num": 1,
+      "title": "Prior Year Bills",
+      "summary": "Transfers $2,425.51 from available FY2023 funds to pay prior-year unpaid bills across DPW, Roads, and Enterprise departments.",
+      "category": "Financial",
+      "amount": 2425.51,
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town will vote to transfer $2,425.51 from available Fiscal Year 2023 funds for the purpose of paying prior year, unpaid bills: DPW Building Maintenance Repairs ($39.06), Heat/Natural Gas ($428.57), Roads and Sidewalks ($527.64), DPW Admin Public Safety Tree Work ($374.64), Parks Contracted Services ($93.60), Building Maintenance Contracted Services ($253.50), Water Enterprise Advertisement ($500.50), Solid Waste Enterprise Advertisement ($208.00), or act in any manner relating thereto."
+    },
+    {
+      "num": 2,
+      "title": "Free Cash Transfer to General Stabilization",
+      "summary": "Transfers $200,000 from Certified Free Cash to the General Stabilization Fund.",
+      "category": "Financial",
+      "amount": 200000,
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town will vote to transfer $200,000 from Certified Free Cash to the General Stabilization Fund, or act in any manner relating thereto."
+    },
+    {
+      "num": 3,
+      "title": "Free Cash Transfer to Tax Title Services",
+      "summary": "Transfers $20,000 from Certified Free Cash for tax title legal and technical services.",
+      "category": "Financial",
+      "amount": 20000,
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town will vote to transfer $20,000 from Certified Free Cash to be expended on tax title legal and technical services, or act in any manner relating thereto."
+    },
+    {
+      "num": 4,
+      "title": "Free Cash Transfer to Police Forfeiture Account",
+      "summary": "Transfers $2,824.27 from Certified Free Cash to the Police Forfeiture account.",
+      "category": "Financial",
+      "amount": 2824.27,
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town will vote to transfer $2,824.27 from Certified Free Cash to the Police Forfeiture account, or act in any manner relating thereto."
+    },
+    {
+      "num": 5,
+      "title": "Sewer Enterprise Retained Earnings Transfer",
+      "summary": "Transfers $165,000 from Sewer Enterprise retained earnings to fund inflow/infiltration work ($75,000) and replace a 2012 Ford F-250 truck ($90,000).",
+      "category": "Enterprise Budget",
+      "amount": 165000,
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town will vote to transfer from Sewer Enterprise Fund retained earnings the sum of $165,000 for: Inflow and Infiltration ($75,000) and Replace 2012 Ford F-250 (Veh.) ($90,000), including associated engineering, maintenance, and legal services costs, or act in any manner relating thereto."
+    },
+    {
+      "num": 6,
+      "title": "Water Enterprise Retained Earnings Transfer",
+      "summary": "Transfers $90,000 from Water Enterprise retained earnings to replace a 2012 Ford F-350 truck.",
+      "category": "Enterprise Budget",
+      "amount": 90000,
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town will vote to transfer from Water Enterprise Fund retained earnings the sum of $90,000 for the purpose of funding the replacement of a 2012 Ford F-350 truck, including costs of fitting and equipping, or act in any manner relating thereto."
+    },
+    {
+      "num": 7,
+      "title": "CPA Fund Statutory Set-Aside Adjustment",
+      "summary": "Authorizes the Town Accountant to adjust prior-year CPA set-aside balances to meet the statutory 10% minimum — $34,215 each for community housing, open space, and historical preservation ($102,645 total).",
+      "category": "CPA/Open Space",
+      "amount": 102645,
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town will vote to authorize the Town Accountant, with CPC approval, to adjust prior fiscal year set-aside balances within the Community Preservation Fund to comply with the statutory 10% minimum requirement for open space, historic resources, and community housing. Transfers: Community Housing ($34,215), Open Space ($34,215), Historical Preservation ($34,215) = $102,645, or act in any manner relating thereto."
+    },
+    {
+      "num": 8,
+      "title": "Repurpose Monetary Articles: School Projects",
+      "summary": "Transfers $259,041.12 from unused balances of prior school capital articles to fund Memorial Cafeteria A/C ($95,000), HS Fire Alarm Panel Work ($57,450), McGovern Tile Replacement ($72,000), and HS Cafeteria Water Heater ($34,591).",
+      "category": "Capital",
+      "amount": 259041.12,
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town will vote to transfer $259,041.12 from unused balances authorized at prior Town Meetings (various school capital projects from 2021 and 2022 ATMs that were completed under budget) to fund: Memorial Cafeteria A/C Unit ($95,000 — from prior 2021 ATM Art.7 balance), High School Fire Alarm Panel Work ($57,450), McGovern Tile Replacement ($72,000), and High School Cafeteria Water Heater ($34,591.12), or act in any manner relating thereto."
+    }
+  ]
+}

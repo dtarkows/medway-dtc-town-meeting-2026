@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Medway Annual Town Meeting — May 8, 2023</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* ── Theme colors (injected per meeting) ─────────────────────────────── */
+    :root {
+      --g1:    #1a3a5c;
+      --g2:    #2b5f96;
+      --acc:   #2b5f96;
+      --light: #eef3fa;
+      --tbg:   #f0f5fa;
+      --tbo:   #c5d5e8;
+    }
+
+    /* ── Reset & base ─────────────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Inter', sans-serif; background: #eef2f7; color: #1a2e4a; min-height: 100vh; }
+
+    /* ── Header ───────────────────────────────────────────────────────────── */
+    .header {
+      background: linear-gradient(135deg, var(--g1) 0%, var(--g2) 100%);
+      color: white; padding: 2.5rem 2rem 2rem; text-align: center;
+    }
+    .back-link {
+      display: inline-flex; align-items: center; gap: .35rem;
+      font-size: .75rem; font-weight: 600; color: rgba(255,255,255,.7);
+      text-decoration: none; letter-spacing: .04em;
+      margin-bottom: 1rem; transition: color .15s;
+    }
+    .back-link::before { content: '←'; }
+    .back-link:hover { color: white; }
+    .eyebrow { font-size: .72rem; font-weight: 600; letter-spacing: .18em; text-transform: uppercase; opacity: .65; margin-bottom: .5rem; }
+    .header h1 { font-size: 1.9rem; font-weight: 700; margin-bottom: .4rem; }
+    .header .meta { font-size: .88rem; opacity: .75; }
+
+    /* ── Stats bar ────────────────────────────────────────────────────────── */
+    .stats-bar { display: flex; gap: 1rem; padding: 1.2rem 2rem; background: var(--light); justify-content: center; flex-wrap: wrap; }
+    .stat-card { text-align: center; padding: .5rem 1.2rem; }
+    .stat-card .label { font-size: .68rem; font-weight: 600; text-transform: uppercase; letter-spacing: .1em; color: var(--acc); opacity: .8; }
+    .stat-card .value { font-size: 1.4rem; font-weight: 700; color: var(--g1); }
+    .stat-card .sub   { font-size: .7rem; color: #7a8fa6; }
+
+    /* ── Controls ─────────────────────────────────────────────────────────── */
+    .container { max-width: 1100px; margin: 0 auto; padding: 1.5rem 1.5rem 4rem; }
+    .controls { margin-bottom: 1.25rem; }
+    .controls-label { font-size: .68rem; font-weight: 700; text-transform: uppercase; letter-spacing: .12em; color: #7a8fa6; margin-bottom: .6rem; }
+    .filter-buttons { display: flex; flex-wrap: wrap; gap: .45rem; }
+    .filter-btn {
+      padding: .3rem .85rem; border-radius: 999px; border: 1.5px solid #d0dae6;
+      background: white; font-family: inherit; font-size: .75rem; font-weight: 500;
+      color: #546475; cursor: pointer; transition: all .15s;
+    }
+    .filter-btn:hover  { border-color: var(--acc); color: var(--acc); }
+    .filter-btn.active { background: var(--acc); border-color: var(--acc); color: white; font-weight: 600; }
+
+    /* ── Table ────────────────────────────────────────────────────────────── */
+    .table-wrap  { background: white; border-radius: 14px; box-shadow: 0 1px 3px rgba(0,0,0,.07), 0 4px 12px rgba(0,0,0,.04); overflow: hidden; }
+    .table-scroll { overflow-x: auto; }
+    table  { width: 100%; border-collapse: collapse; }
+    thead  { background: var(--tbg); border-bottom: 2px solid var(--tbo); }
+    th     { padding: .75rem 1rem; text-align: left; font-size: .72rem; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--g1); white-space: nowrap; }
+    th.sortable { cursor: pointer; user-select: none; }
+    th.sortable:hover { color: var(--acc); }
+    th.sortable .sort-icon { margin-left: 4px; font-size: .7rem; opacity: .45; }
+    th.sorted-asc  .sort-icon, th.sorted-desc .sort-icon { opacity: 1; color: var(--acc); }
+    th.sorted-asc  .sort-icon::after { content: '▲'; }
+    th.sorted-desc .sort-icon::after { content: '▼'; }
+    th:not(.sorted-asc):not(.sorted-desc) .sort-icon::after { content: '⇅'; }
+    th.amount-col { text-align: right; }
+    td { padding: .9rem 1rem; vertical-align: top; border-bottom: 1px solid #edf2ef; font-size: .875rem; line-height: 1.55; }
+    tr:last-child td { border-bottom: none; }
+    tr:hover td { background: #fafcfb; }
+    tr.hidden { display: none; }
+
+    /* ── Article cell ─────────────────────────────────────────────────────── */
+    .article-num     { font-size: .78rem; font-weight: 700; color: var(--acc); white-space: nowrap; }
+    .article-title   { font-weight: 600; color: #1a2e4a; margin-bottom: .3rem; }
+    .article-summary { color: #546475; font-size: .82rem; line-height: 1.5; }
+    .article-recs    { display: flex; align-items: center; gap: .45rem; margin-top: .45rem; flex-wrap: wrap; }
+    .rec-label       { font-size: .7rem; font-weight: 600; color: #7a8fa6; white-space: nowrap; }
+    .full-text-btn {
+      display: inline-flex; align-items: center; gap: .3rem;
+      margin-top: .55rem; padding: 0; border: none; background: none;
+      font-family: inherit; font-size: .75rem; font-weight: 600;
+      color: var(--acc); cursor: pointer; opacity: .65; transition: opacity .15s, gap .15s;
+    }
+    .full-text-btn:hover { opacity: 1; gap: .45rem; }
+    .full-text-btn::after { content: '→'; }
+
+    /* ── Amount column ────────────────────────────────────────────────────── */
+    .amount-col   { text-align: right; }
+    .amount-value { font-weight: 700; color: var(--g1); font-variant-numeric: tabular-nums; white-space: nowrap; }
+    .amount-tbd   { color: #9aa8b8; font-style: italic; font-size: .82rem; }
+    .amount-na    { color: #b8c4ce; font-size: .82rem; }
+
+    /* ── Category badges ──────────────────────────────────────────────────── */
+    .cat-badge { display: inline-block; padding: .22rem .7rem; border-radius: 999px; font-size: .72rem; font-weight: 600; white-space: nowrap; }
+    .cat-budget    { background: #e8f5e3; color: #2a6a20; }
+    .cat-capital   { background: #e8eef9; color: #2a3a80; }
+    .cat-financial { background: #fff3e0; color: #a05000; }
+    .cat-enterprise{ background: #f3e8f9; color: #6a2a80; }
+    .cat-zoning    { background: #fce8e8; color: #a01818; }
+    .cat-bylaws    { background: #e8f5e3; color: #1a6a38; }
+    .cat-cpa       { background: #e8f9f5; color: #1a6a5a; }
+    .cat-admin     { background: #f0f0f0; color: #505050; }
+    .cat-energy    { background: #fffbe6; color: #806600; }
+    .cat-petition  { background: #f9f0e8; color: #804020; }
+    .cat-infra     { background: #e8f0f9; color: #204080; }
+
+    /* ── Recommendation badges ────────────────────────────────────────────── */
+    .rec-badge       { display: inline-block; padding: .2rem .55rem; border-radius: 999px; font-size: .72rem; font-weight: 600; white-space: nowrap; }
+    .rec-approve     { background: #e3f0e8; color: #1a6a2a; }
+    .rec-disapprove  { background: #fce8e8; color: #a01818; }
+    .rec-tbd         { background: #f0f0f0; color: #6a6a6a; }
+    .rec-pass        { background: #fff3e0; color: #a05000; }
+    .rec-na          { color: #aaa; font-style: italic; font-size: .82rem; }
+
+    .no-results  { text-align: center; padding: 3rem 2rem; color: #9aa8b8; font-size: .92rem; }
+    .page-footer { text-align: center; padding: 1.5rem 1rem; color: #9aa8b8; font-size: .75rem; }
+
+    /* ── Modal ────────────────────────────────────────────────────────────── */
+    #article-modal { display: none; position: fixed; inset: 0; z-index: 1000; align-items: center; justify-content: center; padding: 1rem; }
+    #article-modal.open { display: flex; }
+    .modal-backdrop { position: fixed; inset: 0; background: rgba(10,20,40,.55); backdrop-filter: blur(3px); }
+    .modal-card {
+      position: relative; z-index: 1; background: white; border-radius: 16px;
+      width: min(760px, 100%); max-height: min(84vh, 740px);
+      display: flex; flex-direction: column;
+      box-shadow: 0 24px 64px rgba(0,0,0,.28), 0 4px 16px rgba(0,0,0,.12);
+      animation: modalIn .2s ease;
+    }
+    @keyframes modalIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
+    .modal-close {
+      position: absolute; top: .9rem; right: 1rem; width: 32px; height: 32px;
+      border-radius: 50%; border: none; background: #f0f4f8; font-size: 1rem;
+      cursor: pointer; display: flex; align-items: center; justify-content: center; color: #546475;
+      transition: background .15s;
+    }
+    .modal-close:hover { background: #e0e8f0; }
+    .modal-header { padding: 1.5rem 2rem 1rem; border-bottom: 1px solid #edf2ef; }
+    .modal-eyebrow { font-size: .7rem; font-weight: 700; text-transform: uppercase; letter-spacing: .14em; color: var(--acc); margin-bottom: .4rem; }
+    .modal-title   { font-size: 1.1rem; font-weight: 700; color: #1a2e4a; line-height: 1.35; padding-right: 2rem; }
+    .modal-body    { padding: 1.25rem 2rem 1.5rem; overflow-y: auto; flex: 1; }
+    .modal-recs    { display: flex; gap: 1.5rem; margin-bottom: 1rem; flex-wrap: wrap; }
+    .modal-rec-label { font-size: .68rem; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; color: #7a8fa6; margin-bottom: .3rem; }
+    pre#modal-text { white-space: pre-wrap; font-family: inherit; font-size: .88rem; color: #2a3a50; line-height: 1.7; }
+
+    @media (max-width: 680px) {
+      .header h1 { font-size: 1.35rem; }
+      td, th { padding: .7rem .65rem; }
+      .modal-header, .modal-body { padding-left: 1.25rem; padding-right: 1.25rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="header">
+    <a class="back-link" href="../index.html">All meetings</a>
+    <div class="eyebrow">Town of Medway, Massachusetts</div>
+    <h1>Annual Town Meeting</h1>
+    <div class="meta">May 8, 2023 &nbsp;·&nbsp; Medway High School &nbsp;·&nbsp; 7:30 PM</div>
+  </div>
+
+  <div class="stats-bar">
+    <div class="stat-card"><div class="label">Articles</div><div class="value">38</div><div class="sub">Warrant articles</div></div><div class="stat-card"><div class="label">Specified Appropriations</div><div class="value">$14.5M+</div><div class="sub">Identified dollar amounts</div></div><div class="stat-card"><div class="label">Categories</div><div class="value">9</div><div class="sub">Topics covered</div></div>
+  </div>
+
+  <div class="container">
+    <div class="controls">
+      <div class="controls-label">Filter by Category</div>
+      <div class="filter-buttons">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="Administrative">Administrative</button>
+        <button class="filter-btn" data-filter="Budget">Budget</button>
+        <button class="filter-btn" data-filter="CPA/Open Space">CPA/Open Space</button>
+        <button class="filter-btn" data-filter="Capital">Capital</button>
+        <button class="filter-btn" data-filter="Citizens' Petition">Citizens' Petition</button>
+        <button class="filter-btn" data-filter="Enterprise Budget">Enterprise Budget</button>
+        <button class="filter-btn" data-filter="Financial">Financial</button>
+        <button class="filter-btn" data-filter="General Bylaws">General Bylaws</button>
+        <button class="filter-btn" data-filter="Zoning">Zoning</button>
+      </div>
+    </div>
+
+    <div class="table-wrap">
+      <div class="table-scroll">
+        <table>
+          <thead>
+            <tr>
+              <th style="width:60px">#</th>
+              <th>Article</th>
+              <th style="width:160px">Category</th>
+              <th class="amount-col sortable" id="amt-th" style="width:140px">Amount <span class="sort-icon"></span></th>
+            </tr>
+          </thead>
+          <tbody id="article-tbody">
+            <tr data-category="Financial" data-amount="75000">
+  <td><span class="article-num">Art. 1</span></td>
+  <td>
+    <div class="article-title">Debt Stabilization Fund Transfer</div>
+    <div class="article-summary">Transfers $75,000 from the Debt Stabilization Fund to the FY2024 operating budget to offset debt exclusion project costs.</div>
+    <div class="article-recs"><span class="rec-label">SB:</span> <span class="rec-badge rec-approve">Approve</span><span class="rec-label" style="margin-left:.2rem">FinCom:</span> <span class="rec-badge rec-approve">Approve</span></div>
+    <button class="full-text-btn" data-key="1">Full text</button>
+  </td>
+  <td><span class="cat-badge cat-financial">Financial</span></td>
+  <td class="amount-col"><span class="amount-value">$75,000</span></td>
+</tr>
+            <tr data-category="Financial" data-amount="750000">
+  <td><span class="article-num">Art. 2</span></td>
+  <td>
+    <div class="article-title">Transfer from Ambulance Receipts to General Fund</div>
+    <div class="article-summary">Transfers $750,000 from Ambulance Receipts Reserved for Appropriation to the FY2024 General Fund Operating Budget.</div>
+    <div class="article-recs"><span class="rec-label">SB:</span> <span class="rec-badge rec-approve">Approve</span><span class="rec-label" style="margin-left:.2rem">FinCom:</span> <span class="rec-badge rec-approve">Approve</span></div>
+    <button class="full-text-btn" data-key="2">Full text</button>
+  </td>
+  <td><span class="cat-badge cat-financial">Financial</span></td>
+  <td class="amount-col"><span class="amount-value">$750,000</span></td>
+</tr>
+            <tr data-category="Budget">
+  <td><span class="article-num">Art. 3</span></td>
+  <td>
+    <div class="article-title">Appropriation: FY24 Operating Budget</div>
+    <div class="article-summary">Sets salaries for elected officers and appropriates funds to cover all Town charges, expenses, and debt for the fiscal year ending June 30, 2024.</div>
+    <div class="article-recs"><span class="rec-label">SB:</span> <span class="rec-badge rec-approve">Approve</span><span class="rec-label" style="margin-left:.2rem">FinCom:</span> <span class="rec-badge rec-approve">Approve</span></div>
+    <button class="full-text-btn" data-key="3">Full text</button>
+  </td>
+  <td><span class="cat-badge cat-budget">Budget</span></td>
+  <td class="amount-col"><span class="amount-tbd">TBD</span></td>
+</tr>
+            <tr data-category="Enterprise Budget" data-amount="5037397">
+  <td><span class="article-num">Art. 4</span></td>
+  <td>
+    <div class="article-title">Appropriation: FY24 Water Enterprise Fund</div>
+    <div class="article-summary">Appropriates $5,037,397 to operate the Water Department Enterprise Fund for FY2024, funded by user fees ($4,650,000) and retained earnings ($387,397).</div>
+    <div class="article-recs"><span class="rec-label">SB:</span> <span class="rec-badge rec-approve">Approve</span><span class="rec-label" style="margin-left:.2rem">FinCom:</span> <span class="rec-badge rec-approve">Approve</span></div>
+    <button class="full-text-btn" data-key="4">Full text</button>
+  </td>
+  <td><span class="cat-badge cat-enterprise">Enterprise Budget</span></td>
+  <td class="amount-col"><span class="amount-value">$5,037,397</span></td>
+</tr>
+            <tr data-category="Enterprise Budget" data-amount="1951368">
+  <td><span class="article-num">Art. 5</span></td>
+  <td>
+    <div class="article-title">Appropriation: FY24 Sewer Enterprise Fund</div>
+    <div class="article-summary">Appropriates $1,951,368 to operate the Sewer Enterprise Fund for FY2024, funded by user fees ($1,930,105) and sewer betterment transfer ($21,263).</div>
+    <div class="article-recs"><span class="rec-label">SB:</span> <span class="rec-badge rec-approve">Approve</span><span class="rec-label" style="margin-left:.2rem">FinCom:</span> <span class="rec-badge rec-approve">Approve</span></div>
+    <button class="full-text-btn" data-key="5">Full text</button>
+  </td>
+  <td><span class="cat-badge cat-enterprise">Enterprise Budget</span></td>
+  <td class="amount-col"><span class="amount-value">$1,951,368</span></td>
+</tr>
+            <tr data-category="Enterprise Budget" data-amount="1928455">
+  <td><span class="article-num">Art. 6</span></td>
+  <td>
+    <div class="article-title">Appropriation: FY24 Solid Waste Enterprise Fund</div>
+    <div class="article-summary">Appropriates $1,928,455 to operate the Solid Waste/Recycling Enterprise Fund for FY2024, funded by trash fees ($1,570,000) and retained earnings ($358,455).</div>
+    <div class="article-recs"><span class="rec-label">SB:</span> <span class="rec-badge rec-approve">Approve</span><span class="rec-label" style="margin-left:.2rem">FinCom:</span> <span class="rec-badge rec-approve">Approve</span></div>
+    <button class="full-text-btn" data-key="6">Full text</button>
+  </td>
+  <td><span class="cat-badge cat-enterprise">Enterprise Budget</span></td>
+  <td class="amount-col"><span class="amount-value">$1,928,455</span></td>
+</tr>
+            <tr data-category="Capital" data-amount="2739311">
+  <td><span class="article-num">Art. 7</span></td>
+  <td>
+    <div class="article-title">Free Cash Appropriation: Capital and Other Items</div>
+    <div class="article-summary">Appropriates $2,739,311 from Certified Free Cash for over 30 capital projects spanning police, schools, DPW, fire, and library needs.</div>
+    <div class="article-recs"><span class="rec-label">SB:</span> <span class="rec-badge rec-approve">Approve</span><span class="rec-label" style="margin-left:.2rem">FinCom:</span> <span class="rec-badge rec-approve">Approve</span></div>
+    <button class="full-text-btn" data-key="7">Full text</button>
+  </td>
+  <td><span class="cat-badge cat-capital">Capital</span></td>
+  <td class="amount-col"><span class="amount-value">$2,739,311</span></td>
+</tr>
+            <tr data-category="Capital" data-amount="800000">
+  <td><span class="article-num">Art. 8</span></td>
+  <td>
+    <div class="article-title">Raise & Appropriate: Roads & Sidewalks</div>
+    <div class="article-summary">Raises and appropriates $800,000 for repairs to roads, sidewalks, bridges, and related infrastructure.</div>
+    <div class="article-recs"><span class="rec-label">SB:</span> <span class="rec-badge rec-approve">Approve</span><span class="rec-label" style="margin-left:.2rem">FinCom:</span> <span class="rec-badge rec-approve">Approve</span></div>
+    <button class="full-text-btn" data-key="8">Full text</button>
+  </td>
+  <td><span class="cat-badge cat-capital">Capital</span></td>
+  <td class="amount-col"><span class="amount-value">$800,000</span></td>
+</tr>
+            <tr data-category="Financial" data-amount="300000">
+  <td><span class="article-num">Art. 9</span></td>
+  <td>
+    <div class="article-title">Appropriation: OPEB Trust</div>
+    <div class="article-summary">Raises and appropriates $300,000 to the Town's Other Post-Employment Benefits (OPEB) Trust account.</div>
+    <div class="article-recs"><span class="rec-label">SB:</span> <span class="rec-badge rec-approve">Approve</span><span class="rec-label" style="margin-left:.2rem">FinCom:</span> <span class="rec-badge rec-approve">Approve</span></div>
+    <button class="full-text-btn" data-key="9">Full text</button>
+  </td>
+  <td><span class="cat-badge cat-financial">Financial</span></td>
+  <td class="amount-col"><span class="amount-value">$300,000</span></td>
+</tr>
+            <tr data-category="Financial" data-amount="100000">
+  <td><span class="article-num">Art. 10</span></td>
+  <td>
+    <div class="article-title">Appropriation: General Stabilization</div>
+    <div class="article-summary">Raises and appropriates $100,000 to the General Stabilization Fund.</div>
+    <div class="article-recs"><span class="rec-label">SB:</span> <span class="rec-badge rec-approve">Approve</span><span class="rec-label" style="margin-left:.2rem">FinCom:</span> <span class="rec-badge rec-approve">Approve</span></div>
+    <button class="full-text-btn" data-key="10">Full text</button>
+  </td>
+  <td><span class="cat-badge cat-financial">Financial</span></td>
+  <td class="amount-col"><span class="amount-value">$100,000</span></td>
+</tr>
+            <tr data-category="Capital">
+  <td><span class="article-num">Art. 11</span></td>
+  <td>
+    <div class="article-title">Capital Stabilization Transfer: McGovern School Roof Replacement</div>
+    <div class="article-summary">Transfers funds from the Capital Stabilization Fund for design, engineering, and construction of the McGovern Elementary School roof (amount TBD).</div>
+    <div class="article-recs"><span class="rec-label">SB:</span> <span class="rec-badge rec-approve">Approve</span><span class="rec-label" style="margin-left:.2rem">FinCom:</span> <span class="rec-badge rec-tbd">TBD</span></div>
+    <button class="full-text-btn" data-key="11">Full text</button>
+  </td>
+  <td><span class="cat-badge cat-capital">Capital</span></td>
+  <td class="amount-col"><span class="amount-tbd">TBD</span></td>
+</tr>
+            <tr data-category="Capital" data-amount="85500">
+  <td><span class="article-num">Art. 12</span></td>
+  <td>
+    <div class="article-title">Field Stabilization Transfer: Hanlon Track & Field Design</div>
+    <div class="article-summary">Transfers $85,500 from the Field Stabilization Fund to fund design and engineering for the Hanlon track and field replacement.</div>
+    <div class="article-recs"><span class="rec-label">SB:</span> <span class="rec-badge rec-approve">Approve</span><span class="rec-label" style="margin-left:.2rem">FinCom:</span> <span class="rec-badge rec-approve">Approve</span></div>
+    <button class="full-text-btn" data-key="12">Full text</button>
+  </td>
+  <td><span class="cat-badge cat-capital">Capital</span></td>
+  <td class="amount-col"><span class="amount-value">$85,500</span></td>
+</tr>
+            <tr data-category="Capital" data-amount="250000">
+  <td><span class="article-num">Art. 13</span></td>
+  <td>
+    <div class="article-title">Water and Sewer Enterprise: Asset Management Plan</div>
+    <div class="article-summary">Appropriates $250,000 for a water, wastewater, and stormwater asset management plan, including matching funds for a MassDEP grant.</div>
+    <div class="article-recs"><span class="rec-label">SB:</span> <span class="rec-badge rec-approve">Approve</span><span class="rec-label" style="margin-left:.2rem">FinCom:</span> <span class="rec-badge rec-approve">Approve</span></div>
+    <button class="full-text-btn" data-key="13">Full text</button>
+  </td>
+  <td><span class="cat-badge cat-capital">Capital</span></td>
+  <td class="amount-col"><span class="amount-value">$250,000</span></td>
+</tr>
+            <tr data-category="Capital" data-amount="6000">
+  <td><span class="article-num">Art. 14</span></td>
+  <td>
+    <div class="article-title">Transfer from Ambulance Receipts to Capital Items</div>
+    <div class="article-summary">Transfers $6,000 from Ambulance Receipts for the purchase of CPR mannequins with feedback capability.</div>
+    <div class="article-recs"><span class="rec-label">SB:</span> <span class="rec-badge rec-approve">Approve</span><span class="rec-label" style="margin-left:.2rem">FinCom:</span> <span class="rec-badge rec-approve">Approve</span></div>
+    <button class="full-text-btn" data-key="14">Full text</button>
+  </td>
+  <td><span class="cat-badge cat-capital">Capital</span></td>
+  <td class="amount-col"><span class="amount-value">$6,000</span></td>
+</tr>
+            <tr data-category="CPA/Open Space" data-amount="513275">
+  <td><span class="article-num">Art. 15</span></td>
+  <td>
+    <div class="article-title">Appropriation: Community Preservation Committee</div>
+    <div class="article-summary">Approves the CPA FY2024 budget of $513,275 for administration, debt service, affordable housing, historic resources (Gravestone Restoration $60,000, Signs $4,000), and 50 Winthrop St Survey ($4,500).</div>
+    <div class="article-recs"><span class="rec-label">SB:</span> <span class="rec-badge rec-approve">Approve</span><span class="rec-label" style="margin-left:.2rem">FinCom:</span> <span class="rec-badge rec-approve">Approve</span></div>
+    <button class="full-text-btn" data-key="15">Full text</button>
+  </td>
+  <td><span class="cat-badge cat-cpa">CPA/Open Space</span></td>
+  <td class="amount-col"><span class="amount-value">$513,275</span></td>
+</tr>
+            <tr data-category="Administrative">
+  <td><span class="article-num">Art. 16</span></td>
+  <td>
+    <div class="article-title">Revolving Funds: Authorize FY24 Spending Limits</div>
+    <div class="article-summary">Sets FY2024 spending limits for revolving funds: parks/rec ($490,000), senior transportation ($130,000), library printer ($3,000), library meeting room ($1,000), Thayer Homestead ($95,000), tobacco compliance ($2,500).</div>
+    <div class="article-recs"><span class="rec-label">SB:</span> <span class="rec-badge rec-approve">Approve</span><span class="rec-label" style="margin-left:.2rem">FinCom:</span> <span class="rec-badge rec-approve">Approve</span></div>
+    <button class="full-text-btn" data-key="16">Full text</button>
+  </td>
+  <td><span class="cat-badge cat-admin">Administrative</span></td>
+  <td class="amount-col"><span class="amount-na">—</span></td>
+</tr>
+            <tr data-category="Zoning">
+  <td><span class="article-num">Art. 17</span></td>
+  <td>
+    <div class="article-title">Amend Zoning Bylaws: Central Business District Affordability</div>
+    <div class="article-summary">Allows the Planning Board to grant a special permit for a lower affordable housing percentage (min. 10%) in CBD mixed-use developments where required set-asides exceed 10%, when the project provides community benefits.</div>
+    <div class="article-recs"><span class="rec-label">SB:</span> <span class="rec-badge rec-approve">Approve</span><span class="rec-label" style="margin-left:.2rem">FinCom:</span> <span class="rec-badge rec-approve">Approve</span></div>
+    <button class="full-text-btn" data-key="17">Full text</button>
+  </td>
+  <td><span class="cat-badge cat-zoning">Zoning</span></td>
+  <td class="amount-col"><span class="amount-na">—</span></td>
+</tr>
+            <tr data-category="Zoning">
+  <td><span class="article-num">Art. 18</span></td>
+  <td>
+    <div class="article-title">Amend Zoning Bylaws: Electric Vehicle Parking</div>
+    <div class="article-summary">Adds EV, EV Ready Space, and EVSE definitions; requires EV charging stations in commercial/multi-family developments with 15+ spaces on a graduated scale; requires EV Ready spaces per the 2023 Stretch Code.</div>
+    <div class="article-recs"><span class="rec-label">SB:</span> <span class="rec-badge rec-approve">Approve</span><span class="rec-label" style="margin-left:.2rem">FinCom:</span> <span class="rec-badge rec-approve">Approve</span></div>
+    <button class="full-text-btn" data-key="18">Full text</button>
+  </td>
+  <td><span class="cat-badge cat-zoning">Zoning</span></td>
+  <td class="amount-col"><span class="amount-na">—</span></td>
+</tr>
+            <tr data-category="Zoning">
+  <td><span class="article-num">Art. 19</span></td>
+  <td>
+    <div class="article-title">Amend Zoning Bylaws: Oak Grove and Central Business District</div>
+    <div class="article-summary">Updates dimensional standards for rowhouse, mixed-use, and commercial building types in the Oak Grove Park District; removes the Rowhouse on Separate Lot option from the Central Business District.</div>
+    <div class="article-recs"><span class="rec-label">SB:</span> <span class="rec-badge rec-approve">Approve</span><span class="rec-label" style="margin-left:.2rem">FinCom:</span> <span class="rec-badge rec-approve">Approve</span></div>
+    <button class="full-text-btn" data-key="19">Full text</button>
+  </td>
+  <td><span class="cat-badge cat-zoning">Zoning</span></td>
+  <td class="amount-col"><span class="amount-na">—</span></td>
+</tr>
+            <tr data-category="Zoning">
+  <td><span class="article-num">Art. 20</span></td>
+  <td>
+    <div class="article-title">Amend Zoning Bylaws: Dimensional Regulations</div>
+    <div class="article-summary">Adds a 'Footprint' definition; allows steps, porches (≤30 sq ft), eaves, and cornices to project into setbacks; clarifies that accessory building footprint is compared to the principal building's footprint.</div>
+    <div class="article-recs"><span class="rec-label">SB:</span> <span class="rec-badge rec-approve">Approve</span><span class="rec-label" style="margin-left:.2rem">FinCom:</span> <span class="rec-badge rec-approve">Approve</span></div>
+    <button class="full-text-btn" data-key="20">Full text</button>
+  </td>
+  <td><span class="cat-badge cat-zoning">Zoning</span></td>
+  <td class="amount-col"><span class="amount-na">—</span></td>
+</tr>
+            <tr data-category="Zoning">
+  <td><span class="article-num">Art. 21</span></td>
+  <td>
+    <div class="article-title">Amend Zoning Bylaws: Create Agricultural Residential III District</div>
+    <div class="article-summary">Creates a new AR-III zoning district (10,000 sq ft min lot) and re-zones parcels on approximately 15 streets — Gorwin Drive, Karen Avenue, Main Street, and others — from their current districts to AR-III.</div>
+    <div class="article-recs"><span class="rec-label">SB:</span> <span class="rec-badge rec-approve">Approve</span><span class="rec-label" style="margin-left:.2rem">FinCom:</span> <span class="rec-badge rec-approve">Approve</span></div>
+    <button class="full-text-btn" data-key="21">Full text</button>
+  </td>
+  <td><span class="cat-badge cat-zoning">Zoning</span></td>
+  <td class="amount-col"><span class="amount-na">—</span></td>
+</tr>
+            <tr data-category="Zoning">
+  <td><span class="article-num">Art. 22</span></td>
+  <td>
+    <div class="article-title">Amend Zoning Bylaws: Groundwater Protection — Metal Roofs</div>
+    <div class="article-summary">Prohibits installation of certain metal roofs within the Groundwater Protection Overlay District unless they meet stormwater pollution-prevention standards; exempts roofs of 200 sq ft or less.</div>
+    <div class="article-recs"><span class="rec-label">SB:</span> <span class="rec-badge rec-approve">Approve</span><span class="rec-label" style="margin-left:.2rem">FinCom:</span> <span class="rec-badge rec-approve">Approve</span></div>
+    <button class="full-text-btn" data-key="22">Full text</button>
+  </td>
+  <td><span class="cat-badge cat-zoning">Zoning</span></td>
+  <td class="amount-col"><span class="amount-na">—</span></td>
+</tr>
+            <tr data-category="Zoning">
+  <td><span class="article-num">Art. 23</span></td>
+  <td>
+    <div class="article-title">Amend Zoning Bylaws: Housekeeping</div>
+    <div class="article-summary">Replaces 'Town Administrator' with 'Town Manager' throughout; updates the director title; removes Host Community Agreement requirements for marijuana facilities; clarifies sidewalk payment-in-lieu obligations.</div>
+    <div class="article-recs"><span class="rec-label">SB:</span> <span class="rec-badge rec-approve">Approve</span><span class="rec-label" style="margin-left:.2rem">FinCom:</span> <span class="rec-badge rec-approve">Approve</span></div>
+    <button class="full-text-btn" data-key="23">Full text</button>
+  </td>
+  <td><span class="cat-badge cat-zoning">Zoning</span></td>
+  <td class="amount-col"><span class="amount-na">—</span></td>
+</tr>
+            <tr data-category="Zoning">
+  <td><span class="article-num">Art. 24</span></td>
+  <td>
+    <div class="article-title">Amend Zoning Bylaws: Home Based Businesses</div>
+    <div class="article-summary">Reorganizes and updates the Home-Based Business bylaw — clarifies definitions, parking and setback requirements for commercial vehicles, delivery hours (8am–8pm), and adds owner-occupancy and registration requirements.</div>
+    <div class="article-recs"><span class="rec-label">SB:</span> <span class="rec-badge rec-approve">Approve</span><span class="rec-label" style="margin-left:.2rem">FinCom:</span> <span class="rec-badge rec-tbd">TBD</span></div>
+    <button class="full-text-btn" data-key="24">Full text</button>
+  </td>
+  <td><span class="cat-badge cat-zoning">Zoning</span></td>
+  <td class="amount-col"><span class="amount-na">—</span></td>
+</tr>
+            <tr data-category="Zoning">
+  <td><span class="article-num">Art. 25</span></td>
+  <td>
+    <div class="article-title">Amend Zoning Bylaws: Construction Contracting Services Use</div>
+    <div class="article-summary">Adds 'Construction Contracting Services' as a defined use allowed by-right in Business and Industrial districts and by special permit in commercial districts, with all equipment and materials stored indoors.</div>
+    <div class="article-recs"><span class="rec-label">SB:</span> <span class="rec-badge rec-approve">Approve</span><span class="rec-label" style="margin-left:.2rem">FinCom:</span> <span class="rec-badge rec-approve">Approve</span></div>
+    <button class="full-text-btn" data-key="25">Full text</button>
+  </td>
+  <td><span class="cat-badge cat-zoning">Zoning</span></td>
+  <td class="amount-col"><span class="amount-na">—</span></td>
+</tr>
+            <tr data-category="Zoning">
+  <td><span class="article-num">Art. 26</span></td>
+  <td>
+    <div class="article-title">Amend Zoning Bylaws: Solar — Herbicides and Battery Storage</div>
+    <div class="article-summary">Prohibits herbicides/pesticides for vegetation management at ground-mounted solar installations; expands the definition of 'Ground-Mounted Solar Electric Installation' to include incidental battery storage.</div>
+    <div class="article-recs"><span class="rec-label">SB:</span> <span class="rec-badge rec-approve">Approve</span><span class="rec-label" style="margin-left:.2rem">FinCom:</span> <span class="rec-badge rec-approve">Approve</span></div>
+    <button class="full-text-btn" data-key="26">Full text</button>
+  </td>
+  <td><span class="cat-badge cat-zoning">Zoning</span></td>
+  <td class="amount-col"><span class="amount-na">—</span></td>
+</tr>
+            <tr data-category="General Bylaws">
+  <td><span class="article-num">Art. 27</span></td>
+  <td>
+    <div class="article-title">Amend General Bylaws: Minor Clerical Changes</div>
+    <div class="article-summary">Makes clerical, grammatical, and limited substantive changes to the General Bylaws to align with the Charter and state law, per the Bylaw Review Committee report.</div>
+    <div class="article-recs"><span class="rec-label">SB:</span> <span class="rec-badge rec-approve">Approve</span><span class="rec-label" style="margin-left:.2rem">FinCom:</span> <span class="rec-badge rec-approve">Approve</span></div>
+    <button class="full-text-btn" data-key="27">Full text</button>
+  </td>
+  <td><span class="cat-badge cat-bylaws">General Bylaws</span></td>
+  <td class="amount-col"><span class="amount-na">—</span></td>
+</tr>
+            <tr data-category="General Bylaws">
+  <td><span class="article-num">Art. 28</span></td>
+  <td>
+    <div class="article-title">Amend General Bylaws: Fire Department</div>
+    <div class="article-summary">Updates the Fire Department bylaw — replaces 'Administrator' with 'Manager,' renames Fire Dispatch, requires key access boxes for central-monitored buildings, sets new fines for alarm malfunctions.</div>
+    <div class="article-recs"><span class="rec-label">SB:</span> <span class="rec-badge rec-approve">Approve</span><span class="rec-label" style="margin-left:.2rem">FinCom:</span> <span class="rec-badge rec-approve">Approve</span></div>
+    <button class="full-text-btn" data-key="28">Full text</button>
+  </td>
+  <td><span class="cat-badge cat-bylaws">General Bylaws</span></td>
+  <td class="amount-col"><span class="amount-na">—</span></td>
+</tr>
+            <tr data-category="General Bylaws">
+  <td><span class="article-num">Art. 29</span></td>
+  <td>
+    <div class="article-title">Amend General Bylaws: Repairs to Private Ways</div>
+    <div class="article-summary">Clarifies the petition process for private way repairs, removes the betterment assessment prohibition, revises minimum footage thresholds, and drops the requirement for 100% abutter consent.</div>
+    <div class="article-recs"><span class="rec-label">SB:</span> <span class="rec-badge rec-approve">Approve</span><span class="rec-label" style="margin-left:.2rem">FinCom:</span> <span class="rec-badge rec-approve">Approve</span></div>
+    <button class="full-text-btn" data-key="29">Full text</button>
+  </td>
+  <td><span class="cat-badge cat-bylaws">General Bylaws</span></td>
+  <td class="amount-col"><span class="amount-na">—</span></td>
+</tr>
+            <tr data-category="General Bylaws">
+  <td><span class="article-num">Art. 30</span></td>
+  <td>
+    <div class="article-title">Amend General Bylaws: Fire Lanes</div>
+    <div class="article-summary">Replaces the Fire Lanes bylaw in its entirety with updated language reflecting current requirements and enforcement procedures.</div>
+    <div class="article-recs"><span class="rec-label">SB:</span> <span class="rec-badge rec-approve">Approve</span><span class="rec-label" style="margin-left:.2rem">FinCom:</span> <span class="rec-badge rec-approve">Approve</span></div>
+    <button class="full-text-btn" data-key="30">Full text</button>
+  </td>
+  <td><span class="cat-badge cat-bylaws">General Bylaws</span></td>
+  <td class="amount-col"><span class="amount-na">—</span></td>
+</tr>
+            <tr data-category="General Bylaws">
+  <td><span class="article-num">Art. 31</span></td>
+  <td>
+    <div class="article-title">Amend General Bylaws: Roadway Access</div>
+    <div class="article-summary">Requires concrete or asphalt for commercial, industrial, and residential driveway aprons; expressly prohibits placement of basketball equipment and similar items in the public way.</div>
+    <div class="article-recs"><span class="rec-label">SB:</span> <span class="rec-badge rec-approve">Approve</span><span class="rec-label" style="margin-left:.2rem">FinCom:</span> <span class="rec-badge rec-approve">Approve</span></div>
+    <button class="full-text-btn" data-key="31">Full text</button>
+  </td>
+  <td><span class="cat-badge cat-bylaws">General Bylaws</span></td>
+  <td class="amount-col"><span class="amount-na">—</span></td>
+</tr>
+            <tr data-category="General Bylaws">
+  <td><span class="article-num">Art. 32</span></td>
+  <td>
+    <div class="article-title">Amend General Bylaws: Dog Bylaw</div>
+    <div class="article-summary">Replaces the dog bylaw entirely with updated provisions covering licensing, updated fees, leash requirements, waste removal, nuisance/dangerous dog procedures, and non-criminal fines.</div>
+    <div class="article-recs"><span class="rec-label">SB:</span> <span class="rec-badge rec-approve">Approve</span><span class="rec-label" style="margin-left:.2rem">FinCom:</span> <span class="rec-badge rec-approve">Approve</span></div>
+    <button class="full-text-btn" data-key="32">Full text</button>
+  </td>
+  <td><span class="cat-badge cat-bylaws">General Bylaws</span></td>
+  <td class="amount-col"><span class="amount-na">—</span></td>
+</tr>
+            <tr data-category="General Bylaws">
+  <td><span class="article-num">Art. 33</span></td>
+  <td>
+    <div class="article-title">Amend General Bylaws: Underground Fuel and Chemical Storage Tanks</div>
+    <div class="article-summary">Strengthens the underground storage tank bylaw — adds Fire Department as enforcer, updates hazardous material definitions, requires new systems to meet current specifications, mandates periodic leak testing.</div>
+    <div class="article-recs"><span class="rec-label">SB:</span> <span class="rec-badge rec-approve">Approve</span><span class="rec-label" style="margin-left:.2rem">FinCom:</span> <span class="rec-badge rec-approve">Approve</span></div>
+    <button class="full-text-btn" data-key="33">Full text</button>
+  </td>
+  <td><span class="cat-badge cat-bylaws">General Bylaws</span></td>
+  <td class="amount-col"><span class="amount-na">—</span></td>
+</tr>
+            <tr data-category="General Bylaws">
+  <td><span class="article-num">Art. 34</span></td>
+  <td>
+    <div class="article-title">Amend General Bylaws: Town Clerk Fees</div>
+    <div class="article-summary">Updates the Town Clerk fee schedule as set forth in the Bylaw Review Committee report on file with the Town Clerk.</div>
+    <div class="article-recs"><span class="rec-label">SB:</span> <span class="rec-badge rec-approve">Approve</span><span class="rec-label" style="margin-left:.2rem">FinCom:</span> <span class="rec-badge rec-approve">Approve</span></div>
+    <button class="full-text-btn" data-key="34">Full text</button>
+  </td>
+  <td><span class="cat-badge cat-bylaws">General Bylaws</span></td>
+  <td class="amount-col"><span class="amount-na">—</span></td>
+</tr>
+            <tr data-category="General Bylaws">
+  <td><span class="article-num">Art. 35</span></td>
+  <td>
+    <div class="article-title">Amend General Bylaws: Delete Audit Committee Article</div>
+    <div class="article-summary">Deletes Article XIX Audit Committee from the General Bylaws in its entirety.</div>
+    <div class="article-recs"><span class="rec-label">SB:</span> <span class="rec-badge rec-approve">Approve</span><span class="rec-label" style="margin-left:.2rem">FinCom:</span> <span class="rec-badge rec-approve">Approve</span></div>
+    <button class="full-text-btn" data-key="35">Full text</button>
+  </td>
+  <td><span class="cat-badge cat-bylaws">General Bylaws</span></td>
+  <td class="amount-col"><span class="amount-na">—</span></td>
+</tr>
+            <tr data-category="General Bylaws">
+  <td><span class="article-num">Art. 36</span></td>
+  <td>
+    <div class="article-title">Amend General Bylaws: Delete Town Administrator Article</div>
+    <div class="article-summary">Deletes Article XXIII Town Administrator from the General Bylaws in its entirety, reflecting the transition to Town Manager under the new charter.</div>
+    <div class="article-recs"><span class="rec-label">SB:</span> <span class="rec-badge rec-approve">Approve</span><span class="rec-label" style="margin-left:.2rem">FinCom:</span> <span class="rec-badge rec-approve">Approve</span></div>
+    <button class="full-text-btn" data-key="36">Full text</button>
+  </td>
+  <td><span class="cat-badge cat-bylaws">General Bylaws</span></td>
+  <td class="amount-col"><span class="amount-na">—</span></td>
+</tr>
+            <tr data-category="General Bylaws">
+  <td><span class="article-num">Art. 37</span></td>
+  <td>
+    <div class="article-title">Amend General Bylaws: Water Use Restrictions</div>
+    <div class="article-summary">Updates the Water Use Restrictions bylaw — removes redundant language, replaces the Water and Sewer Commission with the Select Board, consolidates outdoor ban provisions, and clarifies irrigation system liability in public rights-of-way.</div>
+    <div class="article-recs"><span class="rec-label">SB:</span> <span class="rec-badge rec-approve">Approve</span><span class="rec-label" style="margin-left:.2rem">FinCom:</span> <span class="rec-badge rec-approve">Approve</span></div>
+    <button class="full-text-btn" data-key="37">Full text</button>
+  </td>
+  <td><span class="cat-badge cat-bylaws">General Bylaws</span></td>
+  <td class="amount-col"><span class="amount-na">—</span></td>
+</tr>
+            <tr data-category="Citizens' Petition">
+  <td><span class="article-num">Art. 38</span></td>
+  <td>
+    <div class="article-title">Citizens' Petition: Change Columbus Day to Indigenous Peoples' Day</div>
+    <div class="article-summary">Citizens' petition to rename Columbus Day to 'Indigenous Peoples' Day' on all Town calendars, notices, and media to honor Indigenous Peoples. Select Board recommended Disapprove; Finance Committee issued no recommendation.</div>
+    <div class="article-recs"><span class="rec-label">SB:</span> <span class="rec-badge rec-disapprove">Disapprove</span><span class="rec-label" style="margin-left:.2rem">FinCom:</span> <span class="rec-na">—</span></div>
+    <button class="full-text-btn" data-key="38">Full text</button>
+  </td>
+  <td><span class="cat-badge cat-petition">Citizens' Petition</span></td>
+  <td class="amount-col"><span class="amount-na">—</span></td>
+</tr>
+          </tbody>
+        </table>
+        <div class="no-results" id="no-results" style="display:none">No articles match this filter.</div>
+      </div>
+    </div>
+
+    <div class="page-footer">
+      Source: Town of Medway Warrant &nbsp;·&nbsp; May 8, 2023<br>
+      <span style="font-size:.7rem;opacity:.8;">Content produced with AI assistance and reviewed for accuracy, but not 100% independently verified. Consult official town documents for authoritative information.</span>
+    </div>
+  </div>
+
+  <!-- Modal -->
+  <div id="article-modal">
+    <div class="modal-backdrop" onclick="closeModal()"></div>
+    <div class="modal-card">
+      <button class="modal-close" onclick="closeModal()">✕</button>
+      <div class="modal-header">
+        <div class="modal-eyebrow" id="modal-eyebrow"></div>
+        <div class="modal-title"  id="modal-title"></div>
+      </div>
+      <div class="modal-body">
+        <div class="modal-recs" id="modal-recs"></div>
+        <pre id="modal-text"></pre>
+      </div>
+    </div>
+  </div>
+
+  <script>
+  const articleData = {"1": {"title": "Debt Stabilization Fund Transfer", "text": "To see if the Town will vote to transfer the sum of $75,000 from the Debt Stabilization Fund to the Fiscal Year 2024 operating budget for the purpose of offsetting a portion of debt exclusion projects, or act in any manner relating thereto.", "sb": "Approve", "fc": "Approve"}, "2": {"title": "Transfer from Ambulance Receipts to General Fund", "text": "To see if the Town will vote to transfer $750,000 from Ambulance Receipts Reserved for Appropriation to the Fiscal Year 2024 General Fund Operating Budget, or act in any manner relating thereto.", "sb": "Approve", "fc": "Approve"}, "3": {"title": "Appropriation: FY24 Operating Budget", "text": "To see if the Town will vote to fix the salary and compensation of all elected officers of the Town, provide for a Reserve Fund, and determine what sums of money the Town will raise and appropriate, including appropriation from available funds, to defray charges and expenses of the Town including debt and interest, for the Fiscal Year ending June 30, 2024, or act in any manner relating thereto.", "sb": "Approve", "fc": "Approve"}, "4": {"title": "Appropriation: FY24 Water Enterprise Fund", "text": "To see if the Town will vote to raise and appropriate or transfer from available funds the sum of $5,037,397 for the maintenance of the Water Department Enterprise Fund (Salaries $970,996 / Expenses $702,900 / Debt $2,888,513 / Indirect $474,988), funded by user fees ($4,650,000) and retained earnings ($387,397), or act in any manner relating thereto.", "sb": "Approve", "fc": "Approve"}, "5": {"title": "Appropriation: FY24 Sewer Enterprise Fund", "text": "To see if the Town will vote to raise and appropriate or transfer from available funds the sum of $1,951,368 for the maintenance of the Sewer Department Enterprise Fund (Salaries $270,511 / Expenses $1,288,550 / Debt $232,706 / Indirect $159,601), funded by user fees ($1,930,105) and sewer betterment transfer ($21,263), or act in any manner relating thereto.", "sb": "Approve", "fc": "Approve"}, "6": {"title": "Appropriation: FY24 Solid Waste Enterprise Fund", "text": "To see if the Town will vote to raise and appropriate or transfer from available funds the sum of $1,928,455 to operate the Solid Waste/Recycling Department Enterprise Fund (Salaries $215,212 / Expenses $1,526,000 / Debt $50,056 / Indirect $137,187), funded by trash/recycling fees ($1,570,000) and retained earnings ($358,455), or act in any manner relating thereto.", "sb": "Approve", "fc": "Approve"}, "7": {"title": "Free Cash Appropriation: Capital and Other Items", "text": "To see if the Town will vote to appropriate the sum of $2,739,311 from Certified Free Cash for capital and other items, including: Emergency Communications Equipment ($29,274), Ballistic Vests ($37,576), ECW Replacement ($30,666), Technology Equipment ($75,000), Infrastructure Equipment ($50,000), Roads and Sidewalks ($750,000), Replace 2005 International ($210,000), Replace Wacker Loader ($134,400), Bridge Asset Management ($70,000), Replace 2001 International ($152,400), Garage Roof Repair Community Farm ($5,000), Irrigation Well Study ($58,200), Replace Brush 2 ($97,000), Library Parking Lot Curb ($30,000), Library Flagstone ($30,000), Door Replacement Senior Center ($39,630), Replace HS Water Heater ($135,700), Middle School Library Upgrades ($50,000), McGovern Tile Abatement ($178,320), Chimney Stack Memorial School ($5,000), Police/Fire/Town Hall Feasibility Study ($85,000), Musical Equipment HS ($24,000), and others, or act in any manner relating thereto.", "sb": "Approve", "fc": "Approve"}, "8": {"title": "Raise & Appropriate: Roads & Sidewalks", "text": "To see if the Town will vote to raise and appropriate the sum of $800,000 for the purposes of making repairs to various roads, sidewalks, bridges and related appurtenances, and to fund, as needed, design, engineering, and construction management services, and for the payment of all other costs incidental and related thereto, or act in any manner relating thereto.", "sb": "Approve", "fc": "Approve"}, "9": {"title": "Appropriation: OPEB Trust", "text": "To see if the Town will vote to raise and appropriate the sum of $300,000 to the Town of Medway Other Post-Employment Benefits (OPEB) Trust account, or act in any manner relating thereto.", "sb": "Approve", "fc": "Approve"}, "10": {"title": "Appropriation: General Stabilization", "text": "To see if the Town will vote to raise and appropriate or transfer from available funds the sum of $100,000 to be allocated to the General Stabilization Fund, or act in any manner relating thereto.", "sb": "Approve", "fc": "Approve"}, "11": {"title": "Capital Stabilization Transfer: McGovern School Roof Replacement", "text": "To see if the Town will vote to transfer a sum of money from the Capital Stabilization Fund for the purpose of design, engineering, and construction of the McGovern Elementary School roof, and for the payment of all other costs incidental and related thereto, or act in any manner relating thereto.", "sb": "Approve", "fc": "To Be Determined"}, "12": {"title": "Field Stabilization Transfer: Hanlon Track & Field Design", "text": "To see if the Town will vote to transfer $85,500 from the Field Stabilization Fund for the purpose of funding design and engineering services for the replacement of the Hanlon track and field, and for the payment of all other costs incidental and related thereto, or act in any manner relating thereto.", "sb": "Approve", "fc": "Approve"}, "13": {"title": "Water and Sewer Enterprise: Asset Management Plan", "text": "To see if the Town will vote to raise and appropriate, borrow or transfer from available funds the sum of $250,000 for the purpose of completing a water, wastewater, and stormwater asset management plan, including to provide matching funds for a reimbursable grant from the Massachusetts Department of Environmental Protection, and to authorize acceptance of the full amount of said grant, or act in any manner relating thereto.", "sb": "Approve", "fc": "Approve"}, "14": {"title": "Transfer from Ambulance Receipts to Capital Items", "text": "To see if the Town will vote to transfer from Ambulance Receipts Reserved for Appropriation the sum of $6,000 for the purchase of CPR mannequins with feedback, and for the payment of all other costs incidental and related thereto, or act in any manner relating thereto.", "sb": "Approve", "fc": "Approve"}, "15": {"title": "Appropriation: Community Preservation Committee", "text": "To see if the Town will vote to act on the report of the Community Preservation Committee for the Fiscal Year 2024 Community Preservation budget appropriating: CPC Expenses ($15,000), CPC Salaries ($5,000), CPC Debt Expense ($404,775), AH Trust Coordinator Salary ($10,000), AH Trust Expenses ($10,000), Gravestone Restoration Project ($60,000), Historic Property Signs ($4,000), and 50 Winthrop St Survey ($4,500); plus 10% reserves for open space, community housing, and historical preservation, or act in any manner relating thereto.", "sb": "Approve", "fc": "Approve"}, "16": {"title": "Revolving Funds: Authorize FY24 Spending Limits", "text": "To see if the Town will vote, pursuant to Massachusetts General Laws Chapter 44, Section 53E½, to set Fiscal Year 2024 spending limits for revolving funds: parks and recreation ($490,000), dial-a-ride/senior transportation ($130,000), library printer/copier/fax ($3,000), library meeting room ($1,000), Thayer Homestead ($95,000), and tobacco license compliance inspections ($2,500), or act in any manner relating thereto.", "sb": "Approve", "fc": "Approve"}, "17": {"title": "Amend Zoning Bylaws: Central Business District Affordability", "text": "To see if the Town will vote to amend the Zoning Bylaw, Section 10.3.D.6, to allow the Planning and Economic Development Board to grant a special permit providing for a lower percentage of affordable units (not less than 10%) than required by Section 8.6, where the required percentage exceeds 10%, if the Board finds the permit is in the best interests of the Town, provides additional design or community benefits, or integrates street-facing ground-floor non-residential uses along Main Street; the Decision Criteria in Section 3.4.C do not apply to such special permits, or act in any manner related thereto.", "sb": "Approve", "fc": "Approve"}, "18": {"title": "Amend Zoning Bylaws: Electric Vehicle Parking", "text": "To see if the Town will vote to amend the Zoning Bylaw by adding definitions for Electric Vehicle (EV), Electric Vehicle Ready Parking Space, and Electric Vehicle Supply Equipment (EVSE), and by updating Section 7.1.1.E.4 to require EV charging stations in commercial, industrial, municipal, and multi-family developments with 15 or more parking spaces on a graduated scale (1 space for 15–25 spaces up to 2% for over 500), and to require EV Ready spaces per 225 CMR Chapters 22 and 23, or act in any manner related thereto.", "sb": "Approve", "fc": "Approve"}, "19": {"title": "Amend Zoning Bylaws: Oak Grove and Central Business District", "text": "To see if the Town will vote to amend the Zoning Bylaw by amending Oak Grove Park Districts Tables 9.4.C.1.A through 9.4.C.1.C to update lot size minimums, frontage, setback, and design standards for rowhouse (on common lot: 3,000 SF min, 40 ft frontage), mixed-use, general commercial, fabrication/flex, and civic building types; and by removing the Rowhouse on Separate Lot option from Central Business District Section 10.4.C.1 and re-lettering remaining subsections, or act in any manner related thereto.", "sb": "Approve", "fc": "Approve"}, "20": {"title": "Amend Zoning Bylaws: Dimensional Regulations", "text": "To see if the Town will vote to amend the Zoning Bylaw by: (1) adding definition of 'Footprint' (land area covered by a structure at ground level) in Section 2; (2) adding Section 6.2.F.5 allowing steps, porches (not exceeding 30 sq ft), eaves, cornices, windowsills, and belt courses to project into required setbacks; and (3) amending Section 6.3.C so accessory building area comparison references the principal building's footprint, or act in any manner related thereto.", "sb": "Approve", "fc": "Approve"}, "21": {"title": "Amend Zoning Bylaws: Create Agricultural Residential III District", "text": "To see if the Town will vote to amend the Zoning Bylaw by creating an Agricultural Residential III (AR-III) district with a minimum lot area of 10,000 sq ft (or 30,000 in certain overlay circumstances), amending Table 1 and Table 2 to add AR-III column, and to rezone parcels on: Beatrice Lane, Carole Lane, Coffee Street, Douglas Street, Gorwin Drive, Holliston Street, Karen Avenue, Lee Lane, Main Street, Meryl Street, Richard Road, Robin Circle, Kenart Road, Koyview Place, and Kenney Drive, as shown on amended zoning maps, or act in any manner related thereto.", "sb": "Approve", "fc": "Approve"}, "22": {"title": "Amend Zoning Bylaws: Groundwater Protection — Metal Roofs", "text": "To see if the Town will vote to amend Zoning Bylaw Section 5.6.3.E.2 to prohibit installation of metal roofs (as defined in the Massachusetts Stormwater Handbook) on new or existing structures within Zone II or Interim Wellhead Protection Areas unless the roof meets specified pollution prevention measures for infiltration of runoff; this prohibition does not apply to roofs of 200 square feet or less, or act in any manner related thereto.", "sb": "Approve", "fc": "Approve"}, "23": {"title": "Amend Zoning Bylaws: Housekeeping", "text": "To see if the Town will vote to amend the Zoning Bylaw by: (1) changing 'Town Administrator' to 'Town Manager' throughout; (2) updating director title to 'Director, Community and Economic Development'; (3) deleting Host Community Agreement requirements for Registered Medical Marijuana and Recreational Marijuana facilities (Sections 8.9.O and 8.10.O); and (4) amending Section 3.5.4.I.3 to clarify that sidewalk construction may be fulfilled by construction elsewhere, payment-in-lieu, or a combination, or act in any manner related thereto.", "sb": "Approve", "fc": "Approve"}, "24": {"title": "Amend Zoning Bylaws: Home Based Businesses", "text": "To see if the Town will vote to amend Zoning Bylaw Section 8.3 Home Based Business to: reorganize and retitle sections; clarify that business use is subordinate (max 20% or 1,000 sq ft); prohibit outside storage; limit parking to 2 off-street spaces; restrict commercial vehicles to no more than 2 Class 3 vehicles and prohibit Class 4+; limit deliveries to 8am–8pm; require owner-occupancy; and add a reference to Business Certificate registration under G.L. c. 110, or act in any manner related thereto.", "sb": "Approve", "fc": "To Be Determined"}, "25": {"title": "Amend Zoning Bylaws: Construction Contracting Services Use", "text": "To see if the Town will vote to amend the Zoning Bylaw by adding a definition of 'Construction Contracting Services' and by allowing such uses by right in Business Industrial, West Industrial, East Industrial, and Oak Grove Business Park districts, and by special permit in the Central Business District, Neighborhood Commercial, and Village Commercial Districts (limited to 3 commercial vehicles in VC), prohibited in all other districts, or act in any manner related thereto.", "sb": "Approve", "fc": "Approve"}, "26": {"title": "Amend Zoning Bylaws: Solar — Herbicides and Battery Storage", "text": "To see if the Town will vote to amend Zoning Bylaw Section 8.11 by: (1) amending Section 8.11.G.3 to prohibit herbicides and pesticides for controlling vegetation or animals at ground-mounted solar installations except as preempted by state or federal law; and (2) expanding the definition in Section 8.11.B of 'Ground-Mounted Solar Electric Installation' to include batteries incidental and necessary for storage of solar energy generated by the installation, or act in any manner related thereto.", "sb": "Approve", "fc": "Approve"}, "27": {"title": "Amend General Bylaws: Minor Clerical Changes", "text": "To see if the Town will vote to amend the General Bylaws by making clerical, grammatical and other minor changes such as spelling or tense, and other limited substantive changes to bring the Bylaws into accord with the Charter and state law, with text to be inserted shown in bold and text to be deleted shown in strikethrough, all as set forth in the report of the Bylaw Review Committee on file with the Town Clerk, or act in any manner relating thereto.", "sb": "Approve", "fc": "Approve"}, "28": {"title": "Amend General Bylaws: Fire Department", "text": "To see if the Town will vote to amend the General Bylaws, Article III Fire Department, by deleting references to Town 'Administrator' and replacing with Town 'Manager'; replacing 'NED' with Medway Fire 'Dispatch'; inserting a section requiring key access boxes for buildings reporting to Fire Dispatch; inserting new fines for failing to provide required information to the Fire Chief; increasing fines for fire alarm malfunctions after the third occurrence; and codifying an exemption for panel trouble signals, or act in any manner relating thereto.", "sb": "Approve", "fc": "Approve"}, "29": {"title": "Amend General Bylaws: Repairs to Private Ways", "text": "To see if the Town will vote to amend the General Bylaws, Article X Repairs to Private Ways, clarifying the process for abutters to seek repairs to private ways, removing the prohibition against betterment assessments, revising the minimum linear footage abutters need to own to petition, and removing the requirement that 100% of immediate abutters must petition, or act in any manner relating thereto.", "sb": "Approve", "fc": "Approve"}, "30": {"title": "Amend General Bylaws: Fire Lanes", "text": "To see if the Town will vote to amend the General Bylaws, Article XI Fire Lanes, by deleting the text in its entirety and inserting a new section with updated language reflecting current fire lane requirements and circumstances, as set forth in the Bylaw Review Committee report on file with the Town Clerk, or act in any manner relating thereto.", "sb": "Approve", "fc": "Approve"}, "31": {"title": "Amend General Bylaws: Roadway Access", "text": "To see if the Town will vote to amend the General Bylaws, Article XII Section 12.9 Roadway Access, to require use of concrete or asphalt only for commercial, industrial and residential driveway aprons, and to expressly prohibit the placement of basketball and other equipment in the public way, or act in any manner relating thereto.", "sb": "Approve", "fc": "Approve"}, "32": {"title": "Amend General Bylaws: Dog Bylaw", "text": "To see if the Town will vote to amend the General Bylaws by deleting Section 12.16 Dog Bylaw, renumbering it as Section 13.16, and inserting a comprehensive new dog bylaw addressing: annual and kennel licensing with updated fees, prohibiting dogs from being unleashed onto others' property or Town public property, requiring prompt removal of dog feces, updating Animal Control Officer references, designating the Police Chief as hearing officer for nuisance/dangerous dog complaints, and establishing non-criminal disposition fines, or act in any manner relating thereto.", "sb": "Approve", "fc": "Approve"}, "33": {"title": "Amend General Bylaws: Underground Fuel and Chemical Storage Tanks", "text": "To see if the Town will vote to amend the General Bylaws, Article XIV Prevention of Leakage of Underground Fuel or Chemical Storage Tanks and Systems, by adding the Fire Department as an enforcing authority, updating the definition of Hazardous Material, mandating that new underground storage systems meet certain Fire Department and state regulatory specifications, and including periodic leak testing requirements, or act in any manner relating thereto.", "sb": "Approve", "fc": "Approve"}, "34": {"title": "Amend General Bylaws: Town Clerk Fees", "text": "To see if the Town will vote to amend the General Bylaws, Article XV Town Clerk Fees, to update the fee schedule as set forth in a document on file with the Town Clerk, as set forth in the report of the Bylaw Review Committee, or act in any manner relating thereto.", "sb": "Approve", "fc": "Approve"}, "35": {"title": "Amend General Bylaws: Delete Audit Committee Article", "text": "To see if the Town will vote to amend the General Bylaws by deleting Article XIX Audit Committee in its entirety, or act in any manner relating thereto.", "sb": "Approve", "fc": "Approve"}, "36": {"title": "Amend General Bylaws: Delete Town Administrator Article", "text": "To see if the Town will vote to amend the General Bylaws by deleting Article XXIII Town Administrator in its entirety, or act in any manner relating thereto.", "sb": "Approve", "fc": "Approve"}, "37": {"title": "Amend General Bylaws: Water Use Restrictions", "text": "To see if the Town will vote to amend the General Bylaws Article XXIV Water Use Restrictions by deleting repetitious language, replacing 'Town Water and Sewer Commission' with 'Select Board', consolidating two sections on activities prohibited during outdoor water bans, and clarifying that privately owned irrigation systems cannot be installed in public roadways or rights-of-way and that damage to such systems is the owner's responsibility, or act in any manner relating thereto.", "sb": "Approve", "fc": "Approve"}, "38": {"title": "Citizens' Petition: Change Columbus Day to Indigenous Peoples' Day", "text": "To see if the Town will vote to change the name on all town calendars, notices and announcements including all print or digital media distributed by Town Departments, Boards and Committees, of the federal and state holiday known as 'Columbus Day' to 'Indigenous Peoples' Day', falling annually on the second Monday in October. In naming this day, Medway commemorates the struggles, celebrates the resilience and contributions, and honors the wishes of the Indigenous Peoples who were the first inhabitants of these lands.\n\nCITIZENS' PETITION — Select Board recommended Disapprove. Finance Committee did not issue a recommendation.", "sb": "Disapprove", "fc": "—"}};
+
+  function openModal(key) {
+    const d = articleData[String(key)];
+    if (!d) return;
+    document.getElementById('modal-eyebrow').textContent = 'Article ' + key;
+    document.getElementById('modal-title').textContent   = d.title;
+    document.getElementById('modal-text').textContent    = d.text;
+    const recsEl = document.getElementById('modal-recs');
+    recsEl.innerHTML = recHtml('Select Board', d.sb) + recHtml('Finance Committee', d.fc);
+    document.getElementById('article-modal').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function recHtml(label, val) {
+    let cls = 'rec-na', txt = '—';
+    if      (val === 'Approve')               { cls = 'rec-approve';    txt = 'Approve'; }
+    else if (val === 'Disapprove')            { cls = 'rec-disapprove'; txt = 'Disapprove'; }
+    else if (val === 'Pass Over')             { cls = 'rec-pass';       txt = 'Pass Over'; }
+    else if (val === 'To Be Determined')      { cls = 'rec-tbd';        txt = 'TBD'; }
+    else if (val && val !== '—')              { cls = 'rec-tbd';        txt = val; }
+    return `<div><div class="modal-rec-label">${label}</div><span class="rec-badge ${cls}">${txt}</span></div>`;
+  }
+
+  function closeModal() {
+    document.getElementById('article-modal').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  document.querySelectorAll('.full-text-btn').forEach(btn => {
+    btn.addEventListener('click', e => { e.stopPropagation(); openModal(btn.dataset.key); });
+  });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+  // ── Filter ──────────────────────────────────────────────────────────────
+  document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const f = btn.dataset.filter;
+      let visible = 0;
+      document.querySelectorAll('#article-tbody tr').forEach(row => {
+        const show = f === 'all' || row.dataset.category === f;
+        row.classList.toggle('hidden', !show);
+        if (show) visible++;
+      });
+      document.getElementById('no-results').style.display = visible === 0 ? 'block' : 'none';
+    });
+  });
+
+  // ── Sort by amount ───────────────────────────────────────────────────────
+  let sortDir = null;
+  document.getElementById('amt-th').addEventListener('click', () => {
+    sortDir = sortDir !== 'asc' ? 'asc' : 'desc';
+    document.getElementById('amt-th').className = 'amount-col sortable sorted-' + sortDir;
+    const tbody = document.getElementById('article-tbody');
+    const rows  = [...tbody.querySelectorAll('tr')];
+    rows.sort((a, b) => {
+      const aA = parseFloat(a.dataset.amount), bA = parseFloat(b.dataset.amount);
+      if (isNaN(aA) && isNaN(bA)) return 0;
+      if (isNaN(aA)) return 1;
+      if (isNaN(bA)) return -1;
+      return sortDir === 'asc' ? aA - bA : bA - aA;
+    });
+    rows.forEach(r => tbody.appendChild(r));
+  });
+  </script>
+</body>
+</html>

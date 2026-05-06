@@ -1,0 +1,91 @@
+{
+  "meta": {
+    "meeting_type": "STM",
+    "date": "May 11, 2026",
+    "year": "2026",
+    "theme_id": "2026_stm",
+    "source_pdf": "Warrant_STM.pdf"
+  },
+  "articles": [
+    {
+      "num": 1,
+      "title": "Prior Year Bills",
+      "summary": "Transfers a small balance from the FY26 HR Pre-employment Physicals account to pay an outstanding prior-year bill of the Town.",
+      "category": "Financial",
+      "amount": 140,
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town will vote to transfer $140 from the Fiscal Year 2026 Human Resources Pre-employment Physicals Account for the purpose of paying prior year, unpaid bills of the Town, or act in any manner relating thereto."
+    },
+    {
+      "num": 2,
+      "title": "Free Cash Transfer: Snow and Ice Deficit",
+      "summary": "Covers the FY26 Snow &amp; Ice budget shortfall using Certified Free Cash \u2014 a routine action when a harsh winter exceeds the original appropriation.",
+      "category": "Financial",
+      "amount": 285000,
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town will vote to transfer $285,000 from Certified Free Cash for the purpose of funding the Snow & Ice Fiscal Year 2026 appropriation deficit, or act in any manner relating thereto."
+    },
+    {
+      "num": 3,
+      "title": "Free Cash Transfer: Assessors' Valuation Account",
+      "summary": "Transfers Free Cash to cover a funding gap in the Assessors' Annual Valuation Account used for property tax assessments.",
+      "category": "Financial",
+      "amount": 14600,
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town will vote to transfer $14,600 from Certified Free Cash for the purpose of funding the Assessors' Annual Valuation Account, or act in any manner relating thereto."
+    },
+    {
+      "num": 4,
+      "title": "Fund Record Digitization Project",
+      "summary": "Appropriates funds to digitize Town records for long-term preservation and public access, funded by Free Cash ($100K), Water Enterprise retained earnings ($50K), and Sewer Enterprise retained earnings ($50K).",
+      "category": "Technology",
+      "amount": 200000,
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town will vote to appropriate $200,000 for the purpose of preserving Town records through digitization, $100,000 to be funded from Certified Free Cash, $50,000 from Water Enterprise Retained Earnings, and $50,000 from Sewer Enterprise Retained Earnings, or act in any manner relating thereto."
+    },
+    {
+      "num": 5,
+      "title": "Sewer Enterprise Retained Earnings Transfer: Replace Vacuum Excavator",
+      "summary": "Transfers Sewer Enterprise retained earnings to replace an aging vacuum excavator used for sewer line maintenance and repair work.",
+      "category": "Capital / DPW",
+      "amount": 35000,
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town will vote to transfer from Sewer Enterprise Fund retained earnings the sum of $35,000 for the purpose of funding the replacement of a vacuum excavator and for the payment of all other incidental and related costs, or act in any manner relating thereto."
+    },
+    {
+      "num": 6,
+      "title": "Transfer 120 Main St Site Cleanup Balance to Capital Stabilization",
+      "summary": "Redirects $90,000 in leftover funds from a completed environmental site cleanup at 120 Main Street into the Town's new Capital Stabilization Fund.",
+      "category": "Financial",
+      "amount": 90000,
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town will vote to transfer the sum of $90,000 from the funds authorized under the prior Town Meeting Article as shown in Table 1 below, which amount is no longer needed for such purposes, to the Capital Stabilization Fund as shown in Table 2 below, or act in any manner relating thereto.\n\nTRANSFER FROM:\n  11/12/24 \u00b7 Article 3 \u00b7 120 Main St Environmental/Site Cleanup \u00b7 $90,000\n  Total: $90,000\n\nTRANSFER TO:\n  Capital Stabilization Fund \u00b7 $90,000\n  Total: $90,000"
+    },
+    {
+      "num": 7,
+      "title": "Repurpose Funds for Memorial School Roof to McGovern Bathroom Project, High School Air Quality Mitigation, and Balance to Capital Stabilization",
+      "summary": "Redirects unspent Memorial School Roof Replacement funds to: McGovern School bathroom upgrades ($223K), High School air quality mitigation ($40K), and Capital Stabilization ($92.4K).",
+      "category": "Schools",
+      "amount": 355426,
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town will vote to transfer the sum of $355,425.70 from the funds authorized under the prior Town Meeting Article as shown in Table 1 below, which amount is no longer needed for such purposes, to the projects and in the amounts listed in Table 2 below, or act in any manner relating thereto.\n\nTRANSFER FROM:\n  5/13/24 \u00b7 Article 12 \u00b7 Memorial School Roof Replacement \u00b7 $355,425.70\n  Total: $355,425.70\n\nTRANSFER TO:\n  5/12/25 Annual Art. 14 \u00b7 McGovern School Bathroom Upgrades \u00b7 $223,000.00\n  New \u00b7 High School Air Quality Mitigation \u00b7 $40,000.00\n  New \u00b7 Capital Stabilization Fund \u00b7 $92,425.70\n  Total: $355,425.70"
+    },
+    {
+      "num": 8,
+      "title": "Repurpose Monetary Articles: School Projects",
+      "summary": "Consolidates leftover balances from five completed school projects (track repair, cafeteria water heater, HVAC upgrades, sidewalks, facilities vehicle) into the High School Boiler replacement project.",
+      "category": "Schools",
+      "amount": 154780,
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town will vote to transfer the sum of $154,780 from the funds authorized under the prior Town Meeting Articles as shown in Table 1 below, which amounts are no longer needed for such purposes, to the project and in the amount listed in Table 2 below, or act in any manner relating thereto.\n\nTRANSFER FROM:\n  6/20/20 Annual Art. 7 \u00b7 High School Track Repair \u00b7 $32,660.29\n  5/8/23 Annual Art. 7 \u00b7 High School Cafeteria Water Heater \u00b7 $12,912.76\n  5/12/25 Special Art. 5 \u00b7 HVAC Upgrades \u00b7 $67,779.20\n  5/12/25 Annual Art. 10 \u00b7 School Sidewalks \u00b7 $41,265.00\n  5/12/25 Annual Art. 10 \u00b7 School Facilities Vehicle \u00b7 $162.75\n  Total: $154,780.00\n\nTRANSFER TO:\n  5/12/25 Annual Art. 15 \u00b7 High School Boiler \u00b7 $154,780.00"
+    }
+  ]
+}

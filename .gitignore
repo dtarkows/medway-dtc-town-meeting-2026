@@ -1,0 +1,15 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# LibreOffice lock / temp files
+.~lock.*
+*.tmp
+
+# Python
+__pycache__/
+*.py[cod]
+
+# Build tools (not needed for web hosting)
+tools/

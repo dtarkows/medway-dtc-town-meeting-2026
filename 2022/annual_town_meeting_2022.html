@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Medway Annual Town Meeting — May 9, 2022</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* ── Theme colors (injected per meeting) ─────────────────────────────── */
+    :root {
+      --g1:    #1a3850;
+      --g2:    #2b5c80;
+      --acc:   #2b5c80;
+      --light: #eef2f8;
+      --tbg:   #f0f4f8;
+      --tbo:   #b8ccdf;
+    }
+
+    /* ── Reset & base ─────────────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Inter', sans-serif; background: #eef2f7; color: #1a2e4a; min-height: 100vh; }
+
+    /* ── Header ───────────────────────────────────────────────────────────── */
+    .header {
+      background: linear-gradient(135deg, var(--g1) 0%, var(--g2) 100%);
+      color: white; padding: 2.5rem 2rem 2rem; text-align: center;
+    }
+    .back-link {
+      display: inline-flex; align-items: center; gap: .35rem;
+      font-size: .75rem; font-weight: 600; color: rgba(255,255,255,.7);
+      text-decoration: none; letter-spacing: .04em;
+      margin-bottom: 1rem; transition: color .15s;
+    }
+    .back-link::before { content: '←'; }
+    .back-link:hover { color: white; }
+    .eyebrow { font-size: .72rem; font-weight: 600; letter-spacing: .18em; text-transform: uppercase; opacity: .65; margin-bottom: .5rem; }
+    .header h1 { font-size: 1.9rem; font-weight: 700; margin-bottom: .4rem; }
+    .header .meta { font-size: .88rem; opacity: .75; }
+
+    /* ── Stats bar ────────────────────────────────────────────────────────── */
+    .stats-bar { display: flex; gap: 1rem; padding: 1.2rem 2rem; background: var(--light); justify-content: center; flex-wrap: wrap; }
+    .stat-card { text-align: center; padding: .5rem 1.2rem; }
+    .stat-card .label { font-size: .68rem; font-weight: 600; text-transform: uppercase; letter-spacing: .1em; color: var(--acc); opacity: .8; }
+    .stat-card .value { font-size: 1.4rem; font-weight: 700; color: var(--g1); }
+    .stat-card .sub   { font-size: .7rem; color: #7a8fa6; }
+
+    /* ── Controls ─────────────────────────────────────────────────────────── */
+    .container { max-width: 1100px; margin: 0 auto; padding: 1.5rem 1.5rem 4rem; }
+    .controls { margin-bottom: 1.25rem; }
+    .controls-label { font-size: .68rem; font-weight: 700; text-transform: uppercase; letter-spacing: .12em; color: #7a8fa6; margin-bottom: .6rem; }
+    .filter-buttons { display: flex; flex-wrap: wrap; gap: .45rem; }
+    .filter-btn {
+      padding: .3rem .85rem; border-radius: 999px; border: 1.5px solid #d0dae6;
+      background: white; font-family: inherit; font-size: .75rem; font-weight: 500;
+      color: #546475; cursor: pointer; transition: all .15s;
+    }
+    .filter-btn:hover  { border-color: var(--acc); color: var(--acc); }
+    .filter-btn.active { background: var(--acc); border-color: var(--acc); color: white; font-weight: 600; }
+
+    /* ── Table ────────────────────────────────────────────────────────────── */
+    .table-wrap  { background: white; border-radius: 14px; box-shadow: 0 1px 3px rgba(0,0,0,.07), 0 4px 12px rgba(0,0,0,.04); overflow: hidden; }
+    .table-scroll { overflow-x: auto; }
+    table  { width: 100%; border-collapse: collapse; }
+    thead  { background: var(--tbg); border-bottom: 2px solid var(--tbo); }
+    th     { padding: .75rem 1rem; text-align: left; font-size: .72rem; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--g1); white-space: nowrap; }
+    th.sortable { cursor: pointer; user-select: none; }
+    th.sortable:hover { color: var(--acc); }
+    th.sortable .sort-icon { margin-left: 4px; font-size: .7rem; opacity: .45; }
+    th.sorted-asc  .sort-icon, th.sorted-desc .sort-icon { opacity: 1; color: var(--acc); }
+    th.sorted-asc  .sort-icon::after { content: '▲'; }
+    th.sorted-desc .sort-icon::after { content: '▼'; }
+    th:not(.sorted-asc):not(.sorted-desc) .sort-icon::after { content: '⇅'; }
+    th.amount-col { text-align: right; }
+    td { padding: .9rem 1rem; vertical-align: top; border-bottom: 1px solid #edf2ef; font-size: .875rem; line-height: 1.55; }
+    tr:last-child td { border-bottom: none; }
+    tr:hover td { background: #fafcfb; }
+    tr.hidden { display: none; }
+
+    /* ── Article cell ─────────────────────────────────────────────────────── */
+    .article-num     { font-size: .78rem; font-weight: 700; color: var(--acc); white-space: nowrap; }
+    .article-title   { font-weight: 600; color: #1a2e4a; margin-bottom: .3rem; }
+    .article-summary { color: #546475; font-size: .82rem; line-height: 1.5; }
+    .article-recs    { display: flex; align-items: center; gap: .45rem; margin-top: .45rem; flex-wrap: wrap; }
+    .rec-label       { font-size: .7rem; font-weight: 600; color: #7a8fa6; white-space: nowrap; }
+    .full-text-btn {
+      display: inline-flex; align-items: center; gap: .3rem;
+      margin-top: .55rem; padding: 0; border: none; background: none;
+      font-family: inherit; font-size: .75rem; font-weight: 600;
+      color: var(--acc); cursor: pointer; opacity: .65; transition: opacity .15s, gap .15s;
+    }
+    .full-text-btn:hover { opacity: 1; gap: .45rem; }
+    .full-text-btn::after { content: '→'; }
+
+    /* ── Amount column ────────────────────────────────────────────────────── */
+    .amount-col   { text-align: right; }
+    .amount-value { font-weight: 700; color: var(--g1); font-variant-numeric: tabular-nums; white-space: nowrap; }
+    .amount-tbd   { color: #9aa8b8; font-style: italic; font-size: .82rem; }
+    .amount-na    { color: #b8c4ce; font-size: .82rem; }
+
+    /* ── Category badges ──────────────────────────────────────────────────── */
+    .cat-badge { display: inline-block; padding: .22rem .7rem; border-radius: 999px; font-size: .72rem; font-weight: 600; white-space: nowrap; }
+    .cat-budget    { background: #e8f5e3; color: #2a6a20; }
+    .cat-capital   { background: #e8eef9; color: #2a3a80; }
+    .cat-financial { background: #fff3e0; color: #a05000; }
+    .cat-enterprise{ background: #f3e8f9; color: #6a2a80; }
+    .cat-zoning    { background: #fce8e8; color: #a01818; }
+    .cat-bylaws    { background: #e8f5e3; color: #1a6a38; }
+    .cat-cpa       { background: #e8f9f5; color: #1a6a5a; }
+    .cat-admin     { background: #f0f0f0; color: #505050; }
+    .cat-energy    { background: #fffbe6; color: #806600; }
+    .cat-petition  { background: #f9f0e8; color: #804020; }
+    .cat-infra     { background: #e8f0f9; color: #204080; }
+
+    /* ── Recommendation badges ────────────────────────────────────────────── */
+    .rec-badge       { display: inline-block; padding: .2rem .55rem; border-radius: 999px; font-size: .72rem; font-weight: 600; white-space: nowrap; }
+    .rec-approve     { background: #e3f0e8; color: #1a6a2a; }
+    .rec-disapprove  { background: #fce8e8; color: #a01818; }
+    .rec-tbd         { background: #f0f0f0; color: #6a6a6a; }
+    .rec-pass        { background: #fff3e0; color: #a05000; }
+    .rec-na          { color: #aaa; font-style: italic; font-size: .82rem; }
+
+    .no-results  { text-align: center; padding: 3rem 2rem; color: #9aa8b8; font-size: .92rem; }
+    .page-footer { text-align: center; padding: 1.5rem 1rem; color: #9aa8b8; font-size: .75rem; }
+
+    /* ── Modal ────────────────────────────────────────────────────────────── */
+    #article-modal { display: none; position: fixed; inset: 0; z-index: 1000; align-items: center; justify-content: center; padding: 1rem; }
+    #article-modal.open { display: flex; }
+    .modal-backdrop { position: fixed; inset: 0; background: rgba(10,20,40,.55); backdrop-filter: blur(3px); }
+    .modal-card {
+      position: relative; z-index: 1; background: white; border-radius: 16px;
+      width: min(760px, 100%); max-height: min(84vh, 740px);
+      display: flex; flex-direction: column;
+      box-shadow: 0 24px 64px rgba(0,0,0,.28), 0 4px 16px rgba(0,0,0,.12);
+      animation: modalIn .2s ease;
+    }
+    @keyframes modalIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
+    .modal-close {
+      position: absolute; top: .9rem; right: 1rem; width: 32px; height: 32px;
+      border-radius: 50%; border: none; background: #f0f4f8; font-size: 1rem;
+      cursor: pointer; display: flex; align-items: center; justify-content: center; color: #546475;
+      transition: background .15s;
+    }
+    .modal-close:hover { background: #e0e8f0; }
+    .modal-header { padding: 1.5rem 2rem 1rem; border-bottom: 1px solid #edf2ef; }
+    .modal-eyebrow { font-size: .7rem; font-weight: 700; text-transform: uppercase; letter-spacing: .14em; color: var(--acc); margin-bottom: .4rem; }
+    .modal-title   { font-size: 1.1rem; font-weight: 700; color: #1a2e4a; line-height: 1.35; padding-right: 2rem; }
+    .modal-body    { padding: 1.25rem 2rem 1.5rem; overflow-y: auto; flex: 1; }
+    .modal-recs    { display: flex; gap: 1.5rem; margin-bottom: 1rem; flex-wrap: wrap; }
+    .modal-rec-label { font-size: .68rem; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; color: #7a8fa6; margin-bottom: .3rem; }
+    pre#modal-text { white-space: pre-wrap; font-family: inherit; font-size: .88rem; color: #2a3a50; line-height: 1.7; }
+
+    @media (max-width: 680px) {
+      .header h1 { font-size: 1.35rem; }
+      td, th { padding: .7rem .65rem; }
+      .modal-header, .modal-body { padding-left: 1.25rem; padding-right: 1.25rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="header">
+    <a class="back-link" href="../index.html">All meetings</a>
+    <div class="eyebrow">Town of Medway, Massachusetts</div>
+    <h1>Annual Town Meeting</h1>
+    <div class="meta">May 9, 2022 &nbsp;·&nbsp; Medway High School &nbsp;·&nbsp; 7:30 PM</div>
+  </div>
+
+  <div class="stats-bar">
+    <div class="stat-card"><div class="label">Articles</div><div class="value">21</div><div class="sub">Warrant articles</div></div><div class="stat-card"><div class="label">Specified Appropriations</div><div class="value">$15.5M+</div><div class="sub">Identified dollar amounts</div></div><div class="stat-card"><div class="label">Categories</div><div class="value">7</div><div class="sub">Topics covered</div></div>
+  </div>
+
+  <div class="container">
+    <div class="controls">
+      <div class="controls-label">Filter by Category</div>
+      <div class="filter-buttons">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="Budget">Budget</button>
+        <button class="filter-btn" data-filter="Bylaw">Bylaw</button>
+        <button class="filter-btn" data-filter="Capital">Capital</button>
+        <button class="filter-btn" data-filter="Community Preservation">Community Preservation</button>
+        <button class="filter-btn" data-filter="Enterprise Budget">Enterprise Budget</button>
+        <button class="filter-btn" data-filter="Financial">Financial</button>
+        <button class="filter-btn" data-filter="General">General</button>
+      </div>
+    </div>
+
+    <div class="table-wrap">
+      <div class="table-scroll">
+        <table>
+          <thead>
+            <tr>
+              <th style="width:60px">#</th>
+              <th>Article</th>
+              <th style="width:160px">Category</th>
+              <th class="amount-col sortable" id="amt-th" style="width:140px">Amount <span class="sort-icon"></span></th>
+            </tr>
+          </thead>
+          <tbody id="article-tbody">
+            <tr data-category="Budget" data-amount="113000">
+  <td><span class="article-num">Art. 1</span></td>
+  <td>
+    <div class="article-title">Debt Stabilization Fund Transfer</div>
+    <div class="article-summary">To see if the Town will vote to transfer the sum of $113,000 from the Debt Stabilization Fund to the Fiscal Year 2023 operating budget for the purpose of offsetting a portion of debt exclusion projects, or act in any manner relating thereto.</div>
+    <div class="article-recs"><span class="rec-label">SB:</span> <span class="rec-badge rec-approve">Approve</span><span class="rec-label" style="margin-left:.2rem">FinCom:</span> <span class="rec-badge rec-approve">Approve</span></div>
+    <button class="full-text-btn" data-key="1">Full text</button>
+  </td>
+  <td><span class="cat-badge cat-budget">Budget</span></td>
+  <td class="amount-col"><span class="amount-value">$113,000</span></td>
+</tr>
+            <tr data-category="Budget" data-amount="700000">
+  <td><span class="article-num">Art. 2</span></td>
+  <td>
+    <div class="article-title">Transfer from Ambulance Receipts to General Fund</div>
+    <div class="article-summary">To see if the Town will vote to transfer $700,000 from Ambulance Receipts Reserved for Appropriation to the Fiscal Year 2023 General Fund Operating Budget, or act in any manner relating thereto.</div>
+    <div class="article-recs"><span class="rec-label">SB:</span> <span class="rec-badge rec-approve">Approve</span><span class="rec-label" style="margin-left:.2rem">FinCom:</span> <span class="rec-badge rec-approve">Approve</span></div>
+    <button class="full-text-btn" data-key="2">Full text</button>
+  </td>
+  <td><span class="cat-badge cat-budget">Budget</span></td>
+  <td class="amount-col"><span class="amount-value">$700,000</span></td>
+</tr>
+            <tr data-category="Budget">
+  <td><span class="article-num">Art. 3</span></td>
+  <td>
+    <div class="article-title">Appropriation: FY23 Operating Budget</div>
+    <div class="article-summary">To see if the Town will vote to fix the salary and compensation of all elected officers of the Town, provide for a Reserve Fund, and determine what sums of money the Town will raise and appropriate, including appropriation from available funds, to defray charges and expenses of the Town including de...</div>
+    <div class="article-recs"><span class="rec-label">SB:</span> <span class="rec-badge rec-approve">Approve</span><span class="rec-label" style="margin-left:.2rem">FinCom:</span> <span class="rec-badge rec-approve">Approve</span></div>
+    <button class="full-text-btn" data-key="3">Full text</button>
+  </td>
+  <td><span class="cat-badge cat-budget">Budget</span></td>
+  <td class="amount-col"><span class="amount-tbd">TBD</span></td>
+</tr>
+            <tr data-category="Budget" data-amount="4673560">
+  <td><span class="article-num">Art. 4</span></td>
+  <td>
+    <div class="article-title">Appropriation: FY23 Water Enterprise Fund</div>
+    <div class="article-summary">To see if the Town will vote to raise and appropriate or transfer from available funds the sum of $4,673,560 for the maintenance of the Water Department Enterprise Fund as follows, or act in any manner relating thereto.</div>
+    <div class="article-recs"><span class="rec-label">SB:</span> <span class="rec-badge rec-tbd">TBD</span><span class="rec-label" style="margin-left:.2rem">FinCom:</span> <span class="rec-badge rec-tbd">TBD</span></div>
+    <button class="full-text-btn" data-key="4">Full text</button>
+  </td>
+  <td><span class="cat-badge cat-budget">Budget</span></td>
+  <td class="amount-col"><span class="amount-value">$4,673,560</span></td>
+</tr>
+            <tr data-category="Budget" data-amount="1892374">
+  <td><span class="article-num">Art. 5</span></td>
+  <td>
+    <div class="article-title">Appropriation: FY23 Sewer Enterprise Fund</div>
+    <div class="article-summary">To see if the Town will vote to raise and appropriate or transfer from available funds the sum of $1,892,374 for the maintenance of the Sewer Department Enterprise Fund as follows, or act in any manner relating thereto.</div>
+    <div class="article-recs"><span class="rec-label">SB:</span> <span class="rec-badge rec-approve">Approve</span><span class="rec-label" style="margin-left:.2rem">FinCom:</span> <span class="rec-badge rec-tbd">TBD</span></div>
+    <button class="full-text-btn" data-key="5">Full text</button>
+  </td>
+  <td><span class="cat-badge cat-budget">Budget</span></td>
+  <td class="amount-col"><span class="amount-value">$1,892,374</span></td>
+</tr>
+            <tr data-category="Budget" data-amount="1804050">
+  <td><span class="article-num">Art. 6</span></td>
+  <td>
+    <div class="article-title">Appropriation: FY23 Solid Waste Enterprise Fund</div>
+    <div class="article-summary">To see if the Town will vote to raise and appropriate or transfer from available funds the sum of $1,804,050 to operate the Solid Waste/Recycling Department Enterprise Fund as follows, or act in any manner relating thereto.</div>
+    <div class="article-recs"><span class="rec-label">SB:</span> <span class="rec-badge rec-approve">Approve</span><span class="rec-label" style="margin-left:.2rem">FinCom:</span> <span class="rec-badge rec-approve">Approve</span></div>
+    <button class="full-text-btn" data-key="6">Full text</button>
+  </td>
+  <td><span class="cat-badge cat-budget">Budget</span></td>
+  <td class="amount-col"><span class="amount-value">$1,804,050</span></td>
+</tr>
+            <tr data-category="Capital" data-amount="2184916">
+  <td><span class="article-num">Art. 7</span></td>
+  <td>
+    <div class="article-title">Free Cash Appropriation: Capital and Other Items</div>
+    <div class="article-summary">To see if the Town will vote to appropriate the sum of $2,184,916 from Certified Free Cash for the purpose of funding the following capital and other items, including associated engineering, personnel, maintenance and legal service costs, and for the payment of all other costs incidental or related ...</div>
+    <div class="article-recs"><span class="rec-label">SB:</span> <span class="rec-badge rec-approve">Approve</span><span class="rec-label" style="margin-left:.2rem">FinCom:</span> <span class="rec-badge rec-approve">Approve</span></div>
+    <button class="full-text-btn" data-key="7">Full text</button>
+  </td>
+  <td><span class="cat-badge cat-capital">Capital</span></td>
+  <td class="amount-col"><span class="amount-value">$2,184,916</span></td>
+</tr>
+            <tr data-category="Capital" data-amount="800000">
+  <td><span class="article-num">Art. 8</span></td>
+  <td>
+    <div class="article-title">Raise & Appropriate: Roads & Sidewalks</div>
+    <div class="article-summary">To see if the Town will vote to raise and appropriate the sum of $800,000 for the purposes of making repairs to various roads, sidewalks, bridges and related appurtenances, and to fund, as needed, design, engineering, and construction management services, and for the payment of all other costs incid...</div>
+    <div class="article-recs"><span class="rec-label">SB:</span> <span class="rec-badge rec-approve">Approve</span><span class="rec-label" style="margin-left:.2rem">FinCom:</span> <span class="rec-badge rec-approve">Approve</span></div>
+    <button class="full-text-btn" data-key="8">Full text</button>
+  </td>
+  <td><span class="cat-badge cat-capital">Capital</span></td>
+  <td class="amount-col"><span class="amount-value">$800,000</span></td>
+</tr>
+            <tr data-category="Enterprise Budget" data-amount="150000">
+  <td><span class="article-num">Art. 9</span></td>
+  <td>
+    <div class="article-title">Free Cash and Sewer Retained Earnings Transfer: Stormwater
+Compliance</div>
+    <div class="article-summary">To see if the Town will vote to transfer the sum of $150,000 from Certified Free Cash and $181,000 from Sewer Enterprise Fund retained earnings for the purpose of funding the purchase and equipping of a stormwater compliance and street debris collection unit, and for the payment of all other costs i...</div>
+    <div class="article-recs"><span class="rec-label">SB:</span> <span class="rec-badge rec-approve">Approve</span><span class="rec-label" style="margin-left:.2rem">FinCom:</span> <span class="rec-badge rec-approve">Approve</span></div>
+    <button class="full-text-btn" data-key="9">Full text</button>
+  </td>
+  <td><span class="cat-badge cat-enterprise">Enterprise Budget</span></td>
+  <td class="amount-col"><span class="amount-value">$150,000</span></td>
+</tr>
+            <tr data-category="Enterprise Budget" data-amount="40000">
+  <td><span class="article-num">Art. 10</span></td>
+  <td>
+    <div class="article-title">Water Retained Earnings Transfer: Purchase Generator</div>
+    <div class="article-summary">To see if the Town will vote to transfer the sum of $40,000 from Water Enterprise Fund retained earnings for the purpose of funding the purchase and equipping of a generator at the Village Street well, and for the payment of all other costs incidental and related thereto, or act in any manner relating thereto.</div>
+    <div class="article-recs"><span class="rec-label">SB:</span> <span class="rec-badge rec-approve">Approve</span><span class="rec-label" style="margin-left:.2rem">FinCom:</span> <span class="rec-badge rec-approve">Approve</span></div>
+    <button class="full-text-btn" data-key="10">Full text</button>
+  </td>
+  <td><span class="cat-badge cat-enterprise">Enterprise Budget</span></td>
+  <td class="amount-col"><span class="amount-value">$40,000</span></td>
+</tr>
+            <tr data-category="Capital">
+  <td><span class="article-num">Art. 11</span></td>
+  <td>
+    <div class="article-title">Borrowing – New Centralized Water Treatment Plant</div>
+    <div class="article-summary">To see if the Town will vote to raise and appropriate, borrow or transfer from available funds a sum of money for the purpose of funding the construction, equipping and furnishing of a new centralized water treatment plant at 19 Populatic St, including engineering, design and project management serv...</div>
+    <div class="article-recs"><span class="rec-label">SB:</span> <span class="rec-badge rec-tbd">TBD</span><span class="rec-label" style="margin-left:.2rem">FinCom:</span> <span class="rec-badge rec-tbd">TBD</span></div>
+    <button class="full-text-btn" data-key="11">Full text</button>
+  </td>
+  <td><span class="cat-badge cat-capital">Capital</span></td>
+  <td class="amount-col"><span class="amount-tbd">TBD</span></td>
+</tr>
+            <tr data-category="Capital" data-amount="1800000">
+  <td><span class="article-num">Art. 12</span></td>
+  <td>
+    <div class="article-title">Borrowing – Oakland Well Water Line to New Centralized Water
+Treatment Plant</div>
+    <div class="article-summary">To see if the Town will vote to raise and appropriate, borrow or transfer from available funds the sum of $1,800,000 for the purpose of funding the construction of a water line from the Oakland Well to the new centralized water treatment plan, including engineering, design and project management ser...</div>
+    <div class="article-recs"><span class="rec-label">SB:</span> <span class="rec-badge rec-approve">Approve</span><span class="rec-label" style="margin-left:.2rem">FinCom:</span> <span class="rec-badge rec-approve">Approve</span></div>
+    <button class="full-text-btn" data-key="12">Full text</button>
+  </td>
+  <td><span class="cat-badge cat-capital">Capital</span></td>
+  <td class="amount-col"><span class="amount-value">$1,800,000</span></td>
+</tr>
+            <tr data-category="Capital" data-amount="485000">
+  <td><span class="article-num">Art. 13</span></td>
+  <td>
+    <div class="article-title">Borrowing – Redundant Wells at Oakland and Village Streets</div>
+    <div class="article-summary">To see if the Town will vote to raise and appropriate, borrow or transfer from available funds the sum of $485,000 for the purpose of purchasing materials, site preparation and construction, for a second well at Oakland Street and at Village Street, including engineering and design and for the payme...</div>
+    <div class="article-recs"><span class="rec-label">SB:</span> <span class="rec-badge rec-approve">Approve</span><span class="rec-label" style="margin-left:.2rem">FinCom:</span> <span class="rec-badge rec-approve">Approve</span></div>
+    <button class="full-text-btn" data-key="13">Full text</button>
+  </td>
+  <td><span class="cat-badge cat-capital">Capital</span></td>
+  <td class="amount-col"><span class="amount-value">$485,000</span></td>
+</tr>
+            <tr data-category="Financial" data-amount="100000">
+  <td><span class="article-num">Art. 14</span></td>
+  <td>
+    <div class="article-title">Appropriation: General Stabilization</div>
+    <div class="article-summary">To see if the Town will vote to raise and appropriate or transfer from available funds the sum of $100,000 to be allocated to the General Stabilization Fund, or act in any manner relating thereto.</div>
+    <div class="article-recs"><span class="rec-label">SB:</span> <span class="rec-badge rec-approve">Approve</span><span class="rec-label" style="margin-left:.2rem">FinCom:</span> <span class="rec-badge rec-approve">Approve</span></div>
+    <button class="full-text-btn" data-key="14">Full text</button>
+  </td>
+  <td><span class="cat-badge cat-financial">Financial</span></td>
+  <td class="amount-col"><span class="amount-value">$100,000</span></td>
+</tr>
+            <tr data-category="General" data-amount="300000">
+  <td><span class="article-num">Art. 15</span></td>
+  <td>
+    <div class="article-title">Appropriation: OPEB Trust</div>
+    <div class="article-summary">To see if the Town will vote to raise and appropriate the sum of $300,000 to the Town of Medway Other Post-Employment Benefits (OPEB) Trust account, or act in any manner relating thereto.</div>
+    <div class="article-recs"><span class="rec-label">SB:</span> <span class="rec-badge rec-approve">Approve</span><span class="rec-label" style="margin-left:.2rem">FinCom:</span> <span class="rec-badge rec-approve">Approve</span></div>
+    <button class="full-text-btn" data-key="15">Full text</button>
+  </td>
+  <td><span class="cat-badge cat-admin">General</span></td>
+  <td class="amount-col"><span class="amount-value">$300,000</span></td>
+</tr>
+            <tr data-category="Community Preservation" data-amount="15000">
+  <td><span class="article-num">Art. 16</span></td>
+  <td>
+    <div class="article-title">Appropriation: Community Preservation Committee</div>
+    <div class="article-summary">To see if the Town will vote to act on the report of the Community Preservation Committee for the Fiscal Year 2023 Community Preservation budget and to appropriate, or reserve for later appropriations, monies from the Community Preservation Fund annual revenues or available funds for the administrat...</div>
+    <div class="article-recs"><span class="rec-label">SB:</span> <span class="rec-badge rec-approve">Approve</span><span class="rec-label" style="margin-left:.2rem">FinCom:</span> <span class="rec-badge rec-approve">Approve</span></div>
+    <button class="full-text-btn" data-key="16">Full text</button>
+  </td>
+  <td><span class="cat-badge cat-admin">Community Preservation</span></td>
+  <td class="amount-col"><span class="amount-value">$15,000</span></td>
+</tr>
+            <tr data-category="Budget" data-amount="450000">
+  <td><span class="article-num">Art. 17</span></td>
+  <td>
+    <div class="article-title">Revolving Funds –Authorize FY23 Spending Limits</div>
+    <div class="article-summary">To see if the Town will vote, pursuant to Massachusetts General Laws Chapter 44, Section 53E1/2, to set Fiscal Year 2023 spending limits for revolving funds as follows: Program or Purpose FY2023 Spending Limit Self-supporting parks and recreation $450,000 services, including salaries and benefits Di...</div>
+    <div class="article-recs"><span class="rec-label">SB:</span> <span class="rec-badge rec-approve">Approve</span><span class="rec-label" style="margin-left:.2rem">FinCom:</span> <span class="rec-badge rec-approve">Approve</span></div>
+    <button class="full-text-btn" data-key="17">Full text</button>
+  </td>
+  <td><span class="cat-badge cat-budget">Budget</span></td>
+  <td class="amount-col"><span class="amount-value">$450,000</span></td>
+</tr>
+            <tr data-category="General" data-amount="2500">
+  <td><span class="article-num">Art. 18</span></td>
+  <td>
+    <div class="article-title">Change in Personal Property Value Subject to Taxation</div>
+    <div class="article-summary">To see if the Town will vote pursuant to Massachusetts General Laws Chapter 59, Section 5, Subsection 54, to increase the minimum value of personal property subject to taxation from $2,500 to $5,000, or act in any manner relating thereto. BOARD OF ASSESSORS</div>
+    <div class="article-recs"><span class="rec-label">SB:</span> <span class="rec-badge rec-approve">Approve</span><span class="rec-label" style="margin-left:.2rem">FinCom:</span> <span class="rec-badge rec-approve">Approve</span></div>
+    <button class="full-text-btn" data-key="18">Full text</button>
+  </td>
+  <td><span class="cat-badge cat-admin">General</span></td>
+  <td class="amount-col"><span class="amount-value">$2,500</span></td>
+</tr>
+            <tr data-category="Capital">
+  <td><span class="article-num">Art. 19</span></td>
+  <td>
+    <div class="article-title">Amend General Bylaw: Historical Properties</div>
+    <div class="article-summary">To see if the Town will vote to amend the General By-laws, Article XVII, Building Demolition, as follows (language to be deleted shown in strikethrough, language to be added is underlined): Section 17.1 Intent and Purpose This bylaw is enacted to promote the public welfare and safeguard Medway's his...</div>
+    <div class="article-recs"><span class="rec-label">SB:</span> <span class="rec-badge rec-approve">Approve</span><span class="rec-label" style="margin-left:.2rem">FinCom:</span> <span class="rec-badge rec-approve">Approve</span></div>
+    <button class="full-text-btn" data-key="19">Full text</button>
+  </td>
+  <td><span class="cat-badge cat-capital">Capital</span></td>
+  <td class="amount-col"><span class="amount-tbd">TBD</span></td>
+</tr>
+            <tr data-category="Bylaw">
+  <td><span class="article-num">Art. 20</span></td>
+  <td>
+    <div class="article-title">Amend Zoning Bylaws – Solar Electric Installations</div>
+    <div class="article-summary">To see if the Town will vote to amend the Zoning Bylaw, Section 8.11 Solar Electric Installations as follows (new wording in bold): Section 8.11.C.3: Solar Parking Canopies, which are accessory to a residential or non-residential use may be allowed by special permit in all zones except AR-I, AR-II, ...</div>
+    <div class="article-recs"><span class="rec-label">SB:</span> <span class="rec-badge rec-tbd">TBD</span><span class="rec-label" style="margin-left:.2rem">FinCom:</span> <span class="rec-badge rec-tbd">TBD</span></div>
+    <button class="full-text-btn" data-key="20">Full text</button>
+  </td>
+  <td><span class="cat-badge cat-admin">Bylaw</span></td>
+  <td class="amount-col"><span class="amount-tbd">TBD</span></td>
+</tr>
+            <tr data-category="Capital">
+  <td><span class="article-num">Art. 21</span></td>
+  <td>
+    <div class="article-title">Amend Zoning Bylaws – Housekeeping</div>
+    <div class="article-summary">To see if the Town will vote to amend the Zoning Bylaw as provided below: 1. Amend Flood Plain District, Section 5.6.1.E.3 as follows (words added in bold) In Zones Al-30 and AE, along watercourses that have a regulatory floodway designated on the Town's FIRM, encroachments are prohibited in the reg...</div>
+    <div class="article-recs"><span class="rec-label">SB:</span> <span class="rec-badge rec-approve">Approve</span><span class="rec-label" style="margin-left:.2rem">FinCom:</span> <span class="rec-badge rec-approve">Approve</span></div>
+    <button class="full-text-btn" data-key="21">Full text</button>
+  </td>
+  <td><span class="cat-badge cat-capital">Capital</span></td>
+  <td class="amount-col"><span class="amount-tbd">TBD</span></td>
+</tr>
+          </tbody>
+        </table>
+        <div class="no-results" id="no-results" style="display:none">No articles match this filter.</div>
+      </div>
+    </div>
+
+    <div class="page-footer">
+      Source: Town of Medway Warrant &nbsp;·&nbsp; May 9, 2022<br>
+      <span style="font-size:.7rem;opacity:.8;">Content produced with AI assistance and reviewed for accuracy, but not 100% independently verified. Consult official town documents for authoritative information.</span>
+    </div>
+  </div>
+
+  <!-- Modal -->
+  <div id="article-modal">
+    <div class="modal-backdrop" onclick="closeModal()"></div>
+    <div class="modal-card">
+      <button class="modal-close" onclick="closeModal()">✕</button>
+      <div class="modal-header">
+        <div class="modal-eyebrow" id="modal-eyebrow"></div>
+        <div class="modal-title"  id="modal-title"></div>
+      </div>
+      <div class="modal-body">
+        <div class="modal-recs" id="modal-recs"></div>
+        <pre id="modal-text"></pre>
+      </div>
+    </div>
+  </div>
+
+  <script>
+  const articleData = {"1": {"title": "Debt Stabilization Fund Transfer", "text": "To see if the Town will vote to transfer the sum of $113,000 from the Debt Stabilization Fund to the Fiscal Year 2023 operating budget for the purpose of offsetting a portion of debt exclusion projects, or act in any manner relating thereto.", "sb": "Approve", "fc": "Approve"}, "2": {"title": "Transfer from Ambulance Receipts to General Fund", "text": "To see if the Town will vote to transfer $700,000 from Ambulance Receipts Reserved for Appropriation to the Fiscal Year 2023 General Fund Operating Budget, or act in any manner relating thereto.", "sb": "Approve", "fc": "Approve"}, "3": {"title": "Appropriation: FY23 Operating Budget", "text": "To see if the Town will vote to fix the salary and compensation of all elected officers of the Town, provide for a Reserve Fund, and determine what sums of money the Town will raise and appropriate, including appropriation from available funds, to defray charges and expenses of the Town including debt and interest, for the Fiscal Year ending June 30, 2023, or act in any manner relating thereto.", "sb": "Approve", "fc": "Approve"}, "4": {"title": "Appropriation: FY23 Water Enterprise Fund", "text": "To see if the Town will vote to raise and appropriate or transfer from available funds the sum of $4,673,560 for the maintenance of the Water Department Enterprise Fund as follows, or act in any manner relating thereto. Direct Costs Amount Salaries $ 879,028 Expenses 745,400 Debt 2,597,373 Direct Costs Total $ 4,221,801 Indirect Costs Indirect costs consisting of health insurance, workers’ compensation, Medicare, liability insurance, administrative and operational services. Indirect Costs Total $451,759 Total $4,673,560 And further that the above listed appropriations be funded as follows: Fee", "sb": "To Be Determined", "fc": "To Be Determined"}, "5": {"title": "Appropriation: FY23 Sewer Enterprise Fund", "text": "To see if the Town will vote to raise and appropriate or transfer from available funds the sum of $1,892,374 for the maintenance of the Sewer Department Enterprise Fund as follows, or act in any manner relating thereto. Direct Costs Amount Salaries $ 278,369 Expenses 1,188,550 Debt 272,712 Direct Costs Total $1,739,631 Indirect Costs Indirect costs consisting of health insurance, workers’ compensation, Medicare, liability insurance, administrative and operational services. Indirect Costs Total $152,743 Total $1,892,374 And further that the above listed appropriations be funded as follows: Fees", "sb": "Approve", "fc": "To Be Determined"}, "6": {"title": "Appropriation: FY23 Solid Waste Enterprise Fund", "text": "To see if the Town will vote to raise and appropriate or transfer from available funds the sum of $1,804,050 to operate the Solid Waste/Recycling Department Enterprise Fund as follows, or act in any manner relating thereto. Direct Costs Amount Salaries $ 221,202 Expenses 1,400,300 Debt Service 51,668 Direct Costs Total $1,673,170 Indirect Costs Indirect costs consisting of health insurance, workers’ compensation, Medicare, liability insurance, administrative and operational services. Indirect Costs Total $130,880 Total $1,804,050 And further that the above listed appropriations be funded as fo", "sb": "Approve", "fc": "Approve"}, "7": {"title": "Free Cash Appropriation: Capital and Other Items", "text": "To see if the Town will vote to appropriate the sum of $2,184,916 from Certified Free Cash for the purpose of funding the following capital and other items, including associated engineering, personnel, maintenance and legal service costs, and for the payment of all other costs incidental or related thereto: Project Department Cost Roads & Sidewalks DPW $750,000 Replace 2001 Mack RD690S (216-Truck 6) DPW 230,000 Replace 1994 Ford F350 Utility 4X4 (513) DPW 60,000 Replace 2011 Ford F250 (313) DPW 59,000 Skid Mounted 2 Ton Hot Box DPW 13,365 John Deere Gator Utility Vehicle DPW 30,000 Replace Kub", "sb": "Approve", "fc": "Approve"}, "8": {"title": "Raise & Appropriate: Roads & Sidewalks", "text": "To see if the Town will vote to raise and appropriate the sum of $800,000 for the purposes of making repairs to various roads, sidewalks, bridges and related appurtenances, and to fund, as needed, design, engineering, and construction management services, and for the payment of all other costs incidental and related thereto, or act in any manner relating thereto.", "sb": "Approve", "fc": "Approve"}, "9": {"title": "Free Cash and Sewer Retained Earnings Transfer: Stormwater\nCompliance", "text": "To see if the Town will vote to transfer the sum of $150,000 from Certified Free Cash and $181,000 from Sewer Enterprise Fund retained earnings for the purpose of funding the purchase and equipping of a stormwater compliance and street debris collection unit, and for the payment of all other costs incidental and related thereto, or act in any manner relating thereto. PUBLIC WORKS DEPT.", "sb": "Approve", "fc": "Approve"}, "10": {"title": "Water Retained Earnings Transfer: Purchase Generator", "text": "To see if the Town will vote to transfer the sum of $40,000 from Water Enterprise Fund retained earnings for the purpose of funding the purchase and equipping of a generator at the Village Street well, and for the payment of all other costs incidental and related thereto, or act in any manner relating thereto. PUBLIC WORKS DEPT.", "sb": "Approve", "fc": "Approve"}, "11": {"title": "Borrowing – New Centralized Water Treatment Plant", "text": "To see if the Town will vote to raise and appropriate, borrow or transfer from available funds a sum of money for the purpose of funding the construction, equipping and furnishing of a new centralized water treatment plant at 19 Populatic St, including engineering, design and project management services, site preparation, and for the payment of all other costs incidental and related thereto; and further, to authorize the Board of Selectmen to apply for, accept and expend any county, state or federal grant for this purpose, or act in any manner relating thereto.", "sb": "To Be Determined", "fc": "To Be Determined"}, "12": {"title": "Borrowing – Oakland Well Water Line to New Centralized Water\nTreatment Plant", "text": "To see if the Town will vote to raise and appropriate, borrow or transfer from available funds the sum of $1,800,000 for the purpose of funding the construction of a water line from the Oakland Well to the new centralized water treatment plan, including engineering, design and project management services, site preparation, and for the payment of all other costs incidental and related thereto; and further, to authorize the Board of Selectmen to apply for, accept and expend any county, state or federal grant for this purpose, or act in any manner relating thereto.", "sb": "Approve", "fc": "Approve"}, "13": {"title": "Borrowing – Redundant Wells at Oakland and Village Streets", "text": "To see if the Town will vote to raise and appropriate, borrow or transfer from available funds the sum of $485,000 for the purpose of purchasing materials, site preparation and construction, for a second well at Oakland Street and at Village Street, including engineering and design and for the payment of all other costs incidental and related thereto; and further, to authorize the Board of Selectmen to apply for, accept and expend any county, state or federal grant for this purpose, or act in any manner relating thereto.", "sb": "Approve", "fc": "Approve"}, "14": {"title": "Appropriation: General Stabilization", "text": "To see if the Town will vote to raise and appropriate or transfer from available funds the sum of $100,000 to be allocated to the General Stabilization Fund, or act in any manner relating thereto.", "sb": "Approve", "fc": "Approve"}, "15": {"title": "Appropriation: OPEB Trust", "text": "To see if the Town will vote to raise and appropriate the sum of $300,000 to the Town of Medway Other Post-Employment Benefits (OPEB) Trust account, or act in any manner relating thereto.", "sb": "Approve", "fc": "Approve"}, "16": {"title": "Appropriation: Community Preservation Committee", "text": "To see if the Town will vote to act on the report of the Community Preservation Committee for the Fiscal Year 2023 Community Preservation budget and to appropriate, or reserve for later appropriations, monies from the Community Preservation Fund annual revenues or available funds for the administrative expenses of the Community Preservation Committee, the payment of debt service, the undertaking of community preservation projects and all other necessary and proper expenses for the Fiscal Year 2023, as follows: CPA Administration: CPC Expenses $15,000 CPC Salaries 5,000 CPC Debt Expense 418,725", "sb": "Approve", "fc": "Approve"}, "17": {"title": "Revolving Funds –Authorize FY23 Spending Limits", "text": "To see if the Town will vote, pursuant to Massachusetts General Laws Chapter 44, Section 53E1/2, to set Fiscal Year 2023 spending limits for revolving funds as follows: Program or Purpose FY2023 Spending Limit Self-supporting parks and recreation $450,000 services, including salaries and benefits Dial-a-ride van service for seniors and disabled; shuttle service to Norfolk $130,000 commuter rail station, and other necessary transportation services Library printer, copier and fax expenses $3,000 Library meeting room $1,000 Thayer Homestead partial self-support of $80,000 property, including sala", "sb": "Approve", "fc": "Approve"}, "18": {"title": "Change in Personal Property Value Subject to Taxation", "text": "To see if the Town will vote pursuant to Massachusetts General Laws Chapter 59, Section 5, Subsection 54, to increase the minimum value of personal property subject to taxation from $2,500 to $5,000, or act in any manner relating thereto. BOARD OF ASSESSORS", "sb": "Approve", "fc": "Approve"}, "19": {"title": "Amend General Bylaw: Historical Properties", "text": "To see if the Town will vote to amend the General By-laws, Article XVII, Building Demolition, as follows (language to be deleted shown in strikethrough, language to be added is underlined): Section 17.1 Intent and Purpose This bylaw is enacted to promote the public welfare and safeguard Medway's historical, cultural and architectural heritage by protecting historical resources that make the town a more interesting, attractive and desirable place in which to live. The bylaw aims to protect \"preferably-preserved historically significant buildings\" within the town by encouraging their owners to s", "sb": "Approve", "fc": "Approve"}, "20": {"title": "Amend Zoning Bylaws – Solar Electric Installations", "text": "To see if the Town will vote to amend the Zoning Bylaw, Section 8.11 Solar Electric Installations as follows (new wording in bold): Section 8.11.C.3: Solar Parking Canopies, which are accessory to a residential or non-residential use may be allowed by special permit in all zones except AR-I, AR-II, and VR, or which are otherwise allowed under the provisions of this Zoning Bylaw, and are subject to the requirements of this Section 8.11. Section 8.11.G.1: Lighting - Large- and Small-Scale Solar Electric Installations, except Solar Parking Canopies, shall have no permanently-affixed exterior ligh", "sb": "To Be Determined", "fc": "To Be Determined"}, "21": {"title": "Amend Zoning Bylaws – Housekeeping", "text": "To see if the Town will vote to amend the Zoning Bylaw as provided below: 1. Amend Flood Plain District, Section 5.6.1.E.3 as follows (words added in bold) In Zones Al-30 and AE, along watercourses that have a regulatory floodway designated on the Town's FIRM, encroachments are prohibited in the regulatory floodway unless it has been demonstrated through hydrologic and hydraulic analyses performed in accordance with standard engineering practice that the proposed encroachment would not result in any increase in flood levels within the community during the occurrence of the base flood discharge", "sb": "Approve", "fc": "Approve"}};
+
+  function openModal(key) {
+    const d = articleData[String(key)];
+    if (!d) return;
+    document.getElementById('modal-eyebrow').textContent = 'Article ' + key;
+    document.getElementById('modal-title').textContent   = d.title;
+    document.getElementById('modal-text').textContent    = d.text;
+    const recsEl = document.getElementById('modal-recs');
+    recsEl.innerHTML = recHtml('Select Board', d.sb) + recHtml('Finance Committee', d.fc);
+    document.getElementById('article-modal').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function recHtml(label, val) {
+    let cls = 'rec-na', txt = '—';
+    if      (val === 'Approve')               { cls = 'rec-approve';    txt = 'Approve'; }
+    else if (val === 'Disapprove')            { cls = 'rec-disapprove'; txt = 'Disapprove'; }
+    else if (val === 'Pass Over')             { cls = 'rec-pass';       txt = 'Pass Over'; }
+    else if (val === 'To Be Determined')      { cls = 'rec-tbd';        txt = 'TBD'; }
+    else if (val && val !== '—')              { cls = 'rec-tbd';        txt = val; }
+    return `<div><div class="modal-rec-label">${label}</div><span class="rec-badge ${cls}">${txt}</span></div>`;
+  }
+
+  function closeModal() {
+    document.getElementById('article-modal').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  document.querySelectorAll('.full-text-btn').forEach(btn => {
+    btn.addEventListener('click', e => { e.stopPropagation(); openModal(btn.dataset.key); });
+  });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+  // ── Filter ──────────────────────────────────────────────────────────────
+  document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const f = btn.dataset.filter;
+      let visible = 0;
+      document.querySelectorAll('#article-tbody tr').forEach(row => {
+        const show = f === 'all' || row.dataset.category === f;
+        row.classList.toggle('hidden', !show);
+        if (show) visible++;
+      });
+      document.getElementById('no-results').style.display = visible === 0 ? 'block' : 'none';
+    });
+  });
+
+  // ── Sort by amount ───────────────────────────────────────────────────────
+  let sortDir = null;
+  document.getElementById('amt-th').addEventListener('click', () => {
+    sortDir = sortDir !== 'asc' ? 'asc' : 'desc';
+    document.getElementById('amt-th').className = 'amount-col sortable sorted-' + sortDir;
+    const tbody = document.getElementById('article-tbody');
+    const rows  = [...tbody.querySelectorAll('tr')];
+    rows.sort((a, b) => {
+      const aA = parseFloat(a.dataset.amount), bA = parseFloat(b.dataset.amount);
+      if (isNaN(aA) && isNaN(bA)) return 0;
+      if (isNaN(aA)) return 1;
+      if (isNaN(bA)) return -1;
+      return sortDir === 'asc' ? aA - bA : bA - aA;
+    });
+    rows.forEach(r => tbody.appendChild(r));
+  });
+  </script>
+</body>
+</html>

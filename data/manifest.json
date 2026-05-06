@@ -1,0 +1,155 @@
+{
+  "2016_atm": {
+    "meeting_type": "ATM",
+    "date": "May 9, 2016",
+    "year": "2016",
+    "theme_id": "2016_atm",
+    "article_count": 33,
+    "source_pdf": "2016-05-09 Annual Town Meeting Minutes.pdf",
+    "file": "2016_atm.json"
+  },
+  "2017_atm": {
+    "meeting_type": "ATM",
+    "date": "May 8, 2017",
+    "year": "2017",
+    "theme_id": "2017_atm",
+    "article_count": 49,
+    "source_pdf": "2017-05-08 Annual Town Meeting Minutes.pdf",
+    "file": "2017_atm.json"
+  },
+  "2018_atm": {
+    "meeting_type": "ATM",
+    "date": "May 21, 2018",
+    "year": "2018",
+    "theme_id": "2018_atm",
+    "article_count": 27,
+    "source_pdf": "2018-05-21 Annual Town Meeting Minutes.pdf",
+    "file": "2018_atm.json"
+  },
+  "2019_atm": {
+    "meeting_type": "ATM",
+    "date": "May 13, 2019",
+    "year": "2019",
+    "theme_id": "2019_atm",
+    "article_count": 30,
+    "source_pdf": "2019-05-13 Annual Town Meeting Minutes.pdf",
+    "file": "2019_atm.json"
+  },
+  "2020_atm": {
+    "meeting_type": "ATM",
+    "date": "June 8, 2020",
+    "year": "2020",
+    "theme_id": "2020_atm",
+    "article_count": 22,
+    "source_pdf": "2020-06-08 Annual Town Meeting Minutes.pdf",
+    "file": "2020_atm.json"
+  },
+  "2020_stm": {
+    "meeting_type": "STM",
+    "date": "June 8, 2020",
+    "year": "2020",
+    "theme_id": "2020_stm",
+    "article_count": 8,
+    "source_pdf": "2020-06-08 Special Town Meeting Minutes.pdf",
+    "file": "2020_stm.json"
+  },
+  "2021_atm": {
+    "meeting_type": "ATM",
+    "date": "May 10, 2021",
+    "year": "2021",
+    "theme_id": "2021_atm",
+    "article_count": 31,
+    "source_pdf": "2021-05-10 Annual Town Meeting Minutes.pdf",
+    "file": "2021_atm.json"
+  },
+  "2021_stm": {
+    "meeting_type": "STM",
+    "date": "May 10, 2021",
+    "year": "2021",
+    "theme_id": "2021_stm",
+    "article_count": 8,
+    "source_pdf": "2021-05-10 Special Town Meeting Minutes.pdf",
+    "file": "2021_stm.json"
+  },
+  "2022_atm": {
+    "meeting_type": "ATM",
+    "date": "May 9, 2022",
+    "year": "2022",
+    "theme_id": "2022_atm",
+    "article_count": 21,
+    "source_pdf": "2022-05-09 Annual Town Meeting Minutes.pdf",
+    "file": "2022_atm.json"
+  },
+  "2022_stm": {
+    "meeting_type": "STM",
+    "date": "May 9, 2022",
+    "year": "2022",
+    "theme_id": "2022_stm",
+    "article_count": 8,
+    "source_pdf": "2022-05-09 Special Town Meeting Minutes.pdf",
+    "file": "2022_stm.json"
+  },
+  "2023_atm": {
+    "meeting_type": "ATM",
+    "date": "May 8, 2023",
+    "year": "2023",
+    "theme_id": "2023_atm",
+    "article_count": 38,
+    "source_pdf": "2023-05-08 Annual Town Meeting Warrant.pdf",
+    "file": "2023_atm.json"
+  },
+  "2023_stm": {
+    "meeting_type": "STM",
+    "date": "May 8, 2023",
+    "year": "2023",
+    "theme_id": "2023_stm",
+    "article_count": 8,
+    "source_pdf": "2023-05-08 Special Town Meeting Warrant.pdf",
+    "file": "2023_stm.json"
+  },
+  "2024_atm": {
+    "meeting_type": "ATM",
+    "date": "May 13, 2024",
+    "year": "2024",
+    "theme_id": "2024_atm",
+    "article_count": 24,
+    "source_pdf": "2024-05-13 Annual Town Meeting Warrant.pdf",
+    "file": "2024_atm.json"
+  },
+  "2024_stm": {
+    "meeting_type": "STM",
+    "date": "May 13, 2024",
+    "year": "2024",
+    "theme_id": "2024_stm",
+    "article_count": 8,
+    "source_pdf": "2024-05-13 Special Town Meeting Warrant.pdf",
+    "file": "2024_stm.json"
+  },
+  "2025_atm": {
+    "meeting_type": "ATM",
+    "date": "May 12, 2025",
+    "year": "2025",
+    "theme_id": "2025_atm",
+    "article_count": 29,
+    "source_pdf": "ATM-Warrant-with-Sig-Pg.pdf",
+    "file": "2025_atm.json"
+  },
+  "2026_atm": {
+    "meeting_type": "ATM",
+    "date": "May 11, 2026",
+    "year": "2026",
+    "theme_id": "2026_atm",
+    "article_count": 26,
+    "source_pdf": "ATM-Warrant-DRAFT 04072026.pdf",
+    "file": "2026_atm.json"
+  },
+  "2026_stm": {
+    "meeting_type": "STM",
+    "date": "May 11, 2026",
+    "year": "2026",
+    "theme_id": "2026_stm",
+    "article_count": 8,
+    "source_pdf": "Warrant_STM.pdf",
+    "file": "2026_stm.json"
+  }
+}

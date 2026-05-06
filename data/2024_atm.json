@@ -1,0 +1,251 @@
+{
+  "meta": {
+    "meeting_type": "ATM",
+    "date": "May 13, 2024",
+    "year": "2024",
+    "theme_id": "2024_atm",
+    "source_pdf": "2024-05-13 Annual Town Meeting Warrant.pdf"
+  },
+  "articles": [
+    {
+      "num": 1,
+      "title": "Debt Stabilization Fund Transfer",
+      "summary": "Transfers $39,000 from the Debt Stabilization Fund to the FY2025 operating budget to offset debt exclusion project costs.",
+      "category": "Financial",
+      "amount": 39000,
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town will vote to transfer the sum of $39,000 from the Debt Stabilization Fund to the Fiscal Year 2025 operating budget for the purpose of offsetting a portion of debt exclusion projects, or act in any manner relating thereto."
+    },
+    {
+      "num": 2,
+      "title": "Transfer from Ambulance Receipts to General Fund",
+      "summary": "Transfers $767,000 from Ambulance Receipts Reserved for Appropriation to the FY2025 General Fund Operating Budget.",
+      "category": "Financial",
+      "amount": 767000,
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town will vote to transfer $767,000 from Ambulance Receipts Reserved for Appropriation to the Fiscal Year 2025 General Fund Operating Budget, or act in any manner relating thereto."
+    },
+    {
+      "num": 3,
+      "title": "Appropriation: FY25 Operating Budget",
+      "summary": "Sets salaries for elected officers and appropriates funds to cover all Town charges, expenses, and debt for the fiscal year ending June 30, 2025.",
+      "category": "Budget",
+      "amount": null,
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town will vote to fix the salary and compensation of all elected officers of the Town, provide for a Reserve Fund, and determine what sums of money the Town will raise and appropriate, including appropriation from available funds, to defray charges and expenses of the Town including debt and interest, for the Fiscal Year ending June 30, 2025, or act in any manner relating thereto."
+    },
+    {
+      "num": 4,
+      "title": "Appropriation: FY25 Water Enterprise Fund",
+      "summary": "Appropriates $5,438,224 to operate the Water Enterprise Fund for FY2025, funded by user fees ($5,200,000) and retained earnings ($238,224).",
+      "category": "Enterprise Budget",
+      "amount": 5438224,
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town will vote to raise and appropriate or transfer from available funds the sum of $5,438,224 for the maintenance of the Water Department Enterprise Fund (Salaries $1,060,621 / Expenses $895,400 / Debt $2,989,040 / Indirect $493,163), funded by user fees ($5,200,000) and retained earnings ($238,224), or act in any manner relating thereto."
+    },
+    {
+      "num": 5,
+      "title": "Appropriation: FY25 Sewer Enterprise Fund",
+      "summary": "Appropriates $2,040,739 to operate the Sewer Enterprise Fund for FY2025, funded by user fees ($2,019,158) and sewer betterment transfer ($21,581).",
+      "category": "Enterprise Budget",
+      "amount": 2040739,
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town will vote to raise and appropriate or transfer from available funds the sum of $2,040,739 for the maintenance of the Sewer Department Enterprise Fund (Salaries $286,204 / Expenses $1,369,600 / Debt $225,887 / Indirect $159,048), funded by user fees ($2,019,158) and sewer betterment transfer ($21,581), or act in any manner relating thereto."
+    },
+    {
+      "num": 6,
+      "title": "Appropriation: FY25 Solid Waste Enterprise Fund",
+      "summary": "Appropriates $1,821,866 to operate the Solid Waste/Recycling Enterprise Fund for FY2025, funded entirely by trash/recycling fees.",
+      "category": "Enterprise Budget",
+      "amount": 1821866,
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town will vote to raise and appropriate or transfer from available funds the sum of $1,821,866 to operate the Solid Waste/Recycling Department Enterprise Fund (Salaries $57,385 / Expenses $1,576,000 / Debt $48,444 / Indirect $140,037), funded entirely by trash/recycling fees, or act in any manner relating thereto."
+    },
+    {
+      "num": 7,
+      "title": "Free Cash Appropriation: Capital and Other Items",
+      "summary": "Appropriates $2,503,752 from Certified Free Cash for over 25 capital projects spanning IT, schools, DPW, fire, police, and library needs.",
+      "category": "Capital",
+      "amount": 2503752,
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town will vote to appropriate the sum of $2,503,752 from Certified Free Cash for capital and other items, including: Vermac Message Board ($22,000), IT Infrastructure Equipment ($140,000), Projection Equipment ($108,000), Hydraulic Extrication Tools ($100,000), High School Auditorium Stage Lighting ($117,000), Burke MEDI Wing Floor Abatement ($150,000), McGovern Cafeteria A/C ($150,000), Roads and Sidewalks ($750,000), Various Stormwater Improvements ($200,000), Replace 347 Wing Mower ($100,000), Police Station Lighting ($30,000), and other projects, or act in any manner relating thereto."
+    },
+    {
+      "num": 8,
+      "title": "Raise & Appropriate: Roads & Sidewalks",
+      "summary": "Raises and appropriates $800,000 for repairs to roads, sidewalks, bridges, and related infrastructure.",
+      "category": "Capital",
+      "amount": 800000,
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town will vote to raise and appropriate the sum of $800,000 for the purposes of making repairs to various roads, sidewalks, bridges, and related appurtenances, and to fund, as needed, design, engineering, and construction management services, and for the payment of all other costs incidental and related thereto, or act in any manner relating thereto."
+    },
+    {
+      "num": 9,
+      "title": "Water Retained Earnings Transfer: Replace Ford F550",
+      "summary": "Transfers $105,000 from Water Enterprise retained earnings to purchase a replacement vehicle for the 2013 Ford F550 (Veh. 417).",
+      "category": "Capital",
+      "amount": 105000,
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town will vote to transfer the sum of $105,000 from Water Enterprise Fund retained earnings for the purpose of funding the purchase and equipping of a replacement vehicle for a 2013 Ford F550 (Veh. 417), and for the payment of all other incidental and related costs, or act in any manner relating thereto."
+    },
+    {
+      "num": 10,
+      "title": "Sewer Enterprise Retained Earnings: Inflow & Infiltration",
+      "summary": "Transfers $200,000 from Sewer Enterprise retained earnings to fund sewer inflow and infiltration work.",
+      "category": "Capital",
+      "amount": 200000,
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town will vote to transfer from Sewer Enterprise Fund retained earnings the sum of $200,000 for the purpose of funding sewer inflow and infiltration work, including engineering and construction costs, or act in any manner relating thereto."
+    },
+    {
+      "num": 11,
+      "title": "Hanlon Track & Field Construction",
+      "summary": "Authorizes $2,487,000 for Hanlon track and field replacement: borrowing $1,687,000, CPA funds $500,000 (for lights/fencing, not turf), and Athletic Stabilization $300,000.",
+      "category": "Capital",
+      "amount": 2487000,
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town will vote to raise and appropriate, borrow, or transfer from available funds $2,487,000 for the replacement of the Hanlon track and field, light fixtures, fencing, and associated equipment at Medway High School; funded by: borrowing $1,687,000 under G.L. c. 44 §7, transferring $500,000 from CPA funds (for non-turf elements), and transferring $300,000 from the Athletic Stabilization fund, or act in any manner relating thereto."
+    },
+    {
+      "num": 12,
+      "title": "Capital Stabilization Transfer: Memorial School Roof Replacement",
+      "summary": "Transfers funds from the Capital Stabilization Fund for design, engineering, and construction of the Memorial Elementary School roof (amount TBD at time of warrant).",
+      "category": "Capital",
+      "amount": null,
+      "sb": "To Be Determined",
+      "fc": "To Be Determined",
+      "text": "To see if the Town will vote to transfer a sum of money from the Capital Stabilization Fund for the purpose of design, engineering, and construction of the Memorial Elementary School roof, and for the payment of all other costs incidental and related thereto, or act in any manner relating thereto."
+    },
+    {
+      "num": 13,
+      "title": "Appropriation: OPEB Trust",
+      "summary": "Raises and appropriates $300,000 to the Town's Other Post-Employment Benefits (OPEB) Trust.",
+      "category": "Financial",
+      "amount": 300000,
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town will vote to raise and appropriate the sum of $300,000 to the Town of Medway Other Post-Employment Benefits (OPEB) Trust account, or act in any manner relating thereto."
+    },
+    {
+      "num": 14,
+      "title": "Appropriation: General Stabilization",
+      "summary": "Raises and appropriates $100,000 to the General Stabilization Fund.",
+      "category": "Financial",
+      "amount": 100000,
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town will vote to raise and appropriate or transfer from available funds the sum of $100,000 to be allocated to the General Stabilization Fund, or act in any manner relating thereto."
+    },
+    {
+      "num": 15,
+      "title": "Appropriation: Community Preservation Committee",
+      "summary": "Approves the CPA FY2025 budget of $439,975 for administration, debt service, affordable housing coordination, and historic property signs; plus 10% statutory reserves.",
+      "category": "CPA/Open Space",
+      "amount": 439975,
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town will vote to act on the report of the Community Preservation Committee for the Fiscal Year 2025 Community Preservation budget appropriating: CPC Expenses ($15,000), CPC Salaries ($5,000), CPC Debt Expense ($397,975), AH Coordinator/Expenses ($17,500), Historic Property Signs ($4,500); plus 10% reserves for open space ($151,438), community housing ($133,938), and historical preservation ($146,938), or act in any manner relating thereto."
+    },
+    {
+      "num": 16,
+      "title": "Medway Grid PILOT Authorization",
+      "summary": "Authorizes the Select Board to enter a PILOT agreement with Medway Grid LLC for a battery energy storage project at 49–55 Milford Street for a term exceeding 20 years.",
+      "category": "Energy",
+      "amount": "—",
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town will vote to authorize the Select Board to enter into a Payment In Lieu of Taxes (PILOT) agreement pursuant to G.L. c. 59 §59 (Clause Forty-Fifth) with Medway Grid, LLC, for a new battery energy storage project at 49, 53, and 55 Milford Street, for a term of more than 20 years, and to take any actions necessary to implement and administer the PILOT agreement, or act in any manner relating thereto."
+    },
+    {
+      "num": 17,
+      "title": "Revolving Funds: Create School Transportation Fund; Authorize FY25 Limits",
+      "summary": "Creates a new School Transportation revolving fund; sets FY2025 spending limits: parks/rec ($620,000), senior transportation ($130,000), school transportation ($300,000), and others.",
+      "category": "Administrative",
+      "amount": "—",
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town will vote pursuant to G.L. c. 44 §53E½ to create a new School Transportation revolving fund (funded by student transportation fees) and to set FY2025 spending limits: parks and recreation ($620,000), dial-a-ride/senior transportation ($130,000), library printer ($3,200), library meeting room ($1,000), Thayer Homestead ($95,000), tobacco compliance ($2,500), school transportation ($300,000), or act in any manner relating thereto."
+    },
+    {
+      "num": 18,
+      "title": "Amend General Bylaws: Scenic Roads",
+      "summary": "Enacts a new Scenic Road Bylaw requiring a permit from the Planning Board before cutting trees or disturbing stone walls along any of the 25 designated scenic roads; sets fines up to $300 per violation.",
+      "category": "General Bylaws",
+      "amount": "—",
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town will vote to enact a new Scenic Road Bylaw requiring a Scenic Road Work Permit from the Planning and Economic Development Board before cutting or removing trees or tearing down stone walls within the right-of-way of any designated Scenic Road (25 roads designated since 1975 and 2001); enforcement via non-criminal disposition with fines up to $300 per violation ($100/$200/$300 for 1st/2nd/3rd+ offenses), or act in any manner related thereto."
+    },
+    {
+      "num": 19,
+      "title": "Amend Zoning Bylaws: Awning Signs",
+      "summary": "Clarifies sign area computation for awning signs: for internally illuminated awnings, the area is the entire translucent portion; for externally illuminated awnings, the entire illuminated area.",
+      "category": "Zoning",
+      "amount": "—",
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town will vote to amend Zoning Bylaw Section 7.2.B.7 to clarify that: for internally illuminated awnings, sign area is the smallest rectangle enclosing all translucent material including lettering and logos; for externally illuminated awnings, sign area is the entire externally illuminated area of the awning, or act in any manner related thereto."
+    },
+    {
+      "num": 20,
+      "title": "Amend Zoning Bylaws: Reduce ARCPUD Parking Requirement",
+      "summary": "Reduces the required off-street parking for ARCPUD housing from 2.0 spaces per unit to 1.5 spaces per unit.",
+      "category": "Zoning",
+      "amount": "—",
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town will vote to amend Zoning Bylaw Section 7.1.1 Off-Street Parking, Table 3: Schedule of Off-Street Parking Requirements, by changing the required parking for ARCPUD housing from '2.0 spaces per unit' to '1.5 spaces per unit', or act in any manner related thereto."
+    },
+    {
+      "num": 21,
+      "title": "Amend Zoning Bylaws: Outdoor Merchandise Displays",
+      "summary": "Allows outdoor merchandise displays by right in commercial and business districts with safety and accessibility standards; non-compliant displays require a ZBA special permit.",
+      "category": "Zoning",
+      "amount": "—",
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town will vote to amend the Zoning Bylaw by adding Section 5.4.1 Outdoor Displays, allowing outdoor displays by right in Central Business, Village Commercial, Neighborhood Commercial, and Business Industrial districts, subject to: no placement on parking/fire lanes; only store merchandise displayed; minimum 6-foot pedestrian clearance; sturdy display materials; no additional signage beyond pricing; and fire department approval for combustible overhangs; non-compliant displays require a ZBA special permit, or act in any manner related thereto."
+    },
+    {
+      "num": 22,
+      "title": "Amend Zoning Bylaws: Housekeeping",
+      "summary": "Removes the outdated Section 1.5 Amendment provision; updates a rowhouse reference in the CBD; corrects first sentence of the mixed-use building height bonus provision.",
+      "category": "Zoning",
+      "amount": "—",
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town will vote to amend the Zoning Bylaw by: (1) deleting Section 1.5 Amendment in its entirety; (2) amending Central Business District Section 10.4.C.1.a to read 'Rowhouse (RH) as set forth in Table 9.4.C.1.A'; and (3) correcting the first sentence of Section 10.3.D.7 regarding the mixed-use building height extension by special permit, or act in any manner related thereto."
+    },
+    {
+      "num": 23,
+      "title": "Amend Zoning Map: Energy Resource District",
+      "summary": "Re-zones 10 parcels in the Milford Street area (Assessors' Parcels 66-005, 66-008, 65-027 through 65-036, and 75-003) to the Energy Resource District.",
+      "category": "Zoning",
+      "amount": "—",
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town will vote to amend the Zoning Map by re-zoning to Energy Resource District the following parcels: 66-005, 66-008, 65-027, 65-028, 65-031, 65-033, 65-034, 65-035, 65-036, and 75-003, as shown on the attached map, or act in any manner related thereto."
+    },
+    {
+      "num": 24,
+      "title": "Borrowing: Purchase Fire Truck",
+      "summary": "Authorizes up to $1,100,000 to purchase and equip a new fire truck.",
+      "category": "Capital",
+      "amount": 1100000,
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town will vote to raise and appropriate, borrow or transfer from available funds the sum of $1,100,000 for the purpose of purchasing and equipping a new fire truck, and for the payment of all other incidental and related costs, or act in any manner relating thereto."
+    }
+  ]
+}

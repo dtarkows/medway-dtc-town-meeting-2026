@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BESS PILOT Agreement Analysis — Town of Medway</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Inter', sans-serif; background: #eef2f7; color: #1a2e4a; min-height: 100vh; }
+
+    .header {
+      background: linear-gradient(135deg, #1a2e4a 0%, #2a4a6a 100%);
+      color: white; padding: 3.5rem 2rem 3rem; text-align: center;
+    }
+    .header .eyebrow { font-size: .72rem; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; opacity: .65; margin-bottom: .7rem; }
+    .header h1 { font-size: 2rem; font-weight: 700; margin-bottom: .6rem; line-height: 1.25; }
+    .header .sub { font-size: .95rem; opacity: .72; max-width: 600px; margin: 0 auto; line-height: 1.6; }
+    .seal { font-size: 3rem; margin-bottom: 1rem; display: block; }
+
+    .back-bar { background: #1a2e4a; border-top: 1px solid rgba(255,255,255,.1); padding: .6rem 2rem; }
+    .back-link {
+      display: inline-flex; align-items: center; gap: .4rem;
+      color: rgba(255,255,255,.75); font-size: .78rem; font-weight: 500;
+      text-decoration: none; letter-spacing: .02em;
+    }
+    .back-link:hover { color: white; }
+
+    .container { max-width: 900px; margin: 0 auto; padding: 2.5rem 1.5rem 5rem; }
+
+    .card {
+      background: white; border-radius: 16px; padding: 2rem 2.25rem;
+      box-shadow: 0 1px 3px rgba(0,0,0,.07), 0 4px 12px rgba(0,0,0,.04);
+      margin-bottom: 1.75rem;
+    }
+
+    .part-banner {
+      border-radius: 12px; padding: 1rem 1.5rem; margin-bottom: 1.75rem;
+      font-size: .72rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase;
+    }
+    .part-banner.summary  { background: #e8f5e3; color: #2a6a20; border-left: 4px solid #2a6a20; }
+    .part-banner.compare  { background: #e8eef9; color: #2a3a80; border-left: 4px solid #2a3a80; }
+    .part-banner.args     { background: #f5f0ff; color: #5a20a0; border-left: 4px solid #5a20a0; }
+
+    .card h2 { font-size: 1.25rem; font-weight: 700; color: #1a2e4a; margin-bottom: 1rem; padding-bottom: .5rem; border-bottom: 2px solid #e8edf4; }
+    .card h3 { font-size: 1rem; font-weight: 700; color: #1a2e4a; margin: 1.4rem 0 .5rem; }
+    .card h3:first-child { margin-top: 0; }
+    .card p { font-size: .9rem; color: #3a4e5e; line-height: 1.75; margin-bottom: .75rem; }
+    .card p:last-child { margin-bottom: 0; }
+    .card strong { font-weight: 600; color: #1a2e4a; }
+
+    /* Revenue strip */
+    .revenue-strip {
+      background: linear-gradient(135deg, #1a4a2a 0%, #2a6a40 100%);
+      color: white; border-radius: 12px; padding: 1.25rem 1.5rem; margin: 1.25rem 0;
+      display: flex; gap: 2rem; flex-wrap: wrap;
+    }
+    .rev-item { flex: 1; min-width: 140px; }
+    .rev-label { font-size: .68rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; opacity: .75; margin-bottom: .25rem; }
+    .rev-amount { font-size: 1.4rem; font-weight: 700; }
+    .rev-sub { font-size: .75rem; opacity: .7; margin-top: .1rem; }
+
+    /* MW/MWh explainer */
+    .explainer {
+      background: #f0f6ff; border-radius: 12px; padding: 1.25rem 1.4rem; margin: 1.25rem 0;
+      border-left: 4px solid #2a5a9a;
+    }
+    .explainer-title { font-size: .72rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: #2a5a9a; margin-bottom: .75rem; }
+    .explainer-grid { display: grid; grid-template-columns: 1fr 1fr; gap: .75rem; margin-bottom: .85rem; }
+    @media (max-width: 600px) { .explainer-grid { grid-template-columns: 1fr; } }
+    .exp-box { background: white; border-radius: 8px; padding: .7rem .85rem; }
+    .exp-term { font-size: .78rem; font-weight: 700; color: #1a2e4a; margin-bottom: .2rem; }
+    .exp-def  { font-size: .79rem; color: #546475; line-height: 1.5; }
+    .explainer p { font-size: .84rem; color: #2a3a6a; line-height: 1.7; margin-bottom: 0; }
+
+    /* Comparison table */
+    .compare-table-wrap { overflow-x: auto; margin: 1rem 0; }
+    table { width: 100%; border-collapse: collapse; font-size: .83rem; }
+    thead tr { background: #1a2e4a; color: white; }
+    thead th { padding: .7rem .9rem; text-align: left; font-weight: 600; font-size: .77rem; letter-spacing: .04em; }
+    thead th:first-child { border-radius: 8px 0 0 0; }
+    thead th:last-child { border-radius: 0 8px 0 0; }
+    tbody tr { border-bottom: 1px solid #e8edf4; }
+    tbody tr:nth-child(even) { background: #f7fafc; }
+    tbody tr:hover { background: #eef2f7; }
+    td { padding: .6rem .9rem; color: #3a4e5e; vertical-align: top; line-height: 1.4; }
+    td.label { font-weight: 600; color: #1a2e4a; font-size: .8rem; background: #f4f7fb; }
+    td.new { color: #2a6a20; font-weight: 700; }
+    td.status-built { color: #2a5a9a; font-weight: 600; }
+
+    /* Observations */
+    .observation { background: #f4f7fb; border-left: 3px solid #2a4a6a; border-radius: 0 8px 8px 0; padding: .85rem 1rem 1rem; margin-bottom: .85rem; }
+    .observation .obs-label { font-size: .68rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: #7a8fa6; margin-bottom: .3rem; }
+    .observation p { font-size: .87rem; margin-bottom: 0; }
+
+    /* Argument cards */
+    .arg-list { display: flex; flex-direction: column; gap: 1rem; }
+    .arg-item { border-radius: 10px; padding: 1rem 1.1rem; }
+    .arg-item.support { background: #f0fbf0; border-left: 4px solid #2a8a40; }
+    .arg-item.oppose  { background: #fff5f5; border-left: 4px solid #b03030; }
+    .arg-num { font-size: .68rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: #7a8fa6; margin-bottom: .3rem; }
+    .arg-title { font-size: .9rem; font-weight: 700; color: #1a2e4a; margin-bottom: .4rem; }
+    .arg-item p { font-size: .85rem; color: #3a4e5e; line-height: 1.7; margin-bottom: 0; }
+
+    /* Disclaimer */
+    .disclaimer { background: #f4f7fb; border-radius: 10px; padding: 1rem 1.25rem; font-size: .8rem; color: #7a8fa6; line-height: 1.6; font-style: italic; margin-top: 1.5rem; }
+    .page-footer { text-align: center; padding: 2rem 1rem; color: #9aa8b8; font-size: .75rem; }
+  </style>
+</head>
+<body>
+
+<div class="header">
+  <span class="seal">&#x26A1;</span>
+  <div class="eyebrow">Town of Medway, Massachusetts</div>
+  <h1>BESS PILOT Agreement Analysis</h1>
+  <p class="sub">2026 West Street Agreement — Summary, Comparison, and Arguments</p>
+</div>
+
+<div class="back-bar">
+  <a class="back-link" href="../index.html">&#x2190; Town Meeting archive</a>
+</div>
+
+<div class="container">
+
+<!-- ── PART 1: SUMMARY ────────────────────────────────────────── -->
+
+<div class="part-banner summary">Part 1 &mdash; Summary of the 2026 PILOT Agreement</div>
+
+<div class="card">
+  <h2>Parties &amp; Project</h2>
+  <p><strong>Town of Medway</strong>, signed by Todd Alessandri, Chair, Select Board (April 6, 2026). <strong>Medway Energy Center, LLC</strong> (c/o Hecate Energy LLC, Chicago, IL) — developer signature pending Town Meeting approval.</p>
+  <p>A 300 MW AC, 4-hour battery energy storage system (BESS) to be constructed at and behind <strong>15 West Street</strong> on approximately 47 acres (6 tax parcels). Roughly 11 acres will be actively developed for battery enclosures and an on-site substation. The land is currently forested. The project includes a new overhead 345kV transmission line approximately 2,755 feet long connecting to the West Medway Substation via Eversource-controlled easements. ISO-NE selected the project to enhance grid reliability in the Southeastern Massachusetts (SEMA) transmission zone.</p>
+</div>
+
+<div class="card">
+  <h2>Financial Terms</h2>
+  <div class="revenue-strip">
+    <div class="rev-item">
+      <div class="rev-label">Annual PILOT</div>
+      <div class="rev-amount">$3,047,556</div>
+      <div class="rev-sub">Fixed, years 1–20</div>
+    </div>
+    <div class="rev-item">
+      <div class="rev-label">Annual CPA (3%)</div>
+      <div class="rev-amount">$91,427</div>
+      <div class="rev-sub">Paid by September 1 each year</div>
+    </div>
+    <div class="rev-item">
+      <div class="rev-label">Annual Total</div>
+      <div class="rev-amount">$3,138,982</div>
+      <div class="rev-sub">PILOT + CPA combined</div>
+    </div>
+    <div class="rev-item">
+      <div class="rev-label">20-Year Total</div>
+      <div class="rev-amount">$62,779,660</div>
+      <div class="rev-sub">All payments combined</div>
+    </div>
+  </div>
+  <p>Payments are <strong>fixed for the full 20 years</strong> — they will not increase with inflation, tax rate changes, or property revaluation, and will not decrease with depreciation. Year 1 payment is due within 25 days of COD; subsequent payments are quarterly. No payments are owed during construction.</p>
+</div>
+
+<div class="card">
+  <h2>Key Terms</h2>
+  <h3>Term &amp; Capacity Adjustment</h3>
+  <p>20 years from the Commercial Operation Date (COD). If the project expands beyond 300 MW by more than 5 MW, the payment schedule is revised pro rata. Disputes: informal negotiation → mediation → Norfolk County Superior Court.</p>
+
+  <h3>Early Termination</h3>
+  <p><strong>Developer:</strong> May terminate before COD at any time, or after COD if the project cannot operate for 3+ consecutive months due to casualty or Force Majeure; an adverse legal/regulatory order prevents operation; or the project is permanently decommissioned.</p>
+  <p><strong>Town:</strong> After Year 18, may notify of intent to terminate effective June 30, 2048, and negotiate a successor agreement. If no successor is reached, the project reverts to ad valorem taxation under G.L. c. 59.</p>
+
+  <h3>Default &amp; Conditions Precedent</h3>
+  <p>Late payments accrue interest under G.L. c. 59 §57. The Town issues a notice of default; the developer has 30 days to cure. Failure to cure gives the Town the option to void the PILOT and revert to ad valorem taxation.</p>
+  <p>The agreement takes legal effect only upon: (i) <strong>Town Meeting approval</strong>; (ii) <strong>Massachusetts DOR approval</strong>; and (iii) achievement of <strong>COD</strong>. If DOR objects, the PILOT is null and void.</p>
+
+  <h3>Relationship to HCA</h3>
+  <p>The PILOT is independent of the Host Community Agreement (HCA) dated January 1, 2025. Default under one does not constitute default under the other.</p>
+</div>
+
+<!-- ── PART 2: COMPARISON ─────────────────────────────────────── -->
+
+<div class="part-banner compare">Part 2 &mdash; Comparison to the Prior BESS PILOT (Milford Street / Medway Grid)</div>
+
+<div class="card">
+  <h2>Background</h2>
+  <p>The prior agreement was executed in 2024 between the Town and <strong>Medway Grid, LLC</strong> (c/o Eolian, L.P., Burlingame, CA) for a 250 MW BESS at 49, 53, and 55 Milford Street. Town Meeting authorized it as Article 16 of the 2024 ATM. That facility was constructed and is currently operating — giving the town direct experience with what a utility-scale BESS looks like in practice, and establishing that the PILOT structure can successfully attract and deliver a built facility.</p>
+</div>
+
+<div class="card">
+  <h2>Understanding MW vs. MWh</h2>
+
+  <div class="explainer">
+    <div class="explainer-title">&#x1F4A1; Key Concepts — Two Different Measurements</div>
+    <div class="explainer-grid">
+      <div class="exp-box">
+        <div class="exp-term">MW — Megawatts (Power)</div>
+        <div class="exp-def">How fast electricity can be delivered at any moment. Think of it as the <em>width of a pipe</em>. Higher MW = can serve more load simultaneously.</div>
+      </div>
+      <div class="exp-box">
+        <div class="exp-term">MWh — Megawatt-Hours (Energy)</div>
+        <div class="exp-def">The total electricity stored in the batteries. Think of it as the <em>volume of a tank</em>. Higher MWh = can run longer before needing to recharge.</div>
+      </div>
+    </div>
+    <p><strong>Duration = MWh ÷ MW.</strong> The new West Street facility is 300 MW × 4 hours = <strong>1,200 MWh</strong>. The operating Milford Street facility is 250 MW / 500 MWh = a <strong>2-hour</strong> duration. A 4-hour facility can carry the grid through longer stress events — for example, a hot afternoon that stretches into the evening — which is why ISO-NE selected West Street for the SEMA region.</p>
+  </div>
+</div>
+
+<div class="card">
+  <h2>Side-by-Side Key Facts</h2>
+  <div class="compare-table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Item</th>
+          <th>2026 West St. (Hecate)</th>
+          <th>Prior Milford St. (Medway Grid)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td class="label">Developer</td><td>Medway Energy Center / Hecate Energy</td><td>Medway Grid / Eolian</td></tr>
+        <tr><td class="label">Power Capacity</td><td class="new">300 MW AC</td><td>250 MW AC</td></tr>
+        <tr><td class="label">Energy Capacity</td><td class="new">1,200 MWh (300 MW × 4 hrs)</td><td>500 MWh (250 MW × 2 hrs)</td></tr>
+        <tr><td class="label">Storage Duration</td><td class="new">4 hours</td><td>2 hours</td></tr>
+        <tr><td class="label">Site Address</td><td>15 West Street</td><td>49, 53, 55 Milford Street</td></tr>
+        <tr><td class="label">Site Area</td><td class="new">~47 acres (11 developed)</td><td>~10.6 acres (5.2 developed)</td></tr>
+        <tr><td class="label">Prior Land Use</td><td>Forested</td><td>Residential homes + auto repair shop</td></tr>
+        <tr><td class="label">Transmission Line</td><td>~2,755 ft overhead 345kV</td><td>~1,325 ft underground 345kV</td></tr>
+        <tr><td class="label">HCA Reference</td><td>January 1, 2025</td><td>September 7, 2022</td></tr>
+        <tr><td class="label">Annual PILOT</td><td class="new">$3,047,556</td><td>$2,237,714</td></tr>
+        <tr><td class="label">Annual CPA (3%)</td><td class="new">$91,427</td><td>$69,208</td></tr>
+        <tr><td class="label">Annual Total</td><td class="new">$3,138,982</td><td>$2,306,922</td></tr>
+        <tr><td class="label">20-Year Total</td><td class="new">$62,779,660</td><td>$46,138,440</td></tr>
+        <tr><td class="label">Payment per MW/year</td><td class="new">$10,159</td><td>$8,951</td></tr>
+        <tr><td class="label">Town Counsel</td><td>KP Law, P.C.</td><td>BCK Law / Jeffrey Bernstein</td></tr>
+        <tr><td class="label">Status</td><td class="new">Signed by Town; pending Town Meeting</td><td class="status-built">Executed; facility operating</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="card">
+  <h2>Key Observations</h2>
+
+  <div class="observation">
+    <div class="obs-label">Revenue</div>
+    <p>The 2026 agreement pays <strong>$832,060 more per year</strong> than the prior agreement — a 36% increase. Over 20 years, the additional revenue to the town is approximately <strong>$16.6 million</strong>. On a per-MW basis, the new agreement pays roughly 13.5% more per megawatt, even though it is a larger project.</p>
+  </div>
+
+  <div class="observation">
+    <div class="obs-label">Scale — Power and Energy</div>
+    <p>The new project is <strong>20% larger in power output</strong> (300 vs. 250 MW), but <strong>140% larger in energy storage capacity</strong> (1,200 vs. 500 MWh). Because the number of physical battery modules scales with energy capacity, the West Street facility will contain roughly <strong>2.4 times as many battery cabinets</strong> as the operating Milford Street plant. It occupies more than four times the total acreage, though only about twice the actively developed area.</p>
+  </div>
+
+  <div class="observation">
+    <div class="obs-label">Site Character</div>
+    <p>The Milford Street project displaced residential homes, a barn, and an auto repair shop on 10.6 acres. The West Street project converts 11 acres of forested land on a 47-acre parcel. One displaced residents and businesses; the other converts undeveloped green space.</p>
+  </div>
+
+  <div class="observation">
+    <div class="obs-label">Transmission</div>
+    <p>The prior project used underground transmission (~1,325 ft); the new project uses overhead lines (~2,755 ft). Overhead lines are generally less expensive to install but more visible.</p>
+  </div>
+
+  <div class="observation">
+    <div class="obs-label">Payment Structure</div>
+    <p>The two agreements are structurally identical — flat fixed payments, no escalator, same Force Majeure provisions, same cure periods, same dispute resolution ladder. The 2026 agreement omits the 30-day DOR approval deadline from the 2024 draft, which could create an open-ended condition precedent.</p>
+  </div>
+
+  <div class="observation">
+    <div class="obs-label">Developer Track Record</div>
+    <p>The Milford Street facility (Medway Grid/Eolian) was executed and is currently operating. This is the town's second BESS PILOT, not a first experiment. The PILOT structure has proven capable of attracting and delivering a built facility.</p>
+  </div>
+</div>
+
+<!-- ── PART 3: ARGUMENTS ──────────────────────────────────────── -->
+
+<div class="part-banner args">Part 3 &mdash; Arguments</div>
+
+<div class="card">
+  <h2>Arguments a Supporter Would Make</h2>
+  <div class="arg-list">
+
+    <div class="arg-item support">
+      <div class="arg-num">Argument 1</div>
+      <div class="arg-title">Substantial, guaranteed revenue with no downside risk.</div>
+      <p>The Town will receive $3.14 million every year for 20 years regardless of whether the facility depreciates, whether the tax rate changes, or whether the state legislature adjusts how energy storage is assessed. Unlike ad valorem property taxes, which can shrink as equipment ages, this PILOT is locked in. That is the equivalent of adding roughly 1% to the town's operating budget from a single source, with zero administrative overhead in collection.</p>
+    </div>
+
+    <div class="arg-item support">
+      <div class="arg-num">Argument 2</div>
+      <div class="arg-title">A significantly better deal than what came before.</div>
+      <p>The Milford Street PILOT pays $2.3 million per year. This agreement pays $832,000 more annually for a comparable facility type. The town's negotiators extracted better per-MW terms even as the project grew larger. Town Meeting voters can see the town did not simply accept the developer's first offer.</p>
+    </div>
+
+    <div class="arg-item support">
+      <div class="arg-num">Argument 3</div>
+      <div class="arg-title">The land use impact is lower than the prior project.</div>
+      <p>Unlike the Milford Street project, this facility does not require demolishing occupied homes or displacing a business. The West Street site is forested, undeveloped land. The footprint, while larger in total acreage, is less disruptive to the existing community fabric.</p>
+    </div>
+
+    <div class="arg-item support">
+      <div class="arg-num">Argument 4</div>
+      <div class="arg-title">Grid reliability benefits the whole region.</div>
+      <p>ISO-NE selected this facility specifically to shore up grid reliability in Southeastern Massachusetts. A 300 MW / 4-hour storage facility can absorb excess generation and release it during peak demand, reducing the risk of blackouts. Medway residents benefit as ratepayers, not just as taxpayers.</p>
+    </div>
+
+    <div class="arg-item support">
+      <div class="arg-num">Argument 5</div>
+      <div class="arg-title">It supports state clean energy commitments the town has already endorsed.</div>
+      <p>Massachusetts has set legally binding clean energy targets. Large-scale storage is not optional infrastructure — it is required for those goals to be achievable. Approving this PILOT puts Medway on the right side of that policy direction without requiring any town expenditure.</p>
+    </div>
+
+    <div class="arg-item support">
+      <div class="arg-num">Argument 6</div>
+      <div class="arg-title">The CPA fund gets a permanent boost.</div>
+      <p>The $91,427 annual CPA contribution flows directly to the Community Preservation Fund, supporting open space, historic preservation, and housing initiatives. Over 20 years that is $1.83 million for community priorities that otherwise compete for limited funding.</p>
+    </div>
+
+  </div>
+</div>
+
+<div class="card">
+  <h2>Arguments a Detractor Would Make</h2>
+  <div class="arg-list">
+
+    <div class="arg-item oppose">
+      <div class="arg-num">Argument 1</div>
+      <div class="arg-title">The payment is fixed — which means the town loses as time passes.</div>
+      <p>$3.14 million in 2030 is not the same as $3.14 million in 2045. At even a modest 3% inflation rate, the real value of Year 20 payments will be less than half of Year 1 in purchasing power. The town is locking in a fixed dollar amount on a 20-year contract with no cost-of-living adjustment while its own expenses will rise every year. Every other major contract the town signs — union agreements, vendor contracts — includes escalators. Why does this one not?</p>
+    </div>
+
+    <div class="arg-item oppose">
+      <div class="arg-num">Argument 2</div>
+      <div class="arg-title">The town may be significantly undervaluing the project.</div>
+      <p>Both parties agree the PILOT is intended to reflect "full and fair cash value." A 300 MW / 4-hour facility represents roughly $600–900 million in capital investment at current market rates. If the town's tax rate were applied to even a conservative assessed value, the tax obligation could exceed the PILOT payment significantly. The "No Precedent" clause (Section 10) means the town can never use these numbers to argue for higher payments elsewhere.</p>
+    </div>
+
+    <div class="arg-item oppose">
+      <div class="arg-num">Argument 3</div>
+      <div class="arg-title">COD can be years away — and the town has no leverage during construction.</div>
+      <p>PILOT payments do not begin until the Commercial Operation Date (COD). Between Town Meeting approval and COD, construction and interconnection typically take two to four years. During that window, the land is committed, the community has organized around the project, and the town has no ability to renegotiate — but receives nothing. The developer retains the right to terminate before COD for any reason at any time. Residents near West Street will experience years of construction activity before the first payment arrives.</p>
+    </div>
+
+    <div class="arg-item oppose">
+      <div class="arg-num">Argument 4</div>
+      <div class="arg-title">The developer can walk away; the town cannot.</div>
+      <p>Once the PILOT is in effect, the town cannot unilaterally terminate it (except after Year 18 notice). The developer, however, can invoke Force Majeure, regulatory proceedings, or operational failure to exit. This asymmetry means the town bears the risk of construction delays, permitting failures, or changed business conditions, while having no reciprocal ability to renegotiate if the project becomes unexpectedly profitable.</p>
+    </div>
+
+    <div class="arg-item oppose">
+      <div class="arg-num">Argument 5</div>
+      <div class="arg-title">47 acres of forested land will be permanently converted.</div>
+      <p>Eleven acres of trees will be cleared and replaced with industrial electrical infrastructure. The remaining 36 acres will be part of the project footprint. This is a permanent change to the character of West Street, adjacent to residential neighborhoods. The visual and environmental impact — clearing, construction traffic, overhead transmission lines, and industrial fencing — will be lasting and is not compensated in the PILOT payment.</p>
+    </div>
+
+    <div class="arg-item oppose">
+      <div class="arg-num">Argument 6</div>
+      <div class="arg-title">No DOR approval deadline creates an open-ended condition.</div>
+      <p>The 2024 Milford Street draft required DOR to approve within 30 days or the PILOT was void. This agreement sets no deadline. If DOR delays or requests revisions, the parties are in legal limbo — Town Meeting has voted, the Select Board has signed, but the agreement has no legal force. This ambiguity could complicate future decisions about the site.</p>
+    </div>
+
+    <div class="arg-item oppose">
+      <div class="arg-num">Argument 7</div>
+      <div class="arg-title">Hecate Energy is an out-of-state company with no community ties.</div>
+      <p>The developer is a Delaware LLC with offices in Chicago. There are no provisions for local hiring, local contracting preferences, or community benefit funds beyond the PILOT itself. Once built, a facility like this employs a handful of maintenance technicians. The town receives its payment, but the economic relationship is otherwise thin.</p>
+    </div>
+
+  </div>
+
+  <div class="disclaimer">
+    The preceding arguments represent positions that supporters or opponents might advance at Town Meeting. They are not the author's recommendations. Residents and voters should review the full PILOT agreement and consult independent financial and legal analysis before forming a view.
+  </div>
+</div>
+
+</div>
+
+<div class="page-footer">
+  Town of Medway &middot; BESS PILOT Analysis &middot; April 2026 &middot; <a href="../index.html" style="color:#9aa8b8">Town Meeting archive</a><br>
+  <span style="font-size:.7rem;opacity:.8;">Content produced with AI assistance and reviewed for accuracy, but not 100% independently verified. Consult official town documents for authoritative information.</span>
+</div>
+
+</body>
+</html>

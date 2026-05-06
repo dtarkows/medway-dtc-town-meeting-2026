@@ -1,0 +1,321 @@
+{
+  "meta": {
+    "meeting_type": "ATM",
+    "date": "May 10, 2021",
+    "year": "2021",
+    "theme_id": "2021_atm",
+    "source_pdf": "2021-05-10 Annual Town Meeting Minutes.pdf"
+  },
+  "articles": [
+    {
+      "num": 1,
+      "title": "Debt Stabilization Fund Transfer",
+      "summary": "To see if the Town will vote to transfer the sum of $288,000 from the Debt Stabilization Fund to the Fiscal Year 2022 operating budget for the purpose of offsetting a portion of debt exclusion projects, or act in any manner relating thereto.",
+      "category": "Budget",
+      "amount": 288000,
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town will vote to transfer the sum of $288,000 from the Debt Stabilization Fund to the Fiscal Year 2022 operating budget for the purpose of offsetting a portion of debt exclusion projects, or act in any manner relating thereto."
+    },
+    {
+      "num": 2,
+      "title": "Transfer from Ambulance Receipts to General Fund",
+      "summary": "To see if the Town will vote to transfer $630,000 from Ambulance Receipts Reserved for Appropriation to the Fiscal Year 2022 General Fund Operating Budget, or act in any manner relating thereto.",
+      "category": "Budget",
+      "amount": 630000,
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town will vote to transfer $630,000 from Ambulance Receipts Reserved for Appropriation to the Fiscal Year 2022 General Fund Operating Budget, or act in any manner relating thereto."
+    },
+    {
+      "num": 3,
+      "title": "Appropriation: FY22 Operating Budget",
+      "summary": "To see if the Town will vote to fix the salary and compensation of all elected officers of the Town, provide for a Reserve Fund, and determine what sums of money the Town will raise and appropriate, including appropriation from available funds, to defray charges and expenses of the Town including de...",
+      "category": "Budget",
+      "amount": null,
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town will vote to fix the salary and compensation of all elected officers of the Town, provide for a Reserve Fund, and determine what sums of money the Town will raise and appropriate, including appropriation from available funds, to defray charges and expenses of the Town including debt and interest, for the Fiscal Year ending June 30, 2022, or act in any manner relating thereto."
+    },
+    {
+      "num": 4,
+      "title": "Appropriation: FY22 Water Enterprise Fund",
+      "summary": "To see if the Town will vote to raise and appropriate or transfer from available funds the sum of $4,084,312 for the maintenance of the Water Department Enterprise Fund as follows, or act in any manner relating thereto.",
+      "category": "Budget",
+      "amount": 4084312,
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town will vote to raise and appropriate or transfer from available funds the sum of $4,084,312 for the maintenance of the Water Department Enterprise Fund as follows, or act in any manner relating thereto. Direct Costs Amount Salaries $ 820,408 Expenses 700,700 Debt 2,157,954 Direct Costs Total $ 3,679,062 Indirect Costs Indirect costs consisting of health insurance, workers\u2019 compensation, Medicare, liability insurance, administrative and operational services. Indirect Costs Total $405,250 Total $4,084,312 And further that the above listed appropriations be funded as follows: Fee"
+    },
+    {
+      "num": 5,
+      "title": "Appropriation: FY22 Sewer Enterprise Fund",
+      "summary": "To see if the Town will vote to raise and appropriate or transfer from available funds the sum of $1,818,876 for the maintenance of the Sewer Department Enterprise Fund as follows, or act in any manner relating thereto.",
+      "category": "Budget",
+      "amount": 1818876,
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town will vote to raise and appropriate or transfer from available funds the sum of $1,818,876 for the maintenance of the Sewer Department Enterprise Fund as follows, or act in any manner relating thereto. Direct Costs Amount Salaries $ 303,687 Expenses 1,035,750 Debt 302,094 Direct Costs Total $1,641,531 Indirect Costs Indirect costs consisting of health insurance, workers\u2019 compensation, Medicare, liability insurance, administrative and operational services. Indirect Costs Total $177,345 Total $1,818,876 And further that the above listed appropriations be funded as follows: Fees"
+    },
+    {
+      "num": 6,
+      "title": "Appropriation: FY22 Solid Waste Enterprise Fund",
+      "summary": "To see if the Town will vote to raise and appropriate or transfer from available funds the sum of $1,652,336 to operate the Solid Waste/Recycling Department Enterprise Fund as follows, or act in any manner relating thereto.",
+      "category": "Budget",
+      "amount": 1652336,
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town will vote to raise and appropriate or transfer from available funds the sum of $1,652,336 to operate the Solid Waste/Recycling Department Enterprise Fund as follows, or act in any manner relating thereto. Direct Costs Amount Salaries $ 188,406 Expenses 1,306,300 Debt Service 53,281 Direct Costs Total $1,547,987 Indirect Costs Indirect costs consisting of health insurance, workers\u2019 compensation, Medicare, liability insurance, administrative and operational services. Indirect Costs Total $104,349 Total $1,652,336 And further that the above listed appropriations be funded as fo"
+    },
+    {
+      "num": 7,
+      "title": "Free Cash Appropriation: Capital and Other Items",
+      "summary": "To see if the Town will vote to appropriate the sum of $2,020,421 from Certified Free Cash for the purpose of funding the following capital and other items, including associated engineering, personnel, maintenance and legal service costs, and for the payment of all other costs incidental or related ...",
+      "category": "Capital",
+      "amount": 2020421,
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town will vote to appropriate the sum of $2,020,421 from Certified Free Cash for the purpose of funding the following capital and other items, including associated engineering, personnel, maintenance and legal service costs, and for the payment of all other costs incidental or related thereto: Project Department Cost Roads & Sidewalks DPW $750,000 Replace Front End Loader (232 2001 John Deere) DPW 186,000 Replace Wing Mower DPW 75,000 Replace 2012 F250 (201) DPW 53,000 Replace Traffic Signal Sensors, Main St at Walgreens DPW 28,000 Baseline Doc for Conservation Land & Restriction"
+    },
+    {
+      "num": 8,
+      "title": "Free Cash Transfer to Street Acceptance Account",
+      "summary": "To see if the Town will vote to raise and appropriate, or transfer from available funds, the sum of $30,000 to the street acceptance account, or act in any manner relating thereto.",
+      "category": "Financial",
+      "amount": 30000,
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town will vote to raise and appropriate, or transfer from available funds, the sum of $30,000 to the street acceptance account, or act in any manner relating thereto."
+    },
+    {
+      "num": 9,
+      "title": "Fund Parks Projects, Incl. Possible CPA Funds",
+      "summary": "To see if the Town will vote to raise and appropriate, borrow or transfer from available funds, the sum of $1,100,000 for the purpose of designing, engineering, constructing and installing the following projects, and for the payment of all other incidental and related costs, or act in any manner relating thereto.",
+      "category": "Capital",
+      "amount": 1100000,
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town will vote to raise and appropriate, borrow or transfer from available funds, the sum of $1,100,000 for the purpose of designing, engineering, constructing and installing the following projects, and for the payment of all other incidental and related costs, or act in any manner relating thereto. Project Cost Cassidy Field Parking Lot $300,000 Pickleball Courts 100,000 New Softball Field at Middle School 200,000 Center Street Field Drainage Repair 100,000 High School Tennis Courts 400,000 Total $1,100,000"
+    },
+    {
+      "num": 10,
+      "title": "Raise & Appropriate: Roads & Sidewalks",
+      "summary": "To see if the Town will vote to raise and appropriate the sum of $800,000 for the purposes of making repairs to various roads, sidewalks, bridges and related appurtenances, and to fund, as needed, design, engineering, and construction management services, and for the payment of all other costs incid...",
+      "category": "Capital",
+      "amount": 800000,
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town will vote to raise and appropriate the sum of $800,000 for the purposes of making repairs to various roads, sidewalks, bridges and related appurtenances, and to fund, as needed, design, engineering, and construction management services, and for the payment of all other costs incidental and related thereto, or act in any manner relating thereto."
+    },
+    {
+      "num": 11,
+      "title": "Free Cash Transfer: Town and School Building Repair and Maintenance",
+      "summary": "To see if the Town will vote to raise and appropriate, borrow or transfer from available funds the sum of $393,256 for the purpose of funding the following Town and School building repair and maintenance projects: Project Location Cost Mitigate Water Infiltration Town Hall $8,000 Refurbish Windows T...",
+      "category": "Capital",
+      "amount": 393256,
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town will vote to raise and appropriate, borrow or transfer from available funds the sum of $393,256 for the purpose of funding the following Town and School building repair and maintenance projects: Project Location Cost Mitigate Water Infiltration Town Hall $8,000 Refurbish Windows Town Hall $19,000 Clean Roof \u2013 Mitigate Bird Perching Town Hall $14,000 Replace Roof Flashing at EPDM and Asphalt Transition Town Hall $10,000 Upgrade HVAC Controls Police Station $60,000 Replace Sprinkler System Library $55,000 Signage and One-Way Traffic Flow Library $2,000 Entry Door Sensors Senio"
+    },
+    {
+      "num": 12,
+      "title": "Borrowing: Urban Renewal Plan Implementation",
+      "summary": "To see if the Town will vote to appropriate $1,100,000 to be expended by the Medway Redevelopment Authority for the purpose of implementation of the Town\u2019s Urban Renewal Plan; said appropriation to be expended by the Medway Redevelopment Authority pursuant to an agreement the terms of which shall be...",
+      "category": "Debt",
+      "amount": 1100000,
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town will vote to appropriate $1,100,000 to be expended by the Medway Redevelopment Authority for the purpose of implementation of the Town\u2019s Urban Renewal Plan; said appropriation to be expended by the Medway Redevelopment Authority pursuant to an agreement the terms of which shall be determined by the Select Board to be in the best interest of the Town; and that to meet this appropriation, the Treasurer with the approval of Select Board is authorized to borrow such sum under Massachusetts General Laws Chapter 44, Section 7, 8, or 20, and/or General Laws Chapter 121B, Section 20"
+    },
+    {
+      "num": 13,
+      "title": "Water Retained Earnings Transfer: Purchase Vehicle and Provide Grant\nFunds",
+      "summary": "To see if the Town will vote to transfer the sum of $70,000 from Water Enterprise Fund retained earnings, $45,000 for the purpose of funding the purchase and equipping of a Water Division vehicle, and $25,000 to provide matching funds for a $125,000 reimbursable asset management grant from the Massa...",
+      "category": "Enterprise Budget",
+      "amount": 70000,
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town will vote to transfer the sum of $70,000 from Water Enterprise Fund retained earnings, $45,000 for the purpose of funding the purchase and equipping of a Water Division vehicle, and $25,000 to provide matching funds for a $125,000 reimbursable asset management grant from the Massachusetts Department of Environmental Protection and to authorize acceptance of the full amount, or act in any manner relating thereto. PUBLIC WORKS DEPT."
+    },
+    {
+      "num": 14,
+      "title": "Appropriation: General Stabilization",
+      "summary": "To see if the Town will vote to raise and appropriate or transfer from available funds the sum of $100,000 to be allocated to the General Stabilization Fund, or act in any manner relating thereto.",
+      "category": "Financial",
+      "amount": 100000,
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town will vote to raise and appropriate or transfer from available funds the sum of $100,000 to be allocated to the General Stabilization Fund, or act in any manner relating thereto."
+    },
+    {
+      "num": 15,
+      "title": "Appropriation: OPEB Trust",
+      "summary": "To see if the Town will vote to raise and appropriate the sum of $300,000 to the Town of Medway Other Post-Employment Benefits (OPEB) Trust account, or act in any manner relating thereto.",
+      "category": "General",
+      "amount": 300000,
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town will vote to raise and appropriate the sum of $300,000 to the Town of Medway Other Post-Employment Benefits (OPEB) Trust account, or act in any manner relating thereto."
+    },
+    {
+      "num": 16,
+      "title": "Appropriation: Medway Day",
+      "summary": "To see if the Town will vote to raise and appropriate the sum of $15,000 for Medway Day, or act in any manner relating thereto.",
+      "category": "General",
+      "amount": 15000,
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town will vote to raise and appropriate the sum of $15,000 for Medway Day, or act in any manner relating thereto."
+    },
+    {
+      "num": 17,
+      "title": "Appropriation: Community Preservation Committee",
+      "summary": "To see if the Town will vote to act on the report of the Community Preservation Committee for the Fiscal Year 2022 Community Preservation budget and to appropriate, or reserve for later appropriations, monies from the Community Preservation Fund annual revenues or available funds for the administrat...",
+      "category": "Financial",
+      "amount": 15000,
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town will vote to act on the report of the Community Preservation Committee for the Fiscal Year 2022 Community Preservation budget and to appropriate, or reserve for later appropriations, monies from the Community Preservation Fund annual revenues or available funds for the administrative expenses of the Community Preservation Committee, the payment of debt service, the undertaking of community preservation projects and all other necessary and proper expenses for the Fiscal Year 2022, as follows: CPA Administration: CPC Expenses $15,000 CPC Salaries 5,000 CPC Debt Expense 427,675"
+    },
+    {
+      "num": 18,
+      "title": "Revolving Funds \u2013Authorize FY22 Spending Limits",
+      "summary": "To see if the Town will vote, pursuant to Massachusetts General Laws Chapter 44, Section 53E1/2, to set Fiscal Year 2022 spending limits for revolving funds as follows: Program or Purpose FY2022 Spending Limit Self-supporting parks and recreation $450,000 services, including salaries and benefits Di...",
+      "category": "Budget",
+      "amount": 450000,
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town will vote, pursuant to Massachusetts General Laws Chapter 44, Section 53E1/2, to set Fiscal Year 2022 spending limits for revolving funds as follows: Program or Purpose FY2022 Spending Limit Self-supporting parks and recreation $450,000 services, including salaries and benefits Dial-a-ride van service for seniors and disabled; shuttle service to Norfolk $130,000 commuter rail station, and other necessary transportation services Library printer, copier and fax expenses $3,000 Library meeting room $1,000 Thayer Homestead partial self-support of $80,000 property, including sala"
+    },
+    {
+      "num": 19,
+      "title": "Amend General Bylaws \u2013 Stormwater",
+      "summary": "To see if the Town will vote to amend the Medway General By-Laws, ARTICLE XXVI. Stormwater Management and Land Disturbance, by inserting the following new subsection in Section 26.5 Land Disturbance and Construction Activity: 26.5.2.3 Rules and Regulations.",
+      "category": "Capital",
+      "amount": null,
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town will vote to amend the Medway General By-Laws, ARTICLE XXVI. Stormwater Management and Land Disturbance, by inserting the following new subsection in Section 26.5 Land Disturbance and Construction Activity: 26.5.2.3 Rules and Regulations. The Conservation Commission and the Planning and Economic Development Board shall promulgate Land Disturbance Permit Rules and Regulations to implement the Land Disturbance Permit process provided herein. The Rules and Regulations shall include but are not limited to application requirements, procedures for submission and review of applicat"
+    },
+    {
+      "num": 20,
+      "title": "Amend Zoning Bylaws: Central Business District",
+      "summary": "To see if the Town will vote to amend the Zoning Bylaws, by deleting Section 5.4.1 in its entirety and adding a new Section 10, CENTRAL BUSINESS DISTRICT DEVELOPMENT STANDARDS; and by amending Section 5.4, Table 1, Schedule of Uses, and amending Section 6.1 Schedule of Dimensional and Density Regula...",
+      "category": "Capital",
+      "amount": null,
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town will vote to amend the Zoning Bylaws, by deleting Section 5.4.1 in its entirety and adding a new Section 10, CENTRAL BUSINESS DISTRICT DEVELOPMENT STANDARDS; and by amending Section 5.4, Table 1, Schedule of Uses, and amending Section 6.1 Schedule of Dimensional and Density Regulations and Table 2; all as follows: Add the following new Section 10: SECTION 10: CENTRAL BUSINESS DISTRICT DEVELOPMENT STANDARDS 10.1. PURPOSES A. To further the goals of the Medway Master Plan. B. To encourage mixed-use development in the Central Business District with a balanced and vibrant mix of"
+    },
+    {
+      "num": 21,
+      "title": "Amend Zoning Bylaws: Site Plan Review",
+      "summary": "To see if the Town will vote to amend the Zoning Bylaw, Site Plan Review, Section 3.5 by amending Sections 3.5.3.A.1 through 3.5.3.A.4.a as follows, all other sections of Section 3.5.3 to remain as currently (deleted language shown in strikethrough, added language shown in bold): 3.5.3. Applicability A.",
+      "category": "Capital",
+      "amount": null,
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town will vote to amend the Zoning Bylaw, Site Plan Review, Section 3.5 by amending Sections 3.5.3.A.1 through 3.5.3.A.4.a as follows, all other sections of Section 3.5.3 to remain as currently (deleted language shown in strikethrough, added language shown in bold): 3.5.3. Applicability A. Site plan review shall apply to the following: 1. Major Site Plan Review. a. New construction or any alteration, reconstruction, renovation, and/or change in use of any multi-family, commercial, industrial, institutional, or municipal building or use which involves one or more of the following:"
+    },
+    {
+      "num": 22,
+      "title": "Amend Zoning Bylaws: Solar Electric Installations",
+      "summary": "To see if the Town will vote to amend the Zoning Bylaws Zoning Bylaw by adding a new Section 8.11, Solar Electric Installations, as follows: SECTION 8.11 SOLAR ELECTRIC INSTALLATIONS A. Purpose.",
+      "category": "Capital",
+      "amount": null,
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town will vote to amend the Zoning Bylaws Zoning Bylaw by adding a new Section 8.11, Solar Electric Installations, as follows: SECTION 8.11 SOLAR ELECTRIC INSTALLATIONS A. Purpose. The purpose of this bylaw is to facilitate and appropriately regulate the creation of Ground- Mounted Solar Electric Installations: (a) by providing standards for the approval, placement, design, construction, operation, monitoring, modification and removal of such installations to protect the public health, safety and welfare, including protection and preservation of Town infrastructure (including roa"
+    },
+    {
+      "num": 23,
+      "title": "Amend Zoning Bylaws: Flood Plain",
+      "summary": "To see if the Town will vote to amend the Zoning Bylaws, Section 5.6.1, Flood Plain District, by deleting the language in said section in its entirety and inserting in place thereof the following language, in order to comply with recent changes in regulatory requirements. 5.6.1 Flood Plain District A. Purposes.",
+      "category": "Capital",
+      "amount": null,
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town will vote to amend the Zoning Bylaws, Section 5.6.1, Flood Plain District, by deleting the language in said section in its entirety and inserting in place thereof the following language, in order to comply with recent changes in regulatory requirements. 5.6.1 Flood Plain District A. Purposes. The purposes of the Flood Plain District are to ensure public safety by reducing threats to life and personal injury; eliminate new hazards to emergency response officials; prevent the occurrence of public emergencies resulting from water quality contamination and pollution due to flood"
+    },
+    {
+      "num": 24,
+      "title": "Amend Zoning Bylaws: Nonconforming Structures",
+      "summary": "To see if the Town will vote to amend the Zoning Bylaws, Section 5.5.C and Section 5.5.H, as follows, (deleted language shown in strikethrough , added language shown in bold): C. Nonconforming One-Family and Two-Family Dwellings 1. No Increase in Nonconforming Nature.",
+      "category": "Capital",
+      "amount": null,
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town will vote to amend the Zoning Bylaws, Section 5.5.C and Section 5.5.H, as follows, (deleted language shown in strikethrough , added language shown in bold): C. Nonconforming One-Family and Two-Family Dwellings 1. No Increase in Nonconforming Nature. Lawfully existing nonconforming one-family and two-family structures may be reconstructed, extended, structurally changed or altered where the Zoning Board of Appeals finds that the reconstruction, extension, structural change or alteration does not increase the nonconforming nature of the structure. For purposes of this subsecti"
+    },
+    {
+      "num": 25,
+      "title": "Amend Zoning Bylaws: Electric Vehicle Charging Stations",
+      "summary": "To see if the Town will vote to amend the Zoning Bylaws, Section 7.2 Signs, by adding the following definition in 7.2.1 C. Definitions, 2. Types of Signs.",
+      "category": "Capital",
+      "amount": null,
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town will vote to amend the Zoning Bylaws, Section 7.2 Signs, by adding the following definition in 7.2.1 C. Definitions, 2. Types of Signs. Digital Advertising Signage: Signage that uses light emitting diodes (L.E.D.) or similar technology, controlled by electronic communication, to display static graphics, text, images, or multimedia content for informational or advertising purposes. And to amend SECTION 5 Use Regulations, by adding a new subsection 5.4.2 as follows: 5.4.2 Special Permits for Electric Vehicle Charging Station(s) with Digital Advertising -. The Planning and Econ"
+    },
+    {
+      "num": 26,
+      "title": "Amend Zoning Bylaws: Accessory Family Dwelling Units",
+      "summary": "To see if the Town will vote to amend the Zoning Bylaws, Section 8.2., Accessory Family Dwelling Unit (AFDU), by adding a new subsection 8.2.C.9 as follows: 9.",
+      "category": "Bylaw",
+      "amount": null,
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town will vote to amend the Zoning Bylaws, Section 8.2., Accessory Family Dwelling Unit (AFDU), by adding a new subsection 8.2.C.9 as follows: 9. If the AFDU is located in a new, separate structure on the same premises as a detached single- family dwelling (principal dwelling unit), the following standards shall apply to the AFDU structure: a. The AFDU shall be clearly accessory and incidental to the principal dwelling unit. b. The AFDU shall be architecturally compatible with the principal dwelling unit. c. The AFDU shall not be located closer to the front lot line than the prin"
+    },
+    {
+      "num": 27,
+      "title": "Amend Zoning Bylaws: Housekeeping",
+      "summary": "To see if the Town will vote to amend the Zoning Bylaws as follows (deleted language shown in strikethrough , added language shown in bold): (1) Amend the following definitions in Section 2: Accessory Family Dwelling Unit: A separate and complete housekeeping unit contained within, or being an exten...",
+      "category": "Capital",
+      "amount": null,
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town will vote to amend the Zoning Bylaws as follows (deleted language shown in strikethrough , added language shown in bold): (1) Amend the following definitions in Section 2: Accessory Family Dwelling Unit: A separate and complete housekeeping unit contained within, or being an extension of, a single family dwelling to accommodate additional family members or caregivers of a resident of the primary dwelling which is granted a special permit under Section 8.2. Dwelling: A building or portion thereof designed exclusively for residential occupancy, including single family, two fam"
+    },
+    {
+      "num": 28,
+      "title": "Accept Access Easement to Conservation Restriction Parcel \u2013 Timber\nCrest Estates",
+      "summary": "To see if the Town will vote to accept: a perpetual easement over that land in Medway, Norfolk County, Massachusetts shown as \u201cAccess Easement M 1,198 SQ.",
+      "category": "Land/Property",
+      "amount": null,
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town will vote to accept: a perpetual easement over that land in Medway, Norfolk County, Massachusetts shown as \u201cAccess Easement M 1,198 SQ. FT.\u201d on a plan entitled \u201cTimber Crest Estates & Kingsbury Village off Winthrop Street, Ohlson Circle, Holliston Street, Fairway Lane, & Fern Path\u201d in Medway, Massachusetts, by Outback Engineering, dated November 28, 2019, recorded at the Norfolk Registry of Deeds in Book 688, Page 91-102 (the \u201cSubdivision Plan\u201d), for the purpose of accessing the land identified as \u201cConservation Restriction Parcel\u201d on the Subdivision Plan. And further to auth"
+    },
+    {
+      "num": 29,
+      "title": "Charter Amendment \u2013 Selectmen to Select Board",
+      "summary": "To see if the Town will vote to authorize the Select Board to petition the General Court for special legislation amending the Medway Town Charter to rename the Board of Selectmen as the Select Board, and, for such purposes, to replace the words \u201cBoard of Selectmen\u201d or \u201cSelectmen\u201d with \u201cSelect Board\u201d...",
+      "category": "Capital",
+      "amount": null,
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town will vote to authorize the Select Board to petition the General Court for special legislation amending the Medway Town Charter to rename the Board of Selectmen as the Select Board, and, for such purposes, to replace the words \u201cBoard of Selectmen\u201d or \u201cSelectmen\u201d with \u201cSelect Board\u201d and \u201cSelectman\u201d with \u201cSelect Board Member\u201d, and to authorize the Town Clerk to make non-substantive ministerial revisions to ensure that gender and number issues in related text is revised to properly reflect such change in title; and, further, to authorize the Select Board to make non-substantive "
+    },
+    {
+      "num": 30,
+      "title": "Acquire Real Property \u2013 Evergreen Cemetery",
+      "summary": "To see if the Town will vote to authorize the Select Board to acquire by gift, eminent domain, and/or purchase and to accept the deed to the Town of a fee simple interest in all or a portion of land known as Evergreen Cemetery, located at 0 Cottage Street, identified as Parcel 48-068 on the Town of ...",
+      "category": "Financial",
+      "amount": 25000,
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town will vote to authorize the Select Board to acquire by gift, eminent domain, and/or purchase and to accept the deed to the Town of a fee simple interest in all or a portion of land known as Evergreen Cemetery, located at 0 Cottage Street, identified as Parcel 48-068 on the Town of Medway\u2019s Assessors\u2019 Map and containing 9.12 acres more or less, upon such terms and conditions as the Select Board shall determine to be appropriate, said property to be under the care, custody, management and control of the Select Board and, further, to transfer from available funds or appropriate "
+    },
+    {
+      "num": 31,
+      "title": "Citizens\u2019 Petition: Battery Storage Moratorium",
+      "summary": "To see if the Town will amend the Zoning Bylaw to establish a moratorium on the construction and operation of lithium-ion battery electrical storage system (BESS) facilities, with the exception of site-specific systems intended to support single residents, commercial buildings, and municipal buildin...",
+      "category": "Capital",
+      "amount": null,
+      "sb": "To Be Determined",
+      "fc": "To Be Determined",
+      "text": "To see if the Town will amend the Zoning Bylaw to establish a moratorium on the construction and operation of lithium-ion battery electrical storage system (BESS) facilities, with the exception of site-specific systems intended to support single residents, commercial buildings, and municipal buildings, in all zoning districts within the Town of Medway for a period of one year, during which the Town of Medway Planning and Economic Development Board, in cooperation with other Town of Medway committees and personnel, shall engage the services of consultants and other experts to examine lithium-io"
+    }
+  ]
+}

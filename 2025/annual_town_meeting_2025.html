@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Medway Annual Town Meeting — May 12, 2025</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* ── Theme colors (injected per meeting) ─────────────────────────────── */
+    :root {
+      --g1:    #2a1a60;
+      --g2:    #4a30a0;
+      --acc:   #4a30a0;
+      --light: #f0ecfa;
+      --tbg:   #f4f0fa;
+      --tbo:   #c8b8e8;
+    }
+
+    /* ── Reset & base ─────────────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Inter', sans-serif; background: #eef2f7; color: #1a2e4a; min-height: 100vh; }
+
+    /* ── Header ───────────────────────────────────────────────────────────── */
+    .header {
+      background: linear-gradient(135deg, var(--g1) 0%, var(--g2) 100%);
+      color: white; padding: 2.5rem 2rem 2rem; text-align: center;
+    }
+    .back-link {
+      display: inline-flex; align-items: center; gap: .35rem;
+      font-size: .75rem; font-weight: 600; color: rgba(255,255,255,.7);
+      text-decoration: none; letter-spacing: .04em;
+      margin-bottom: 1rem; transition: color .15s;
+    }
+    .back-link::before { content: '←'; }
+    .back-link:hover { color: white; }
+    .eyebrow { font-size: .72rem; font-weight: 600; letter-spacing: .18em; text-transform: uppercase; opacity: .65; margin-bottom: .5rem; }
+    .header h1 { font-size: 1.9rem; font-weight: 700; margin-bottom: .4rem; }
+    .header .meta { font-size: .88rem; opacity: .75; }
+
+    /* ── Stats bar ────────────────────────────────────────────────────────── */
+    .stats-bar { display: flex; gap: 1rem; padding: 1.2rem 2rem; background: var(--light); justify-content: center; flex-wrap: wrap; }
+    .stat-card { text-align: center; padding: .5rem 1.2rem; }
+    .stat-card .label { font-size: .68rem; font-weight: 600; text-transform: uppercase; letter-spacing: .1em; color: var(--acc); opacity: .8; }
+    .stat-card .value { font-size: 1.4rem; font-weight: 700; color: var(--g1); }
+    .stat-card .sub   { font-size: .7rem; color: #7a8fa6; }
+
+    /* ── Controls ─────────────────────────────────────────────────────────── */
+    .container { max-width: 1100px; margin: 0 auto; padding: 1.5rem 1.5rem 4rem; }
+    .controls { margin-bottom: 1.25rem; }
+    .controls-label { font-size: .68rem; font-weight: 700; text-transform: uppercase; letter-spacing: .12em; color: #7a8fa6; margin-bottom: .6rem; }
+    .filter-buttons { display: flex; flex-wrap: wrap; gap: .45rem; }
+    .filter-btn {
+      padding: .3rem .85rem; border-radius: 999px; border: 1.5px solid #d0dae6;
+      background: white; font-family: inherit; font-size: .75rem; font-weight: 500;
+      color: #546475; cursor: pointer; transition: all .15s;
+    }
+    .filter-btn:hover  { border-color: var(--acc); color: var(--acc); }
+    .filter-btn.active { background: var(--acc); border-color: var(--acc); color: white; font-weight: 600; }
+
+    /* ── Table ────────────────────────────────────────────────────────────── */
+    .table-wrap  { background: white; border-radius: 14px; box-shadow: 0 1px 3px rgba(0,0,0,.07), 0 4px 12px rgba(0,0,0,.04); overflow: hidden; }
+    .table-scroll { overflow-x: auto; }
+    table  { width: 100%; border-collapse: collapse; }
+    thead  { background: var(--tbg); border-bottom: 2px solid var(--tbo); }
+    th     { padding: .75rem 1rem; text-align: left; font-size: .72rem; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--g1); white-space: nowrap; }
+    th.sortable { cursor: pointer; user-select: none; }
+    th.sortable:hover { color: var(--acc); }
+    th.sortable .sort-icon { margin-left: 4px; font-size: .7rem; opacity: .45; }
+    th.sorted-asc  .sort-icon, th.sorted-desc .sort-icon { opacity: 1; color: var(--acc); }
+    th.sorted-asc  .sort-icon::after { content: '▲'; }
+    th.sorted-desc .sort-icon::after { content: '▼'; }
+    th:not(.sorted-asc):not(.sorted-desc) .sort-icon::after { content: '⇅'; }
+    th.amount-col { text-align: right; }
+    td { padding: .9rem 1rem; vertical-align: top; border-bottom: 1px solid #edf2ef; font-size: .875rem; line-height: 1.55; }
+    tr:last-child td { border-bottom: none; }
+    tr:hover td { background: #fafcfb; }
+    tr.hidden { display: none; }
+
+    /* ── Article cell ─────────────────────────────────────────────────────── */
+    .article-num     { font-size: .78rem; font-weight: 700; color: var(--acc); white-space: nowrap; }
+    .article-title   { font-weight: 600; color: #1a2e4a; margin-bottom: .3rem; }
+    .article-summary { color: #546475; font-size: .82rem; line-height: 1.5; }
+    .article-recs    { display: flex; align-items: center; gap: .45rem; margin-top: .45rem; flex-wrap: wrap; }
+    .rec-label       { font-size: .7rem; font-weight: 600; color: #7a8fa6; white-space: nowrap; }
+    .full-text-btn {
+      display: inline-flex; align-items: center; gap: .3rem;
+      margin-top: .55rem; padding: 0; border: none; background: none;
+      font-family: inherit; font-size: .75rem; font-weight: 600;
+      color: var(--acc); cursor: pointer; opacity: .65; transition: opacity .15s, gap .15s;
+    }
+    .full-text-btn:hover { opacity: 1; gap: .45rem; }
+    .full-text-btn::after { content: '→'; }
+
+    /* ── Amount column ────────────────────────────────────────────────────── */
+    .amount-col   { text-align: right; }
+    .amount-value { font-weight: 700; color: var(--g1); font-variant-numeric: tabular-nums; white-space: nowrap; }
+    .amount-tbd   { color: #9aa8b8; font-style: italic; font-size: .82rem; }
+    .amount-na    { color: #b8c4ce; font-size: .82rem; }
+
+    /* ── Category badges ──────────────────────────────────────────────────── */
+    .cat-badge { display: inline-block; padding: .22rem .7rem; border-radius: 999px; font-size: .72rem; font-weight: 600; white-space: nowrap; }
+    .cat-budget    { background: #e8f5e3; color: #2a6a20; }
+    .cat-capital   { background: #e8eef9; color: #2a3a80; }
+    .cat-financial { background: #fff3e0; color: #a05000; }
+    .cat-enterprise{ background: #f3e8f9; color: #6a2a80; }
+    .cat-zoning    { background: #fce8e8; color: #a01818; }
+    .cat-bylaws    { background: #e8f5e3; color: #1a6a38; }
+    .cat-cpa       { background: #e8f9f5; color: #1a6a5a; }
+    .cat-admin     { background: #f0f0f0; color: #505050; }
+    .cat-energy    { background: #fffbe6; color: #806600; }
+    .cat-petition  { background: #f9f0e8; color: #804020; }
+    .cat-infra     { background: #e8f0f9; color: #204080; }
+
+    /* ── Recommendation badges ────────────────────────────────────────────── */
+    .rec-badge       { display: inline-block; padding: .2rem .55rem; border-radius: 999px; font-size: .72rem; font-weight: 600; white-space: nowrap; }
+    .rec-approve     { background: #e3f0e8; color: #1a6a2a; }
+    .rec-disapprove  { background: #fce8e8; color: #a01818; }
+    .rec-tbd         { background: #f0f0f0; color: #6a6a6a; }
+    .rec-pass        { background: #fff3e0; color: #a05000; }
+    .rec-na          { color: #aaa; font-style: italic; font-size: .82rem; }
+
+    .no-results  { text-align: center; padding: 3rem 2rem; color: #9aa8b8; font-size: .92rem; }
+    .page-footer { text-align: center; padding: 1.5rem 1rem; color: #9aa8b8; font-size: .75rem; }
+
+    /* ── Modal ────────────────────────────────────────────────────────────── */
+    #article-modal { display: none; position: fixed; inset: 0; z-index: 1000; align-items: center; justify-content: center; padding: 1rem; }
+    #article-modal.open { display: flex; }
+    .modal-backdrop { position: fixed; inset: 0; background: rgba(10,20,40,.55); backdrop-filter: blur(3px); }
+    .modal-card {
+      position: relative; z-index: 1; background: white; border-radius: 16px;
+      width: min(760px, 100%); max-height: min(84vh, 740px);
+      display: flex; flex-direction: column;
+      box-shadow: 0 24px 64px rgba(0,0,0,.28), 0 4px 16px rgba(0,0,0,.12);
+      animation: modalIn .2s ease;
+    }
+    @keyframes modalIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
+    .modal-close {
+      position: absolute; top: .9rem; right: 1rem; width: 32px; height: 32px;
+      border-radius: 50%; border: none; background: #f0f4f8; font-size: 1rem;
+      cursor: pointer; display: flex; align-items: center; justify-content: center; color: #546475;
+      transition: background .15s;
+    }
+    .modal-close:hover { background: #e0e8f0; }
+    .modal-header { padding: 1.5rem 2rem 1rem; border-bottom: 1px solid #edf2ef; }
+    .modal-eyebrow { font-size: .7rem; font-weight: 700; text-transform: uppercase; letter-spacing: .14em; color: var(--acc); margin-bottom: .4rem; }
+    .modal-title   { font-size: 1.1rem; font-weight: 700; color: #1a2e4a; line-height: 1.35; padding-right: 2rem; }
+    .modal-body    { padding: 1.25rem 2rem 1.5rem; overflow-y: auto; flex: 1; }
+    .modal-recs    { display: flex; gap: 1.5rem; margin-bottom: 1rem; flex-wrap: wrap; }
+    .modal-rec-label { font-size: .68rem; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; color: #7a8fa6; margin-bottom: .3rem; }
+    pre#modal-text { white-space: pre-wrap; font-family: inherit; font-size: .88rem; color: #2a3a50; line-height: 1.7; }
+
+    @media (max-width: 680px) {
+      .header h1 { font-size: 1.35rem; }
+      td, th { padding: .7rem .65rem; }
+      .modal-header, .modal-body { padding-left: 1.25rem; padding-right: 1.25rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="header">
+    <a class="back-link" href="../index.html">All meetings</a>
+    <div class="eyebrow">Town of Medway, Massachusetts</div>
+    <h1>Annual Town Meeting</h1>
+    <div class="meta">May 12, 2025 &nbsp;·&nbsp; Medway High School &nbsp;·&nbsp; 7:30 PM</div>
+  </div>
+
+  <div class="stats-bar">
+    <div class="stat-card"><div class="label">Articles</div><div class="value">29</div><div class="sub">Warrant articles</div></div><div class="stat-card"><div class="label">Specified Appropriations</div><div class="value">$20.8M+</div><div class="sub">Identified dollar amounts</div></div><div class="stat-card"><div class="label">Categories</div><div class="value">9</div><div class="sub">Topics covered</div></div>
+  </div>
+
+  <div class="container">
+    <div class="controls">
+      <div class="controls-label">Filter by Category</div>
+      <div class="filter-buttons">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="Administrative">Administrative</button>
+        <button class="filter-btn" data-filter="Budget">Budget</button>
+        <button class="filter-btn" data-filter="CPA/Open Space">CPA/Open Space</button>
+        <button class="filter-btn" data-filter="Capital">Capital</button>
+        <button class="filter-btn" data-filter="Citizens' Petition">Citizens' Petition</button>
+        <button class="filter-btn" data-filter="Enterprise Budget">Enterprise Budget</button>
+        <button class="filter-btn" data-filter="Financial">Financial</button>
+        <button class="filter-btn" data-filter="Infrastructure">Infrastructure</button>
+        <button class="filter-btn" data-filter="Zoning">Zoning</button>
+      </div>
+    </div>
+
+    <div class="table-wrap">
+      <div class="table-scroll">
+        <table>
+          <thead>
+            <tr>
+              <th style="width:60px">#</th>
+              <th>Article</th>
+              <th style="width:160px">Category</th>
+              <th class="amount-col sortable" id="amt-th" style="width:140px">Amount <span class="sort-icon"></span></th>
+            </tr>
+          </thead>
+          <tbody id="article-tbody">
+            <tr data-category="Capital" data-amount="2629550">
+  <td><span class="article-num">Art. 1</span></td>
+  <td>
+    <div class="article-title">Borrowing, CPA and Athletic Stabilization: Hanlon Track Construction</div>
+    <div class="article-summary">Authorizes $2,629,550 for the Hanlon track and field replacement: borrowing $1,687,000, CPA funds $642,550 (for non-turf elements), and Athletic Stabilization $300,000.</div>
+    <div class="article-recs"><span class="rec-label">SB:</span> <span class="rec-badge rec-approve">Approve</span><span class="rec-label" style="margin-left:.2rem">FinCom:</span> <span class="rec-badge rec-approve">Approve</span></div>
+    <button class="full-text-btn" data-key="1">Full text</button>
+  </td>
+  <td><span class="cat-badge cat-capital">Capital</span></td>
+  <td class="amount-col"><span class="amount-value">$2,629,550</span></td>
+</tr>
+            <tr data-category="Capital" data-amount="500000">
+  <td><span class="article-num">Art. 2</span></td>
+  <td>
+    <div class="article-title">Borrowing: Sports Field Needs Study</div>
+    <div class="article-summary">Authorizes $500,000 for a feasibility study on sports field needs for K–12 programming. Finance Committee: Approve only if Article 1 fails; Select Board: TBD.</div>
+    <div class="article-recs"><span class="rec-label">SB:</span> <span class="rec-badge rec-tbd">TBD</span><span class="rec-label" style="margin-left:.2rem">FinCom:</span> <span class="rec-badge rec-tbd" title="Approve if Art. 1 Fails">Approve if Art. 1 Fa…</span></div>
+    <button class="full-text-btn" data-key="2">Full text</button>
+  </td>
+  <td><span class="cat-badge cat-capital">Capital</span></td>
+  <td class="amount-col"><span class="amount-value">$500,000</span></td>
+</tr>
+            <tr data-category="CPA/Open Space" data-amount="115000">
+  <td><span class="article-num">Art. 3</span></td>
+  <td>
+    <div class="article-title">CPA Fund Appropriation: Pavilion at Cassidy Field</div>
+    <div class="article-summary">Transfers $115,000 from CPA funds for design and construction of a pavilion at Cassidy Field.</div>
+    <div class="article-recs"><span class="rec-label">SB:</span> <span class="rec-badge rec-approve">Approve</span><span class="rec-label" style="margin-left:.2rem">FinCom:</span> <span class="rec-badge rec-approve">Approve</span></div>
+    <button class="full-text-btn" data-key="3">Full text</button>
+  </td>
+  <td><span class="cat-badge cat-cpa">CPA/Open Space</span></td>
+  <td class="amount-col"><span class="amount-value">$115,000</span></td>
+</tr>
+            <tr data-category="Financial" data-amount="21800">
+  <td><span class="article-num">Art. 4</span></td>
+  <td>
+    <div class="article-title">Debt Stabilization Fund Transfer</div>
+    <div class="article-summary">Transfers $21,800 from the Debt Stabilization Fund to the FY2026 operating budget to offset debt exclusion project costs.</div>
+    <div class="article-recs"><span class="rec-label">SB:</span> <span class="rec-badge rec-approve">Approve</span><span class="rec-label" style="margin-left:.2rem">FinCom:</span> <span class="rec-badge rec-approve">Approve</span></div>
+    <button class="full-text-btn" data-key="4">Full text</button>
+  </td>
+  <td><span class="cat-badge cat-financial">Financial</span></td>
+  <td class="amount-col"><span class="amount-value">$21,800</span></td>
+</tr>
+            <tr data-category="Financial" data-amount="795000">
+  <td><span class="article-num">Art. 5</span></td>
+  <td>
+    <div class="article-title">Transfer from Ambulance Receipts to General Fund</div>
+    <div class="article-summary">Transfers $795,000 from Ambulance Receipts Reserved for Appropriation to the FY2026 General Fund Operating Budget.</div>
+    <div class="article-recs"><span class="rec-label">SB:</span> <span class="rec-badge rec-approve">Approve</span><span class="rec-label" style="margin-left:.2rem">FinCom:</span> <span class="rec-badge rec-approve">Approve</span></div>
+    <button class="full-text-btn" data-key="5">Full text</button>
+  </td>
+  <td><span class="cat-badge cat-financial">Financial</span></td>
+  <td class="amount-col"><span class="amount-value">$795,000</span></td>
+</tr>
+            <tr data-category="Budget">
+  <td><span class="article-num">Art. 6</span></td>
+  <td>
+    <div class="article-title">Appropriation: FY26 Operating Budget</div>
+    <div class="article-summary">Sets salaries for elected officers and appropriates funds for all Town charges, expenses, and debt for the fiscal year ending June 30, 2026.</div>
+    <div class="article-recs"><span class="rec-label">SB:</span> <span class="rec-badge rec-approve">Approve</span><span class="rec-label" style="margin-left:.2rem">FinCom:</span> <span class="rec-badge rec-approve">Approve</span></div>
+    <button class="full-text-btn" data-key="6">Full text</button>
+  </td>
+  <td><span class="cat-badge cat-budget">Budget</span></td>
+  <td class="amount-col"><span class="amount-tbd">TBD</span></td>
+</tr>
+            <tr data-category="Enterprise Budget" data-amount="5450046">
+  <td><span class="article-num">Art. 7</span></td>
+  <td>
+    <div class="article-title">Appropriation: FY26 Water Enterprise Fund</div>
+    <div class="article-summary">Appropriates $5,450,046 to operate the Water Enterprise Fund for FY2026, funded by user fees ($5,215,046) and retained earnings ($235,000).</div>
+    <div class="article-recs"><span class="rec-label">SB:</span> <span class="rec-badge rec-approve">Approve</span><span class="rec-label" style="margin-left:.2rem">FinCom:</span> <span class="rec-badge rec-approve">Approve</span></div>
+    <button class="full-text-btn" data-key="7">Full text</button>
+  </td>
+  <td><span class="cat-badge cat-enterprise">Enterprise Budget</span></td>
+  <td class="amount-col"><span class="amount-value">$5,450,046</span></td>
+</tr>
+            <tr data-category="Enterprise Budget" data-amount="2091991">
+  <td><span class="article-num">Art. 8</span></td>
+  <td>
+    <div class="article-title">Appropriation: FY26 Sewer Enterprise Fund</div>
+    <div class="article-summary">Appropriates $2,091,991 to operate the Sewer Enterprise Fund for FY2026, funded by user fees ($2,070,092) and sewer betterment transfer ($21,899).</div>
+    <div class="article-recs"><span class="rec-label">SB:</span> <span class="rec-badge rec-approve">Approve</span><span class="rec-label" style="margin-left:.2rem">FinCom:</span> <span class="rec-badge rec-approve">Approve</span></div>
+    <button class="full-text-btn" data-key="8">Full text</button>
+  </td>
+  <td><span class="cat-badge cat-enterprise">Enterprise Budget</span></td>
+  <td class="amount-col"><span class="amount-value">$2,091,991</span></td>
+</tr>
+            <tr data-category="Enterprise Budget" data-amount="1934953">
+  <td><span class="article-num">Art. 9</span></td>
+  <td>
+    <div class="article-title">Appropriation: FY26 Solid Waste Enterprise Fund</div>
+    <div class="article-summary">Appropriates $1,934,953 to operate the Solid Waste/Recycling Enterprise Fund for FY2026, funded by trash fees ($1,634,953) and retained earnings ($300,000).</div>
+    <div class="article-recs"><span class="rec-label">SB:</span> <span class="rec-badge rec-approve">Approve</span><span class="rec-label" style="margin-left:.2rem">FinCom:</span> <span class="rec-badge rec-approve">Approve</span></div>
+    <button class="full-text-btn" data-key="9">Full text</button>
+  </td>
+  <td><span class="cat-badge cat-enterprise">Enterprise Budget</span></td>
+  <td class="amount-col"><span class="amount-value">$1,934,953</span></td>
+</tr>
+            <tr data-category="Capital" data-amount="2619608">
+  <td><span class="article-num">Art. 10</span></td>
+  <td>
+    <div class="article-title">Free Cash Appropriation: Capital and Other Items</div>
+    <div class="article-summary">Appropriates $2,619,608 from Certified Free Cash for 20+ capital projects: roads ($750,000), DPW vehicles, fire gear/hoses, technology systems, school security, and others.</div>
+    <div class="article-recs"><span class="rec-label">SB:</span> <span class="rec-badge rec-approve">Approve</span><span class="rec-label" style="margin-left:.2rem">FinCom:</span> <span class="rec-badge rec-approve">Approve</span></div>
+    <button class="full-text-btn" data-key="10">Full text</button>
+  </td>
+  <td><span class="cat-badge cat-capital">Capital</span></td>
+  <td class="amount-col"><span class="amount-value">$2,619,608</span></td>
+</tr>
+            <tr data-category="Capital" data-amount="225000">
+  <td><span class="article-num">Art. 11</span></td>
+  <td>
+    <div class="article-title">Transfer from Ambulance Receipts to Capital Items</div>
+    <div class="article-summary">Transfers $225,000 from Ambulance Receipts to purchase replacement heart monitors and LUCAS cardiopulmonary assist devices.</div>
+    <div class="article-recs"><span class="rec-label">SB:</span> <span class="rec-badge rec-approve">Approve</span><span class="rec-label" style="margin-left:.2rem">FinCom:</span> <span class="rec-badge rec-approve">Approve</span></div>
+    <button class="full-text-btn" data-key="11">Full text</button>
+  </td>
+  <td><span class="cat-badge cat-capital">Capital</span></td>
+  <td class="amount-col"><span class="amount-value">$225,000</span></td>
+</tr>
+            <tr data-category="Capital" data-amount="800000">
+  <td><span class="article-num">Art. 12</span></td>
+  <td>
+    <div class="article-title">Raise & Appropriate: Roads & Sidewalks</div>
+    <div class="article-summary">Raises and appropriates $800,000 for repairs to roads, sidewalks, bridges, and related infrastructure.</div>
+    <div class="article-recs"><span class="rec-label">SB:</span> <span class="rec-badge rec-approve">Approve</span><span class="rec-label" style="margin-left:.2rem">FinCom:</span> <span class="rec-badge rec-approve">Approve</span></div>
+    <button class="full-text-btn" data-key="12">Full text</button>
+  </td>
+  <td><span class="cat-badge cat-capital">Capital</span></td>
+  <td class="amount-col"><span class="amount-value">$800,000</span></td>
+</tr>
+            <tr data-category="Capital" data-amount="35000">
+  <td><span class="article-num">Art. 13</span></td>
+  <td>
+    <div class="article-title">Solid Waste Enterprise Retained Earnings: Recycling Center Wall</div>
+    <div class="article-summary">Transfers $35,000 from Solid Waste Enterprise retained earnings to replace a retaining wall at the Recycling Center.</div>
+    <div class="article-recs"><span class="rec-label">SB:</span> <span class="rec-badge rec-approve">Approve</span><span class="rec-label" style="margin-left:.2rem">FinCom:</span> <span class="rec-badge rec-approve">Approve</span></div>
+    <button class="full-text-btn" data-key="13">Full text</button>
+  </td>
+  <td><span class="cat-badge cat-capital">Capital</span></td>
+  <td class="amount-col"><span class="amount-value">$35,000</span></td>
+</tr>
+            <tr data-category="Capital" data-amount="525000">
+  <td><span class="article-num">Art. 14</span></td>
+  <td>
+    <div class="article-title">Borrowing: McGovern School Bathroom Upgrades</div>
+    <div class="article-summary">Authorizes $525,000 for design and construction of student and staff bathroom upgrades at McGovern Elementary School.</div>
+    <div class="article-recs"><span class="rec-label">SB:</span> <span class="rec-badge rec-approve">Approve</span><span class="rec-label" style="margin-left:.2rem">FinCom:</span> <span class="rec-badge rec-approve">Approve</span></div>
+    <button class="full-text-btn" data-key="14">Full text</button>
+  </td>
+  <td><span class="cat-badge cat-capital">Capital</span></td>
+  <td class="amount-col"><span class="amount-value">$525,000</span></td>
+</tr>
+            <tr data-category="Capital" data-amount="425250">
+  <td><span class="article-num">Art. 15</span></td>
+  <td>
+    <div class="article-title">Borrowing: High School Boiler Replacement</div>
+    <div class="article-summary">Authorizes $425,250 for replacement of a failing boiler at Medway High School.</div>
+    <div class="article-recs"><span class="rec-label">SB:</span> <span class="rec-badge rec-approve">Approve</span><span class="rec-label" style="margin-left:.2rem">FinCom:</span> <span class="rec-badge rec-approve">Approve</span></div>
+    <button class="full-text-btn" data-key="15">Full text</button>
+  </td>
+  <td><span class="cat-badge cat-capital">Capital</span></td>
+  <td class="amount-col"><span class="amount-value">$425,250</span></td>
+</tr>
+            <tr data-category="Financial" data-amount="215000">
+  <td><span class="article-num">Art. 16</span></td>
+  <td>
+    <div class="article-title">Free Cash Transfer: Medway Redevelopment Authority</div>
+    <div class="article-summary">Transfers $215,000 from Certified Free Cash to the Medway Redevelopment Authority for legal, appraisal, and technical costs related to land acquisition in the Oak Grove Urban Renewal Area.</div>
+    <div class="article-recs"><span class="rec-label">SB:</span> <span class="rec-badge rec-approve">Approve</span><span class="rec-label" style="margin-left:.2rem">FinCom:</span> <span class="rec-badge rec-approve">Approve</span></div>
+    <button class="full-text-btn" data-key="16">Full text</button>
+  </td>
+  <td><span class="cat-badge cat-financial">Financial</span></td>
+  <td class="amount-col"><span class="amount-value">$215,000</span></td>
+</tr>
+            <tr data-category="Financial" data-amount="300000">
+  <td><span class="article-num">Art. 17</span></td>
+  <td>
+    <div class="article-title">Appropriation: OPEB Trust</div>
+    <div class="article-summary">Raises and appropriates $300,000 to the Town's Other Post-Employment Benefits (OPEB) Trust.</div>
+    <div class="article-recs"><span class="rec-label">SB:</span> <span class="rec-badge rec-approve">Approve</span><span class="rec-label" style="margin-left:.2rem">FinCom:</span> <span class="rec-badge rec-approve">Approve</span></div>
+    <button class="full-text-btn" data-key="17">Full text</button>
+  </td>
+  <td><span class="cat-badge cat-financial">Financial</span></td>
+  <td class="amount-col"><span class="amount-value">$300,000</span></td>
+</tr>
+            <tr data-category="Financial" data-amount="100000">
+  <td><span class="article-num">Art. 18</span></td>
+  <td>
+    <div class="article-title">Appropriation: General Stabilization</div>
+    <div class="article-summary">Raises and appropriates $100,000 to the General Stabilization Fund.</div>
+    <div class="article-recs"><span class="rec-label">SB:</span> <span class="rec-badge rec-approve">Approve</span><span class="rec-label" style="margin-left:.2rem">FinCom:</span> <span class="rec-badge rec-approve">Approve</span></div>
+    <button class="full-text-btn" data-key="18">Full text</button>
+  </td>
+  <td><span class="cat-badge cat-financial">Financial</span></td>
+  <td class="amount-col"><span class="amount-value">$100,000</span></td>
+</tr>
+            <tr data-category="CPA/Open Space" data-amount="50000">
+  <td><span class="article-num">Art. 19</span></td>
+  <td>
+    <div class="article-title">CPA Fund Appropriation: Miyawaki Mini-Forest at Idylbrook</div>
+    <div class="article-summary">Transfers $50,000 from CPA funds for a Miyawaki mini-forest at Idylbrook Field. Both Select Board and Finance Committee recommendations were TBD at time of warrant.</div>
+    <div class="article-recs"><span class="rec-label">SB:</span> <span class="rec-badge rec-tbd">TBD</span><span class="rec-label" style="margin-left:.2rem">FinCom:</span> <span class="rec-badge rec-tbd">TBD</span></div>
+    <button class="full-text-btn" data-key="19">Full text</button>
+  </td>
+  <td><span class="cat-badge cat-cpa">CPA/Open Space</span></td>
+  <td class="amount-col"><span class="amount-value">$50,000</span></td>
+</tr>
+            <tr data-category="CPA/Open Space" data-amount="1250000">
+  <td><span class="article-num">Art. 20</span></td>
+  <td>
+    <div class="article-title">CPA Fund Appropriation: Ide House Repair Project</div>
+    <div class="article-summary">Transfers $1,250,000 from CPA funds for the construction phase of preservation, repair, and restoration of the historic Ide House at 158 Main Street.</div>
+    <div class="article-recs"><span class="rec-label">SB:</span> <span class="rec-badge rec-approve">Approve</span><span class="rec-label" style="margin-left:.2rem">FinCom:</span> <span class="rec-badge rec-approve">Approve</span></div>
+    <button class="full-text-btn" data-key="20">Full text</button>
+  </td>
+  <td><span class="cat-badge cat-cpa">CPA/Open Space</span></td>
+  <td class="amount-col"><span class="amount-value">$1,250,000</span></td>
+</tr>
+            <tr data-category="CPA/Open Space" data-amount="350000">
+  <td><span class="article-num">Art. 21</span></td>
+  <td>
+    <div class="article-title">CPA Fund Appropriation: Trail Development at Charles River</div>
+    <div class="article-summary">Transfers $350,000 from CPA funds for trail development at the Charles River. Both Select Board and Finance Committee recommendations were TBD at time of warrant.</div>
+    <div class="article-recs"><span class="rec-label">SB:</span> <span class="rec-badge rec-tbd">TBD</span><span class="rec-label" style="margin-left:.2rem">FinCom:</span> <span class="rec-badge rec-tbd">TBD</span></div>
+    <button class="full-text-btn" data-key="21">Full text</button>
+  </td>
+  <td><span class="cat-badge cat-cpa">CPA/Open Space</span></td>
+  <td class="amount-col"><span class="amount-value">$350,000</span></td>
+</tr>
+            <tr data-category="CPA/Open Space" data-amount="411175">
+  <td><span class="article-num">Art. 22</span></td>
+  <td>
+    <div class="article-title">Appropriation: Community Preservation Committee</div>
+    <div class="article-summary">Approves the CPA FY2026 budget of $411,175 for CPC administration ($20,000) and debt expense ($391,175); plus 10% statutory reserves ($146,394 each for open space, community housing, and historic preservation).</div>
+    <div class="article-recs"><span class="rec-label">SB:</span> <span class="rec-badge rec-approve">Approve</span><span class="rec-label" style="margin-left:.2rem">FinCom:</span> <span class="rec-badge rec-approve">Approve</span></div>
+    <button class="full-text-btn" data-key="22">Full text</button>
+  </td>
+  <td><span class="cat-badge cat-cpa">CPA/Open Space</span></td>
+  <td class="amount-col"><span class="amount-value">$411,175</span></td>
+</tr>
+            <tr data-category="Administrative">
+  <td><span class="article-num">Art. 23</span></td>
+  <td>
+    <div class="article-title">Accept MGL c. 44, sec. 54(b): Trust Fund Investments</div>
+    <div class="article-summary">Accepts a state law provision allowing Town trust funds to be invested under the Massachusetts Prudent Investor Act standards.</div>
+    <div class="article-recs"><span class="rec-label">SB:</span> <span class="rec-badge rec-approve">Approve</span><span class="rec-label" style="margin-left:.2rem">FinCom:</span> <span class="rec-badge rec-approve">Approve</span></div>
+    <button class="full-text-btn" data-key="23">Full text</button>
+  </td>
+  <td><span class="cat-badge cat-admin">Administrative</span></td>
+  <td class="amount-col"><span class="amount-na">—</span></td>
+</tr>
+            <tr data-category="Administrative">
+  <td><span class="article-num">Art. 24</span></td>
+  <td>
+    <div class="article-title">Revolving Funds: Add New Funds; Authorize FY26 Spending Limits</div>
+    <div class="article-summary">Creates new revolving funds for sidewalk construction, tree planting, cemetery upkeep, and student device repair; sets FY2026 spending limits for all revolving funds including parks ($690,000) and school transportation ($300,000).</div>
+    <div class="article-recs"><span class="rec-label">SB:</span> <span class="rec-badge rec-approve">Approve</span><span class="rec-label" style="margin-left:.2rem">FinCom:</span> <span class="rec-badge rec-approve">Approve</span></div>
+    <button class="full-text-btn" data-key="24">Full text</button>
+  </td>
+  <td><span class="cat-badge cat-admin">Administrative</span></td>
+  <td class="amount-col"><span class="amount-na">—</span></td>
+</tr>
+            <tr data-category="Infrastructure">
+  <td><span class="article-num">Art. 25</span></td>
+  <td>
+    <div class="article-title">Accept Public Ways: Little Tree Road and Rustic Road</div>
+    <div class="article-summary">Accepts Little Tree Road and Rustic Road as public ways per a June 2024 Street Acceptance Plan, including utilities except sewer infrastructure.</div>
+    <div class="article-recs"><span class="rec-label">SB:</span> <span class="rec-badge rec-approve">Approve</span><span class="rec-label" style="margin-left:.2rem">FinCom:</span> <span class="rec-badge rec-tbd">TBD</span></div>
+    <button class="full-text-btn" data-key="25">Full text</button>
+  </td>
+  <td><span class="cat-badge cat-infra">Infrastructure</span></td>
+  <td class="amount-col"><span class="amount-tbd">TBD</span></td>
+</tr>
+            <tr data-category="Zoning">
+  <td><span class="article-num">Art. 26</span></td>
+  <td>
+    <div class="article-title">Amend Zoning Bylaws: Housekeeping</div>
+    <div class="article-summary">Adds G.L. c. 41 §81Y/81Z appeals to ZBA powers; clarifies 3-year commencement period for special permits and site plan approvals; corrects surface parking location language.</div>
+    <div class="article-recs"><span class="rec-label">SB:</span> <span class="rec-badge rec-approve">Approve</span><span class="rec-label" style="margin-left:.2rem">FinCom:</span> <span class="rec-badge rec-approve">Approve</span></div>
+    <button class="full-text-btn" data-key="26">Full text</button>
+  </td>
+  <td><span class="cat-badge cat-zoning">Zoning</span></td>
+  <td class="amount-col"><span class="amount-na">—</span></td>
+</tr>
+            <tr data-category="Zoning">
+  <td><span class="article-num">Art. 27</span></td>
+  <td>
+    <div class="article-title">Amend Zoning Bylaws: Accessory Dwelling Units</div>
+    <div class="article-summary">Updates ADU bylaw to comply with G.L. c. 40A §3A — allows ADUs by right in single-family zones, capped at 900 sq ft or half the principal dwelling, prohibits short-term rental use.</div>
+    <div class="article-recs"><span class="rec-label">SB:</span> <span class="rec-badge rec-approve">Approve</span><span class="rec-label" style="margin-left:.2rem">FinCom:</span> <span class="rec-badge rec-approve">Approve</span></div>
+    <button class="full-text-btn" data-key="27">Full text</button>
+  </td>
+  <td><span class="cat-badge cat-zoning">Zoning</span></td>
+  <td class="amount-col"><span class="amount-na">—</span></td>
+</tr>
+            <tr data-category="Zoning">
+  <td><span class="article-num">Art. 28</span></td>
+  <td>
+    <div class="article-title">Amend Zoning Bylaws: Floodplains</div>
+    <div class="article-summary">Updates flood plain district to reference the July 8, 2025 FEMA FIRM; corrects recreational vehicle requirements in AE Zones; deletes outdated special permit provisions (Section 5.6.1.K).</div>
+    <div class="article-recs"><span class="rec-label">SB:</span> <span class="rec-badge rec-approve">Approve</span><span class="rec-label" style="margin-left:.2rem">FinCom:</span> <span class="rec-badge rec-approve">Approve</span></div>
+    <button class="full-text-btn" data-key="28">Full text</button>
+  </td>
+  <td><span class="cat-badge cat-zoning">Zoning</span></td>
+  <td class="amount-col"><span class="amount-na">—</span></td>
+</tr>
+            <tr data-category="Citizens' Petition">
+  <td><span class="article-num">Art. 29</span></td>
+  <td>
+    <div class="article-title">Citizens' Petition: Voter Identification at Town Meetings</div>
+    <div class="article-summary">Citizens' petition requiring registered voters to show identification (photo ID or other document verifying name and address) before voting at any Town Meeting.</div>
+    <div class="article-recs"><span class="rec-label">SB:</span> <span class="rec-badge rec-approve">Approve</span><span class="rec-label" style="margin-left:.2rem">FinCom:</span> <span class="rec-badge rec-approve">Approve</span></div>
+    <button class="full-text-btn" data-key="29">Full text</button>
+  </td>
+  <td><span class="cat-badge cat-petition">Citizens' Petition</span></td>
+  <td class="amount-col"><span class="amount-na">—</span></td>
+</tr>
+          </tbody>
+        </table>
+        <div class="no-results" id="no-results" style="display:none">No articles match this filter.</div>
+      </div>
+    </div>
+
+    <div class="page-footer">
+      Source: Town of Medway Warrant &nbsp;·&nbsp; May 12, 2025<br>
+      <span style="font-size:.7rem;opacity:.8;">Content produced with AI assistance and reviewed for accuracy, but not 100% independently verified. Consult official town documents for authoritative information.</span>
+    </div>
+  </div>
+
+  <!-- Modal -->
+  <div id="article-modal">
+    <div class="modal-backdrop" onclick="closeModal()"></div>
+    <div class="modal-card">
+      <button class="modal-close" onclick="closeModal()">✕</button>
+      <div class="modal-header">
+        <div class="modal-eyebrow" id="modal-eyebrow"></div>
+        <div class="modal-title"  id="modal-title"></div>
+      </div>
+      <div class="modal-body">
+        <div class="modal-recs" id="modal-recs"></div>
+        <pre id="modal-text"></pre>
+      </div>
+    </div>
+  </div>
+
+  <script>
+  const articleData = {"1": {"title": "Borrowing, CPA and Athletic Stabilization: Hanlon Track Construction", "text": "To see if the Town will vote to raise and appropriate, borrow, or transfer from available funds $2,629,550 for the replacement of the Hanlon track and field, light fixtures, fencing, and associated equipment at Medway High School; funded by: borrowing $1,687,000 under G.L. c. 44 §7, transferring $642,550 from CPA funds (for lights, fencing, and associated costs, specifically excluding the cost of acquisition of artificial turf), and transferring $300,000 from the Athletic Stabilization fund, or act in any manner relating thereto.", "sb": "Approve", "fc": "Approve"}, "2": {"title": "Borrowing: Sports Field Needs Study", "text": "To see if the Town will vote to raise and appropriate, borrow, or transfer from available funds $500,000 for the purpose of funding a feasibility study to determine the number, cost and location of sports fields needed in town to accommodate pre-K through grade 12 sports programming, and for the payment of all other costs incidental and related thereto, or act in any manner relating thereto.\n\nSelect Board: To be determined. Finance Committee: 'Approve if Article 1 Fails; Pass Over if Article 1 Passes.'", "sb": "To Be Determined", "fc": "Approve if Art. 1 Fails"}, "3": {"title": "CPA Fund Appropriation: Pavilion at Cassidy Field", "text": "To see if the Town will vote to transfer $115,000 from available Community Preservation Act funds for the purpose of funding the design and construction of a pavilion at Cassidy Field, and for the payment of all other costs incidental and related thereto, or act in any manner relating thereto.", "sb": "Approve", "fc": "Approve"}, "4": {"title": "Debt Stabilization Fund Transfer", "text": "To see if the Town will vote to transfer the sum of $21,800 from the Debt Stabilization Fund to the Fiscal Year 2026 operating budget for the purpose of offsetting a portion of the cost of debt exclusion projects, or act in any manner relating thereto.", "sb": "Approve", "fc": "Approve"}, "5": {"title": "Transfer from Ambulance Receipts to General Fund", "text": "To see if the Town will vote to transfer $795,000 from Ambulance Receipts Reserved for Appropriation to the Fiscal Year 2026 General Fund Operating Budget, or act in any manner relating thereto.", "sb": "Approve", "fc": "Approve"}, "6": {"title": "Appropriation: FY26 Operating Budget", "text": "To see if the Town will vote to fix the salary and compensation of all elected officers of the Town, provide for a Reserve Fund, and determine what sums of money the Town will raise and appropriate, including appropriation from available funds, to defray charges and expenses of the Town including debt and interest, for the Fiscal Year ending June 30, 2026, or act in any manner relating thereto.", "sb": "Approve", "fc": "Approve"}, "7": {"title": "Appropriation: FY26 Water Enterprise Fund", "text": "To see if the Town will vote to raise and appropriate or transfer from available funds the sum of $5,450,046 for the maintenance of the Water Department Enterprise Fund for FY2026 (Salaries $1,113,395 / Expenses $908,300 / Debt $2,926,319 / Indirect $502,032), funded by user fees ($5,215,046) and retained earnings ($235,000), or act in any manner relating thereto.", "sb": "Approve", "fc": "Approve"}, "8": {"title": "Appropriation: FY26 Sewer Enterprise Fund", "text": "To see if the Town will vote to raise and appropriate or transfer from available funds the sum of $2,091,991 for the maintenance of the Sewer Department Enterprise Fund for FY2026 (Salaries $318,078 / Expenses $1,386,600 / Debt $198,999 / Indirect $188,314), funded by user fees ($2,070,092) and sewer betterment transfer ($21,899), or act in any manner relating thereto.", "sb": "Approve", "fc": "Approve"}, "9": {"title": "Appropriation: FY26 Solid Waste Enterprise Fund", "text": "To see if the Town will vote to raise and appropriate or transfer from available funds the sum of $1,934,953 to operate the Solid Waste/Recycling Department Enterprise Fund for FY2026 (Salaries $74,590 / Expenses $1,658,000 / Debt $46,831 / Indirect $150,532), funded by trash/recycling fees ($1,634,953) and retained earnings ($300,000), or act in any manner relating thereto.", "sb": "Approve", "fc": "Approve"}, "10": {"title": "Free Cash Appropriation: Capital and Other Items", "text": "To see if the Town will vote to appropriate the sum of $2,619,608 from Certified Free Cash for capital and other items, including: Roads and Sidewalks ($750,000), Replace 2014 International ($260,000), Replace 2012 Backhoe ($154,000), Community Farm Pavilion ($19,000), Route 109/Richard Rd Engineering Study ($100,000), Replace HS Parking Lights ($200,000), Replace Parks Vehicle ($70,000), Replace 2011 Ford F-250 ($90,000), AED Replacement ($218,000), New Turnout Gear ($225,000), New Hoses and Nozzles ($100,000), Technology Equipment ($75,000), Security Systems Middle School ($25,000), Infrastructure Equipment ($50,000), ECW Replacement ($27,929), Emergency Communications ($43,814), Mobile Operations Trailer ($48,300), District Sidewalk Replacement ($41,265), Replace 2014 Facilities Vehicle ($50,000), and others, or act in any manner relating thereto.", "sb": "Approve", "fc": "Approve"}, "11": {"title": "Transfer from Ambulance Receipts to Capital Items", "text": "To see if the Town will vote to transfer from Ambulance Receipts Reserved for Appropriation the sum of $225,000 for the purpose of purchasing replacement heart monitors and Lund University Cardiopulmonary Assist System (LUCAS) machines, and for the payment of all other costs incidental and related thereto, or act in any manner relating thereto.", "sb": "Approve", "fc": "Approve"}, "12": {"title": "Raise & Appropriate: Roads & Sidewalks", "text": "To see if the Town will vote to raise and appropriate the sum of $800,000 for the purposes of making repairs to various roads, sidewalks, bridges, and related appurtenances, and to fund, as needed, design, engineering, and construction management services, and for the payment of all other costs incidental and related thereto, or act in any manner relating thereto.", "sb": "Approve", "fc": "Approve"}, "13": {"title": "Solid Waste Enterprise Retained Earnings: Recycling Center Wall", "text": "To see if the Town will vote to transfer from Solid Waste Enterprise Fund retained earnings the sum of $35,000 for the purpose of funding the replacement of a retaining wall at the Recycling Center, including engineering and construction costs, or act in any manner relating thereto.", "sb": "Approve", "fc": "Approve"}, "14": {"title": "Borrowing: McGovern School Bathroom Upgrades", "text": "To see if the Town will vote to raise and appropriate, borrow, or transfer from available funds the sum of $525,000 for the purpose of designing and constructing student and staff bathroom upgrades at the McGovern Elementary School, and for the payment of all other costs incidental and related thereto, or act in any manner relating thereto.", "sb": "Approve", "fc": "Approve"}, "15": {"title": "Borrowing: High School Boiler Replacement", "text": "To see if the Town will vote to raise and appropriate, borrow, or transfer from available funds the sum of $425,250 for the purpose of replacing a failing boiler at Medway High School, and for the payment of all other costs incidental and related thereto, or act in any manner relating thereto.", "sb": "Approve", "fc": "Approve"}, "16": {"title": "Free Cash Transfer: Medway Redevelopment Authority", "text": "To see if the Town will vote to transfer $215,000 from Certified Free Cash to be expended by the Medway Redevelopment Authority for legal, appraisal, surveying, environmental investigation, title review, and other technical costs associated with land acquisition in the Oak Grove Urban Renewal Area, and for other administrative expenses of the Redevelopment Authority (including insurance and legal fees), or act in any manner related thereto.", "sb": "Approve", "fc": "Approve"}, "17": {"title": "Appropriation: OPEB Trust", "text": "To see if the Town will vote to raise and appropriate or transfer from available funds the sum of $300,000 to the Town of Medway Other Post-Employment Benefits (OPEB) Trust account, or act in any manner relating thereto.", "sb": "Approve", "fc": "Approve"}, "18": {"title": "Appropriation: General Stabilization", "text": "To see if the Town will vote to raise and appropriate or transfer from available funds the sum of $100,000 to be allocated to the General Stabilization Fund, or act in any manner relating thereto.", "sb": "Approve", "fc": "Approve"}, "19": {"title": "CPA Fund Appropriation: Miyawaki Mini-Forest at Idylbrook", "text": "To see if the Town will vote to transfer $50,000 from available Community Preservation Act funds for the purpose of funding the establishment of a Miyawaki mini-forest at Idylbrook Field, and for the payment of all other costs incidental and related thereto, or act in any manner relating thereto.\n\nNote: Both Select Board and Finance Committee recommendations were 'To be determined' at time of warrant.", "sb": "To Be Determined", "fc": "To Be Determined"}, "20": {"title": "CPA Fund Appropriation: Ide House Repair Project", "text": "To see if the Town will vote to transfer $1,250,000 from available Community Preservation Act funds for the purpose of funding the construction phase of the preservation, repair and restoration of the historic Ide House at 158 Main Street, and for the payment of all other costs incidental and related thereto, or act in any manner relating thereto.", "sb": "Approve", "fc": "Approve"}, "21": {"title": "CPA Fund Appropriation: Trail Development at Charles River", "text": "To see if the Town will vote to transfer $350,000 from available Community Preservation Act funds for the purpose of funding trail development at the Charles River, and for the payment of all other costs incidental and related thereto, or act in any manner relating thereto.\n\nNote: Both Select Board and Finance Committee recommendations were 'To be determined' at time of warrant.", "sb": "To Be Determined", "fc": "To Be Determined"}, "22": {"title": "Appropriation: Community Preservation Committee", "text": "To see if the Town will vote to act on the report of the Community Preservation Committee for the Fiscal Year 2026 Community Preservation budget appropriating: CPC Expenses ($15,000), CPC Salaries ($5,000), CPC Debt Expense ($391,175); plus 10% reserves for open space ($146,394), community housing ($146,394), and historical preservation ($146,394), or act in any manner relating thereto.", "sb": "Approve", "fc": "Approve"}, "23": {"title": "Accept MGL c. 44, sec. 54(b): Trust Fund Investments", "text": "To see if the Town will vote to accept the provisions of Massachusetts General Laws Chapter 44, Section 54(b), to allow trust funds held in the custody of the Town to be invested under the standards of the Massachusetts Prudent Investor Act of Chapter 203C, or act in any manner relating thereto.", "sb": "Approve", "fc": "Approve"}, "24": {"title": "Revolving Funds: Add New Funds; Authorize FY26 Spending Limits", "text": "To see if the Town will vote to create new revolving funds (Sidewalk construction, Planting Trees, Cemetery Upkeep, Student Electronic Device Repair) and set FY2026 spending limits: parks and recreation ($690,000), senior transportation ($130,000), school transportation ($300,000), Tree Preservation ($30,000), Sidewalk construction ($20,000), Planting Trees ($20,000), Cemetery ($50,000), Student Electronic Device Repair ($25,000), and others, or act in any manner relating thereto.", "sb": "Approve", "fc": "Approve"}, "25": {"title": "Accept Public Ways: Little Tree Road and Rustic Road", "text": "To see if the Town will vote to accept as public ways Little Tree Road (from Milford Street, Station 0+00 to end at Station 10+44.82) and Rustic Road (from Summer Street, Station 0+00 to end at Station 6+26.33), as shown on the Street Acceptance Plan dated June 17, 2024 prepared by Tetra Tech; acceptance includes utilities except sewer utility infrastructure; authorizes the Select Board to acquire related easements, or act in any manner related thereto.", "sb": "Approve", "fc": "To Be Determined"}, "26": {"title": "Amend Zoning Bylaws: Housekeeping", "text": "To see if the Town will vote to amend the Zoning Bylaw by: (1) adding G.L. c. 41 §81Y and §81Z appeals to Board of Appeals powers; (2) amending Section 5.5.B to extend the commencement period for special permits and site plan approvals to 3 years (with provisions for phased and redevelopment projects); and (3) correcting surface parking location language in Section 5.6.5.G.4, or act in any manner related thereto.", "sb": "Approve", "fc": "Approve"}, "27": {"title": "Amend Zoning Bylaws: Accessory Dwelling Units", "text": "To see if the Town will vote to amend the Zoning Bylaw by replacing the Accessory Family Dwelling Unit provisions with a new Accessory Dwelling Unit (ADU) section compliant with G.L. c. 40A §3A and 760 CMR 71.00; allowing ADUs by right in single-family residential zones; capped at the smaller of half the principal dwelling or 900 sq ft; prohibiting short-term rental; requiring one additional parking space (waived within 0.5 miles of transit), or act in any manner related thereto.", "sb": "Approve", "fc": "Approve"}, "28": {"title": "Amend Zoning Bylaws: Floodplains", "text": "To see if the Town will vote to amend Zoning Bylaw Section 5.6.1 Flood Plain District by: (1) updating FIRM effective date from July 16, 2015 to July 8, 2025; (2) correcting Section 5.6.1.E.6 to reference the 2025 FIS; (3) correcting recreational vehicle anchoring requirements in AE Zones; and (4) deleting Section 5.6.1.K Special Permits in its entirety, re-lettering remaining sections, or act in any manner related thereto.", "sb": "Approve", "fc": "Approve"}, "29": {"title": "Citizens' Petition: Voter Identification at Town Meetings", "text": "To see if the Town will vote to amend the General By-laws by adding a section requiring all registered voters to show some form of identification prior to voting at all Town Meetings. Identification must at minimum verify full name and address; acceptable forms include: Massachusetts driver's license, passport, student I.D., utility bill, library card, credit/debit card statement, lease or rental contract, mortgage or bank statement, or property tax bill.\n\nCITIZENS' PETITION — Both Select Board and Finance Committee recommended Approve.", "sb": "Approve", "fc": "Approve"}};
+
+  function openModal(key) {
+    const d = articleData[String(key)];
+    if (!d) return;
+    document.getElementById('modal-eyebrow').textContent = 'Article ' + key;
+    document.getElementById('modal-title').textContent   = d.title;
+    document.getElementById('modal-text').textContent    = d.text;
+    const recsEl = document.getElementById('modal-recs');
+    recsEl.innerHTML = recHtml('Select Board', d.sb) + recHtml('Finance Committee', d.fc);
+    document.getElementById('article-modal').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function recHtml(label, val) {
+    let cls = 'rec-na', txt = '—';
+    if      (val === 'Approve')               { cls = 'rec-approve';    txt = 'Approve'; }
+    else if (val === 'Disapprove')            { cls = 'rec-disapprove'; txt = 'Disapprove'; }
+    else if (val === 'Pass Over')             { cls = 'rec-pass';       txt = 'Pass Over'; }
+    else if (val === 'To Be Determined')      { cls = 'rec-tbd';        txt = 'TBD'; }
+    else if (val && val !== '—')              { cls = 'rec-tbd';        txt = val; }
+    return `<div><div class="modal-rec-label">${label}</div><span class="rec-badge ${cls}">${txt}</span></div>`;
+  }
+
+  function closeModal() {
+    document.getElementById('article-modal').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  document.querySelectorAll('.full-text-btn').forEach(btn => {
+    btn.addEventListener('click', e => { e.stopPropagation(); openModal(btn.dataset.key); });
+  });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+  // ── Filter ──────────────────────────────────────────────────────────────
+  document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const f = btn.dataset.filter;
+      let visible = 0;
+      document.querySelectorAll('#article-tbody tr').forEach(row => {
+        const show = f === 'all' || row.dataset.category === f;
+        row.classList.toggle('hidden', !show);
+        if (show) visible++;
+      });
+      document.getElementById('no-results').style.display = visible === 0 ? 'block' : 'none';
+    });
+  });
+
+  // ── Sort by amount ───────────────────────────────────────────────────────
+  let sortDir = null;
+  document.getElementById('amt-th').addEventListener('click', () => {
+    sortDir = sortDir !== 'asc' ? 'asc' : 'desc';
+    document.getElementById('amt-th').className = 'amount-col sortable sorted-' + sortDir;
+    const tbody = document.getElementById('article-tbody');
+    const rows  = [...tbody.querySelectorAll('tr')];
+    rows.sort((a, b) => {
+      const aA = parseFloat(a.dataset.amount), bA = parseFloat(b.dataset.amount);
+      if (isNaN(aA) && isNaN(bA)) return 0;
+      if (isNaN(aA)) return 1;
+      if (isNaN(bA)) return -1;
+      return sortDir === 'asc' ? aA - bA : bA - aA;
+    });
+    rows.forEach(r => tbody.appendChild(r));
+  });
+  </script>
+</body>
+</html>

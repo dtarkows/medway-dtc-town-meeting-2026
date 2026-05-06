@@ -1,0 +1,106 @@
+{
+  "_comment": "Maps recurring budget series to article numbers per meeting. Edit article numbers or add/remove series here; run 'python3 gen.py trends' to regenerate trends.html.",
+  "atm": [
+    {
+      "id": "water_enterprise",
+      "label": "Water Enterprise Fund",
+      "chart_group": "Enterprise Funds",
+      "articles": {
+        "2016_atm": 4, "2017_atm": 3, "2018_atm": 4, "2019_atm": 4,
+        "2020_atm": 4, "2021_atm": 4, "2022_atm": 4,
+        "2023_atm": 4, "2024_atm": 4, "2025_atm": 7, "2026_atm": 4
+      }
+    },
+    {
+      "id": "sewer_enterprise",
+      "label": "Sewer Enterprise Fund",
+      "chart_group": "Enterprise Funds",
+      "articles": {
+        "2016_atm": 5, "2017_atm": 4, "2018_atm": 5, "2019_atm": 5,
+        "2020_atm": 5, "2021_atm": 5, "2022_atm": 5,
+        "2023_atm": 5, "2024_atm": 5, "2025_atm": 8, "2026_atm": 5
+      }
+    },
+    {
+      "id": "solid_waste_enterprise",
+      "label": "Solid Waste Enterprise Fund",
+      "chart_group": "Enterprise Funds",
+      "articles": {
+        "2016_atm": 6, "2017_atm": 5, "2018_atm": 6, "2019_atm": 6,
+        "2020_atm": 6, "2021_atm": 6, "2022_atm": 6,
+        "2023_atm": 6, "2024_atm": 6, "2025_atm": 9, "2026_atm": 6
+      }
+    },
+    {
+      "id": "free_cash_capital",
+      "label": "Free Cash: Capital Projects",
+      "chart_group": "Capital & Infrastructure",
+      "articles": {
+        "2016_atm": 8, "2017_atm": 7, "2018_atm": 8, "2019_atm": 7,
+        "2020_atm": 7, "2021_atm": 7, "2022_atm": 7,
+        "2023_atm": 7, "2024_atm": 7, "2025_atm": 10, "2026_atm": 7
+      }
+    },
+    {
+      "id": "roads_sidewalks",
+      "label": "Roads & Sidewalks",
+      "chart_group": "Capital & Infrastructure",
+      "articles": {
+        "2018_atm": 9, "2019_atm": 8,
+        "2020_atm": 9, "2021_atm": 10, "2022_atm": 8,
+        "2023_atm": 8, "2024_atm": 8, "2025_atm": 12, "2026_atm": 11
+      }
+    },
+    {
+      "id": "ambulance_transfer",
+      "label": "Ambulance Receipts → General Fund",
+      "chart_group": "Recurring Financial",
+      "articles": {
+        "2019_atm": 2,
+        "2020_atm": 2, "2021_atm": 2, "2022_atm": 2,
+        "2023_atm": 2, "2024_atm": 2, "2025_atm": 5, "2026_atm": 2
+      }
+    },
+    {
+      "id": "opeb",
+      "label": "OPEB Trust",
+      "chart_group": "Recurring Financial",
+      "articles": {
+        "2016_atm": 15, "2017_atm": 15, "2018_atm": 15, "2019_atm": 15,
+        "2020_atm": 14, "2021_atm": 15, "2022_atm": 15,
+        "2023_atm": 9, "2024_atm": 13, "2025_atm": 17, "2026_atm": 12
+      }
+    },
+    {
+      "id": "general_stabilization",
+      "label": "General Stabilization",
+      "chart_group": "Recurring Financial",
+      "articles": {
+        "2017_atm": 12, "2018_atm": 14, "2019_atm": 14,
+        "2020_atm": 13, "2021_atm": 14, "2022_atm": 14,
+        "2023_atm": 10, "2024_atm": 14, "2025_atm": 18, "2026_atm": 13
+      }
+    },
+    {
+      "id": "cpa_budget",
+      "label": "Community Preservation Committee",
+      "chart_group": "Recurring Financial",
+      "articles": {
+        "2016_atm": 18, "2017_atm": 18, "2018_atm": 17, "2019_atm": 18,
+        "2020_atm": 16, "2021_atm": 17, "2022_atm": 16,
+        "2023_atm": 15, "2024_atm": 15, "2025_atm": 22, "2026_atm": 14
+      }
+    },
+    {
+      "id": "debt_stabilization",
+      "label": "Debt Stabilization Transfer",
+      "chart_group": "Recurring Financial",
+      "articles": {
+        "2018_atm": 2, "2019_atm": 1,
+        "2020_atm": 1, "2021_atm": 1, "2022_atm": 1,
+        "2023_atm": 1, "2024_atm": 1, "2025_atm": 4
+      }
+    }
+  ],
+  "stm": []
+}

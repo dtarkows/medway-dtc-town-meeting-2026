@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Winthrop Street P&amp;S Analysis — Town of Medway</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Inter', sans-serif; background: #eef2f7; color: #1a2e4a; min-height: 100vh; }
+
+    .header {
+      background: linear-gradient(135deg, #1a3a1a 0%, #2a6a2a 100%);
+      color: white; padding: 3.5rem 2rem 3rem; text-align: center;
+    }
+    .header .eyebrow { font-size: .72rem; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; opacity: .65; margin-bottom: .7rem; }
+    .header h1 { font-size: 2rem; font-weight: 700; margin-bottom: .6rem; line-height: 1.25; }
+    .header .sub { font-size: .95rem; opacity: .72; max-width: 620px; margin: 0 auto; line-height: 1.6; }
+    .seal { font-size: 3rem; margin-bottom: 1rem; display: block; }
+
+    .back-bar { background: #1a3a1a; border-top: 1px solid rgba(255,255,255,.1); padding: .6rem 2rem; }
+    .back-link {
+      display: inline-flex; align-items: center; gap: .4rem;
+      color: rgba(255,255,255,.75); font-size: .78rem; font-weight: 500;
+      text-decoration: none; letter-spacing: .02em;
+    }
+    .back-link:hover { color: white; }
+
+    .container { max-width: 920px; margin: 0 auto; padding: 2.5rem 1.5rem 5rem; }
+
+    .card {
+      background: white; border-radius: 16px; padding: 2rem 2.25rem;
+      box-shadow: 0 1px 3px rgba(0,0,0,.07), 0 4px 12px rgba(0,0,0,.04);
+      margin-bottom: 1.75rem;
+    }
+
+    .part-banner {
+      border-radius: 12px; padding: 1rem 1.5rem; margin-bottom: 1.75rem;
+      font-size: .72rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase;
+    }
+    .part-banner.summary  { background: #e8f5e3; color: #1a5a1a; border-left: 4px solid #2a6a20; }
+    .part-banner.valuation { background: #fef7e8; color: #7a5a10; border-left: 4px solid #c49520; }
+    .part-banner.risk     { background: #fff0f0; color: #8a2020; border-left: 4px solid #b03030; }
+    .part-banner.questions { background: #e8eef9; color: #2a3a80; border-left: 4px solid #2a3a80; }
+
+    .card h2 { font-size: 1.2rem; font-weight: 700; color: #1a2e4a; margin-bottom: 1rem; padding-bottom: .5rem; border-bottom: 2px solid #e8edf4; }
+    .card h3 { font-size: .95rem; font-weight: 700; color: #1a2e4a; margin: 1.3rem 0 .45rem; }
+    .card h3:first-child { margin-top: 0; }
+    .card p { font-size: .88rem; color: #3a4e5e; line-height: 1.75; margin-bottom: .75rem; }
+    .card p:last-child { margin-bottom: 0; }
+    .card strong { font-weight: 600; color: #1a2e4a; }
+
+    /* Key facts strip */
+    .facts-strip {
+      background: linear-gradient(135deg, #1a3a1a 0%, #2a6a2a 100%);
+      color: white; border-radius: 12px; padding: 1.15rem 1.5rem; margin: 1.15rem 0;
+      display: flex; gap: 1.5rem; flex-wrap: wrap;
+    }
+    .facts-item { flex: 1; min-width: 120px; }
+    .facts-label { font-size: .68rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; opacity: .75; margin-bottom: .2rem; }
+    .facts-amount { font-size: 1.15rem; font-weight: 700; }
+    .facts-sub { font-size: .72rem; opacity: .7; margin-top: .1rem; }
+
+    /* Parcel table */
+    .table-wrap { overflow-x: auto; margin: 1rem 0; }
+    table { width: 100%; border-collapse: collapse; font-size: .82rem; }
+    thead tr { background: #1a3a1a; color: white; }
+    thead th { padding: .65rem .85rem; text-align: left; font-weight: 600; font-size: .76rem; letter-spacing: .04em; }
+    thead th:first-child { border-radius: 8px 0 0 0; }
+    thead th:last-child  { border-radius: 0 8px 0 0; }
+    tbody tr { border-bottom: 1px solid #e8edf4; }
+    tbody tr:nth-child(even) { background: #f7fafc; }
+    tbody tr:hover { background: #eef2f7; }
+    td { padding: .55rem .85rem; color: #3a4e5e; line-height: 1.4; }
+    td.label-col { font-weight: 600; color: #1a2e4a; }
+    td.total-row { font-weight: 700; color: #1a2e4a; background: #f0f4f8; }
+    td.warn { color: #b03030; font-weight: 600; }
+    td.ok   { color: #2a6a20; font-weight: 600; }
+
+    /* Funding breakdown */
+    .funding-row { display: flex; gap: 1rem; margin: 1rem 0; flex-wrap: wrap; }
+    .funding-box { flex: 1; min-width: 160px; background: #f4f7fb; border-radius: 10px; padding: .85rem 1rem; border-top: 3px solid #2a4a6a; }
+    .funding-box.cpa { border-top-color: #2a6a20; background: #f0fbf0; }
+    .funding-box.borrow { border-top-color: #c49520; background: #fef9ec; }
+    .funding-box.buffer { border-top-color: #7a3a7a; background: #faf0fa; }
+    .funding-label { font-size: .68rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: #7a8fa6; margin-bottom: .25rem; }
+    .funding-amount { font-size: 1.1rem; font-weight: 700; color: #1a2e4a; }
+    .funding-sub { font-size: .75rem; color: #7a8fa6; margin-top: .2rem; line-height: 1.4; }
+
+    /* Cost buildup */
+    .cost-buildup { border: 1px solid #e8edf4; border-radius: 10px; overflow: hidden; margin: 1rem 0; }
+    .cost-row { display: flex; justify-content: space-between; padding: .6rem 1rem; font-size: .85rem; border-bottom: 1px solid #e8edf4; }
+    .cost-row:last-child { border-bottom: none; background: #1a2e4a; color: white; font-weight: 700; }
+    .cost-row:nth-child(even) { background: #f7fafc; }
+    .cost-name { color: #3a4e5e; }
+    .cost-row:last-child .cost-name { color: white; }
+    .cost-val { font-weight: 600; color: #1a2e4a; }
+    .cost-row:last-child .cost-val { color: white; }
+
+    /* Observations */
+    .obs { background: #f4f7fb; border-left: 3px solid #2a4a6a; border-radius: 0 8px 8px 0; padding: .85rem 1rem 1rem; margin-bottom: .85rem; }
+    .obs .obs-label { font-size: .68rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: #7a8fa6; margin-bottom: .3rem; }
+    .obs p { font-size: .85rem; margin-bottom: 0; }
+
+    /* Risk cards */
+    .risk-card { border-radius: 12px; padding: 1.15rem 1.25rem; margin-bottom: 1rem; background: #fff8f8; border-left: 4px solid #b03030; }
+    .risk-num { font-size: .65rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: #b03030; margin-bottom: .25rem; }
+    .risk-title { font-size: .92rem; font-weight: 700; color: #1a2e4a; margin-bottom: .4rem; }
+    .risk-card p { font-size: .85rem; color: #3a4e5e; line-height: 1.7; margin-bottom: .5rem; }
+    .risk-card p:last-child { margin-bottom: 0; }
+
+    /* Alert box */
+    .alert { background: #fffbe8; border: 1px solid #e8c840; border-radius: 10px; padding: .9rem 1.1rem; margin: .85rem 0; }
+    .alert p { font-size: .84rem; color: #5a4a10; line-height: 1.65; margin-bottom: 0; }
+    .alert strong { color: #3a3000; }
+
+    /* Questions list */
+    .q-list { list-style: none; padding: 0; counter-reset: q-counter; }
+    .q-list li { counter-increment: q-counter; position: relative; padding: .8rem 1rem .8rem 2.75rem; margin-bottom: .5rem; background: #f0f8ff; border-radius: 8px; border-left: 3px solid #2a5a9a; font-size: .86rem; color: #2a3a5a; line-height: 1.65; }
+    .q-list li::before { content: counter(q-counter); position: absolute; left: .75rem; top: .8rem; font-size: .75rem; font-weight: 700; color: #2a5a9a; background: #d0e4f8; border-radius: 50%; width: 1.4rem; height: 1.4rem; display: flex; align-items: center; justify-content: center; }
+    .q-list strong { color: #1a2e4a; }
+
+    /* Summary verdict */
+    .verdict { background: #f0fbf0; border-radius: 12px; padding: 1.25rem 1.5rem; border-left: 4px solid #2a6a20; margin-top: 1rem; }
+    .verdict p { font-size: .88rem; color: #2a3a2a; line-height: 1.75; margin-bottom: .6rem; }
+    .verdict p:last-child { margin-bottom: 0; }
+
+    /* Disclaimer + footer */
+    .disclaimer { background: #f4f7fb; border-radius: 10px; padding: 1rem 1.25rem; font-size: .8rem; color: #7a8fa6; line-height: 1.6; font-style: italic; margin-top: 1.5rem; }
+    .page-footer { text-align: center; padding: 2rem 1rem; color: #9aa8b8; font-size: .75rem; }
+  </style>
+</head>
+<body>
+
+<div class="header">
+  <span class="seal">&#x1F333;</span>
+  <div class="eyebrow">Town of Medway, Massachusetts &mdash; 2026 ATM Article 1</div>
+  <h1>Winthrop Street Purchase &amp; Sale Agreement</h1>
+  <p class="sub">Summary, Valuation, and Risks — Shady Oaks Realty Trust to Town of Medway</p>
+</div>
+
+<div class="back-bar">
+  <a class="back-link" href="../index.html">&#x2190; Town Meeting archive</a>
+</div>
+
+<div class="container">
+
+<!-- ══════════════════════════════════════════════════ -->
+<!-- PART 1: SUMMARY -->
+<!-- ══════════════════════════════════════════════════ -->
+
+<div class="part-banner summary">Part 1 &mdash; Summary of the Agreement</div>
+
+<div class="card">
+  <h2>Transaction at a Glance</h2>
+  <div class="facts-strip">
+    <div class="facts-item">
+      <div class="facts-label">Purchase Price</div>
+      <div class="facts-amount">$4,850,000</div>
+      <div class="facts-sub">Lump sum at closing</div>
+    </div>
+    <div class="facts-item">
+      <div class="facts-label">Total Appropriation</div>
+      <div class="facts-amount">$5,620,000</div>
+      <div class="facts-sub">Incl. costs &amp; remediation</div>
+    </div>
+    <div class="facts-item">
+      <div class="facts-label">Site</div>
+      <div class="facts-amount">4 parcels</div>
+      <div class="facts-sub">Winthrop Street, Medway</div>
+    </div>
+    <div class="facts-item">
+      <div class="facts-label">Town Meeting</div>
+      <div class="facts-amount">May 11, 2026</div>
+      <div class="facts-sub">Article 1, ATM</div>
+    </div>
+  </div>
+
+  <h3>Parties</h3>
+  <p><strong>Seller:</strong> Arlene Siderski and Ellen Galleger (a/k/a Ellen Spear), Trustees of Shady Oaks Realty Trust, u/d/t March 27, 1990. Represented by Paul Kenney, Esq., Kenney &amp; Kenney, Medway. Real estate agent: Paul Harkey (commission paid by seller).</p>
+  <p><strong>Buyer:</strong> Town of Medway. Represented by Shirin Everett, Esq., KP Law, P.C., Boston (same firm representing the Town in the West Street BESS PILOT).</p>
+
+  <h3>The Parcels</h3>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Address</th><th>Assessor Parcel</th><th>Acreage (Warrant)</th></tr></thead>
+      <tbody>
+        <tr><td class="label-col">25 Winthrop Street</td><td>38-010</td><td>38.01 acres</td></tr>
+        <tr><td class="label-col">33 Winthrop Street</td><td>39-001</td><td>8.00 acres</td></tr>
+        <tr><td class="label-col">34 Winthrop Street</td><td>30-006</td><td>0.72 acres</td></tr>
+        <tr><td class="label-col">38 Winthrop Street</td><td>30-005</td><td>32.00 acres</td></tr>
+        <tr><td class="total-row label-col">Total</td><td class="total-row"></td><td class="total-row">78.73 acres</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="alert">
+    <p><strong>Note:</strong> The P&amp;S states "approximately 88 acres." The warrant's parcel-by-parcel sum is 78.73 acres — a discrepancy of ~9.3 acres. This is addressed under Risk 1 below.</p>
+  </div>
+  <p>38 Winthrop Street was the operating location of Shady Oaks Landscape &amp; Tree, a commercial landscaping and tree service business. Business listings indicate it closed as of early 2026. The parcels abut Choate Park, the adjacent conservation area, and Medway High School.</p>
+
+  <h3>Intended Use</h3>
+  <p>Land to be held for CPA-eligible purposes under G.L. c. 44B: open space, recreation, or community housing. Specific use designations are deferred to subsequent votes of Town Meeting. A permanent deed restriction will be placed on the properties pursuant to G.L. c. 44B, §12 and G.L. c. 184, §§31–33.</p>
+</div>
+
+<div class="card">
+  <h2>Funding Structure</h2>
+  <div class="funding-row">
+    <div class="funding-box cpa">
+      <div class="funding-label">CPA General Reserves</div>
+      <div class="funding-amount">$2,870,000</div>
+      <div class="funding-sub">Transfer from Community Preservation Fund — existing collected funds</div>
+    </div>
+    <div class="funding-box borrow">
+      <div class="funding-label">Borrowing</div>
+      <div class="funding-amount">$2,750,000</div>
+      <div class="funding-sub">G.L. c. 44 / CPA authority — new debt; annual debt service ~$211K at 4.5%</div>
+    </div>
+    <div class="funding-box buffer">
+      <div class="funding-label">Cost Buffer</div>
+      <div class="funding-amount">$770,000</div>
+      <div class="funding-sub">Engineering, environmental remediation, structure removal, legal fees</div>
+    </div>
+  </div>
+</div>
+
+<div class="card">
+  <h2>Key Contract Terms</h2>
+
+  <h3>Closing</h3>
+  <p>30 days after all Closing Conditions are satisfied. Title conveyed by <strong>Quitclaim Deed</strong>, signed personally by both trustees (power of attorney will not convey good title). Closing by mail; neither party obligated to attend in person.</p>
+
+  <h3>Buyer's Contingencies</h3>
+  <p>All of the following must be satisfied before closing: CPC recommendation and Town Meeting authorization with appropriation; G.L. c. 30B uniqueness determination with 30-day objection period; premises delivered free of tenants and occupants with relocation benefit waivers; physical inspection and title review satisfactory to buyer; compliance with all applicable state law.</p>
+
+  <h3>Seller Condition — Extended Deadline</h3>
+  <p>The seller's obligation to deliver the premises free of tenants and occupants must be satisfied by June 1, 2026 (extendable to August 31, 2026). If not met by then, the closing is deferred until satisfied — with a hard stop of <strong>August 31, 2027</strong>. This 16-month extension window is unusual and suggests current occupancy complications.</p>
+
+  <h3>Rollback Tax Waiver</h3>
+  <p>Section 14 explicitly states that the Seller has no obligation to pay rollback taxes. The Town, being tax-exempt, has no obligation to pay them upon acquisition. The Town is therefore waiving its right to require the seller to pay any rollback taxes (potentially $50,000–$200,000+) that might otherwise be owed under Chapters 61, 61A, or 61B.</p>
+
+  <h3>Seller's Environmental Warranty</h3>
+  <p>The Seller warrants to the best of its knowledge that there are no hazardous materials, no USTs, no asbestos, no lead paint, and no unsafe radon concentrations. This knowledge-based standard requires no investigation — it only covers what the seller already knows.</p>
+</div>
+
+<!-- ══════════════════════════════════════════════════ -->
+<!-- PART 2: VALUATION -->
+<!-- ══════════════════════════════════════════════════ -->
+
+<div class="part-banner valuation">Part 2 &mdash; Valuation — Is $4,850,000 a Fair Price?</div>
+
+<div class="card">
+  <h2>Price Per Acre</h2>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Acreage Basis</th><th>Acres</th><th>Price per Acre</th></tr></thead>
+      <tbody>
+        <tr><td class="label-col">P&amp;S stated ("approximately 88 acres")</td><td>88.0</td><td class="ok">$55,114</td></tr>
+        <tr><td class="label-col">Warrant parcel sum</td><td>78.73</td><td>$61,603</td></tr>
+        <tr><td class="label-col">Norfolk County median (listed land, all types)</td><td>—</td><td class="warn">$191,729</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p>At $55,000–$62,000 per acre, the purchase price is well below the Norfolk County median for listed land — however, that median includes small, developable residential lots. Large conservation parcels in the suburban Boston market typically sell at significant discounts to the residential lot equivalent because wetlands, setbacks, and conservation restrictions reduce development potential. The appropriate benchmark is not the county median but rather comparable large-parcel conservation acquisitions in similar towns.</p>
+
+  <div class="obs">
+    <div class="obs-label">Why Conservation Parcels Sell Below Market Average</div>
+    <p>The buyer pool for large forested parcels is limited to municipalities and land trusts. Permanent CPA deed restrictions — required here — reduce future marketability to near zero. Sellers accept below-market prices for conservation purposes or because the market for such land is thin. A per-acre comparison to residential lots overstates the premium.</p>
+  </div>
+
+  <h3>Total Cost of Ownership</h3>
+  <div class="cost-buildup">
+    <div class="cost-row"><span class="cost-name">Purchase price</span><span class="cost-val">$4,850,000</span></div>
+    <div class="cost-row"><span class="cost-name">Budget buffer (remediation, legal, etc.)</span><span class="cost-val">$770,000</span></div>
+    <div class="cost-row"><span class="cost-name">Est. interest on $2.75M borrowing (4.5%, 20 yrs)</span><span class="cost-val">~$1,478,000</span></div>
+    <div class="cost-row"><span class="cost-name">Total estimated cost to the town</span><span class="cost-val">~$7,098,000</span></div>
+  </div>
+  <p>On a per-acre basis using the warrant's 78.73 acres, the all-in cost including debt service is approximately <strong>$90,150 per acre</strong>. The borrowing adds roughly $211,000 per year in debt service — a multi-decade obligation on the general fund.</p>
+</div>
+
+<!-- ══════════════════════════════════════════════════ -->
+<!-- PART 3: RISKS -->
+<!-- ══════════════════════════════════════════════════ -->
+
+<div class="part-banner risk">Part 3 &mdash; Risks and Concerns</div>
+
+<div class="card">
+  <h2>Structural and Transactional Risks</h2>
+
+  <div class="risk-card">
+    <div class="risk-num">Risk 1</div>
+    <div class="risk-title">Acreage Discrepancy — ~9.3 Acres Unaccounted For</div>
+    <p>The P&amp;S describes the premises as "approximately 88 acres." The four parcels in the warrant sum to 78.73 acres — a gap of 9.27 acres (nearly 12%). This discrepancy could reflect road frontage, easement areas, or an error in one document. The purchase price should be confirmed as applying to the correct total acreage. If the actual acreage is 78.73, the effective price per acre is $61,600 rather than $55,114.</p>
+  </div>
+
+  <div class="risk-card">
+    <div class="risk-num">Risk 2</div>
+    <div class="risk-title">Quitclaim Deed — Limited Seller Warranties</div>
+    <p>A quitclaim deed protects the buyer only against defects the grantor personally created. It provides no protection against encumbrances, easements, or restrictions predating the seller's ownership, nor against defects in earlier links in the chain of title. For 78+ acres of land with a deed history dating to at least 1990, there may be prior easements, access rights, or restrictions that could affect the town's intended use. Title insurance should be purchased and any exceptions from coverage reviewed before closing.</p>
+  </div>
+
+  <div class="risk-card">
+    <div class="risk-num">Risk 3</div>
+    <div class="risk-title">Landscape Business Environmental Exposure at 38 Winthrop</div>
+    <p>38 Winthrop Street was the operating location of Shady Oaks Landscape &amp; Tree — a commercial operation that would typically involve pesticide and herbicide storage, petroleum fuel and oil storage, and equipment maintenance with hydraulic fluids. The Seller's environmental warranty is knowledge-based only: it covers only what the seller already knows, and requires no investigation. Hidden soil or groundwater contamination would not be covered.</p>
+    <p>The warrant appropriation explicitly includes "environmental remediation" as an anticipated cost — a signal that the town expects remediation may be needed. Before closing, a Phase I Environmental Site Assessment should be completed; a Phase II (subsurface investigation) at 38 Winthrop Street is strongly advisable given the former commercial use.</p>
+  </div>
+
+  <div class="risk-card">
+    <div class="risk-num">Risk 4</div>
+    <div class="risk-title">Rollback Tax Waiver Is a Significant Undisclosed Concession</div>
+    <p>Section 14 relieves the seller of any obligation to pay rollback taxes. If any of these parcels were enrolled in Chapter 61 (forestry), 61A (agricultural), or 61B (recreational) current-use tax programs, the seller would ordinarily owe rollback taxes upon conversion — the difference between reduced current-use taxes paid and full-rate taxes, plus 5% annual interest, typically for the prior 5 years. For 78+ acres that may have been classified as forest or agricultural land, this liability could be $50,000–$200,000 or more.</p>
+    <p>The town is not taking on this liability directly (it is tax-exempt), but it is waiving its ability to require the seller to pay rollback taxes, or to credit them against the purchase price. This is a negotiated concession that effectively increases the seller's net proceeds. Town Meeting voters have not been publicly informed of the estimated amount.</p>
+  </div>
+
+  <div class="risk-card">
+    <div class="risk-num">Risk 5</div>
+    <div class="risk-title">16-Month Occupancy Clearance Window Suggests Active Use</div>
+    <p>The seller's condition — delivering the premises free of all tenants and occupants with relocation benefit waivers — has an ultimate deadline of August 31, 2027. In a typical vacant land purchase, this condition would be met immediately. The 16-month extension window is highly unusual and signals that there are current occupants or use agreements that are not immediately terminable. This may include the landscape business, storage arrangements, agricultural leases, or residential occupancy.</p>
+    <p>Under the Massachusetts Uniform Relocation Assistance Act (M.G.L. c. 79A), any person displaced from housing or a business as a result of a public acquisition may be entitled to relocation benefits. The requirement for written waivers from all occupants confirms that known occupants exist. If the seller cannot obtain waivers, the closing cannot proceed until August 31, 2027 — and the town would be in a contractual limbo with CPA reserves already committed.</p>
+  </div>
+
+  <div class="risk-card">
+    <div class="risk-num">Risk 6</div>
+    <div class="risk-title">No Independent Appraisal Referenced</div>
+    <p>The P&amp;S does not reference an independent appraisal. The price was negotiated between the seller's agent (Paul Harkey) and town representatives under a G.L. c. 30B uniqueness determination — a process that substitutes for competitive bidding but does not require an arms-length price test. For a $4,850,000 public expenditure, an independent MAI appraisal is standard practice. Town Meeting voters should confirm whether an appraisal was obtained and what it concluded.</p>
+  </div>
+
+  <div class="risk-card">
+    <div class="risk-num">Risk 7</div>
+    <div class="risk-title">CPA Restriction Is a Permanent, Largely Irreversible Commitment</div>
+    <p>Once the CPA deed restriction is recorded, the land cannot be sold, transferred, or used for non-CPA purposes without Town Meeting action and potentially state-level approval. This is by design — but it means the town must be confident about the intended use before closing. The warrant defers specific use designations to future Town Meeting votes; voters are committing $5.62M without knowing whether the land will be open space, recreation, or housing. These uses have very different infrastructure, maintenance cost, and community impact profiles.</p>
+  </div>
+
+  <div class="risk-card">
+    <div class="risk-num">Risk 8</div>
+    <div class="risk-title">Borrowing Depletes Future Fiscal Flexibility</div>
+    <p>The $2,750,000 in borrowing adds approximately $211,000 per year in debt service at 4.5% over 20 years — a general fund obligation for the next two decades. The CPA reserve draw ($2,870,000) simultaneously depletes the CPA General Reserves that fund the annual CPA budget ($645,850 in FY27) and future projects. Town Meeting voters should understand the post-acquisition CPA reserve balance and whether it leaves sufficient capacity for other planned CPA investments.</p>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════ -->
+<!-- PART 4: QUESTIONS FOR TOWN MEETING -->
+<!-- ══════════════════════════════════════════════════ -->
+
+<div class="part-banner questions">Part 4 &mdash; Questions Voters Should Ask</div>
+
+<div class="card">
+  <h2>Eight Questions for Town Meeting</h2>
+  <ul class="q-list">
+    <li><strong>Acreage:</strong> What is the exact recorded acreage of each parcel? Why does the P&amp;S say "approximately 88 acres" while the warrant states 78.73 acres? Was the purchase price set on a per-acre basis, and if so, at what rate?</li>
+    <li><strong>Appraisal:</strong> Was an independent MAI appraisal obtained? What did it conclude? A dollar range — not just a statement that the price is "fair" — should be provided.</li>
+    <li><strong>Environmental:</strong> Has a Phase I ESA been completed for 38 Winthrop Street? Are any environmental concerns known? What is the basis for the $770,000 cost buffer including "environmental remediation"?</li>
+    <li><strong>Rollback taxes:</strong> Are any of the parcels enrolled in Chapter 61, 61A, or 61B? If so, what is the estimated rollback tax exposure the town is waiving, and why was it waived rather than credited against the price?</li>
+    <li><strong>Occupancy:</strong> Who currently occupies or uses the premises? What is the nature of the use agreement that necessitates the August 31, 2027 seller condition deadline? Are relocation benefits expected to be claimed?</li>
+    <li><strong>CPA reserves:</strong> What will the CPA General Reserves balance be after the $2.87M transfer? What CPA projects are planned over the next 5 years, and how does this acquisition affect their funding?</li>
+    <li><strong>Title and insurance:</strong> Will the town purchase title insurance? Has a title search been completed? Are there any known easements, access rights, or restrictions encumbering the parcels?</li>
+    <li><strong>Intended use:</strong> Does the Select Board have a preliminary vision for how the four parcels will be designated — open space, recreation, or housing? Will all parcels be treated the same, or is there a parcel-by-parcel plan?</li>
+  </ul>
+</div>
+
+<!-- ══════════════════════════════════════════════════ -->
+<!-- SUMMARY VERDICT -->
+<!-- ══════════════════════════════════════════════════ -->
+
+<div class="card">
+  <h2>Summary Assessment</h2>
+  <div class="verdict">
+    <p>The Winthrop Street acquisition is conceptually sound. Large, contiguous open space parcels abutting Choate Park and the high school represent exactly the kind of strategic conservation land that CPA funds are designed to acquire. At $55,000–$62,000 per acre, the purchase price is well below the Norfolk County average for listed land — though a meaningful comparison requires a formal appraisal of comparable large conservation parcels.</p>
+    <p>The principal concerns are process-oriented rather than fundamental. The acreage discrepancy needs a clear explanation. The rollback tax waiver is a material financial concession that deserves public accounting. The 16-month seller condition window raises real questions about the site's current occupancy and readiness for transfer. The former landscape business at 38 Winthrop Street creates environmental exposure that a knowledge-based warranty does not adequately cover — and the remediation buffer in the appropriation suggests the town anticipates some costs here.</p>
+    <p>None of these concerns is necessarily disqualifying. This is a significant conservation opportunity in a strategic location, and the CPA funding mechanism is appropriate. But the scale of the commitment — $4.85M purchase price plus potentially $1.5M in debt service — warrants direct, public answers to the questions above before Town Meeting authorization.</p>
+  </div>
+</div>
+
+<div class="disclaimer">
+  This analysis is based on the Purchase and Sale Agreement (signed April 2/6, 2026), the 2026 ATM Warrant Article 1, and publicly available market information. It is not legal or financial advice. Residents should review the full agreement and consult independent legal and financial counsel before forming a position.
+</div>
+
+</div>
+
+<div class="page-footer">
+  Town of Medway &middot; Winthrop Street P&amp;S Analysis &middot; April 2026 &middot; <a href="../index.html" style="color:#9aa8b8">Town Meeting archive</a><br>
+  <span style="font-size:.7rem;opacity:.8;">Content produced with AI assistance and reviewed for accuracy, but not 100% independently verified. Consult official town documents for authoritative information.</span>
+</div>
+
+</body>
+</html>

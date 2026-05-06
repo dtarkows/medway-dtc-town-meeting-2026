@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Town of Medway — Town Meeting Archive</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Inter', sans-serif; background: #eef2f7; color: #1a2e4a; min-height: 100vh; }
+    .header {
+      background: linear-gradient(135deg, #1a2e4a 0%, #2a4a6a 100%);
+      color: white; padding: 3.5rem 2rem 3rem; text-align: center;
+    }
+    .header .eyebrow { font-size: .72rem; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; opacity: .65; margin-bottom: .7rem; }
+    .header h1 { font-size: 2.2rem; font-weight: 700; margin-bottom: .6rem; }
+    .header .sub { font-size: .95rem; opacity: .72; max-width: 480px; margin: 0 auto; line-height: 1.6; }
+    .seal { font-size: 3rem; margin-bottom: 1rem; display: block; }
+    .container { max-width: 1100px; margin: 0 auto; padding: 2.5rem 1.5rem 4rem; }
+    .intro-card {
+      background: white; border-radius: 14px; padding: 1.5rem 2rem;
+      box-shadow: 0 1px 3px rgba(0,0,0,.07), 0 4px 12px rgba(0,0,0,.04);
+      margin-bottom: 2rem; border-top: 3px solid #2a4a6a;
+    }
+    .intro-card p { font-size: .88rem; color: #546475; line-height: 1.65; }
+    .intro-card p + p { margin-top: .7rem; }
+    .year-block { margin-bottom: 2.5rem; }
+    .year-heading {
+      font-size: 1.35rem; font-weight: 700; color: #1a2e4a;
+      margin-bottom: 1rem; display: flex; align-items: center; gap: .7rem;
+    }
+    .year-pill {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 52px; height: 52px; border-radius: 14px;
+      font-size: 1rem; font-weight: 800; color: white; flex-shrink: 0;
+    }
+    .meeting-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1rem; }
+    .meeting-card {
+      background: white; border-radius: 14px; padding: 1.5rem;
+      box-shadow: 0 1px 3px rgba(0,0,0,.07), 0 4px 12px rgba(0,0,0,.04);
+      text-decoration: none; color: inherit;
+      transition: transform .16s ease, box-shadow .16s ease;
+      display: flex; flex-direction: column; gap: .6rem;
+      border-left: 4px solid #2a4a6a;
+    }
+    .meeting-card:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,0,0,.12); }
+    .card-badge {
+      display: inline-block; padding: .2rem .65rem; border-radius: 999px;
+      font-size: .7rem; font-weight: 700; letter-spacing: .05em; align-self: flex-start;
+    }
+    .badge-atm { background: #e8f5e3; color: #2a6a20; }
+    .badge-stm { background: #e8eef9; color: #2a3a80; }
+    .card-date  { font-size: .78rem; color: #7a8fa6; font-weight: 500; }
+    .card-title { font-size: 1rem; font-weight: 700; color: #1a2e4a; }
+    .card-stats { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .card-stat  { font-size: .75rem; color: #546475; }
+    .card-stat strong { color: #1a2e4a; font-weight: 600; }
+    .card-arrow { margin-top: auto; padding-top: .75rem; font-size: .78rem; font-weight: 600; color: #7a8fa6; }
+    .meeting-card:hover .card-arrow { color: #1a2e4a; }
+    .page-footer { text-align: center; padding: 2rem 1rem; color: #9aa8b8; font-size: .75rem; line-height: 1.6; }
+    .section-heading {
+      font-size: 1.1rem; font-weight: 700; color: #1a2e4a;
+      margin: 2.5rem 0 1rem; padding-bottom: .5rem;
+      border-bottom: 2px solid #d0dae8;
+      display: flex; align-items: center; gap: .5rem;
+    }
+    .analysis-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1rem; margin-bottom: 2rem; }
+    .analysis-card {
+      background: white; border-radius: 14px; padding: 1.5rem;
+      box-shadow: 0 1px 3px rgba(0,0,0,.07), 0 4px 12px rgba(0,0,0,.04);
+      text-decoration: none; color: inherit;
+      transition: transform .16s ease, box-shadow .16s ease;
+      display: flex; flex-direction: column; gap: .5rem;
+      border-left: 4px solid #8a5020;
+    }
+    .analysis-card:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,0,0,.12); }
+    .analysis-card .ac-icon { font-size: 1.4rem; }
+    .analysis-card .ac-title { font-size: 1rem; font-weight: 700; color: #1a2e4a; }
+    .analysis-card .ac-desc { font-size: .8rem; color: #546475; line-height: 1.55; margin-top: .2rem; }
+    .analysis-card .ac-arrow { margin-top: auto; padding-top: .75rem; font-size: .78rem; font-weight: 600; color: #7a8fa6; }
+    .analysis-card:hover .ac-arrow { color: #1a2e4a; }
+    .ai-disclaimer {
+      background: #fffbea; border: 1px solid #e8d88a; border-radius: 10px;
+      padding: .9rem 1.2rem; margin-bottom: 2.5rem;
+      font-size: .78rem; color: #6a5a20; line-height: 1.6;
+    }
+    .ai-disclaimer strong { color: #4a3a10; }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <span class="seal">🏛️</span>
+    <div class="eyebrow">Town of Medway, Massachusetts</div>
+    <h1>Town Meeting Archive</h1>
+    <p class="sub">Annual and Special Town Meeting warrants with article summaries, board recommendations, and full text.</p>
+  </div>
+
+  <div class="container">
+    <div class="intro-card">
+      <p>This archive covers Town Meeting warrants for <strong>2016–2026</strong>. Each page summarizes all warrant articles with one-click access to the full official text, filterable by category and sortable by dollar amount.</p>
+      <p>Each article shows the <strong>Select Board</strong> and <strong>Finance Committee</strong> recommendation as recorded in the official warrant. Most articles require a simple majority vote; zoning articles require a two-thirds vote under G.L. c. 40A §5.</p>
+    </div>
+
+    <div class="section-heading">📋 2026 Ballot Analysis &amp; Budget Trends</div>
+    <div class="analysis-cards">
+      <a class="analysis-card" href="trends.html" style="border-left-color:#1a4a42;">
+        <div class="ac-icon">📊</div>
+        <div class="ac-title">Budget Trends 2016–2026</div>
+        <div class="ac-desc">Year-over-year charts for enterprise funds, capital appropriations, roads &amp; sidewalks, OPEB, stabilization transfers, and other recurring warrant articles across a decade of Annual Town Meetings.</div>
+        <div class="ac-arrow">View charts →</div>
+      </a>
+      <a class="analysis-card" href="analysis/BESS PILOT Analysis.html">
+        <div class="ac-icon">⚡</div>
+        <div class="ac-title">BESS PILOT Agreement — West Street</div>
+        <div class="ac-desc">Analysis of the proposed 20-year Payment In Lieu of Taxes agreement for the 300 MW / 1,200 MWh battery energy storage facility. Includes comparison to the prior Milford Street PILOT and a plain-language MW vs. MWh explainer.</div>
+        <div class="ac-arrow">Read analysis →</div>
+      </a>
+      <a class="analysis-card" href="analysis/BESS PILOT Risk Analysis.html">
+        <div class="ac-icon">🔍</div>
+        <div class="ac-title">BESS PILOT — Deep Risk Analysis</div>
+        <div class="ac-desc">Eight identified risks in the 2026 PILOT agreement — from the fixed-payment structure and inflation erosion to COD delay provisions — with comparisons to regional New England BESS deals and recommended contract provisions.</div>
+        <div class="ac-arrow">Read analysis →</div>
+      </a>
+      <a class="analysis-card" href="analysis/Winthrop St P&amp;S Analysis.html">
+        <div class="ac-icon">🏡</div>
+        <div class="ac-title">Winthrop Street Land Purchase — P&amp;S Analysis</div>
+        <div class="ac-desc">Analysis of the Purchase &amp; Sale Agreement for the $4,850,000 acquisition of approximately 78–88 acres on Winthrop Street. Covers acreage discrepancies, rollback tax exposure, environmental concerns, CPA restrictions, and true all-in cost.</div>
+        <div class="ac-arrow">Read analysis →</div>
+      </a>
+      <a class="analysis-card" href="2026/Medway 2026 Town Meeting Discussion.pdf" style="border-left-color:#b8860b;">
+        <div class="ac-icon">📊</div>
+        <div class="ac-title">2026 Town Meeting — Discussion Slide Deck</div>
+        <div class="ac-desc">19-slide presentation covering both the Special and Annual Town Meetings: STM articles, ATM budget overview, FY2027 revenue and spending by category, Article 7 capital projects, BESS PILOT agreement, Winthrop Street land purchase, and key Finance Committee themes.</div>
+        <div class="ac-arrow">View PDF →</div>
+      </a>
+    </div>
+    <div class="ai-disclaimer">
+      <strong>AI Disclaimer:</strong> The analyses above were produced with AI assistance and have been reviewed, but have not been 100% independently verified. Readers are encouraged to consult the original source documents before relying on any specific figures or legal interpretations.
+    </div>
+
+    <div class="section-heading">🗓️ Meeting Archive</div>
+
+<div class="year-block">
+  <div class="year-heading">
+    <span class="year-pill" style="background:linear-gradient(135deg,#1b3d2f,#2e6b50)">2026</span>
+    <div>2026 Town Meetings</div>
+  </div>
+  <div class="meeting-cards">
+    <a class="meeting-card" href="2026/annual_town_meeting_2026.html">
+  <span class="card-badge badge-atm">Annual Town Meeting</span>
+  <div class="card-date">May 11, 2026 · 7:30 PM</div>
+  <div class="card-title">Annual Town Meeting 2026</div>
+  <div class="card-stats"><div class="card-stat"><strong>26</strong> articles</div></div>
+  <div class="card-arrow">View articles →</div>
+</a>
+    <a class="meeting-card" href="2026/special_town_meeting_2026.html">
+  <span class="card-badge badge-stm">Special Town Meeting</span>
+  <div class="card-date">May 11, 2026 · 7:00 PM</div>
+  <div class="card-title">Special Town Meeting 2026</div>
+  <div class="card-stats"><div class="card-stat"><strong>8</strong> articles</div></div>
+  <div class="card-arrow">View articles →</div>
+</a>
+  </div>
+</div>
+
+    <div class="year-block">
+  <div class="year-heading">
+    <span class="year-pill" style="background:linear-gradient(135deg,#2a1a60,#4a30a0)">2025</span>
+    <div>2025 Town Meeting</div>
+  </div>
+  <div class="meeting-cards">
+    <a class="meeting-card" href="2025/annual_town_meeting_2025.html">
+  <span class="card-badge badge-atm">Annual Town Meeting</span>
+  <div class="card-date">May 12, 2025 · 7:30 PM</div>
+  <div class="card-title">Annual Town Meeting 2025</div>
+  <div class="card-stats"><div class="card-stat"><strong>29</strong> articles</div></div>
+  <div class="card-arrow">View articles →</div>
+</a>
+  </div>
+</div>
+
+    <div class="year-block">
+  <div class="year-heading">
+    <span class="year-pill" style="background:linear-gradient(135deg,#1a4a42,#267a68)">2024</span>
+    <div>2024 Town Meetings</div>
+  </div>
+  <div class="meeting-cards">
+    <a class="meeting-card" href="2024/annual_town_meeting_2024.html">
+  <span class="card-badge badge-atm">Annual Town Meeting</span>
+  <div class="card-date">May 13, 2024 · 7:30 PM</div>
+  <div class="card-title">Annual Town Meeting 2024</div>
+  <div class="card-stats"><div class="card-stat"><strong>24</strong> articles</div></div>
+  <div class="card-arrow">View articles →</div>
+</a>
+    <a class="meeting-card" href="2024/special_town_meeting_2024.html">
+  <span class="card-badge badge-stm">Special Town Meeting</span>
+  <div class="card-date">May 13, 2024 · 7:00 PM</div>
+  <div class="card-title">Special Town Meeting 2024</div>
+  <div class="card-stats"><div class="card-stat"><strong>8</strong> articles</div></div>
+  <div class="card-arrow">View articles →</div>
+</a>
+  </div>
+</div>
+
+    <div class="year-block">
+  <div class="year-heading">
+    <span class="year-pill" style="background:linear-gradient(135deg,#1a3a5c,#2b5f96)">2023</span>
+    <div>2023 Town Meetings</div>
+  </div>
+  <div class="meeting-cards">
+    <a class="meeting-card" href="2023/annual_town_meeting_2023.html">
+  <span class="card-badge badge-atm">Annual Town Meeting</span>
+  <div class="card-date">May 8, 2023 · 7:30 PM</div>
+  <div class="card-title">Annual Town Meeting 2023</div>
+  <div class="card-stats"><div class="card-stat"><strong>38</strong> articles</div></div>
+  <div class="card-arrow">View articles →</div>
+</a>
+    <a class="meeting-card" href="2023/special_town_meeting_2023.html">
+  <span class="card-badge badge-stm">Special Town Meeting</span>
+  <div class="card-date">May 8, 2023 · 7:00 PM</div>
+  <div class="card-title">Special Town Meeting 2023</div>
+  <div class="card-stats"><div class="card-stat"><strong>8</strong> articles</div></div>
+  <div class="card-arrow">View articles →</div>
+</a>
+  </div>
+</div>
+
+    <div class="year-block">
+  <div class="year-heading">
+    <span class="year-pill" style="background:linear-gradient(135deg,#1a3850,#2b5c80)">2022</span>
+    <div>2022 Town Meetings</div>
+  </div>
+  <div class="meeting-cards">
+    <a class="meeting-card" href="2022/annual_town_meeting_2022.html">
+  <span class="card-badge badge-atm">Annual Town Meeting</span>
+  <div class="card-date">May 9, 2022 · 7:30 PM</div>
+  <div class="card-title">Annual Town Meeting 2022</div>
+  <div class="card-stats"><div class="card-stat"><strong>21</strong> articles</div></div>
+  <div class="card-arrow">View articles →</div>
+</a>
+    <a class="meeting-card" href="2022/special_town_meeting_2022.html">
+  <span class="card-badge badge-stm">Special Town Meeting</span>
+  <div class="card-date">May 9, 2022 · 7:00 PM</div>
+  <div class="card-title">Special Town Meeting 2022</div>
+  <div class="card-stats"><div class="card-stat"><strong>8</strong> articles</div></div>
+  <div class="card-arrow">View articles →</div>
+</a>
+  </div>
+</div>
+
+    <div class="year-block">
+  <div class="year-heading">
+    <span class="year-pill" style="background:linear-gradient(135deg,#1a3040,#2a5070)">2021</span>
+    <div>2021 Town Meetings</div>
+  </div>
+  <div class="meeting-cards">
+    <a class="meeting-card" href="2021/annual_town_meeting_2021.html">
+  <span class="card-badge badge-atm">Annual Town Meeting</span>
+  <div class="card-date">May 10, 2021 · 7:30 PM</div>
+  <div class="card-title">Annual Town Meeting 2021</div>
+  <div class="card-stats"><div class="card-stat"><strong>31</strong> articles</div></div>
+  <div class="card-arrow">View articles →</div>
+</a>
+    <a class="meeting-card" href="2021/special_town_meeting_2021.html">
+  <span class="card-badge badge-stm">Special Town Meeting</span>
+  <div class="card-date">May 10, 2021 · 7:00 PM</div>
+  <div class="card-title">Special Town Meeting 2021</div>
+  <div class="card-stats"><div class="card-stat"><strong>8</strong> articles</div></div>
+  <div class="card-arrow">View articles →</div>
+</a>
+  </div>
+</div>
+
+    <div class="year-block">
+  <div class="year-heading">
+    <span class="year-pill" style="background:linear-gradient(135deg,#1a4040,#2a7070)">2020</span>
+    <div>2020 Town Meetings</div>
+  </div>
+  <div class="meeting-cards">
+    <a class="meeting-card" href="2020/annual_town_meeting_2020.html">
+  <span class="card-badge badge-atm">Annual Town Meeting</span>
+  <div class="card-date">June 8, 2020 · 7:30 PM</div>
+  <div class="card-title">Annual Town Meeting 2020</div>
+  <div class="card-stats"><div class="card-stat"><strong>22</strong> articles</div></div>
+  <div class="card-arrow">View articles →</div>
+</a>
+    <a class="meeting-card" href="2020/special_town_meeting_2020.html">
+  <span class="card-badge badge-stm">Special Town Meeting</span>
+  <div class="card-date">June 8, 2020 · 7:00 PM</div>
+  <div class="card-title">Special Town Meeting 2020</div>
+  <div class="card-stats"><div class="card-stat"><strong>8</strong> articles</div></div>
+  <div class="card-arrow">View articles →</div>
+</a>
+  </div>
+</div>
+
+    <div class="year-block">
+  <div class="year-heading">
+    <span class="year-pill" style="background:linear-gradient(135deg,#1a3a5c,#2b6096)">2019</span>
+    <div>2019 Town Meeting</div>
+  </div>
+  <div class="meeting-cards">
+    <a class="meeting-card" href="2019/annual_town_meeting_2019.html">
+  <span class="card-badge badge-atm">Annual Town Meeting</span>
+  <div class="card-date">May 13, 2019 · 7:30 PM</div>
+  <div class="card-title">Annual Town Meeting 2019</div>
+  <div class="card-stats"><div class="card-stat"><strong>30</strong> articles</div></div>
+  <div class="card-arrow">View articles →</div>
+</a>
+  </div>
+</div>
+
+    <div class="year-block">
+  <div class="year-heading">
+    <span class="year-pill" style="background:linear-gradient(135deg,#4a2010,#8a4020)">2018</span>
+    <div>2018 Town Meeting</div>
+  </div>
+  <div class="meeting-cards">
+    <a class="meeting-card" href="2018/annual_town_meeting_2018.html">
+  <span class="card-badge badge-atm">Annual Town Meeting</span>
+  <div class="card-date">May 21, 2018 · 7:30 PM</div>
+  <div class="card-title">Annual Town Meeting 2018</div>
+  <div class="card-stats"><div class="card-stat"><strong>27</strong> articles</div></div>
+  <div class="card-arrow">View articles →</div>
+</a>
+  </div>
+</div>
+
+    <div class="year-block">
+  <div class="year-heading">
+    <span class="year-pill" style="background:linear-gradient(135deg,#1a3a2a,#2b6b48)">2017</span>
+    <div>2017 Town Meeting</div>
+  </div>
+  <div class="meeting-cards">
+    <a class="meeting-card" href="2017/annual_town_meeting_2017.html">
+  <span class="card-badge badge-atm">Annual Town Meeting</span>
+  <div class="card-date">May 8, 2017 · 7:30 PM</div>
+  <div class="card-title">Annual Town Meeting 2017</div>
+  <div class="card-stats"><div class="card-stat"><strong>49</strong> articles</div></div>
+  <div class="card-arrow">View articles →</div>
+</a>
+  </div>
+</div>
+
+    <div class="year-block">
+  <div class="year-heading">
+    <span class="year-pill" style="background:linear-gradient(135deg,#3b1a5c,#6b3a96)">2016</span>
+    <div>2016 Town Meeting</div>
+  </div>
+  <div class="meeting-cards">
+    <a class="meeting-card" href="2016/annual_town_meeting_2016.html">
+  <span class="card-badge badge-atm">Annual Town Meeting</span>
+  <div class="card-date">May 9, 2016 · 7:30 PM</div>
+  <div class="card-title">Annual Town Meeting 2016</div>
+  <div class="card-stats"><div class="card-stat"><strong>33</strong> articles</div></div>
+  <div class="card-arrow">View articles →</div>
+</a>
+  </div>
+</div>
+
+    <div class="page-footer">
+      Town of Medway · Archive compiled from official town warrants<br>
+      <span style="font-size:.7rem;opacity:.8;">Content produced with AI assistance and reviewed for accuracy, but not 100% independently verified. Consult official town documents for authoritative information.</span>
+    </div>
+  </div>
+</body>
+</html>

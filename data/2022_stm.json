@@ -1,0 +1,91 @@
+{
+  "meta": {
+    "meeting_type": "STM",
+    "date": "May 9, 2022",
+    "year": "2022",
+    "theme_id": "2022_stm",
+    "source_pdf": "2022-05-09 Special Town Meeting Minutes.pdf"
+  },
+  "articles": [
+    {
+      "num": 1,
+      "title": "Free Cash Transfer: Snow and Ice Deficit",
+      "summary": "To see if the Town will vote to transfer $95,000 from Certified Free Cash for the purpose of funding the Snow & Ice Fiscal Year 2022 appropriation deficit, or act in any manner relating thereto.",
+      "category": "Financial",
+      "amount": 95000,
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town will vote to transfer $95,000 from Certified Free Cash for the purpose of funding the Snow & Ice Fiscal Year 2022 appropriation deficit, or act in any manner relating thereto."
+    },
+    {
+      "num": 2,
+      "title": "Prior Year Bills",
+      "summary": "To see if the Town will vote to transfer a sum of money for the purpose of paying prior year, unpaid bills of the Town, or act in any manner relating thereto.",
+      "category": "Financial",
+      "amount": null,
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town will vote to transfer a sum of money for the purpose of paying prior year, unpaid bills of the Town, or act in any manner relating thereto."
+    },
+    {
+      "num": 3,
+      "title": "Free Cash Transfer \u2013 Fund Hazard Mitigation Plan Update",
+      "summary": "To see if the Town will vote to transfer $21,000 from Certified Free Cash for the purpose of funding the update of the Town\u2019s Hazard Mitigation Plan, or act in any manner relating thereto. May 9, 2022",
+      "category": "Financial",
+      "amount": 21000,
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town will vote to transfer $21,000 from Certified Free Cash for the purpose of funding the update of the Town\u2019s Hazard Mitigation Plan, or act in any manner relating thereto. May 9, 2022"
+    },
+    {
+      "num": 4,
+      "title": "Free Cash Transfer \u2013 Property Appraisal/Evaluation",
+      "summary": "To see if the Town will vote to transfer $30,000 from Certified Free Cash for the purpose of funding professional services, including appraisals, engineering and environmental studies and assessments, and/or site evaluations, with respect to property or properties the Town may consider acquiring for...",
+      "category": "Financial",
+      "amount": 30000,
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town will vote to transfer $30,000 from Certified Free Cash for the purpose of funding professional services, including appraisals, engineering and environmental studies and assessments, and/or site evaluations, with respect to property or properties the Town may consider acquiring for various municipal uses, or act in any manner relating thereto."
+    },
+    {
+      "num": 5,
+      "title": "Free Cash Transfer to General Stabilization",
+      "summary": "To see if the Town will vote to transfer $200,000 from Certified Free Cash to the General Stabilization Fund, or act in any manner relating thereto.",
+      "category": "Financial",
+      "amount": 200000,
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town will vote to transfer $200,000 from Certified Free Cash to the General Stabilization Fund, or act in any manner relating thereto."
+    },
+    {
+      "num": 6,
+      "title": "Free Cash Transfer to Capital Stabilization",
+      "summary": "To see if the Town will vote to transfer $155,000 from Certified Free Cash to the Capital Stabilization Fund, or act in any manner relating thereto.",
+      "category": "Capital",
+      "amount": 155000,
+      "sb": "To Be Determined",
+      "fc": "Approve",
+      "text": "To see if the Town will vote to transfer $155,000 from Certified Free Cash to the Capital Stabilization Fund, or act in any manner relating thereto."
+    },
+    {
+      "num": 7,
+      "title": "Repurpose Monetary Article \u2013 School Project",
+      "summary": "To see if the Town will vote to transfer the sum of $55,249 from the funds authorized under Article 11 of the May 10, 2021 Annual Town Meeting to seal an air infiltration at the High School, which amount is no longer needed for such purpose, to support the construction of an outdoor classroom at the...",
+      "category": "Capital",
+      "amount": 55249,
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town will vote to transfer the sum of $55,249 from the funds authorized under Article 11 of the May 10, 2021 Annual Town Meeting to seal an air infiltration at the High School, which amount is no longer needed for such purpose, to support the construction of an outdoor classroom at the Memorial School, or act in any manner relating thereto. SCHOOL DEPARTMENT"
+    },
+    {
+      "num": 8,
+      "title": "Authorize Home Rule Petition to Eliminate Sub-Precinct 1A",
+      "summary": "To see if the Town will vote to authorize the Select Board to petition General Court for special legislation to eliminate the sub-precinct 1A, created following the 2020 annual census resulting in redrawn precinct lines, and restore this sub-precinct to precinct 2, and to authorize the General Court...",
+      "category": "General",
+      "amount": null,
+      "sb": "Approve",
+      "fc": "Approve",
+      "text": "To see if the Town will vote to authorize the Select Board to petition General Court for special legislation to eliminate the sub-precinct 1A, created following the 2020 annual census resulting in redrawn precinct lines, and restore this sub-precinct to precinct 2, and to authorize the General Court to make clerical or editorial changes of form only to any bill so filed unless approved in May 9, 2022 advance by the Select Board, and to authorize the Select Board to approve such revisions as fall within the public purpose of this vote, or act in any manner relating thereto. May 9, 2022 And you "
+    }
+  ]
+}
