@@ -1,0 +1,254 @@
+{
+  "meta": {
+    "meeting_type": "FTM",
+    "label": "Fall Town Meeting",
+    "date": "November 9, 2026",
+    "time": "7:00 PM",
+    "location": "Medway High School Auditorium",
+    "year": "2026",
+    "theme_id": "2026_ftm",
+    "source_pdf": "FTM-Warrant_Signed.pdf",
+    "notes": [
+      "<strong>One session, 14 articles.</strong> Monday, November 9 at 7:00 PM in the Medway High School Auditorium, 88 Summer Street. Warrant signed by the Select Board on October 23, 2026.",
+      "<strong>Free Cash is the big money story.</strong> Articles 2–5 move about <strong>$4.27M</strong> out of Certified Free Cash — $4.0M of it into the Capital Stabilization Fund (Art. 2).",
+      "<strong>Two citizens' petitions on license plate readers</strong> (Arts. 12–13). The Select Board recommends <em>Disapprove</em> on both; the Finance Committee takes <em>No Position</em> on Art. 12 and recommends <em>Disapprove</em> on Art. 13.",
+      "<strong>Finance Committee recommendation still open</strong> on Art. 14 ($1.04M raised on the tax levy for debt service and revaluation) — listed as <em>To Be Determined</em> in the warrant.",
+      "<strong>Higher vote thresholds.</strong> Four zoning articles (9, 10, 11, 13) generally need a two-thirds vote. Paying prior-year bills (Art. 1) needs nine-tenths at a meeting other than the Annual Town Meeting."
+    ],
+    "links": [
+      {
+        "label": "Official signed warrant (PDF)",
+        "url": "https://storage.googleapis.com/juniper-media-library/117/2026/10/FTM-Warrant_Signed.pdf"
+      },
+      {
+        "label": "Town of Medway Select Board page",
+        "url": "https://medwayma.gov/select-board/"
+      }
+    ],
+    "share_of": "warrant",
+    "noindex": true
+  },
+  "articles": [
+    {
+      "num": 1,
+      "title": "Prior Year Bills",
+      "summary": "Pays two small unpaid bills from last fiscal year ($1,407.48 total) using leftover balances in DPW fuel accounts.",
+      "category": "Financial",
+      "amount": 1407.48,
+      "sb": "Approve",
+      "fc": "Approve",
+      "sponsor": "Select Board",
+      "vote": "9/10",
+      "questions": [
+        "What were the bills, and why were they not paid in FY26?"
+      ],
+      "text": "To see if the Town will vote to transfer $637.41 from the Fiscal Year 2027 DPW Administration Vehicle Fuel Account and $770.07 from the DPW Administration Heating Fuel Account for the purpose of paying prior year, unpaid bills of the Town, or act in any manner relating thereto."
+    },
+    {
+      "num": 2,
+      "title": "Free Cash Transfer to Capital Stabilization Fund",
+      "summary": "Moves $4,000,000 of Certified Free Cash into the Capital Stabilization Fund, a reserve for future capital needs. By far the largest dollar item on the warrant. Town officials have tied it to future debt for the proposed Municipal Complex, which goes to a Special Town Meeting and Special Election in March 2027.",
+      "category": "Financial",
+      "amount": 4000000,
+      "sb": "Approve",
+      "fc": "Approve",
+      "sponsor": "Select Board",
+      "questions": [
+        "If FY27 Free Cash is about $7.7M, what is planned for the roughly $3.4M not used on this warrant?",
+        "How much of the Municipal Complex's future debt is this reserve expected to cover, and over how many years?",
+        "What will the Capital Stabilization Fund balance be after this transfer?",
+        "If the Municipal Complex is not approved in March, what would this money be used for?"
+      ],
+      "text": "To see if the Town will vote to transfer $4,000,000 from Certified Free Cash to the Capital Stabilization Fund, or act in any manner relating thereto.",
+      "tags": [
+        "Municipal Complex"
+      ],
+      "background": {
+        "button": "Background",
+        "html": "<div class=\"bg-key\"><strong>In short:</strong> According to the Town Manager, this $4M transfer is meant to build up reserves to help pay future debt on the proposed <strong>Municipal Complex</strong>, the major municipal facilities project whose construction funding goes to voters at a <strong>Special Town Meeting on March 1, 2027</strong> and a Special Election. Article 2 does not approve that project. It moves money into a reserve, and spending from a stabilization fund takes a separate two-thirds Town Meeting vote.</div>\n<h4>What the money is for</h4>\n<p>In his report to the Select Board on October 5, the Town Manager described the Fall Town Meeting Free Cash transfers as intended to offset future debt payments for the major municipal facilities project, while also addressing rising vehicle and equipment replacement costs.</p>\n<h4>Where it comes from</h4>\n<ul>\n<li>The Town Manager put FY27 Certified Free Cash at about <strong>$7.7 million</strong>. The minutes call this a \"projection.\"</li>\n<li>Articles 2–5 on this warrant use about <strong>$4.27M</strong> of it ($4.0M of which is Article 2), which would leave roughly $3.4M if the $7.7M figure holds.</li>\n</ul>\n<h4>How it connects to the Municipal Complex</h4>\n<ul>\n<li>Construction funding for the Municipal Complex is planned for a <strong>Special Town Meeting on March 1, 2027</strong> and a Special Election.</li>\n<li>According to the minutes, the financing strategy relies heavily on the <strong>$3 million PILOT agreement with the Medway Energy Center</strong>, the battery storage facility approved at the May 2026 Annual Town Meeting.</li>\n<li>On October 5 the Select Board approved construction-phase contracts for the project's owner's project manager (Colliers, $1,548,767) and designer (Dore + Whittier, $2,439,400). Both take effect only if voters approve the project. The minutes also refer to $7.9M previously appropriated at Town Meeting and a \"revisited borrowing amount of $6.9 million.\"</li>\n<li>A public forum was scheduled for October 29 at the Thayer Homestead, where the project architects were to present designs, neighborhood impact mitigations and phased financing options.</li>\n</ul>\n<div class=\"bg-note\"><strong>A discrepancy in the minutes:</strong> The <em>draft</em> October 5 minutes say \"$4,167,000 is going into the facility stabilization fund.\" The <em>approved</em> minutes instead say \"$1 million will go into the general stabilization fund.\" The warrant itself, which is what Town Meeting votes on, says <strong>$4,000,000 to the Capital Stabilization Fund</strong> (Art. 2) and <strong>$100,000 to the General Stabilization Fund</strong> (Art. 3).</div>\n<div class=\"bg-sources\"><strong>Sources:</strong>\n<ul>\n<li><a href=\"https://files.heygov.com/townofmedway.org/meetings/me_01m3wgj84c4yhg0ecqp0mcns9w/10526-minutes.pdf\" target=\"_blank\" rel=\"noopener\">Select Board minutes, Oct 5, 2026</a> (Town Manager's Report; Municipal Complex contracts) · <a href=\"https://files.heygov.com/townofmedway.org/meetings/me_01m3wgj84c4yhg0ecqp0mcns9w/10526-packet.pdf\" target=\"_blank\" rel=\"noopener\">packet</a></li>\n<li><a href=\"https://files.heygov.com/townofmedway.org/meetings/me_01m50e4d28gvv21jzqnzyy9kz6/101926-packetredacted.pdf\" target=\"_blank\" rel=\"noopener\">Select Board packet, Oct 19, 2026</a> (includes draft Oct 5 minutes and draft warrant)</li>\n<li><a href=\"https://files.heygov.com/townofmedway.org/meetings/me_01m2r7wfjb4kpy5q27zn9h5ya9/92126-minutes.pdf\" target=\"_blank\" rel=\"noopener\">Select Board minutes, Sep 21, 2026</a> (warrant closed)</li>\n<li>All meetings: <a href=\"https://medwayma.gov/meetings/?category=Select+Board\" target=\"_blank\" rel=\"noopener\">Select Board</a> · <a href=\"https://medwayma.gov/meetings/?category=Finance+Committee\" target=\"_blank\" rel=\"noopener\">Finance Committee</a> (Oct 14 and Oct 20 agendas include warrant review and votes; minutes not yet posted)</li>\n</ul></div>\n<div class=\"bg-disclaimer\">Summary prepared with AI assistance from posted Town meeting minutes and packets. The minutes paraphrase the discussion. Check the recordings or ask Town officials before relying on specific figures.</div>"
+      }
+    },
+    {
+      "num": 3,
+      "title": "Free Cash Transfer to General Stabilization Fund",
+      "summary": "Adds $100,000 of Certified Free Cash to the General Stabilization Fund (the Town's main reserve / rainy-day fund).",
+      "category": "Financial",
+      "amount": 100000,
+      "sb": "Approve",
+      "fc": "Approve",
+      "sponsor": "Select Board",
+      "text": "To see if the Town will vote to transfer $100,000 from Certified Free Cash to the General Stabilization Fund, or act in any manner relating thereto."
+    },
+    {
+      "num": 4,
+      "title": "Free Cash Transfer to Special Education Stabilization Fund",
+      "summary": "Adds $64,000 of Certified Free Cash to the Special Education Stabilization Fund, which cushions the budget against unexpected out-of-district special education costs.",
+      "category": "Financial",
+      "amount": 64000,
+      "sb": "Approve",
+      "fc": "Approve",
+      "sponsor": "Select Board",
+      "text": "To see if the Town will vote to transfer $64,000 from Certified Free Cash to the Special Education Stabilization Fund, or act in any manner relating thereto."
+    },
+    {
+      "num": 5,
+      "title": "Free Cash Transfer: Various Projects",
+      "summary": "Funds three small projects from Free Cash: a Fire Department radio grant match ($16,033), a Housing Production Plan ($17,500), and a Senior Center fire panel replacement ($70,000).",
+      "category": "Capital",
+      "amount": 103533,
+      "sb": "Approve",
+      "fc": "Approve",
+      "sponsor": "Select Board",
+      "questions": [
+        "The Housing Production Plan is a planning study rather than equipment — what will it cover, and how does it relate to the Town's 40B safe-harbor status?"
+      ],
+      "text": "To see if the Town will vote to appropriate the sum of $103,533 from Certified Free Cash for the purpose of funding the following capital items, including associated engineering, personnel, maintenance and legal service costs, and for the payment of all other costs incidental or related thereto:\n\nProject | Department | Cost\nRadio Communication Equipment (Grant Match) | Fire | $16,033\nHousing Production Plan | CED | $17,500\nSenior Center Fire Panel Replacement | DPW | $70,000\nTotal | | $103,533\n\nOr act in any manner relating thereto."
+    },
+    {
+      "num": 6,
+      "title": "Sewer Retained Earnings: Purchase of Sewer Capacity from Franklin",
+      "summary": "Spends $1,075,000 of sewer enterprise savings (not tax money) to buy 150,000 gallons per day of wastewater capacity from Franklin, under agreements with Franklin and the Charles River Pollution Control District. Authorizes the Select Board and Town Manager to sign the agreements.",
+      "category": "Infrastructure",
+      "amount": 1075000,
+      "sb": "Approve",
+      "fc": "Approve",
+      "sponsor": "Select Board",
+      "questions": [
+        "What development or growth is this added capacity meant to serve?",
+        "Is the purchase permanent, and are there ongoing fees on top of the $1.075M?",
+        "What is left in Sewer Retained Earnings afterward, and could this affect sewer rates?"
+      ],
+      "text": "To see if the Town will vote to transfer $1,075,000 from Certified Sewer Enterprise Fund Retained Earnings for the purpose of purchasing 150,000 gallons-per-day of sewer capacity from the Town of Franklin pursuant to agreements with the Town of Franklin and the Charles River Pollution Control District, and further to authorize the Select Board and the Town Manager to take any action and execute any documents or agreements necessary to effectuate the purposes of this article, or act in any manner relating thereto.",
+      "share_note": "Paid from sewer enterprise retained earnings rather than general Town funds."
+    },
+    {
+      "num": 7,
+      "title": "Repurpose Prior Articles: Library HVAC Repairs",
+      "summary": "Redirects $23,106.64 left over from two earlier library ventilation appropriations (2022 and 2024) to new Library HVAC repairs. No new money.",
+      "category": "Capital",
+      "amount": 23106.64,
+      "sb": "Approve",
+      "fc": "Approve",
+      "sponsor": "Select Board",
+      "text": "To see if the Town will vote to transfer the sum of $23,106.64 from the funds authorized under the prior Town Meeting Articles as shown in Table 1 below, which amounts are no longer needed for such purposes, to the project and in the amount listed in Table 2 below and the payment of all costs incidental or related thereto, or act in any manner relating thereto.\n\nTABLE 1 — Transfer From\n5/13/24 Annual, Art. 7 — Library Story Room Ventilation — $10,069.64\n5/9/22 Annual, Art. 7 — Library Ventilation — $13,037.00\nTotal — $23,106.64\n\nTABLE 2 — Transfer To\nNew — Library HVAC Repairs — $23,106.64\nTotal — $23,106.64"
+    },
+    {
+      "num": 8,
+      "title": "Expand Scope of CPA Project: Trail Development",
+      "summary": "Broadens the remaining $17,496.78 of Community Preservation Act money for the Medway Link Trail (approved in 2018 and 2022) so it can be used on any Town trail improvement or development project. No new money.",
+      "category": "CPA / Open Space",
+      "amount": "—",
+      "sb": "Approve",
+      "fc": "Approve",
+      "sponsor": "Open Space Committee",
+      "questions": [
+        "Is the Medway Link Trail finished, or is this balance being moved away from an incomplete project?"
+      ],
+      "text": "To see if the Town will vote to amend the scope and purpose of the Medway Link Trail project authorized under Article 2 of the November 19, 2018, Fall Town Meeting and supplemented by Article 16 of the May 9, 2022, Annual Town Meeting, the balance of which is $17,496.78, to include all Town trail improvement and development projects, or act in any manner relating thereto."
+    },
+    {
+      "num": 9,
+      "title": "Zoning: Nonconforming Uses and Structures",
+      "summary": "Updates Section 5.5 to match recent changes to the state Zoning Act (G.L. c. 40A). Key effects: permits stay protected from later zoning changes for 24 months instead of 12; homes that are nonconforming only because of lot size, frontage, coverage or floor-area ratio can be expanded <em>as of right</em> (no ZBA finding) if the addition meets current height, story and setback rules; and an unused nonconforming use keeps its status for four years instead of two.",
+      "category": "Zoning",
+      "amount": "—",
+      "sb": "Approve",
+      "fc": "Approve",
+      "sponsor": "Planning &amp; Economic Development Board",
+      "vote": "2/3",
+      "questions": [
+        "Which of these changes are already required by state law regardless of how Town Meeting votes, and which are local choices?",
+        "Roughly how many Medway homes sit on undersized or nonconforming lots and would gain as-of-right expansion?"
+      ],
+      "text": "Amends Zoning Bylaw Section 5.5 (Nonconforming Uses and Structures) to conform to recent amendments to G.L. c. 40A. See the formatted redline for the full text.",
+      "text_html": "<p class=\"redline-legend\"><b>Bold</b> = new language &nbsp;·&nbsp; <s>Strikethrough</s> = deleted language</p>\n<p>To see if the Town will vote to amend Section 5.5 of the Zoning Bylaw, Nonconforming Uses and Structures, to conform to recent amendments to General Laws chapter 40A, as follows, new language shown in bold, deleted language shown in strikethrough:</p>\n<p>1. Amend Section 5.5 Subsections A, B, and D as follows:</p>\n<p>A. <b>Applicability.</b> Except as herein after provided, this Zoning Bylaw shall not apply to structures or uses lawfully in existence or lawfully begun, or to a building permit or special permit <b>or other entitlement applied for under G.L. chapter 40A</b> <s>issued</s> before the first publication of notice of the public hearing on this Zoning Bylaw or any amendments thereto, but shall apply to any change or substantial extension of such use, to a building permit or special permit issued after the first notice of said public hearing, to any reconstruction, extension or structural change of such structure and to any alteration of a structure begun after the first notice of said public hearing to provide for its use in a substantially different purpose or for the same purpose in a substantially different manner or to a substantially greater extent except where alteration, reconstruction, extension or a structural change to a one-family or two-family residential structure does not increase the nonconforming nature of said structure.</p>\n<p>B. <b>Commencement of Construction or Operation.</b> Construction or operations under a building permit shall conform to any subsequent amendments to this Zoning Bylaw, unless the use or construction is commenced within a period of not more than <b>twenty-four</b> <s>twelve</s> months after the issuance of the <b>last</b> permit <b>necessary for construction</b> and, in <s>any</s> cases involving construction, unless such construction is continued through to completion as continuously and expeditiously as is reasonable. <b>The twenty-four month period shall be tolled during any time the applicant is actively seeking or obtaining other necessary permits.</b> Construction or operations under a special permit <b>issued pursuant to G.L. c. 40A, §9</b> or site plan approval <b>pursuant to this Zoning Bylaw</b> shall conform to any subsequent amendments to this Zoning Bylaw or of any other local land use regulations unless the use or construction is commenced within a period of 3 years after the issuance of the special permit or site plan approval and, in cases involving construction, unless such construction is continued through to completion as continuously and expeditiously as is reasonable. For the purpose of the prior sentence, construction involving the redevelopment of previously disturbed land shall be deemed to have commenced upon substantial investment in site preparation or infrastructure construction, and construction of developments intended to proceed in phases shall proceed expeditiously, but not continuously, among phases.</p>\n<p>D. <b>Nonconforming Uses.</b> Legally pre-existing nonconforming uses may be extended or altered, provided, that no such extension or alteration shall be permitted unless there is a finding by the Zoning Board of Appeals as the special permit granting authority that such extension or alteration shall not be substantially more detrimental than the existing nonconforming use <b>or structure</b> to the neighborhood. The Zoning Board of Appeals may grant a special permit to change or substantially extend a nonconforming use only if it determines that such change or extension shall not be substantially more detrimental than the existing nonconforming use to the neighborhood.</p>\n<p>2. Add a new Section 5.5.F as follows, and re-lettering the remaining subsections accordingly:</p>\n<p><b>F. Notwithstanding the above provisions, legally existing pre-existing nonconforming structures or residential uses that do not conform to zoning because of lot size or shape, frontage, lot coverage or floor area ratio requirements may be extended or altered as of right, without the need for a finding by the special permit granting authority under this paragraph, if such extension or alteration complies with the current dimensional regulations regarding height, stories, and setback.</b></p>\n<p>3. Amend current Section 5.5.F, Abandonment or Non-use</p>\n<p>G. <b>Abandonment or Non-Use.</b> Any nonconforming use that has been abandoned, or not used for more than two years, <b>or more than four years effective July 1, 2026,</b> shall lose any protected nonconforming status, and shall be subject to all of the provisions of this Zoning Bylaw.</p>\n<p>Or act in any manner relating thereto.</p>"
+    },
+    {
+      "num": 10,
+      "title": "Zoning: Trail Signs",
+      "summary": "Creates a sign category for trails and multi-use paths in residential districts. Defines a &ldquo;Trail Sign,&rdquo; exempts small trailhead, wayfinding and trail-marker signs from sign permits, and allows one freestanding (up to 40 sq. ft., 6 ft tall) and one projecting sign per trail parking area. DCR-run trails are excluded.",
+      "category": "Zoning",
+      "amount": "—",
+      "sb": "Approve",
+      "fc": "Approve",
+      "sponsor": "Planning &amp; Economic Development Board",
+      "vote": "2/3",
+      "text": "Amends Zoning Bylaw Section 7.2 (Signs) to define Trail Signs, exempt trail wayfinding signage, and add Trail Sign standards to Table 4. See the formatted redline for the full text.",
+      "text_html": "<p class=\"redline-legend\"><b>Bold</b> = new language &nbsp;·&nbsp; <s>Strikethrough</s> = deleted language</p>\n<p>To see if the Town will vote to amend the Zoning Bylaw, Section 7.2, as follows, with new language shown in bold, and deleted language shown in strikethrough:</p>\n<p>1. Amend Section 7.2.1.C as follows:</p>\n<p><b>Trail Sign: A freestanding or suspended sign denoting the access point and/or parking area for a trail network or multi-use pathway</b></p>\n<p>2. Amend Section 7.2.2.A as follows:</p>\n<p><b>27. Any trailhead identification, wayfinding, regulatory signs, or surface markers associated with a trail network or multi-use pathway</b></p>\n<p>3. Amend Section 7.2.5 – Table 4 (Agricultural and Residential Districts I and II and Village Residential District) by adding a new <b>Trail Signs</b> section:</p>\n<p><b>Trail Signs — Signs for publicly and privately maintained trail networks and multi-use pathways, excluding those under the jurisdiction of the Department of Conservation and Recreation</b></p>\n<table class=\"mini-table\">\n<tr><th></th><th>Max. sign area</th><th>Max. #</th><th>Max. height (ft)</th><th>Min. setback (ft)</th><th>Illumination</th></tr>\n<tr><td><b>Freestanding Sign</b></td><td><b>40 sq. ft. for a 2-sided sign; 30 sq. ft. for a single-sided sign</b></td><td><b>1 per parking area</b></td><td><b>6</b></td><td><b>N/A</b></td><td><b>External</b></td></tr>\n<tr><td><b>Projecting Sign</b></td><td><b>6 sq. ft. for a two-sided sign</b></td><td><b>1 per parking area</b></td><td><b>12</b></td><td><b>N/A</b></td><td><b>External</b></td></tr>\n</table>\n<p class=\"redline-note\">The warrant reprints the rest of Table 4 (home-based business, residential development, and other signs) for context; those rows are unchanged and are not repeated here.</p>\n<p>Or act in any manner relating thereto.</p>"
+    },
+    {
+      "num": 11,
+      "title": "Zoning: Housekeeping",
+      "summary": "Three cleanup edits: renames &ldquo;Automobile Car Wash&rdquo; to &ldquo;Car Wash&rdquo; and trims the &ldquo;Frontage Parking&rdquo; definition; updates the state-regulation reference for clean-energy permit applications (225 CMR 29) so a complete application moves to review rather than toward constructive approval; and simplifies the Oak Grove Park reference to the Design Review Guidelines.",
+      "category": "Zoning",
+      "amount": "—",
+      "sb": "Approve",
+      "fc": "Approve",
+      "sponsor": "Planning &amp; Economic Development Board",
+      "vote": "2/3",
+      "questions": [
+        "Does the 225 CMR 29 change (clean-energy siting / consolidated permits) alter what happens if the Town misses the 30-day completeness deadline?"
+      ],
+      "text": "Amends Zoning Bylaw Sections 2 (Definitions), 3.6.5.B.(2), and 9.5.H. See the formatted redline for the full text.",
+      "text_html": "<p class=\"redline-legend\"><b>Bold</b> = new language &nbsp;·&nbsp; <s>Strikethrough</s> = deleted language</p>\n<p>To see if the Town will vote to amend the Zoning Bylaw as follows, with new language shown in bold, and deleted language shown in strikethrough:</p>\n<p>1. Amend Section 2, Definitions as follows:</p>\n<p>&ldquo;<s>Automobile</s> <b>Car Wash</b>: Any building or premises or portions thereof containing facilities for the commercial washing of automobiles and motor vehicles.&rdquo;</p>\n<p>&ldquo;<b>Parking, Frontage</b> – Off-street surface parking spaces placed between a public street and the street facing façade of a building <s>to encourage customers with their apparent convenience</s>&rdquo;</p>\n<p>2. Amend Section 3.6.5.B.(2) as follows:</p>\n<p>&ldquo;If the Local Government Representative does not determine whether a Consolidated Local Permit Application is complete within thirty days of receipt, the Consolidated Local Permit Application shall be deemed to be complete and <b>eligible for review under 225 CMR 29.10.</b> <s>subject to the common conditions and requirements for constructive approval prescribed in 225 CMR 29.12.</s>&rdquo;</p>\n<p>3. Amend Section 9.5.H as follows:</p>\n<p>&ldquo;In addition to the Development Tract Standards of this section, applicants for new buildings and developments in the Oak Grove Park Districts should refer to the appropriate Town of Medway Design Review Guidelines <s>for: Section 2. Commercial Zones – C. Site Improvement Guidelines; Section 3. Industrial Zones – C. Site Improvement Guidelines; and Section 4. Residential Zones – C. Site Improvement Guidelines</s>. In the event of any conflict between the provisions of this bylaw and the provisions of said Guidelines, the provisions of this bylaw shall apply.&rdquo;</p>\n<p>Or act in any manner relating thereto.</p>"
+    },
+    {
+      "num": 12,
+      "title": "Citizens' Petition: Ban Municipal License Plate Readers (General Bylaw)",
+      "summary": "Would add a general bylaw barring the Town — including the Police Department — from buying, installing or operating Automated License Plate Reader (ALPR) systems such as Flock Safety cameras, and from contracting for or accessing ALPR data collected by others.",
+      "category": "Citizens' Petition",
+      "amount": "—",
+      "sb": "Disapprove",
+      "fc": "No Position",
+      "sponsor": "Citizens' Petition",
+      "questions": [
+        "Does Medway currently use ALPR cameras or access a regional/vendor ALPR network? If so, what does it cost and how is the data used, retained and shared?",
+        "The warrant describes the goal but does not print bylaw text — what exact wording will the main motion use?",
+        "Would the ban also cut off access to state or neighboring-town ALPR data (e.g., for AMBER alerts or stolen-vehicle hits)?",
+        "General bylaws require Attorney General approval — are there known legal issues?"
+      ],
+      "text": "To see if the Town will vote to amend the Medway General Bylaws to prohibit the Town of Medway, including its Police Department and all other municipal agencies, from acquiring, installing, or operating Automated License Plate Reader (ALPR) systems (including Flock Safety cameras), and to prohibit the Town from contracting for or accessing ALPR data generated by third parties, or act in any manner relating thereto."
+    },
+    {
+      "num": 13,
+      "title": "Citizens' Petition: Ban Private License Plate Readers (Zoning)",
+      "summary": "Would add ALPR systems and related vehicle-surveillance equipment to the zoning bylaw's list of prohibited uses — for any private, commercial or non-governmental owner, on any property, structure or right-of-way in town.",
+      "category": "Citizens' Petition",
+      "amount": "—",
+      "sb": "Disapprove",
+      "fc": "Disapprove",
+      "sponsor": "Citizens' Petition",
+      "vote": "2/3",
+      "questions": [
+        "How would existing private cameras (businesses, HOAs, parking lots) be treated — would they be grandfathered as nonconforming uses?",
+        "Can zoning, which regulates land use, reach equipment like cameras, and is it enforceable against state or utility rights-of-way?",
+        "Did the Planning & Economic Development Board hold the required public hearing, and what did it recommend?"
+      ],
+      "text": "To see if the Town will vote to amend the Medway Zoning Bylaw, Section 5.2.B “Prohibited Uses,” by adding a new subsection 16 to read: “16. The installation, erection, or operation of Automated License Plate Reader (ALPR) systems, cameras, or associated vehicular surveillance infrastructure by any private, commercial or non-governmental entity on any property, structure, or right-of-way.” Or act in any manner relating thereto."
+    },
+    {
+      "num": 14,
+      "title": "Raise and Appropriate: Debt Service and Assessors' Revaluation",
+      "summary": "Raises $1,040,000 on the tax levy: $1,000,000 to supplement the FY2027 debt service budget and $40,000 for the Assessors' revaluation account. The Finance Committee had not taken a position when the warrant was signed.",
+      "category": "Financial",
+      "amount": 1040000,
+      "sb": "Approve",
+      "fc": "To Be Determined",
+      "sponsor": "Select Board",
+      "questions": [
+        "What new or changed debt requires an extra $1M in FY27 debt service after the May budget was set?",
+        "Is there room under the levy limit for this without an override, and what is the estimated effect on the FY27 tax rate?",
+        "Why raise this on the levy rather than use some of the ~$4M going to Capital Stabilization in Art. 2?"
+      ],
+      "text": "To see if the Town will vote to raise and appropriate the sum of $1,040,000 with $1,000,000 therefrom to supplement the Fiscal Year 2027 debt service budget and $40,000 to supplement the Assessors' revaluation account, or act in any manner relating thereto.",
+      "tax_impact": {
+        "text": "≈ $26 per $100K assessed",
+        "tip": "Rough estimate: $1.04M ÷ about $4.03B of taxable value (FY26 levy ÷ FY26 rate) ≈ $0.26 per $1,000 of assessed value. See Background for details and caveats."
+      },
+      "background": {
+        "button": "Tax impact",
+        "html": "<div class=\"bg-key\"><strong>Rough estimate:</strong> Raising $1,040,000 on the tax levy works out to about <strong>$0.26 per $1,000 of assessed value</strong>, or about <strong>$26 for every $100,000</strong> of a property's assessed value.</div>\n<h4>What that means for a typical home</h4>\n<ul>\n<li>$500,000 assessed value: about <strong>$129</strong></li>\n<li>$600,000: about <strong>$155</strong></li>\n<li>$700,000: about <strong>$181</strong></li>\n<li>$800,000: about <strong>$207</strong></li>\n</ul>\n<p>To estimate your own share, take your assessed value (shown on your tax bill), divide by 100,000, and multiply by $26.</p>\n<h4>How this was estimated</h4>\n<ul>\n<li>FY2026 tax levy: <strong>$56,364,170</strong> (Finance Committee Report to the 2026 Annual Town Meeting).</li>\n<li>FY2026 tax rate: <strong>$14.00 per $1,000</strong>. Medway uses a single rate for residential and commercial property (Assessing Department).</li>\n<li>Implied total taxable value: $56,364,170 ÷ $14.00 × 1,000 ≈ <strong>$4.03 billion</strong>.</li>\n<li>$1,040,000 ÷ $4.03 billion × 1,000 ≈ <strong>$0.26 per $1,000</strong>. That's about 1.8% of the FY2026 levy.</li>\n</ul>\n<div class=\"bg-note\"><strong>Caveats:</strong> This is a rough, illustrative figure, not a tax-bill projection. The FY2027 tax rate and property values have not been set yet. Whether bills actually go up by this amount depends on how much unused room the Town has under its Proposition 2½ levy limit and on the rest of the FY2027 tax-rate setting. The Finance Committee had not made a recommendation on this article when the warrant was signed.</div>\n<div class=\"bg-sources\"><strong>Sources:</strong>\n<ul>\n<li><a href=\"https://medwayma.gov/departments/assessing-department/\" target=\"_blank\" rel=\"noopener\">Medway Assessing Department</a> (FY2026 tax rate) · <a href=\"https://storage.googleapis.com/juniper-media-library/117/2025/12/HISTORICAL_TAX_RATES_FOR_THE_WEB_SITE_FY26.pdf\" target=\"_blank\" rel=\"noopener\">historical tax rates (PDF)</a></li>\n<li>Finance Committee Report to the 2026 Annual Town Meeting, Fiscal Year Summary (FY2026 property tax levy)</li>\n</ul></div>\n<div class=\"bg-disclaimer\">Estimate prepared with AI assistance from published Town figures. Check with the Assessing Department or Finance Director for authoritative numbers.</div>"
+      }
+    }
+  ]
+}

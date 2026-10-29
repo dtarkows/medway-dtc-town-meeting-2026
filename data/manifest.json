@@ -151,5 +151,17 @@
     "article_count": 8,
     "source_pdf": "Warrant_STM.pdf",
     "file": "2026_stm.json"
+  },
+  "2026_ftm": {
+    "meeting_type": "FTM",
+    "label": "Fall Town Meeting",
+    "date": "November 9, 2026",
+    "year": "2026",
+    "theme_id": "2026_ftm",
+    "article_count": 14,
+    "source_pdf": "FTM-Warrant_Signed.pdf",
+    "file": "2026_ftm.json",
+    "upcoming": true,
+    "hidden": true
   }
 }
