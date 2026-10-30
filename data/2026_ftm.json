@@ -23,6 +23,11 @@
       {
         "label": "Town of Medway Select Board page",
         "url": "https://medwayma.gov/select-board/"
+      },
+      {
+        "label": "MDTC discussion slide deck (PDF)",
+        "url": "Medway%202026%20Fall%20Town%20Meeting%20Discussion.pdf",
+        "local": "2026/Medway 2026 Fall Town Meeting Discussion.pdf"
       }
     ],
     "share_of": "warrant"
