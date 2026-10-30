@@ -160,8 +160,6 @@
     "theme_id": "2026_ftm",
     "article_count": 14,
     "source_pdf": "FTM-Warrant_Signed.pdf",
-    "file": "2026_ftm.json",
-    "upcoming": true,
-    "hidden": true
+    "file": "2026_ftm.json"
   }
 }

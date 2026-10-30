@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Medway Special Town Meeting — May 9, 2022</title>
+  
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-S6GD81WLBE"></script>
   <script>
@@ -14,6 +15,12 @@
   </script>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
+    /* ── Readability: larger default size (many readers are older) ─────────── */
+    :root { --zoom: 1; }
+    @media (min-width: 900px)  { :root { --zoom: 1.25; } }
+    @media (min-width: 1200px) { :root { --zoom: 1.5; } }
+    html { zoom: var(--zoom); }
+    @media (max-width: 899.98px) { html { font-size: 118.75%; } }
     /* ── Theme colors (injected per meeting) ─────────────────────────────── */
     :root {
       --g1:    #3a1a20;
@@ -26,7 +33,7 @@
 
     /* ── Reset & base ─────────────────────────────────────────────────────── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: 'Inter', sans-serif; background: #eef2f7; color: #1a2e4a; min-height: 100vh; }
+    body { font-family: 'Inter', sans-serif; background: #eef2f7; color: #1a2e4a; min-height: calc(100vh / var(--zoom, 1)); }
 
     /* ── Header ───────────────────────────────────────────────────────────── */
     .header {
@@ -98,10 +105,63 @@
     }
     .full-text-btn:hover { opacity: 1; gap: .45rem; }
     .full-text-btn::after { content: '→'; }
+    .article-actions { display: flex; align-items: center; gap: 1rem; margin-top: .55rem; flex-wrap: wrap; }
+    .article-actions .full-text-btn { margin-top: 0; }
+    .questions-btn {
+      display: inline-flex; align-items: center; gap: .4rem;
+      padding: .22rem .7rem .22rem .3rem; border-radius: 999px;
+      border: 1.5px solid #e8c25a; background: #fff6d8;
+      font-family: inherit; font-size: .74rem; font-weight: 600; color: #7a5600;
+      cursor: pointer; transition: background .15s, border-color .15s, transform .15s;
+    }
+    .questions-btn:hover { background: #ffeeb0; border-color: #d4a52a; transform: translateY(-1px); }
+    .topic-tag {
+      display: inline-flex; align-items: center; gap: .3rem; vertical-align: 2px;
+      margin-left: .5rem; padding: .14rem .55rem; border-radius: 999px;
+      background: #3a1f5c; color: #fff; font-size: .66rem; font-weight: 700; letter-spacing: .04em;
+      text-transform: uppercase; white-space: nowrap;
+    }
+    .topic-tag::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: #ffb547; }
+    .background-btn {
+      display: inline-flex; align-items: center; gap: .4rem;
+      padding: .22rem .7rem .22rem .3rem; border-radius: 999px;
+      border: 1.5px solid #b9a6d6; background: #f3eefb;
+      font-family: inherit; font-size: .74rem; font-weight: 600; color: #3a1f5c;
+      cursor: pointer; transition: background .15s, border-color .15s, transform .15s;
+    }
+    .background-btn:hover { background: #e8def7; border-color: #8f74b8; transform: translateY(-1px); }
+    .bg-icon {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 18px; height: 18px; border-radius: 50%;
+      background: #3a1f5c; color: white; font-size: .74rem; font-weight: 800; font-style: italic; font-family: Georgia, serif; line-height: 1;
+    }
+    #modal-bg { font-size: .88rem; color: #2a3a50; line-height: 1.65; }
+    #modal-bg h4 { font-size: .74rem; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; color: #3a1f5c; margin: 1.1rem 0 .35rem; }
+    #modal-bg h4:first-child { margin-top: 0; }
+    #modal-bg p { margin-bottom: .6rem; }
+    #modal-bg ul { padding-left: 1.1rem; margin-bottom: .6rem; }
+    #modal-bg li { margin-bottom: .3rem; }
+    #modal-bg .bg-key { background: #f3eefb; border-left: 3px solid #3a1f5c; padding: .7rem .9rem; border-radius: 6px; margin-bottom: .8rem; }
+    #modal-bg .bg-note { font-size: .8rem; color: #6a5a20; background: #fffbea; border: 1px solid #e8d88a; border-radius: 8px; padding: .6rem .8rem; margin-top: .8rem; }
+    #modal-bg .bg-sources { font-size: .78rem; border-top: 1px solid #edf2ef; margin-top: 1rem; padding-top: .7rem; }
+    #modal-bg .bg-sources a { color: var(--acc); font-weight: 600; }
+    #modal-bg .bg-disclaimer { font-size: .72rem; color: #9aa8b8; font-style: italic; margin-top: .6rem; }
+    .q-icon {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 18px; height: 18px; border-radius: 50%;
+      background: #d49a12; color: white; font-size: .72rem; font-weight: 800; line-height: 1;
+    }
 
     /* ── Amount column ────────────────────────────────────────────────────── */
     .amount-col   { text-align: right; }
     .amount-value { font-weight: 700; color: var(--g1); font-variant-numeric: tabular-nums; white-space: nowrap; }
+    .budget-share { display: flex; align-items: center; justify-content: flex-end; gap: .35rem; margin-top: .35rem; font-size: .72rem; color: #7a8fa6; font-variant-numeric: tabular-nums; white-space: nowrap; cursor: help; }
+    .share-pie { flex-shrink: 0; }
+    .tax-impact { display: inline-flex; align-items: center; gap: .3rem; margin-top: .4rem; padding: .18rem .5rem; border-radius: 6px; background: #eef4fb; border: 1px solid #c9d9ec; color: #1f3f66; font-size: .7rem; font-weight: 600; white-space: nowrap; cursor: help; }
+    .tax-icon { display: inline-flex; align-items: center; justify-content: center; width: 14px; height: 14px; border-radius: 50%; background: #1f3f66; color: #fff; font-size: .62rem; font-weight: 800; }
+    .share-pie .pie-track { fill: #e6ebf1; }
+    .share-pie .pie-slice { fill: var(--acc); }
+    .share-legend { font-size: .72rem; color: #7a8fa6; margin: -.6rem 0 1rem; text-align: right; }
     .amount-tbd   { color: #9aa8b8; font-style: italic; font-size: .82rem; }
     .amount-na    { color: #b8c4ce; font-size: .82rem; }
 
@@ -126,6 +186,42 @@
     .rec-tbd         { background: #f0f0f0; color: #6a6a6a; }
     .rec-pass        { background: #fff3e0; color: #a05000; }
     .rec-na          { color: #aaa; font-style: italic; font-size: .82rem; }
+    .rec-nopos       { background: #eef0f4; color: #4a5a70; border: 1px dashed #b8c4d4; }
+
+    /* ── Vote threshold / sponsor ─────────────────────────────────────────── */
+    .vote-badge { display: inline-block; padding: .18rem .5rem; border-radius: 6px; font-size: .68rem; font-weight: 700; background: #fff4d6; color: #7a5a00; border: 1px solid #ecd48a; margin-left: .25rem; white-space: nowrap; }
+    .article-sponsor { font-size: .7rem; color: #9aa8b8; margin-top: .3rem; }
+
+    /* ── At-a-glance notes ────────────────────────────────────────────────── */
+    .notes-card { background: white; border-radius: 14px; padding: 1.1rem 1.5rem 1.2rem; margin-bottom: 1.4rem; border-left: 4px solid var(--acc); box-shadow: 0 1px 3px rgba(0,0,0,.07), 0 4px 12px rgba(0,0,0,.04); }
+    .notes-title { font-size: .68rem; font-weight: 700; text-transform: uppercase; letter-spacing: .12em; color: var(--acc); margin-bottom: .55rem; }
+    .notes-card ul { padding-left: 1.1rem; }
+    .source-links { margin-top: .7rem; padding-top: .7rem; border-top: 1px solid #edf2ef; font-size: .8rem; color: #546475; }
+    .notes-card > .source-links:first-child { margin-top: 0; padding-top: 0; border-top: none; }
+    .source-links-label { font-weight: 600; color: #7a8fa6; }
+    .source-links a { color: var(--acc); font-weight: 600; text-decoration: none; }
+    .source-links a:hover { text-decoration: underline; }
+    .notes-card li { font-size: .85rem; color: #3a4a60; line-height: 1.55; margin-bottom: .35rem; }
+
+    /* ── Redline / rich article text ──────────────────────────────────────── */
+    #modal-html { font-size: .88rem; color: #2a3a50; line-height: 1.7; }
+    #modal-html p { margin-bottom: .8rem; }
+    #modal-html b { font-weight: 700; color: #0f5a2a; background: #eaf6ee; }
+    #modal-html s { color: #a01818; background: #fdeeee; }
+    #modal-html .redline-legend { font-size: .75rem; color: #7a8fa6; border-bottom: 1px solid #edf2ef; padding-bottom: .6rem; }
+    #modal-html .redline-note { font-size: .78rem; color: #7a8fa6; font-style: italic; }
+    .mini-table { width: 100%; border-collapse: collapse; margin: .4rem 0 .9rem; font-size: .78rem; }
+    .mini-table th, .mini-table td { border: 1px solid #d8e0ea; padding: .35rem .5rem; text-align: left; vertical-align: top; line-height: 1.4; }
+    .mini-table th { background: #f4f7fa; font-size: .7rem; text-transform: none; letter-spacing: 0; color: #546475; white-space: normal; }
+    .modal-questions { margin-top: 1.2rem; padding: .9rem 1.1rem; background: #fffaeb; border: 1px solid #f0dc9a; border-radius: 10px; }
+    .modal-questions.q-mode { margin-top: 0; }
+    .modal-questions .q-head { display: flex; align-items: center; gap: .45rem; }
+    .q-switch { margin-top: .9rem; padding: 0; border: none; background: none; font-family: inherit; font-size: .78rem; font-weight: 600; color: var(--acc); cursor: pointer; }
+    .q-switch:hover { text-decoration: underline; }
+    .q-disclaimer { font-size: .72rem; color: #9a8a5a; margin-top: .5rem; font-style: italic; }
+    .modal-questions .modal-rec-label { margin-bottom: .45rem; }
+    .modal-questions ul { padding-left: 1.1rem; }
+    .modal-questions li { font-size: .84rem; color: #3a4a60; line-height: 1.55; margin-bottom: .3rem; }
 
     .no-results  { text-align: center; padding: 3rem 2rem; color: #9aa8b8; font-size: .92rem; }
     .page-footer { text-align: center; padding: 1.5rem 1rem; color: #9aa8b8; font-size: .75rem; line-height: 1.8; }
@@ -138,7 +234,7 @@
     .modal-backdrop { position: fixed; inset: 0; background: rgba(10,20,40,.55); backdrop-filter: blur(3px); }
     .modal-card {
       position: relative; z-index: 1; background: white; border-radius: 16px;
-      width: min(760px, 100%); max-height: min(84vh, 740px);
+      width: min(760px, 100%); max-height: calc(84vh / var(--zoom, 1));
       display: flex; flex-direction: column;
       box-shadow: 0 24px 64px rgba(0,0,0,.28), 0 4px 16px rgba(0,0,0,.12);
       animation: modalIn .2s ease;
@@ -176,10 +272,11 @@
   </div>
 
   <div class="stats-bar">
-    <div class="stat-card"><div class="label">Articles</div><div class="value">8</div><div class="sub">Warrant articles</div></div><div class="stat-card"><div class="label">Specified Appropriations</div><div class="value">$556K+</div><div class="sub">Identified dollar amounts</div></div><div class="stat-card"><div class="label">Categories</div><div class="value">3</div><div class="sub">Topics covered</div></div>
+    <div class="stat-card"><div class="label">Articles</div><div class="value">8</div><div class="sub">Warrant articles</div></div><div class="stat-card"><div class="label">Specified Appropriations</div><div class="value">$556K+</div><div class="sub">Identified dollar amounts</div></div><div class="stat-card"><div class="label">Categories</div><div class="value">3</div><div class="sub">Topics covered</div></div><div class="stat-card"><div class="label">Watch List</div><div class="value">1</div><div class="sub">SB or FinCom not &ldquo;Approve&rdquo;: Art. 6</div></div>
   </div>
 
   <div class="container">
+    
     <div class="controls">
       <div class="controls-label">Filter by Category</div>
       <div class="filter-buttons">
@@ -190,6 +287,7 @@
       </div>
     </div>
 
+    
     <div class="table-wrap">
       <div class="table-scroll">
         <table>
@@ -208,7 +306,7 @@
     <div class="article-title">Free Cash Transfer: Snow and Ice Deficit</div>
     <div class="article-summary">To see if the Town will vote to transfer $95,000 from Certified Free Cash for the purpose of funding the Snow & Ice Fiscal Year 2022 appropriation deficit, or act in any manner relating thereto.</div>
     <div class="article-recs"><span class="rec-label">SB:</span> <span class="rec-badge rec-approve">Approve</span><span class="rec-label" style="margin-left:.2rem">FinCom:</span> <span class="rec-badge rec-approve">Approve</span></div>
-    <button class="full-text-btn" data-key="1">Full text</button>
+    <div class="article-actions"><button class="full-text-btn" data-key="1">Full text</button></div>
   </td>
   <td><span class="cat-badge cat-financial">Financial</span></td>
   <td class="amount-col"><span class="amount-value">$95,000</span></td>
@@ -219,7 +317,7 @@
     <div class="article-title">Prior Year Bills</div>
     <div class="article-summary">To see if the Town will vote to transfer a sum of money for the purpose of paying prior year, unpaid bills of the Town, or act in any manner relating thereto.</div>
     <div class="article-recs"><span class="rec-label">SB:</span> <span class="rec-badge rec-approve">Approve</span><span class="rec-label" style="margin-left:.2rem">FinCom:</span> <span class="rec-badge rec-approve">Approve</span></div>
-    <button class="full-text-btn" data-key="2">Full text</button>
+    <div class="article-actions"><button class="full-text-btn" data-key="2">Full text</button></div>
   </td>
   <td><span class="cat-badge cat-financial">Financial</span></td>
   <td class="amount-col"><span class="amount-tbd">TBD</span></td>
@@ -230,7 +328,7 @@
     <div class="article-title">Free Cash Transfer – Fund Hazard Mitigation Plan Update</div>
     <div class="article-summary">To see if the Town will vote to transfer $21,000 from Certified Free Cash for the purpose of funding the update of the Town’s Hazard Mitigation Plan, or act in any manner relating thereto. May 9, 2022</div>
     <div class="article-recs"><span class="rec-label">SB:</span> <span class="rec-badge rec-approve">Approve</span><span class="rec-label" style="margin-left:.2rem">FinCom:</span> <span class="rec-badge rec-approve">Approve</span></div>
-    <button class="full-text-btn" data-key="3">Full text</button>
+    <div class="article-actions"><button class="full-text-btn" data-key="3">Full text</button></div>
   </td>
   <td><span class="cat-badge cat-financial">Financial</span></td>
   <td class="amount-col"><span class="amount-value">$21,000</span></td>
@@ -241,7 +339,7 @@
     <div class="article-title">Free Cash Transfer – Property Appraisal/Evaluation</div>
     <div class="article-summary">To see if the Town will vote to transfer $30,000 from Certified Free Cash for the purpose of funding professional services, including appraisals, engineering and environmental studies and assessments, and/or site evaluations, with respect to property or properties the Town may consider acquiring for...</div>
     <div class="article-recs"><span class="rec-label">SB:</span> <span class="rec-badge rec-approve">Approve</span><span class="rec-label" style="margin-left:.2rem">FinCom:</span> <span class="rec-badge rec-approve">Approve</span></div>
-    <button class="full-text-btn" data-key="4">Full text</button>
+    <div class="article-actions"><button class="full-text-btn" data-key="4">Full text</button></div>
   </td>
   <td><span class="cat-badge cat-financial">Financial</span></td>
   <td class="amount-col"><span class="amount-value">$30,000</span></td>
@@ -252,7 +350,7 @@
     <div class="article-title">Free Cash Transfer to General Stabilization</div>
     <div class="article-summary">To see if the Town will vote to transfer $200,000 from Certified Free Cash to the General Stabilization Fund, or act in any manner relating thereto.</div>
     <div class="article-recs"><span class="rec-label">SB:</span> <span class="rec-badge rec-approve">Approve</span><span class="rec-label" style="margin-left:.2rem">FinCom:</span> <span class="rec-badge rec-approve">Approve</span></div>
-    <button class="full-text-btn" data-key="5">Full text</button>
+    <div class="article-actions"><button class="full-text-btn" data-key="5">Full text</button></div>
   </td>
   <td><span class="cat-badge cat-financial">Financial</span></td>
   <td class="amount-col"><span class="amount-value">$200,000</span></td>
@@ -263,7 +361,7 @@
     <div class="article-title">Free Cash Transfer to Capital Stabilization</div>
     <div class="article-summary">To see if the Town will vote to transfer $155,000 from Certified Free Cash to the Capital Stabilization Fund, or act in any manner relating thereto.</div>
     <div class="article-recs"><span class="rec-label">SB:</span> <span class="rec-badge rec-tbd">TBD</span><span class="rec-label" style="margin-left:.2rem">FinCom:</span> <span class="rec-badge rec-approve">Approve</span></div>
-    <button class="full-text-btn" data-key="6">Full text</button>
+    <div class="article-actions"><button class="full-text-btn" data-key="6">Full text</button></div>
   </td>
   <td><span class="cat-badge cat-capital">Capital</span></td>
   <td class="amount-col"><span class="amount-value">$155,000</span></td>
@@ -274,7 +372,7 @@
     <div class="article-title">Repurpose Monetary Article – School Project</div>
     <div class="article-summary">To see if the Town will vote to transfer the sum of $55,249 from the funds authorized under Article 11 of the May 10, 2021 Annual Town Meeting to seal an air infiltration at the High School, which amount is no longer needed for such purpose, to support the construction of an outdoor classroom at the...</div>
     <div class="article-recs"><span class="rec-label">SB:</span> <span class="rec-badge rec-approve">Approve</span><span class="rec-label" style="margin-left:.2rem">FinCom:</span> <span class="rec-badge rec-approve">Approve</span></div>
-    <button class="full-text-btn" data-key="7">Full text</button>
+    <div class="article-actions"><button class="full-text-btn" data-key="7">Full text</button></div>
   </td>
   <td><span class="cat-badge cat-capital">Capital</span></td>
   <td class="amount-col"><span class="amount-value">$55,249</span></td>
@@ -285,7 +383,7 @@
     <div class="article-title">Authorize Home Rule Petition to Eliminate Sub-Precinct 1A</div>
     <div class="article-summary">To see if the Town will vote to authorize the Select Board to petition General Court for special legislation to eliminate the sub-precinct 1A, created following the 2020 annual census resulting in redrawn precinct lines, and restore this sub-precinct to precinct 2, and to authorize the General Court...</div>
     <div class="article-recs"><span class="rec-label">SB:</span> <span class="rec-badge rec-approve">Approve</span><span class="rec-label" style="margin-left:.2rem">FinCom:</span> <span class="rec-badge rec-approve">Approve</span></div>
-    <button class="full-text-btn" data-key="8">Full text</button>
+    <div class="article-actions"><button class="full-text-btn" data-key="8">Full text</button></div>
   </td>
   <td><span class="cat-badge cat-admin">General</span></td>
   <td class="amount-col"><span class="amount-tbd">TBD</span></td>
@@ -318,21 +416,57 @@
       <div class="modal-body">
         <div class="modal-recs" id="modal-recs"></div>
         <pre id="modal-text"></pre>
+        <div id="modal-html"></div>
+        <div id="modal-bg" style="display:none"></div>
+        <div class="modal-questions" id="modal-questions" style="display:none">
+          <div class="q-head"><span class="q-icon">?</span><div class="modal-rec-label" style="margin:0">Questions worth asking</div></div>
+          <ul id="modal-q-list" style="margin-top:.55rem"></ul>
+          <div class="q-disclaimer">Discussion prompts drafted with AI assistance from the warrant text.</div>
+        </div>
+        <button class="q-switch" id="q-switch" style="display:none">View full article text →</button>
       </div>
     </div>
   </div>
 
   <script>
-  const articleData = {"1": {"title": "Free Cash Transfer: Snow and Ice Deficit", "text": "To see if the Town will vote to transfer $95,000 from Certified Free Cash for the purpose of funding the Snow & Ice Fiscal Year 2022 appropriation deficit, or act in any manner relating thereto.", "sb": "Approve", "fc": "Approve"}, "2": {"title": "Prior Year Bills", "text": "To see if the Town will vote to transfer a sum of money for the purpose of paying prior year, unpaid bills of the Town, or act in any manner relating thereto.", "sb": "Approve", "fc": "Approve"}, "3": {"title": "Free Cash Transfer – Fund Hazard Mitigation Plan Update", "text": "To see if the Town will vote to transfer $21,000 from Certified Free Cash for the purpose of funding the update of the Town’s Hazard Mitigation Plan, or act in any manner relating thereto. May 9, 2022", "sb": "Approve", "fc": "Approve"}, "4": {"title": "Free Cash Transfer – Property Appraisal/Evaluation", "text": "To see if the Town will vote to transfer $30,000 from Certified Free Cash for the purpose of funding professional services, including appraisals, engineering and environmental studies and assessments, and/or site evaluations, with respect to property or properties the Town may consider acquiring for various municipal uses, or act in any manner relating thereto.", "sb": "Approve", "fc": "Approve"}, "5": {"title": "Free Cash Transfer to General Stabilization", "text": "To see if the Town will vote to transfer $200,000 from Certified Free Cash to the General Stabilization Fund, or act in any manner relating thereto.", "sb": "Approve", "fc": "Approve"}, "6": {"title": "Free Cash Transfer to Capital Stabilization", "text": "To see if the Town will vote to transfer $155,000 from Certified Free Cash to the Capital Stabilization Fund, or act in any manner relating thereto.", "sb": "To Be Determined", "fc": "Approve"}, "7": {"title": "Repurpose Monetary Article – School Project", "text": "To see if the Town will vote to transfer the sum of $55,249 from the funds authorized under Article 11 of the May 10, 2021 Annual Town Meeting to seal an air infiltration at the High School, which amount is no longer needed for such purpose, to support the construction of an outdoor classroom at the Memorial School, or act in any manner relating thereto. SCHOOL DEPARTMENT", "sb": "Approve", "fc": "Approve"}, "8": {"title": "Authorize Home Rule Petition to Eliminate Sub-Precinct 1A", "text": "To see if the Town will vote to authorize the Select Board to petition General Court for special legislation to eliminate the sub-precinct 1A, created following the 2020 annual census resulting in redrawn precinct lines, and restore this sub-precinct to precinct 2, and to authorize the General Court to make clerical or editorial changes of form only to any bill so filed unless approved in May 9, 2022 advance by the Select Board, and to authorize the Select Board to approve such revisions as fall within the public purpose of this vote, or act in any manner relating thereto. May 9, 2022 And you ", "sb": "Approve", "fc": "Approve"}};
+  const articleData = {"1": {"title": "Free Cash Transfer: Snow and Ice Deficit", "text": "To see if the Town will vote to transfer $95,000 from Certified Free Cash for the purpose of funding the Snow & Ice Fiscal Year 2022 appropriation deficit, or act in any manner relating thereto.", "sb": "Approve", "fc": "Approve", "html": "", "vote": "", "sponsor": "", "questions": [], "background": {}}, "2": {"title": "Prior Year Bills", "text": "To see if the Town will vote to transfer a sum of money for the purpose of paying prior year, unpaid bills of the Town, or act in any manner relating thereto.", "sb": "Approve", "fc": "Approve", "html": "", "vote": "", "sponsor": "", "questions": [], "background": {}}, "3": {"title": "Free Cash Transfer – Fund Hazard Mitigation Plan Update", "text": "To see if the Town will vote to transfer $21,000 from Certified Free Cash for the purpose of funding the update of the Town’s Hazard Mitigation Plan, or act in any manner relating thereto. May 9, 2022", "sb": "Approve", "fc": "Approve", "html": "", "vote": "", "sponsor": "", "questions": [], "background": {}}, "4": {"title": "Free Cash Transfer – Property Appraisal/Evaluation", "text": "To see if the Town will vote to transfer $30,000 from Certified Free Cash for the purpose of funding professional services, including appraisals, engineering and environmental studies and assessments, and/or site evaluations, with respect to property or properties the Town may consider acquiring for various municipal uses, or act in any manner relating thereto.", "sb": "Approve", "fc": "Approve", "html": "", "vote": "", "sponsor": "", "questions": [], "background": {}}, "5": {"title": "Free Cash Transfer to General Stabilization", "text": "To see if the Town will vote to transfer $200,000 from Certified Free Cash to the General Stabilization Fund, or act in any manner relating thereto.", "sb": "Approve", "fc": "Approve", "html": "", "vote": "", "sponsor": "", "questions": [], "background": {}}, "6": {"title": "Free Cash Transfer to Capital Stabilization", "text": "To see if the Town will vote to transfer $155,000 from Certified Free Cash to the Capital Stabilization Fund, or act in any manner relating thereto.", "sb": "To Be Determined", "fc": "Approve", "html": "", "vote": "", "sponsor": "", "questions": [], "background": {}}, "7": {"title": "Repurpose Monetary Article – School Project", "text": "To see if the Town will vote to transfer the sum of $55,249 from the funds authorized under Article 11 of the May 10, 2021 Annual Town Meeting to seal an air infiltration at the High School, which amount is no longer needed for such purpose, to support the construction of an outdoor classroom at the Memorial School, or act in any manner relating thereto. SCHOOL DEPARTMENT", "sb": "Approve", "fc": "Approve", "html": "", "vote": "", "sponsor": "", "questions": [], "background": {}}, "8": {"title": "Authorize Home Rule Petition to Eliminate Sub-Precinct 1A", "text": "To see if the Town will vote to authorize the Select Board to petition General Court for special legislation to eliminate the sub-precinct 1A, created following the 2020 annual census resulting in redrawn precinct lines, and restore this sub-precinct to precinct 2, and to authorize the General Court to make clerical or editorial changes of form only to any bill so filed unless approved in May 9, 2022 advance by the Select Board, and to authorize the Select Board to approve such revisions as fall within the public purpose of this vote, or act in any manner relating thereto. May 9, 2022 And you ", "sb": "Approve", "fc": "Approve", "html": "", "vote": "", "sponsor": "", "questions": [], "background": {}}};
 
-  function openModal(key) {
+  function openModal(key, mode) {
     const d = articleData[String(key)];
     if (!d) return;
+    const qMode = mode === 'questions' && d.questions && d.questions.length;
+    const bgMode = mode === 'background' && d.background && d.background.html;
+    const bgEl = document.getElementById('modal-bg');
     document.getElementById('modal-eyebrow').textContent = 'Article ' + key;
     document.getElementById('modal-title').textContent   = d.title;
-    document.getElementById('modal-text').textContent    = d.text;
+    const pre = document.getElementById('modal-text'), rich = document.getElementById('modal-html');
+    if (d.html) { rich.innerHTML = d.html; rich.style.display = ''; pre.style.display = 'none'; }
+    else { pre.textContent = d.text; pre.style.display = ''; rich.innerHTML = ''; rich.style.display = 'none'; }
     const recsEl = document.getElementById('modal-recs');
-    recsEl.innerHTML = recHtml('Select Board', d.sb) + recHtml('Finance Committee', d.fc);
+    recsEl.innerHTML = recHtml('Select Board', d.sb) + recHtml('Finance Committee', d.fc)
+      + (d.vote ? `<div><div class="modal-rec-label">Vote required</div><span class="vote-badge" style="margin-left:0">${d.vote}</span></div>` : '')
+      + (d.sponsor ? `<div><div class="modal-rec-label">Sponsor</div><span style="font-size:.8rem;color:#546475">${d.sponsor}</span></div>` : '');
+    const qBox = document.getElementById('modal-questions'), qList = document.getElementById('modal-q-list');
+    qList.innerHTML = '';
+    (d.questions || []).forEach(q => { const li = document.createElement('li'); li.textContent = q; qList.appendChild(li); });
+    qBox.style.display = (d.questions && d.questions.length) ? '' : 'none';
+    // Questions mode: show only the questions, with a link through to the full text
+    qBox.classList.toggle('q-mode', !!qMode);
+    recsEl.style.display = qMode ? 'none' : '';
+    if (qMode) { pre.style.display = 'none'; rich.style.display = 'none'; }
+    const sw = document.getElementById('q-switch');
+    sw.style.display = qMode ? '' : 'none';
+    sw.onclick = () => openModal(key);
+    // Background mode: show only the background summary
+    bgEl.innerHTML = bgMode ? d.background.html : '';
+    bgEl.style.display = bgMode ? '' : 'none';
+    if (bgMode) {
+      document.getElementById('modal-eyebrow').textContent = 'Article ' + key + ' · Background';
+      recsEl.style.display = 'none'; pre.style.display = 'none'; rich.style.display = 'none';
+      qBox.style.display = 'none';
+      sw.style.display = ''; sw.textContent = 'View full article text →';
+    } else { sw.textContent = 'View full article text →'; }
+    document.querySelector('.modal-body').scrollTop = 0;
     document.getElementById('article-modal').classList.add('open');
     document.body.style.overflow = 'hidden';
   }
@@ -343,6 +477,7 @@
     else if (val === 'Disapprove')            { cls = 'rec-disapprove'; txt = 'Disapprove'; }
     else if (val === 'Pass Over')             { cls = 'rec-pass';       txt = 'Pass Over'; }
     else if (val === 'To Be Determined')      { cls = 'rec-tbd';        txt = 'TBD'; }
+    else if (val === 'No Position')           { cls = 'rec-nopos';      txt = 'No Position'; }
     else if (val && val !== '—')              { cls = 'rec-tbd';        txt = val; }
     return `<div><div class="modal-rec-label">${label}</div><span class="rec-badge ${cls}">${txt}</span></div>`;
   }
@@ -354,6 +489,12 @@
 
   document.querySelectorAll('.full-text-btn').forEach(btn => {
     btn.addEventListener('click', e => { e.stopPropagation(); openModal(btn.dataset.key); });
+  });
+  document.querySelectorAll('.background-btn').forEach(btn => {
+    btn.addEventListener('click', e => { e.stopPropagation(); openModal(btn.dataset.key, 'background'); });
+  });
+  document.querySelectorAll('.questions-btn').forEach(btn => {
+    btn.addEventListener('click', e => { e.stopPropagation(); openModal(btn.dataset.key, 'questions'); });
   });
   document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
 

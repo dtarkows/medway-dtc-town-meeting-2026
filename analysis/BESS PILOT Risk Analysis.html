@@ -14,8 +14,14 @@
   </script>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
+    /* ── Readability: larger default size (many readers are older) ─────────── */
+    :root { --zoom: 1; }
+    @media (min-width: 900px)  { :root { --zoom: 1.25; } }
+    @media (min-width: 1200px) { :root { --zoom: 1.5; } }
+    html { zoom: var(--zoom); }
+    @media (max-width: 899.98px) { html { font-size: 118.75%; } }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: 'Inter', sans-serif; background: #eef2f7; color: #1a2e4a; min-height: 100vh; }
+    body { font-family: 'Inter', sans-serif; background: #eef2f7; color: #1a2e4a; min-height: calc(100vh / var(--zoom, 1)); }
 
     .header {
       background: linear-gradient(135deg, #1a2e4a 0%, #2a4a6a 100%);

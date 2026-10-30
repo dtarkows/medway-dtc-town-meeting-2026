@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Medway Fall Town Meeting — November 9, 2026</title>
-  <meta name="robots" content="noindex, nofollow">
+  
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-S6GD81WLBE"></script>
   <script>
@@ -15,6 +15,12 @@
   </script>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
+    /* ── Readability: larger default size (many readers are older) ─────────── */
+    :root { --zoom: 1; }
+    @media (min-width: 900px)  { :root { --zoom: 1.25; } }
+    @media (min-width: 1200px) { :root { --zoom: 1.5; } }
+    html { zoom: var(--zoom); }
+    @media (max-width: 899.98px) { html { font-size: 118.75%; } }
     /* ── Theme colors (injected per meeting) ─────────────────────────────── */
     :root {
       --g1:    #4a2410;
@@ -27,7 +33,7 @@
 
     /* ── Reset & base ─────────────────────────────────────────────────────── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: 'Inter', sans-serif; background: #eef2f7; color: #1a2e4a; min-height: 100vh; }
+    body { font-family: 'Inter', sans-serif; background: #eef2f7; color: #1a2e4a; min-height: calc(100vh / var(--zoom, 1)); }
 
     /* ── Header ───────────────────────────────────────────────────────────── */
     .header {
@@ -228,7 +234,7 @@
     .modal-backdrop { position: fixed; inset: 0; background: rgba(10,20,40,.55); backdrop-filter: blur(3px); }
     .modal-card {
       position: relative; z-index: 1; background: white; border-radius: 16px;
-      width: min(760px, 100%); max-height: min(84vh, 740px);
+      width: min(760px, 100%); max-height: calc(84vh / var(--zoom, 1));
       display: flex; flex-direction: column;
       box-shadow: 0 24px 64px rgba(0,0,0,.28), 0 4px 16px rgba(0,0,0,.12);
       animation: modalIn .2s ease;

@@ -14,8 +14,14 @@
   </script>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
+    /* ── Readability: larger default size (many readers are older) ─────────── */
+    :root { --zoom: 1; }
+    @media (min-width: 900px)  { :root { --zoom: 1.25; } }
+    @media (min-width: 1200px) { :root { --zoom: 1.5; } }
+    html { zoom: var(--zoom); }
+    @media (max-width: 899.98px) { html { font-size: 118.75%; } }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: 'Inter', sans-serif; background: #eef2f7; color: #1a2e4a; min-height: 100vh; }
+    body { font-family: 'Inter', sans-serif; background: #eef2f7; color: #1a2e4a; min-height: calc(100vh / var(--zoom, 1)); }
     .header {
       background: linear-gradient(135deg, #1a2e4a 0%, #2a4a6a 100%);
       color: white; padding: 3.5rem 2rem 3rem; text-align: center;
@@ -58,6 +64,10 @@
     }
     .badge-atm { background: #e8f5e3; color: #2a6a20; }
     .badge-stm { background: #e8eef9; color: #2a3a80; }
+    .badge-ftm { background: #fbeee2; color: #8a4a14; }
+    .badge-upcoming { background: #8a4a14; color: #fff; }
+    .card-badges { display: flex; gap: .4rem; flex-wrap: wrap; }
+    .meeting-card.upcoming { border-left-color: #b8661e; box-shadow: 0 0 0 2px #f0cfa8, 0 4px 12px rgba(0,0,0,.06); }
     .card-date  { font-size: .78rem; color: #7a8fa6; font-weight: 500; }
     .card-title { font-size: 1rem; font-weight: 700; color: #1a2e4a; }
     .card-stats { display: flex; gap: 1rem; flex-wrap: wrap; }
@@ -102,14 +112,44 @@
     <span class="seal">🏛️</span>
     <div class="eyebrow">Medway Democratic Town Committee</div>
     <h1>Town Meeting Archive</h1>
-    <p class="sub">A resource prepared for residents of Medway, Massachusetts. Annual and Special Town Meeting warrants with article summaries, board recommendations, and full text.</p>
+    <p class="sub">A resource prepared for residents of Medway, Massachusetts. Annual, Special and Fall Town Meeting warrants with article summaries, board recommendations, and full text.</p>
   </div>
 
   <div class="container">
     <div class="intro-card">
       <p>This archive was produced by the <strong>Medway Democratic Town Committee</strong> to help residents prepare for Town Meeting. It is not an official publication of the Town of Medway. It covers warrant articles from <strong>2016–2026</strong>, with one-click access to the full official text, filterable by category and sortable by dollar amount.</p>
-      <p>Each article shows the <strong>Select Board</strong> and <strong>Finance Committee</strong> recommendation as recorded in the official warrant. Most articles require a simple majority vote; zoning articles require a two-thirds vote under G.L. c. 40A §5.</p>
+      <p>Each article shows the <strong>Select Board</strong> and <strong>Finance Committee</strong> recommendation as recorded in the official warrant. Most articles require a simple majority vote; zoning articles generally require a two-thirds vote under G.L. c. 40A §5, and paying prior-year bills requires four-fifths at an Annual or nine-tenths at any other Town Meeting (G.L. c. 44 §64).</p>
     </div>
+
+    <div class="year-block">
+  <div class="year-heading">
+    <span class="year-pill" style="background:linear-gradient(135deg,#1b3d2f,#2e6b50)">2026</span>
+    <div>2026 Town Meetings</div>
+  </div>
+  <div class="meeting-cards">
+    <a class="meeting-card" href="2026/fall_town_meeting_2026.html" data-date="2026-11-09">
+  <div class="card-badges"><span class="card-badge badge-ftm">Fall Town Meeting</span></div>
+  <div class="card-date">November 9, 2026 · 7:00 PM</div>
+  <div class="card-title">Fall Town Meeting 2026</div>
+  <div class="card-stats"><div class="card-stat"><strong>14</strong> articles</div></div>
+  <div class="card-arrow">View articles →</div>
+</a>
+    <a class="meeting-card" href="2026/annual_town_meeting_2026.html" data-date="2026-05-11">
+  <div class="card-badges"><span class="card-badge badge-atm">Annual Town Meeting</span></div>
+  <div class="card-date">May 11, 2026 · 7:30 PM</div>
+  <div class="card-title">Annual Town Meeting 2026</div>
+  <div class="card-stats"><div class="card-stat"><strong>26</strong> articles</div></div>
+  <div class="card-arrow">View articles →</div>
+</a>
+    <a class="meeting-card" href="2026/special_town_meeting_2026.html" data-date="2026-05-11">
+  <div class="card-badges"><span class="card-badge badge-stm">Special Town Meeting</span></div>
+  <div class="card-date">May 11, 2026 · 7:00 PM</div>
+  <div class="card-title">Special Town Meeting 2026</div>
+  <div class="card-stats"><div class="card-stat"><strong>8</strong> articles</div></div>
+  <div class="card-arrow">View articles →</div>
+</a>
+  </div>
+</div>
 
     <div class="section-heading">📋 2026 Ballot Analysis &amp; Budget Trends</div>
     <div class="analysis-cards">
@@ -152,35 +192,12 @@
 
 <div class="year-block">
   <div class="year-heading">
-    <span class="year-pill" style="background:linear-gradient(135deg,#1b3d2f,#2e6b50)">2026</span>
-    <div>2026 Town Meetings</div>
-  </div>
-  <div class="meeting-cards">
-    <a class="meeting-card" href="2026/annual_town_meeting_2026.html">
-  <span class="card-badge badge-atm">Annual Town Meeting</span>
-  <div class="card-date">May 11, 2026 · 7:30 PM</div>
-  <div class="card-title">Annual Town Meeting 2026</div>
-  <div class="card-stats"><div class="card-stat"><strong>26</strong> articles</div></div>
-  <div class="card-arrow">View articles →</div>
-</a>
-    <a class="meeting-card" href="2026/special_town_meeting_2026.html">
-  <span class="card-badge badge-stm">Special Town Meeting</span>
-  <div class="card-date">May 11, 2026 · 7:00 PM</div>
-  <div class="card-title">Special Town Meeting 2026</div>
-  <div class="card-stats"><div class="card-stat"><strong>8</strong> articles</div></div>
-  <div class="card-arrow">View articles →</div>
-</a>
-  </div>
-</div>
-
-    <div class="year-block">
-  <div class="year-heading">
     <span class="year-pill" style="background:linear-gradient(135deg,#2a1a60,#4a30a0)">2025</span>
     <div>2025 Town Meeting</div>
   </div>
   <div class="meeting-cards">
-    <a class="meeting-card" href="2025/annual_town_meeting_2025.html">
-  <span class="card-badge badge-atm">Annual Town Meeting</span>
+    <a class="meeting-card" href="2025/annual_town_meeting_2025.html" data-date="2025-05-12">
+  <div class="card-badges"><span class="card-badge badge-atm">Annual Town Meeting</span></div>
   <div class="card-date">May 12, 2025 · 7:30 PM</div>
   <div class="card-title">Annual Town Meeting 2025</div>
   <div class="card-stats"><div class="card-stat"><strong>29</strong> articles</div></div>
@@ -195,15 +212,15 @@
     <div>2024 Town Meetings</div>
   </div>
   <div class="meeting-cards">
-    <a class="meeting-card" href="2024/annual_town_meeting_2024.html">
-  <span class="card-badge badge-atm">Annual Town Meeting</span>
+    <a class="meeting-card" href="2024/annual_town_meeting_2024.html" data-date="2024-05-13">
+  <div class="card-badges"><span class="card-badge badge-atm">Annual Town Meeting</span></div>
   <div class="card-date">May 13, 2024 · 7:30 PM</div>
   <div class="card-title">Annual Town Meeting 2024</div>
   <div class="card-stats"><div class="card-stat"><strong>24</strong> articles</div></div>
   <div class="card-arrow">View articles →</div>
 </a>
-    <a class="meeting-card" href="2024/special_town_meeting_2024.html">
-  <span class="card-badge badge-stm">Special Town Meeting</span>
+    <a class="meeting-card" href="2024/special_town_meeting_2024.html" data-date="2024-05-13">
+  <div class="card-badges"><span class="card-badge badge-stm">Special Town Meeting</span></div>
   <div class="card-date">May 13, 2024 · 7:00 PM</div>
   <div class="card-title">Special Town Meeting 2024</div>
   <div class="card-stats"><div class="card-stat"><strong>8</strong> articles</div></div>
@@ -218,15 +235,15 @@
     <div>2023 Town Meetings</div>
   </div>
   <div class="meeting-cards">
-    <a class="meeting-card" href="2023/annual_town_meeting_2023.html">
-  <span class="card-badge badge-atm">Annual Town Meeting</span>
+    <a class="meeting-card" href="2023/annual_town_meeting_2023.html" data-date="2023-05-08">
+  <div class="card-badges"><span class="card-badge badge-atm">Annual Town Meeting</span></div>
   <div class="card-date">May 8, 2023 · 7:30 PM</div>
   <div class="card-title">Annual Town Meeting 2023</div>
   <div class="card-stats"><div class="card-stat"><strong>38</strong> articles</div></div>
   <div class="card-arrow">View articles →</div>
 </a>
-    <a class="meeting-card" href="2023/special_town_meeting_2023.html">
-  <span class="card-badge badge-stm">Special Town Meeting</span>
+    <a class="meeting-card" href="2023/special_town_meeting_2023.html" data-date="2023-05-08">
+  <div class="card-badges"><span class="card-badge badge-stm">Special Town Meeting</span></div>
   <div class="card-date">May 8, 2023 · 7:00 PM</div>
   <div class="card-title">Special Town Meeting 2023</div>
   <div class="card-stats"><div class="card-stat"><strong>8</strong> articles</div></div>
@@ -241,15 +258,15 @@
     <div>2022 Town Meetings</div>
   </div>
   <div class="meeting-cards">
-    <a class="meeting-card" href="2022/annual_town_meeting_2022.html">
-  <span class="card-badge badge-atm">Annual Town Meeting</span>
+    <a class="meeting-card" href="2022/annual_town_meeting_2022.html" data-date="2022-05-09">
+  <div class="card-badges"><span class="card-badge badge-atm">Annual Town Meeting</span></div>
   <div class="card-date">May 9, 2022 · 7:30 PM</div>
   <div class="card-title">Annual Town Meeting 2022</div>
   <div class="card-stats"><div class="card-stat"><strong>21</strong> articles</div></div>
   <div class="card-arrow">View articles →</div>
 </a>
-    <a class="meeting-card" href="2022/special_town_meeting_2022.html">
-  <span class="card-badge badge-stm">Special Town Meeting</span>
+    <a class="meeting-card" href="2022/special_town_meeting_2022.html" data-date="2022-05-09">
+  <div class="card-badges"><span class="card-badge badge-stm">Special Town Meeting</span></div>
   <div class="card-date">May 9, 2022 · 7:00 PM</div>
   <div class="card-title">Special Town Meeting 2022</div>
   <div class="card-stats"><div class="card-stat"><strong>8</strong> articles</div></div>
@@ -264,15 +281,15 @@
     <div>2021 Town Meetings</div>
   </div>
   <div class="meeting-cards">
-    <a class="meeting-card" href="2021/annual_town_meeting_2021.html">
-  <span class="card-badge badge-atm">Annual Town Meeting</span>
+    <a class="meeting-card" href="2021/annual_town_meeting_2021.html" data-date="2021-05-10">
+  <div class="card-badges"><span class="card-badge badge-atm">Annual Town Meeting</span></div>
   <div class="card-date">May 10, 2021 · 7:30 PM</div>
   <div class="card-title">Annual Town Meeting 2021</div>
   <div class="card-stats"><div class="card-stat"><strong>31</strong> articles</div></div>
   <div class="card-arrow">View articles →</div>
 </a>
-    <a class="meeting-card" href="2021/special_town_meeting_2021.html">
-  <span class="card-badge badge-stm">Special Town Meeting</span>
+    <a class="meeting-card" href="2021/special_town_meeting_2021.html" data-date="2021-05-10">
+  <div class="card-badges"><span class="card-badge badge-stm">Special Town Meeting</span></div>
   <div class="card-date">May 10, 2021 · 7:00 PM</div>
   <div class="card-title">Special Town Meeting 2021</div>
   <div class="card-stats"><div class="card-stat"><strong>8</strong> articles</div></div>
@@ -287,15 +304,15 @@
     <div>2020 Town Meetings</div>
   </div>
   <div class="meeting-cards">
-    <a class="meeting-card" href="2020/annual_town_meeting_2020.html">
-  <span class="card-badge badge-atm">Annual Town Meeting</span>
+    <a class="meeting-card" href="2020/annual_town_meeting_2020.html" data-date="2020-06-08">
+  <div class="card-badges"><span class="card-badge badge-atm">Annual Town Meeting</span></div>
   <div class="card-date">June 8, 2020 · 7:30 PM</div>
   <div class="card-title">Annual Town Meeting 2020</div>
   <div class="card-stats"><div class="card-stat"><strong>22</strong> articles</div></div>
   <div class="card-arrow">View articles →</div>
 </a>
-    <a class="meeting-card" href="2020/special_town_meeting_2020.html">
-  <span class="card-badge badge-stm">Special Town Meeting</span>
+    <a class="meeting-card" href="2020/special_town_meeting_2020.html" data-date="2020-06-08">
+  <div class="card-badges"><span class="card-badge badge-stm">Special Town Meeting</span></div>
   <div class="card-date">June 8, 2020 · 7:00 PM</div>
   <div class="card-title">Special Town Meeting 2020</div>
   <div class="card-stats"><div class="card-stat"><strong>8</strong> articles</div></div>
@@ -310,8 +327,8 @@
     <div>2019 Town Meeting</div>
   </div>
   <div class="meeting-cards">
-    <a class="meeting-card" href="2019/annual_town_meeting_2019.html">
-  <span class="card-badge badge-atm">Annual Town Meeting</span>
+    <a class="meeting-card" href="2019/annual_town_meeting_2019.html" data-date="2019-05-13">
+  <div class="card-badges"><span class="card-badge badge-atm">Annual Town Meeting</span></div>
   <div class="card-date">May 13, 2019 · 7:30 PM</div>
   <div class="card-title">Annual Town Meeting 2019</div>
   <div class="card-stats"><div class="card-stat"><strong>30</strong> articles</div></div>
@@ -326,8 +343,8 @@
     <div>2018 Town Meeting</div>
   </div>
   <div class="meeting-cards">
-    <a class="meeting-card" href="2018/annual_town_meeting_2018.html">
-  <span class="card-badge badge-atm">Annual Town Meeting</span>
+    <a class="meeting-card" href="2018/annual_town_meeting_2018.html" data-date="2018-05-21">
+  <div class="card-badges"><span class="card-badge badge-atm">Annual Town Meeting</span></div>
   <div class="card-date">May 21, 2018 · 7:30 PM</div>
   <div class="card-title">Annual Town Meeting 2018</div>
   <div class="card-stats"><div class="card-stat"><strong>27</strong> articles</div></div>
@@ -342,8 +359,8 @@
     <div>2017 Town Meeting</div>
   </div>
   <div class="meeting-cards">
-    <a class="meeting-card" href="2017/annual_town_meeting_2017.html">
-  <span class="card-badge badge-atm">Annual Town Meeting</span>
+    <a class="meeting-card" href="2017/annual_town_meeting_2017.html" data-date="2017-05-08">
+  <div class="card-badges"><span class="card-badge badge-atm">Annual Town Meeting</span></div>
   <div class="card-date">May 8, 2017 · 7:30 PM</div>
   <div class="card-title">Annual Town Meeting 2017</div>
   <div class="card-stats"><div class="card-stat"><strong>49</strong> articles</div></div>
@@ -358,8 +375,8 @@
     <div>2016 Town Meeting</div>
   </div>
   <div class="meeting-cards">
-    <a class="meeting-card" href="2016/annual_town_meeting_2016.html">
-  <span class="card-badge badge-atm">Annual Town Meeting</span>
+    <a class="meeting-card" href="2016/annual_town_meeting_2016.html" data-date="2016-05-09">
+  <div class="card-badges"><span class="card-badge badge-atm">Annual Town Meeting</span></div>
   <div class="card-date">May 9, 2016 · 7:30 PM</div>
   <div class="card-title">Annual Town Meeting 2016</div>
   <div class="card-stats"><div class="card-stat"><strong>33</strong> articles</div></div>
@@ -376,5 +393,25 @@
       <span style="font-size:.7rem;opacity:.8;">Content produced with AI assistance and reviewed for accuracy, but not 100% independently verified. Consult official town documents for authoritative information.</span>
     </div>
   </div>
+  <script>
+  // Mark meetings that haven't happened yet. Runs in the viewer's browser,
+  // so the badge drops off by itself the day after the meeting.
+  (function () {
+    var now = new Date();
+    var today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+    document.querySelectorAll('.meeting-card[data-date]').forEach(function (card) {
+      var p = (card.dataset.date || '').split('-');
+      if (p.length !== 3) return;
+      var d = new Date(+p[0], +p[1] - 1, +p[2]);
+      if (d < today) return;
+      var tonight = d.getTime() === today.getTime();
+      var b = document.createElement('span');
+      b.className = 'card-badge badge-upcoming';
+      b.textContent = tonight ? 'Tonight' : 'Upcoming';
+      card.querySelector('.card-badges').appendChild(b);
+      card.classList.add('upcoming');
+    });
+  })();
+  </script>
 </body>
 </html>

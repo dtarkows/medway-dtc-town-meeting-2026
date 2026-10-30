@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Medway Annual Town Meeting — May 13, 2019</title>
+  
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-S6GD81WLBE"></script>
   <script>
@@ -14,6 +15,12 @@
   </script>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
+    /* ── Readability: larger default size (many readers are older) ─────────── */
+    :root { --zoom: 1; }
+    @media (min-width: 900px)  { :root { --zoom: 1.25; } }
+    @media (min-width: 1200px) { :root { --zoom: 1.5; } }
+    html { zoom: var(--zoom); }
+    @media (max-width: 899.98px) { html { font-size: 118.75%; } }
     /* ── Theme colors (injected per meeting) ─────────────────────────────── */
     :root {
       --g1:    #1a3a5c;
@@ -26,7 +33,7 @@
 
     /* ── Reset & base ─────────────────────────────────────────────────────── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: 'Inter', sans-serif; background: #eef2f7; color: #1a2e4a; min-height: 100vh; }
+    body { font-family: 'Inter', sans-serif; background: #eef2f7; color: #1a2e4a; min-height: calc(100vh / var(--zoom, 1)); }
 
     /* ── Header ───────────────────────────────────────────────────────────── */
     .header {
@@ -98,10 +105,63 @@
     }
     .full-text-btn:hover { opacity: 1; gap: .45rem; }
     .full-text-btn::after { content: '→'; }
+    .article-actions { display: flex; align-items: center; gap: 1rem; margin-top: .55rem; flex-wrap: wrap; }
+    .article-actions .full-text-btn { margin-top: 0; }
+    .questions-btn {
+      display: inline-flex; align-items: center; gap: .4rem;
+      padding: .22rem .7rem .22rem .3rem; border-radius: 999px;
+      border: 1.5px solid #e8c25a; background: #fff6d8;
+      font-family: inherit; font-size: .74rem; font-weight: 600; color: #7a5600;
+      cursor: pointer; transition: background .15s, border-color .15s, transform .15s;
+    }
+    .questions-btn:hover { background: #ffeeb0; border-color: #d4a52a; transform: translateY(-1px); }
+    .topic-tag {
+      display: inline-flex; align-items: center; gap: .3rem; vertical-align: 2px;
+      margin-left: .5rem; padding: .14rem .55rem; border-radius: 999px;
+      background: #3a1f5c; color: #fff; font-size: .66rem; font-weight: 700; letter-spacing: .04em;
+      text-transform: uppercase; white-space: nowrap;
+    }
+    .topic-tag::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: #ffb547; }
+    .background-btn {
+      display: inline-flex; align-items: center; gap: .4rem;
+      padding: .22rem .7rem .22rem .3rem; border-radius: 999px;
+      border: 1.5px solid #b9a6d6; background: #f3eefb;
+      font-family: inherit; font-size: .74rem; font-weight: 600; color: #3a1f5c;
+      cursor: pointer; transition: background .15s, border-color .15s, transform .15s;
+    }
+    .background-btn:hover { background: #e8def7; border-color: #8f74b8; transform: translateY(-1px); }
+    .bg-icon {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 18px; height: 18px; border-radius: 50%;
+      background: #3a1f5c; color: white; font-size: .74rem; font-weight: 800; font-style: italic; font-family: Georgia, serif; line-height: 1;
+    }
+    #modal-bg { font-size: .88rem; color: #2a3a50; line-height: 1.65; }
+    #modal-bg h4 { font-size: .74rem; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; color: #3a1f5c; margin: 1.1rem 0 .35rem; }
+    #modal-bg h4:first-child { margin-top: 0; }
+    #modal-bg p { margin-bottom: .6rem; }
+    #modal-bg ul { padding-left: 1.1rem; margin-bottom: .6rem; }
+    #modal-bg li { margin-bottom: .3rem; }
+    #modal-bg .bg-key { background: #f3eefb; border-left: 3px solid #3a1f5c; padding: .7rem .9rem; border-radius: 6px; margin-bottom: .8rem; }
+    #modal-bg .bg-note { font-size: .8rem; color: #6a5a20; background: #fffbea; border: 1px solid #e8d88a; border-radius: 8px; padding: .6rem .8rem; margin-top: .8rem; }
+    #modal-bg .bg-sources { font-size: .78rem; border-top: 1px solid #edf2ef; margin-top: 1rem; padding-top: .7rem; }
+    #modal-bg .bg-sources a { color: var(--acc); font-weight: 600; }
+    #modal-bg .bg-disclaimer { font-size: .72rem; color: #9aa8b8; font-style: italic; margin-top: .6rem; }
+    .q-icon {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 18px; height: 18px; border-radius: 50%;
+      background: #d49a12; color: white; font-size: .72rem; font-weight: 800; line-height: 1;
+    }
 
     /* ── Amount column ────────────────────────────────────────────────────── */
     .amount-col   { text-align: right; }
     .amount-value { font-weight: 700; color: var(--g1); font-variant-numeric: tabular-nums; white-space: nowrap; }
+    .budget-share { display: flex; align-items: center; justify-content: flex-end; gap: .35rem; margin-top: .35rem; font-size: .72rem; color: #7a8fa6; font-variant-numeric: tabular-nums; white-space: nowrap; cursor: help; }
+    .share-pie { flex-shrink: 0; }
+    .tax-impact { display: inline-flex; align-items: center; gap: .3rem; margin-top: .4rem; padding: .18rem .5rem; border-radius: 6px; background: #eef4fb; border: 1px solid #c9d9ec; color: #1f3f66; font-size: .7rem; font-weight: 600; white-space: nowrap; cursor: help; }
+    .tax-icon { display: inline-flex; align-items: center; justify-content: center; width: 14px; height: 14px; border-radius: 50%; background: #1f3f66; color: #fff; font-size: .62rem; font-weight: 800; }
+    .share-pie .pie-track { fill: #e6ebf1; }
+    .share-pie .pie-slice { fill: var(--acc); }
+    .share-legend { font-size: .72rem; color: #7a8fa6; margin: -.6rem 0 1rem; text-align: right; }
     .amount-tbd   { color: #9aa8b8; font-style: italic; font-size: .82rem; }
     .amount-na    { color: #b8c4ce; font-size: .82rem; }
 
@@ -126,6 +186,42 @@
     .rec-tbd         { background: #f0f0f0; color: #6a6a6a; }
     .rec-pass        { background: #fff3e0; color: #a05000; }
     .rec-na          { color: #aaa; font-style: italic; font-size: .82rem; }
+    .rec-nopos       { background: #eef0f4; color: #4a5a70; border: 1px dashed #b8c4d4; }
+
+    /* ── Vote threshold / sponsor ─────────────────────────────────────────── */
+    .vote-badge { display: inline-block; padding: .18rem .5rem; border-radius: 6px; font-size: .68rem; font-weight: 700; background: #fff4d6; color: #7a5a00; border: 1px solid #ecd48a; margin-left: .25rem; white-space: nowrap; }
+    .article-sponsor { font-size: .7rem; color: #9aa8b8; margin-top: .3rem; }
+
+    /* ── At-a-glance notes ────────────────────────────────────────────────── */
+    .notes-card { background: white; border-radius: 14px; padding: 1.1rem 1.5rem 1.2rem; margin-bottom: 1.4rem; border-left: 4px solid var(--acc); box-shadow: 0 1px 3px rgba(0,0,0,.07), 0 4px 12px rgba(0,0,0,.04); }
+    .notes-title { font-size: .68rem; font-weight: 700; text-transform: uppercase; letter-spacing: .12em; color: var(--acc); margin-bottom: .55rem; }
+    .notes-card ul { padding-left: 1.1rem; }
+    .source-links { margin-top: .7rem; padding-top: .7rem; border-top: 1px solid #edf2ef; font-size: .8rem; color: #546475; }
+    .notes-card > .source-links:first-child { margin-top: 0; padding-top: 0; border-top: none; }
+    .source-links-label { font-weight: 600; color: #7a8fa6; }
+    .source-links a { color: var(--acc); font-weight: 600; text-decoration: none; }
+    .source-links a:hover { text-decoration: underline; }
+    .notes-card li { font-size: .85rem; color: #3a4a60; line-height: 1.55; margin-bottom: .35rem; }
+
+    /* ── Redline / rich article text ──────────────────────────────────────── */
+    #modal-html { font-size: .88rem; color: #2a3a50; line-height: 1.7; }
+    #modal-html p { margin-bottom: .8rem; }
+    #modal-html b { font-weight: 700; color: #0f5a2a; background: #eaf6ee; }
+    #modal-html s { color: #a01818; background: #fdeeee; }
+    #modal-html .redline-legend { font-size: .75rem; color: #7a8fa6; border-bottom: 1px solid #edf2ef; padding-bottom: .6rem; }
+    #modal-html .redline-note { font-size: .78rem; color: #7a8fa6; font-style: italic; }
+    .mini-table { width: 100%; border-collapse: collapse; margin: .4rem 0 .9rem; font-size: .78rem; }
+    .mini-table th, .mini-table td { border: 1px solid #d8e0ea; padding: .35rem .5rem; text-align: left; vertical-align: top; line-height: 1.4; }
+    .mini-table th { background: #f4f7fa; font-size: .7rem; text-transform: none; letter-spacing: 0; color: #546475; white-space: normal; }
+    .modal-questions { margin-top: 1.2rem; padding: .9rem 1.1rem; background: #fffaeb; border: 1px solid #f0dc9a; border-radius: 10px; }
+    .modal-questions.q-mode { margin-top: 0; }
+    .modal-questions .q-head { display: flex; align-items: center; gap: .45rem; }
+    .q-switch { margin-top: .9rem; padding: 0; border: none; background: none; font-family: inherit; font-size: .78rem; font-weight: 600; color: var(--acc); cursor: pointer; }
+    .q-switch:hover { text-decoration: underline; }
+    .q-disclaimer { font-size: .72rem; color: #9a8a5a; margin-top: .5rem; font-style: italic; }
+    .modal-questions .modal-rec-label { margin-bottom: .45rem; }
+    .modal-questions ul { padding-left: 1.1rem; }
+    .modal-questions li { font-size: .84rem; color: #3a4a60; line-height: 1.55; margin-bottom: .3rem; }
 
     .no-results  { text-align: center; padding: 3rem 2rem; color: #9aa8b8; font-size: .92rem; }
     .page-footer { text-align: center; padding: 1.5rem 1rem; color: #9aa8b8; font-size: .75rem; line-height: 1.8; }
@@ -138,7 +234,7 @@
     .modal-backdrop { position: fixed; inset: 0; background: rgba(10,20,40,.55); backdrop-filter: blur(3px); }
     .modal-card {
       position: relative; z-index: 1; background: white; border-radius: 16px;
-      width: min(760px, 100%); max-height: min(84vh, 740px);
+      width: min(760px, 100%); max-height: calc(84vh / var(--zoom, 1));
       display: flex; flex-direction: column;
       box-shadow: 0 24px 64px rgba(0,0,0,.28), 0 4px 16px rgba(0,0,0,.12);
       animation: modalIn .2s ease;
@@ -176,10 +272,11 @@
   </div>
 
   <div class="stats-bar">
-    <div class="stat-card"><div class="label">Articles</div><div class="value">30</div><div class="sub">Warrant articles</div></div><div class="stat-card"><div class="label">Specified Appropriations</div><div class="value">$31.2M+</div><div class="sub">Identified dollar amounts</div></div><div class="stat-card"><div class="label">Categories</div><div class="value">8</div><div class="sub">Topics covered</div></div>
+    <div class="stat-card"><div class="label">Articles</div><div class="value">30</div><div class="sub">Warrant articles</div></div><div class="stat-card"><div class="label">Specified Appropriations</div><div class="value">$31.2M+</div><div class="sub">Identified dollar amounts</div></div><div class="stat-card"><div class="label">Categories</div><div class="value">8</div><div class="sub">Topics covered</div></div><div class="stat-card"><div class="label">Watch List</div><div class="value">3</div><div class="sub">SB or FinCom not &ldquo;Approve&rdquo;: Art. 11, 12, 30</div></div>
   </div>
 
   <div class="container">
+    
     <div class="controls">
       <div class="controls-label">Filter by Category</div>
       <div class="filter-buttons">
@@ -195,6 +292,7 @@
       </div>
     </div>
 
+    
     <div class="table-wrap">
       <div class="table-scroll">
         <table>
@@ -213,7 +311,7 @@
     <div class="article-title">Debt Stabilization Fund Transfer</div>
     <div class="article-summary">To see if the Town will vote to transfer the sum of $392,000 from the Debt Stabilization Fund to the Fiscal Year 2020 operating budget for the purpose of offsetting a portion of debt exclusion projects, or act in any manner relating thereto.</div>
     <div class="article-recs"><span class="rec-label">SB:</span> <span class="rec-badge rec-approve">Approve</span><span class="rec-label" style="margin-left:.2rem">FinCom:</span> <span class="rec-badge rec-approve">Approve</span></div>
-    <button class="full-text-btn" data-key="1">Full text</button>
+    <div class="article-actions"><button class="full-text-btn" data-key="1">Full text</button></div>
   </td>
   <td><span class="cat-badge cat-budget">Budget</span></td>
   <td class="amount-col"><span class="amount-value">$392,000</span></td>
@@ -224,7 +322,7 @@
     <div class="article-title">Transfers – Ambulance Receipts Reserved and Ambulance Enterprise</div>
     <div class="article-summary">To see if the Town will vote to transfer $500,000 from the Ambulance Receipts Reserved for Appropriation Fund to the Fiscal Year 2020 operating budget, or act in any manner relating thereto.</div>
     <div class="article-recs"><span class="rec-label">SB:</span> <span class="rec-badge rec-approve">Approve</span><span class="rec-label" style="margin-left:.2rem">FinCom:</span> <span class="rec-badge rec-approve">Approve</span></div>
-    <button class="full-text-btn" data-key="2">Full text</button>
+    <div class="article-actions"><button class="full-text-btn" data-key="2">Full text</button></div>
   </td>
   <td><span class="cat-badge cat-budget">Budget</span></td>
   <td class="amount-col"><span class="amount-value">$500,000</span></td>
@@ -235,7 +333,7 @@
     <div class="article-title">Appropriation: FY20 Operating Budget</div>
     <div class="article-summary">To see if the Town will vote to fix the salary and compensation of all elected officers of the Town, provide for a Reserve Fund, and determine what sums of money the Town will raise and appropriate, including appropriation from available funds, to defray charges and expenses of the Town including de...</div>
     <div class="article-recs"><span class="rec-label">SB:</span> <span class="rec-badge rec-approve">Approve</span><span class="rec-label" style="margin-left:.2rem">FinCom:</span> <span class="rec-badge rec-approve">Approve</span></div>
-    <button class="full-text-btn" data-key="3">Full text</button>
+    <div class="article-actions"><button class="full-text-btn" data-key="3">Full text</button></div>
   </td>
   <td><span class="cat-badge cat-budget">Budget</span></td>
   <td class="amount-col"><span class="amount-tbd">TBD</span></td>
@@ -246,7 +344,7 @@
     <div class="article-title">Appropriation: FY20 Water Enterprise Fund</div>
     <div class="article-summary">To see if the Town will vote to raise and appropriate or transfer from available funds the sum of $3,102,333 for the maintenance of the Water Department Enterprise Fund as follows, or act in any manner relating thereto.</div>
     <div class="article-recs"><span class="rec-label">SB:</span> <span class="rec-badge rec-approve">Approve</span><span class="rec-label" style="margin-left:.2rem">FinCom:</span> <span class="rec-badge rec-approve">Approve</span></div>
-    <button class="full-text-btn" data-key="4">Full text</button>
+    <div class="article-actions"><button class="full-text-btn" data-key="4">Full text</button></div>
   </td>
   <td><span class="cat-badge cat-budget">Budget</span></td>
   <td class="amount-col"><span class="amount-value">$3,102,333</span></td>
@@ -257,7 +355,7 @@
     <div class="article-title">Appropriation: FY20 Sewer Enterprise Fund</div>
     <div class="article-summary">To see if the Town will vote to raise and appropriate or transfer from available funds the sum of $1,900,891 for the maintenance of the Sewer Department Enterprise Fund as follows, or act in any manner relating thereto.</div>
     <div class="article-recs"><span class="rec-label">SB:</span> <span class="rec-badge rec-approve">Approve</span><span class="rec-label" style="margin-left:.2rem">FinCom:</span> <span class="rec-badge rec-approve">Approve</span></div>
-    <button class="full-text-btn" data-key="5">Full text</button>
+    <div class="article-actions"><button class="full-text-btn" data-key="5">Full text</button></div>
   </td>
   <td><span class="cat-badge cat-budget">Budget</span></td>
   <td class="amount-col"><span class="amount-value">$1,900,891</span></td>
@@ -268,7 +366,7 @@
     <div class="article-title">Appropriation: FY20 Solid Waste Enterprise Fund</div>
     <div class="article-summary">To see if the Town will vote to raise and appropriate or transfer from available funds the sum of $1,270,261 to operate the Solid Waste/Recycling Department Enterprise Fund as follows, or act in any manner relating thereto.</div>
     <div class="article-recs"><span class="rec-label">SB:</span> <span class="rec-badge rec-approve">Approve</span><span class="rec-label" style="margin-left:.2rem">FinCom:</span> <span class="rec-badge rec-approve">Approve</span></div>
-    <button class="full-text-btn" data-key="6">Full text</button>
+    <div class="article-actions"><button class="full-text-btn" data-key="6">Full text</button></div>
   </td>
   <td><span class="cat-badge cat-budget">Budget</span></td>
   <td class="amount-col"><span class="amount-value">$1,270,261</span></td>
@@ -279,7 +377,7 @@
     <div class="article-title">Free Cash Appropriation: Capital and Other Items</div>
     <div class="article-summary">To see if the Town will vote to appropriate the sum of $2,723173 from Certified Free Cash for the purpose of funding the following capital and other items, including associated engineering, personnel, maintenance and legal service costs, or act in any manner relating thereto.</div>
     <div class="article-recs"><span class="rec-label">SB:</span> <span class="rec-badge rec-approve">Approve</span><span class="rec-label" style="margin-left:.2rem">FinCom:</span> <span class="rec-badge rec-approve">Approve</span></div>
-    <button class="full-text-btn" data-key="7">Full text</button>
+    <div class="article-actions"><button class="full-text-btn" data-key="7">Full text</button></div>
   </td>
   <td><span class="cat-badge cat-capital">Capital</span></td>
   <td class="amount-col"><span class="amount-value">$2,723,173</span></td>
@@ -290,7 +388,7 @@
     <div class="article-title">Raise & Appropriate: Roads & Sidewalks</div>
     <div class="article-summary">To see if the Town will vote to raise and appropriate the sum of $800,000 for the purposes of making repairs to various roads, sidewalks, bridges and related appurtenances, and to fund, as needed, design, engineering, and construction management services, and for the payment of all other costs incid...</div>
     <div class="article-recs"><span class="rec-label">SB:</span> <span class="rec-badge rec-approve">Approve</span><span class="rec-label" style="margin-left:.2rem">FinCom:</span> <span class="rec-badge rec-approve">Approve</span></div>
-    <button class="full-text-btn" data-key="8">Full text</button>
+    <div class="article-actions"><button class="full-text-btn" data-key="8">Full text</button></div>
   </td>
   <td><span class="cat-badge cat-capital">Capital</span></td>
   <td class="amount-col"><span class="amount-value">$800,000</span></td>
@@ -301,7 +399,7 @@
     <div class="article-title">Borrowing – Water Enterprise – Engineering and Design</div>
     <div class="article-summary">To see if the Town will vote to raise and appropriate, borrow or transfer from available Water Enterprise funds the sum of $2,330,900 for the purpose of funding engineering, design, and permitting for the provision of Water System quality and capacity improvements and expansions, including the assoc...</div>
     <div class="article-recs"><span class="rec-label">SB:</span> <span class="rec-badge rec-approve">Approve</span><span class="rec-label" style="margin-left:.2rem">FinCom:</span> <span class="rec-badge rec-approve">Approve</span></div>
-    <button class="full-text-btn" data-key="9">Full text</button>
+    <div class="article-actions"><button class="full-text-btn" data-key="9">Full text</button></div>
   </td>
   <td><span class="cat-badge cat-enterprise">Enterprise Budget</span></td>
   <td class="amount-col"><span class="amount-value">$2,330,900</span></td>
@@ -312,7 +410,7 @@
     <div class="article-title">Borrowing – New DPW Facility</div>
     <div class="article-summary">To see if the Town will vote to raise and appropriate, borrow or transfer from available funds the sum of $14,040,000 for the purpose of funding the construction, equipping and furnishing of a new Public Works facility at 46 Broad St, including engineering, design and project management services, si...</div>
     <div class="article-recs"><span class="rec-label">SB:</span> <span class="rec-badge rec-approve">Approve</span><span class="rec-label" style="margin-left:.2rem">FinCom:</span> <span class="rec-badge rec-approve">Approve</span></div>
-    <button class="full-text-btn" data-key="10">Full text</button>
+    <div class="article-actions"><button class="full-text-btn" data-key="10">Full text</button></div>
   </td>
   <td><span class="cat-badge cat-capital">Capital</span></td>
   <td class="amount-col"><span class="amount-value">$14,040,000</span></td>
@@ -323,7 +421,7 @@
     <div class="article-title">Lease Authorization – Solar Array at New DPW Facility</div>
     <div class="article-summary">To see if the Town will vote to transfer the care, custody, management, and control of the property located at 46 Broad Street to the Board of Selectmen for the purpose for which it is currently held and for the purpose of leasing and the granting of easements on, over, or under such property for th...</div>
     <div class="article-recs"><span class="rec-label">SB:</span> <span class="rec-badge rec-tbd">TBD</span><span class="rec-label" style="margin-left:.2rem">FinCom:</span> <span class="rec-badge rec-tbd">TBD</span></div>
-    <button class="full-text-btn" data-key="11">Full text</button>
+    <div class="article-actions"><button class="full-text-btn" data-key="11">Full text</button></div>
   </td>
   <td><span class="cat-badge cat-capital">Capital</span></td>
   <td class="amount-col"><span class="amount-tbd">TBD</span></td>
@@ -334,7 +432,7 @@
     <div class="article-title">PILOT Authorization – Solar Array at New DPW Facility</div>
     <div class="article-summary">To see if the Town will vote to authorize the Board of Selectmen to (i) enter into a PILOT (Payment in Lieu of Taxes) agreement with the successful proposer and owner of a solar array to be located on the premises at the new DPW Facility at 46 Broad Street for a term of up to 20 years, and (ii) take...</div>
     <div class="article-recs"><span class="rec-label">SB:</span> <span class="rec-badge rec-tbd">TBD</span><span class="rec-label" style="margin-left:.2rem">FinCom:</span> <span class="rec-badge rec-tbd">TBD</span></div>
-    <button class="full-text-btn" data-key="12">Full text</button>
+    <div class="article-actions"><button class="full-text-btn" data-key="12">Full text</button></div>
   </td>
   <td><span class="cat-badge cat-capital">Capital</span></td>
   <td class="amount-col"><span class="amount-tbd">TBD</span></td>
@@ -345,7 +443,7 @@
     <div class="article-title">DPW Stabilization Transfer to DPW Facility Project</div>
     <div class="article-summary">To see if the Town will vote to transfer $512,890 from the DPW Debt Stabilization Fund for the purpose of funding the construction equipping and furnishing of a new Public Works facility at 46 Broad St, including engineering, design and project management services, and for the payment of all other c...</div>
     <div class="article-recs"><span class="rec-label">SB:</span> <span class="rec-badge rec-approve">Approve</span><span class="rec-label" style="margin-left:.2rem">FinCom:</span> <span class="rec-badge rec-approve">Approve</span></div>
-    <button class="full-text-btn" data-key="13">Full text</button>
+    <div class="article-actions"><button class="full-text-btn" data-key="13">Full text</button></div>
   </td>
   <td><span class="cat-badge cat-capital">Capital</span></td>
   <td class="amount-col"><span class="amount-value">$512,890</span></td>
@@ -356,7 +454,7 @@
     <div class="article-title">General Stabilization Appropriation</div>
     <div class="article-summary">To see if the Town will vote to raise and appropriate or transfer from available funds the sum of $100,000 to be allocated to the General Stabilization Fund, or act in any manner relating thereto.</div>
     <div class="article-recs"><span class="rec-label">SB:</span> <span class="rec-badge rec-approve">Approve</span><span class="rec-label" style="margin-left:.2rem">FinCom:</span> <span class="rec-badge rec-approve">Approve</span></div>
-    <button class="full-text-btn" data-key="14">Full text</button>
+    <div class="article-actions"><button class="full-text-btn" data-key="14">Full text</button></div>
   </td>
   <td><span class="cat-badge cat-financial">Financial</span></td>
   <td class="amount-col"><span class="amount-value">$100,000</span></td>
@@ -367,7 +465,7 @@
     <div class="article-title">Appropriation: OPEB Trust</div>
     <div class="article-summary">To see if the Town will vote to raise and appropriate the sum of $300,000 to the Town of Medway Other Post-Employment Benefits (OPEB) Trust account, or act in any manner relating thereto.</div>
     <div class="article-recs"><span class="rec-label">SB:</span> <span class="rec-badge rec-approve">Approve</span><span class="rec-label" style="margin-left:.2rem">FinCom:</span> <span class="rec-badge rec-approve">Approve</span></div>
-    <button class="full-text-btn" data-key="15">Full text</button>
+    <div class="article-actions"><button class="full-text-btn" data-key="15">Full text</button></div>
   </td>
   <td><span class="cat-badge cat-admin">General</span></td>
   <td class="amount-col"><span class="amount-value">$300,000</span></td>
@@ -378,7 +476,7 @@
     <div class="article-title">Appropriation: Medway Day</div>
     <div class="article-summary">To see if the Town will vote to raise and appropriate the sum of $9,500 for Medway Day, or act in any manner relating thereto. 7</div>
     <div class="article-recs"><span class="rec-label">SB:</span> <span class="rec-badge rec-approve">Approve</span><span class="rec-label" style="margin-left:.2rem">FinCom:</span> <span class="rec-badge rec-approve">Approve</span></div>
-    <button class="full-text-btn" data-key="16">Full text</button>
+    <div class="article-actions"><button class="full-text-btn" data-key="16">Full text</button></div>
   </td>
   <td><span class="cat-badge cat-admin">General</span></td>
   <td class="amount-col"><span class="amount-value">$9,500</span></td>
@@ -389,7 +487,7 @@
     <div class="article-title">Free Cash Transfer: Cultural Council</div>
     <div class="article-summary">To see if the Town will vote to transfer $25,000 from Certified Free Cash for the purpose of providing matching grant funds to the Medway Cultural Council, or act in any manner relating thereto.</div>
     <div class="article-recs"><span class="rec-label">SB:</span> <span class="rec-badge rec-approve">Approve</span><span class="rec-label" style="margin-left:.2rem">FinCom:</span> <span class="rec-badge rec-approve">Approve</span></div>
-    <button class="full-text-btn" data-key="17">Full text</button>
+    <div class="article-actions"><button class="full-text-btn" data-key="17">Full text</button></div>
   </td>
   <td><span class="cat-badge cat-financial">Financial</span></td>
   <td class="amount-col"><span class="amount-value">$25,000</span></td>
@@ -400,7 +498,7 @@
     <div class="article-title">Appropriation: Community Preservation Committee</div>
     <div class="article-summary">To see if the Town will vote to act on the report of the Community Preservation Committee for the Fiscal Year 2020 Community Preservation budget and to appropriate, or reserve for later appropriations, monies from the Community Preservation Fund annual revenues or available funds for the administrat...</div>
     <div class="article-recs"><span class="rec-label">SB:</span> <span class="rec-badge rec-approve">Approve</span><span class="rec-label" style="margin-left:.2rem">FinCom:</span> <span class="rec-badge rec-approve">Approve</span></div>
-    <button class="full-text-btn" data-key="18">Full text</button>
+    <div class="article-actions"><button class="full-text-btn" data-key="18">Full text</button></div>
   </td>
   <td><span class="cat-badge cat-financial">Financial</span></td>
   <td class="amount-col"><span class="amount-value">$15,000</span></td>
@@ -411,7 +509,7 @@
     <div class="article-title">Fund Affordable Housing Unit Creation</div>
     <div class="article-summary">To see if the Town will vote, in accordance with Massachusetts General Laws Chapter 44B, to appropriate the sum of $1,000,000 from the Community Preservation Fund to fund a grant to Metro West Collaborative Development, Inc.</div>
     <div class="article-recs"><span class="rec-label">SB:</span> <span class="rec-badge rec-approve">Approve</span><span class="rec-label" style="margin-left:.2rem">FinCom:</span> <span class="rec-badge rec-approve">Approve</span></div>
-    <button class="full-text-btn" data-key="19">Full text</button>
+    <div class="article-actions"><button class="full-text-btn" data-key="19">Full text</button></div>
   </td>
   <td><span class="cat-badge cat-admin">Community Preservation</span></td>
   <td class="amount-col"><span class="amount-value">$1,000,000</span></td>
@@ -422,7 +520,7 @@
     <div class="article-title">Revolving Funds –Authorize FY20 Spending Limits</div>
     <div class="article-summary">To see if the Town will vote, pursuant to Massachusetts General Laws Chapter 44, Section 53E1/2, to set Fiscal Year 2020 spending limits for revolving funds as follows: Program or Purpose FY2020 Spending Limit Self-supporting parks and recreation $350,000 services, including salaries and benefits Di...</div>
     <div class="article-recs"><span class="rec-label">SB:</span> <span class="rec-badge rec-approve">Approve</span><span class="rec-label" style="margin-left:.2rem">FinCom:</span> <span class="rec-badge rec-approve">Approve</span></div>
-    <button class="full-text-btn" data-key="20">Full text</button>
+    <div class="article-actions"><button class="full-text-btn" data-key="20">Full text</button></div>
   </td>
   <td><span class="cat-badge cat-budget">Budget</span></td>
   <td class="amount-col"><span class="amount-value">$350,000</span></td>
@@ -434,7 +532,7 @@
 Council</div>
     <div class="article-summary">To see if the Town will vote to delete Section 2.16 of the Town’s General Bylaws (Development Review Coordinating Council) in its entirety, or act in any manner relating thereto.</div>
     <div class="article-recs"><span class="rec-label">SB:</span> <span class="rec-badge rec-approve">Approve</span><span class="rec-label" style="margin-left:.2rem">FinCom:</span> <span class="rec-badge rec-approve">Approve</span></div>
-    <button class="full-text-btn" data-key="21">Full text</button>
+    <div class="article-actions"><button class="full-text-btn" data-key="21">Full text</button></div>
   </td>
   <td><span class="cat-badge cat-admin">Bylaw</span></td>
   <td class="amount-col"><span class="amount-tbd">TBD</span></td>
@@ -445,7 +543,7 @@ Council</div>
     <div class="article-title">Zoning Bylaw Amendments: Misc. Housekeeping</div>
     <div class="article-summary">To see if the Town will vote to amend the Zoning Bylaw as follows; unless otherwise noted, new text is shown in bold and deleted text is shown as stricken through: Section 1.7: Delete the last sentence, so that the section shall read as follows: The Planning and Economic Development Coordinator, und...</div>
     <div class="article-recs"><span class="rec-label">SB:</span> <span class="rec-badge rec-approve">Approve</span><span class="rec-label" style="margin-left:.2rem">FinCom:</span> <span class="rec-badge rec-approve">Approve</span></div>
-    <button class="full-text-btn" data-key="22">Full text</button>
+    <div class="article-actions"><button class="full-text-btn" data-key="22">Full text</button></div>
   </td>
   <td><span class="cat-badge cat-admin">Bylaw</span></td>
   <td class="amount-col"><span class="amount-tbd">TBD</span></td>
@@ -456,7 +554,7 @@ Council</div>
     <div class="article-title">Amend Zoning Bylaw: Medical Marijuana</div>
     <div class="article-summary">To see if the Town will vote to amend the Zoning Bylaw as follows; unless otherwise noted, new text is shown in bold and deleted text is shown as stricken through: Section 8.9 REGISTERED MEDICAL MARIJUANA FACILITIES: Amend Sections 8.9.D., 8.9.E., and 8.9.J. as follows: D. Eligible Locations for Registered Medical Marijuana Facilities.</div>
     <div class="article-recs"><span class="rec-label">SB:</span> <span class="rec-badge rec-approve">Approve</span><span class="rec-label" style="margin-left:.2rem">FinCom:</span> <span class="rec-badge rec-approve">Approve</span></div>
-    <button class="full-text-btn" data-key="23">Full text</button>
+    <div class="article-actions"><button class="full-text-btn" data-key="23">Full text</button></div>
   </td>
   <td><span class="cat-badge cat-admin">Bylaw</span></td>
   <td class="amount-col"><span class="amount-tbd">TBD</span></td>
@@ -467,7 +565,7 @@ Council</div>
     <div class="article-title">Zoning Bylaw Amendment: Recreational Marijuana</div>
     <div class="article-summary">To see if the Town will vote to amend the Zoning Bylaw as follows; unless otherwise noted, new text is shown in bold and deleted text is shown as stricken through: Section 8.10 RECREATIONAL MARIJUANA: Amend Sections 8.10.E.1 and 8.10.J. as follows: E. General Requirements and Conditions for all Recreational Marijuana Establishments 1.</div>
     <div class="article-recs"><span class="rec-label">SB:</span> <span class="rec-badge rec-approve">Approve</span><span class="rec-label" style="margin-left:.2rem">FinCom:</span> <span class="rec-badge rec-approve">Approve</span></div>
-    <button class="full-text-btn" data-key="24">Full text</button>
+    <div class="article-actions"><button class="full-text-btn" data-key="24">Full text</button></div>
   </td>
   <td><span class="cat-badge cat-admin">Bylaw</span></td>
   <td class="amount-col"><span class="amount-tbd">TBD</span></td>
@@ -478,7 +576,7 @@ Council</div>
     <div class="article-title">Amend Zoning Bylaws: Site Plan Review</div>
     <div class="article-summary">To see if the Town will vote to amend portions of Section 3.5 of the Zoning Bylaw, Site Plan Review, as set forth below; unless otherwise noted, new text is shown in bold and deleted text is shown as stricken through: Amend Section 3.5.3. Applicability as follows: A. Site plan review shall apply to the following: 3.</div>
     <div class="article-recs"><span class="rec-label">SB:</span> <span class="rec-badge rec-approve">Approve</span><span class="rec-label" style="margin-left:.2rem">FinCom:</span> <span class="rec-badge rec-approve">Approve</span></div>
-    <button class="full-text-btn" data-key="25">Full text</button>
+    <div class="article-actions"><button class="full-text-btn" data-key="25">Full text</button></div>
   </td>
   <td><span class="cat-badge cat-capital">Capital</span></td>
   <td class="amount-col"><span class="amount-tbd">TBD</span></td>
@@ -489,7 +587,7 @@ Council</div>
     <div class="article-title">Amend Zoning Bylaw: Accessory Buildings</div>
     <div class="article-summary">To see if the Town of Medway will vote to amend the Zoning Bylaw, Section 6.3 Accessory Building or Structures by adding Paragraphs F., G., and H. as follows: F.</div>
     <div class="article-recs"><span class="rec-label">SB:</span> <span class="rec-badge rec-approve">Approve</span><span class="rec-label" style="margin-left:.2rem">FinCom:</span> <span class="rec-badge rec-approve">Approve</span></div>
-    <button class="full-text-btn" data-key="26">Full text</button>
+    <div class="article-actions"><button class="full-text-btn" data-key="26">Full text</button></div>
   </td>
   <td><span class="cat-badge cat-capital">Capital</span></td>
   <td class="amount-col"><span class="amount-tbd">TBD</span></td>
@@ -500,7 +598,7 @@ Council</div>
     <div class="article-title">Amend Zoning Bylaw: Off-Street Parking and Loading</div>
     <div class="article-summary">To see if the Town will vote to amend portions of Section 7.1.1 of the Zoning Bylaw, Off-Street Parking and Loading, as set forth below; unless otherwise noted, new text is shown in bold and deleted text is shown a stricken through. 7.1.1. Off-Street Parking and Loading A. Purposes.</div>
     <div class="article-recs"><span class="rec-label">SB:</span> <span class="rec-badge rec-approve">Approve</span><span class="rec-label" style="margin-left:.2rem">FinCom:</span> <span class="rec-badge rec-approve">Approve</span></div>
-    <button class="full-text-btn" data-key="27">Full text</button>
+    <div class="article-actions"><button class="full-text-btn" data-key="27">Full text</button></div>
   </td>
   <td><span class="cat-badge cat-capital">Capital</span></td>
   <td class="amount-col"><span class="amount-tbd">TBD</span></td>
@@ -511,7 +609,7 @@ Council</div>
     <div class="article-title">Amend General Bylaws: Add Right to Farm Bylaw</div>
     <div class="article-summary">To see if the Town will vote to amend the General Bylaws by adding a new section XXXI, Right to Farm Bylaw, as follows, or act in any manner relating thereto.</div>
     <div class="article-recs"><span class="rec-label">SB:</span> <span class="rec-badge rec-approve">Approve</span><span class="rec-label" style="margin-left:.2rem">FinCom:</span> <span class="rec-badge rec-approve">Approve</span></div>
-    <button class="full-text-btn" data-key="28">Full text</button>
+    <div class="article-actions"><button class="full-text-btn" data-key="28">Full text</button></div>
   </td>
   <td><span class="cat-badge cat-capital">Capital</span></td>
   <td class="amount-col"><span class="amount-tbd">TBD</span></td>
@@ -522,7 +620,7 @@ Council</div>
     <div class="article-title">Provide Funds for Urban Renewal Plan Implementation</div>
     <div class="article-summary">To see if the Town will vote to appropriate $1,800,000 to be expended by the Medway Redevelopment Authority for the purpose of implementation of the Town’s Urban Renewal Plan; said appropriation to be expended by the Medway Redevelopment Authority pursuant to an agreement the terms of which shall be...</div>
     <div class="article-recs"><span class="rec-label">SB:</span> <span class="rec-badge rec-approve">Approve</span><span class="rec-label" style="margin-left:.2rem">FinCom:</span> <span class="rec-badge rec-approve">Approve</span></div>
-    <button class="full-text-btn" data-key="29">Full text</button>
+    <div class="article-actions"><button class="full-text-btn" data-key="29">Full text</button></div>
   </td>
   <td><span class="cat-badge cat-admin">Debt</span></td>
   <td class="amount-col"><span class="amount-value">$1,800,000</span></td>
@@ -534,7 +632,7 @@ Council</div>
 Playgrounds</div>
     <div class="article-summary">To see if the Town will vote to appropriate $50,000 for the purpose of funding the construction of park and recreation improvements, as well as the purchase of associated equipment and structures and the provision of construction management and inspection services to complete the Choate Park, Oaklan...</div>
     <div class="article-recs"><span class="rec-label">SB:</span> <span class="rec-badge rec-tbd">TBD</span><span class="rec-label" style="margin-left:.2rem">FinCom:</span> <span class="rec-badge rec-approve">Approve</span></div>
-    <button class="full-text-btn" data-key="30">Full text</button>
+    <div class="article-actions"><button class="full-text-btn" data-key="30">Full text</button></div>
   </td>
   <td><span class="cat-badge cat-capital">Capital</span></td>
   <td class="amount-col"><span class="amount-value">$50,000</span></td>
@@ -567,21 +665,57 @@ Playgrounds</div>
       <div class="modal-body">
         <div class="modal-recs" id="modal-recs"></div>
         <pre id="modal-text"></pre>
+        <div id="modal-html"></div>
+        <div id="modal-bg" style="display:none"></div>
+        <div class="modal-questions" id="modal-questions" style="display:none">
+          <div class="q-head"><span class="q-icon">?</span><div class="modal-rec-label" style="margin:0">Questions worth asking</div></div>
+          <ul id="modal-q-list" style="margin-top:.55rem"></ul>
+          <div class="q-disclaimer">Discussion prompts drafted with AI assistance from the warrant text.</div>
+        </div>
+        <button class="q-switch" id="q-switch" style="display:none">View full article text →</button>
       </div>
     </div>
   </div>
 
   <script>
-  const articleData = {"1": {"title": "Debt Stabilization Fund Transfer", "text": "To see if the Town will vote to transfer the sum of $392,000 from the Debt Stabilization Fund to the Fiscal Year 2020 operating budget for the purpose of offsetting a portion of debt exclusion projects, or act in any manner relating thereto.", "sb": "Approve", "fc": "Approve"}, "2": {"title": "Transfers – Ambulance Receipts Reserved and Ambulance Enterprise", "text": "To see if the Town will vote to transfer $500,000 from the Ambulance Receipts Reserved for Appropriation Fund to the Fiscal Year 2020 operating budget, or act in any manner relating thereto.", "sb": "Approve", "fc": "Approve"}, "3": {"title": "Appropriation: FY20 Operating Budget", "text": "To see if the Town will vote to fix the salary and compensation of all elected officers of the Town, provide for a Reserve Fund, and determine what sums of money the Town will raise and appropriate, including appropriation from available funds, to defray charges and expenses of the Town including debt and interest, for the Fiscal Year ending June 30, 2020, or act in any manner relating thereto. 1", "sb": "Approve", "fc": "Approve"}, "4": {"title": "Appropriation: FY20 Water Enterprise Fund", "text": "To see if the Town will vote to raise and appropriate or transfer from available funds the sum of $3,102,333 for the maintenance of the Water Department Enterprise Fund as follows, or act in any manner relating thereto. Direct Costs Amount Salaries $ 779,142 Expenses 632,750 Debt 1,335,488 Direct Costs Total $ 2,747,380 Indirect Costs Indirect costs consisting of health insurance, workers’ compensation, Medicare, liability insurance, administrative and operational services. Indirect Costs Total $354,953 Total $3,102,333 And further that the above listed appropriations be funded as follows: Fee", "sb": "Approve", "fc": "Approve"}, "5": {"title": "Appropriation: FY20 Sewer Enterprise Fund", "text": "To see if the Town will vote to raise and appropriate or transfer from available funds the sum of $1,900,891 for the maintenance of the Sewer Department Enterprise Fund as follows, or act in any manner relating thereto. Direct Costs Amount Salaries $ 286,528 Expenses 1,129,950 Debt 345,212 2 Direct Costs Total $1,761,690 Indirect Costs Indirect costs consisting of health insurance, workers’ compensation, Medicare, liability insurance, administrative and operational services. Indirect Costs Total $139,201 Total $1,900,891 And further that the above listed appropriations be funded as follows: Fe", "sb": "Approve", "fc": "Approve"}, "6": {"title": "Appropriation: FY20 Solid Waste Enterprise Fund", "text": "To see if the Town will vote to raise and appropriate or transfer from available funds the sum of $1,270,261 to operate the Solid Waste/Recycling Department Enterprise Fund as follows, or act in any manner relating thereto. Direct Costs Amount Salaries $ 44,587 Expenses 1,142,750 Debt Service 59,375 Direct Costs Total $1,246,712 Indirect Costs Indirect costs consisting of health insurance, workers’ compensation, Medicare, liability insurance, administrative and operational services. Indirect Costs Total $ 23,549 Total $1,270,261 And further that the above listed appropriations be funded as fol", "sb": "Approve", "fc": "Approve"}, "7": {"title": "Free Cash Appropriation: Capital and Other Items", "text": "To see if the Town will vote to appropriate the sum of $2,723173 from Certified Free Cash for the purpose of funding the following capital and other items, including associated engineering, personnel, maintenance and legal service costs, or act in any manner relating thereto. Project Department Cost Various Road and Sidewalk Repair DPW $750,000 Replace 2008 Ford F350 DPW 55,000 Replace Choate Building Roof DPW 12,000 Replace 2006 Ford F150 DPW 55,000 Replace 2010 Ford F350 DPW 60,000 Walking Trail at Oakland Park DPW 25,000 Replace Dump Truck DPW 175,000 Replace Plow DPW 17,850 Replace 2003 Fo", "sb": "Approve", "fc": "Approve"}, "8": {"title": "Raise & Appropriate: Roads & Sidewalks", "text": "To see if the Town will vote to raise and appropriate the sum of $800,000 for the purposes of making repairs to various roads, sidewalks, bridges and related appurtenances, and to fund, as needed, design, engineering, and construction management services, and for the payment of all other costs incidental and related thereto, or act in any manner relating thereto.", "sb": "Approve", "fc": "Approve"}, "9": {"title": "Borrowing – Water Enterprise – Engineering and Design", "text": "To see if the Town will vote to raise and appropriate, borrow or transfer from available Water Enterprise funds the sum of $2,330,900 for the purpose of funding engineering, design, and permitting for the provision of Water System quality and capacity improvements and expansions, including the associated legal and technical services costs, and for the payment of all other costs incidental and related thereto, any premium received upon the sale of any bonds or notes approved by this vote, less any such premium applied to the payment of the costs of issuance of such bonds or notes, may be applie", "sb": "Approve", "fc": "Approve"}, "10": {"title": "Borrowing – New DPW Facility", "text": "To see if the Town will vote to raise and appropriate, borrow or transfer from available funds the sum of $14,040,000 for the purpose of funding the construction, equipping and furnishing of a new Public Works facility at 46 Broad St, including engineering, design and project management services, site preparation, and for the payment of all other costs incidental and related thereto, and further that any premium received upon the sale of any bonds or notes approved by this vote, less any such premium applied to the payment of the costs of issuance of such bonds or notes, may be applied to the ", "sb": "Approve", "fc": "Approve"}, "11": {"title": "Lease Authorization – Solar Array at New DPW Facility", "text": "To see if the Town will vote to transfer the care, custody, management, and control of the property located at 46 Broad Street to the Board of Selectmen for the purpose for which it is currently held and for the purpose of leasing and the granting of easements on, over, or under such property for the installation of renewable energy facilities and the support thereof; and further authorize the Board of Selectmen to enter into one or more lease agreements for a period of not more than 20 years of all or a portion of the new Department of Public Works (DPW) Facility roof and parking canopy to be", "sb": "To Be Determined", "fc": "To Be Determined"}, "12": {"title": "PILOT Authorization – Solar Array at New DPW Facility", "text": "To see if the Town will vote to authorize the Board of Selectmen to (i) enter into a PILOT (Payment in Lieu of Taxes) agreement with the successful proposer and owner of a solar array to be located on the premises at the new DPW Facility at 46 Broad Street for a term of up to 20 years, and (ii) take any actions and execute any other documents or ancillary agreements necessary, convenient, or appropriate to accomplish the foregoing and to implement and administer the PILOT agreement, which agreement and documents shall be on such terms and conditions and for such consideration as the Board of S", "sb": "To Be Determined", "fc": "To Be Determined"}, "13": {"title": "DPW Stabilization Transfer to DPW Facility Project", "text": "To see if the Town will vote to transfer $512,890 from the DPW Debt Stabilization Fund for the purpose of funding the construction equipping and furnishing of a new Public Works facility at 46 Broad St, including engineering, design and project management services, and for the payment of all other costs incidental and related thereto, or act in any manner relating thereto.", "sb": "Approve", "fc": "Approve"}, "14": {"title": "General Stabilization Appropriation", "text": "To see if the Town will vote to raise and appropriate or transfer from available funds the sum of $100,000 to be allocated to the General Stabilization Fund, or act in any manner relating thereto.", "sb": "Approve", "fc": "Approve"}, "15": {"title": "Appropriation: OPEB Trust", "text": "To see if the Town will vote to raise and appropriate the sum of $300,000 to the Town of Medway Other Post-Employment Benefits (OPEB) Trust account, or act in any manner relating thereto.", "sb": "Approve", "fc": "Approve"}, "16": {"title": "Appropriation: Medway Day", "text": "To see if the Town will vote to raise and appropriate the sum of $9,500 for Medway Day, or act in any manner relating thereto. 7", "sb": "Approve", "fc": "Approve"}, "17": {"title": "Free Cash Transfer: Cultural Council", "text": "To see if the Town will vote to transfer $25,000 from Certified Free Cash for the purpose of providing matching grant funds to the Medway Cultural Council, or act in any manner relating thereto.", "sb": "Approve", "fc": "Approve"}, "18": {"title": "Appropriation: Community Preservation Committee", "text": "To see if the Town will vote to act on the report of the Community Preservation Committee for the Fiscal Year 2020 Community Preservation budget and to appropriate, or reserve for later appropriations, monies from the Community Preservation Fund annual revenues or available funds for the administrative expenses of the Community Preservation Committee, the payment of debt service, the undertaking of community preservation projects and all other necessary and proper expenses for the Fiscal Year 2020, as follows: CPC Administrative Expenses $15,000 CPC Salaries 5,000 CPC Debt Expense 445,575 Ide ", "sb": "Approve", "fc": "Approve"}, "19": {"title": "Fund Affordable Housing Unit Creation", "text": "To see if the Town will vote, in accordance with Massachusetts General Laws Chapter 44B, to appropriate the sum of $1,000,000 from the Community Preservation Fund to fund a grant to Metro West Collaborative Development, Inc. for the purpose of constructing affordable housing units in a development known as Glen Brook Way, and to authorize the Board of Selectmen to enter into a grant agreement on such terms and conditions as the Board of Selectmen shall determine to be appropriate with Metro West Collaborative Development, Inc. outlining the purposes for and the conditions upon which these fund", "sb": "Approve", "fc": "Approve"}, "20": {"title": "Revolving Funds –Authorize FY20 Spending Limits", "text": "To see if the Town will vote, pursuant to Massachusetts General Laws Chapter 44, Section 53E1/2, to set Fiscal Year 2020 spending limits for revolving funds as follows: Program or Purpose FY2020 Spending Limit Self-supporting parks and recreation $350,000 services, including salaries and benefits Dial-a-ride van service for seniors and $120,000 disabled; shuttle service to Norfolk commuter rail station, and other necessary transportation services Library printer, copier and fax expenses $ 3,000 Library meeting room $ 1,000 Thayer Homestead partial self-support of $ 70,000 property, including s", "sb": "Approve", "fc": "Approve"}, "21": {"title": "Amend General Bylaws: Delete Development Review Coordinating\nCouncil", "text": "To see if the Town will vote to delete Section 2.16 of the Town’s General Bylaws (Development Review Coordinating Council) in its entirety, or act in any manner relating thereto.", "sb": "Approve", "fc": "Approve"}, "22": {"title": "Zoning Bylaw Amendments: Misc. Housekeeping", "text": "To see if the Town will vote to amend the Zoning Bylaw as follows; unless otherwise noted, new text is shown in bold and deleted text is shown as stricken through: Section 1.7: Delete the last sentence, so that the section shall read as follows: The Planning and Economic Development Coordinator, under the auspices of the Planning and Economic Development Board, is authorized to edit this Zoning Bylaw for format only through the use of bold, italics, underscores, bullets, font style, font size, spacing and other similar editing measures to improve the Bylaw’s readability and ease of use without", "sb": "Approve", "fc": "Approve"}, "23": {"title": "Amend Zoning Bylaw: Medical Marijuana", "text": "To see if the Town will vote to amend the Zoning Bylaw as follows; unless otherwise noted, new text is shown in bold and deleted text is shown as stricken through: Section 8.9 REGISTERED MEDICAL MARIJUANA FACILITIES: Amend Sections 8.9.D., 8.9.E., and 8.9.J. as follows: D. Eligible Locations for Registered Medical Marijuana Facilities. Registered Medical Marijuana Facilities, other than agricultural operations meeting exemption standards under G.L. c. 40A § 3, may be allowed by special permit from the Planning and Economic Development Board in the following zoning districts, provided the facil", "sb": "Approve", "fc": "Approve"}, "24": {"title": "Zoning Bylaw Amendment: Recreational Marijuana", "text": "To see if the Town will vote to amend the Zoning Bylaw as follows; unless otherwise noted, new text is shown in bold and deleted text is shown as stricken through: Section 8.10 RECREATIONAL MARIJUANA: Amend Sections 8.10.E.1 and 8.10.J. as follows: E. General Requirements and Conditions for all Recreational Marijuana Establishments 1. All non-exempt RMEs shall be contained within a permanent building or structure. No RME shall be located inside a building containing residential units or inside a movable or mobile structure such as a van, trailer, cargo container or truck. J. Special Permit Req", "sb": "Approve", "fc": "Approve"}, "25": {"title": "Amend Zoning Bylaws: Site Plan Review", "text": "To see if the Town will vote to amend portions of Section 3.5 of the Zoning Bylaw, Site Plan Review, as set forth below; unless otherwise noted, new text is shown in bold and deleted text is shown as stricken through: Amend Section 3.5.3. Applicability as follows: A. Site plan review shall apply to the following: 3. Administrative Site Plan Review - New construction or any alteration, reconstruction, renovation or change in use of any multi-family, commercial, industrial, institutional or municipal building or use which is not subject to Major or Minor Site Plan Review but which involves one o", "sb": "Approve", "fc": "Approve"}, "26": {"title": "Amend Zoning Bylaw: Accessory Buildings", "text": "To see if the Town of Medway will vote to amend the Zoning Bylaw, Section 6.3 Accessory Building or Structures by adding Paragraphs F., G., and H. as follows: F. Any detached accessory building or structure less than two hundred square feet in area and less than fifteen feet in height shall have a minimum setback of five feet from the rear and side lot lines. Any detached accessory building or structure that exceeds these limits shall conform to the otherwise applicable yard setback regulations as specified in TABLE 2 in Section 6.1 Schedule of Dimensional and Density Regulations. G. No access", "sb": "Approve", "fc": "Approve"}, "27": {"title": "Amend Zoning Bylaw: Off-Street Parking and Loading", "text": "To see if the Town will vote to amend portions of Section 7.1.1 of the Zoning Bylaw, Off-Street Parking and Loading, as set forth below; unless otherwise noted, new text is shown in bold and deleted text is shown a stricken through. 7.1.1. Off-Street Parking and Loading A. Purposes. The purposes of this Section 7.1 are to ensure the availability of safe and convenient vehicular parking areas; to encourage economic development; to promote safety for pedestrians, bicyclists, motor vehicle occupants, and property and business owners; to reduce impervious surfaces; and to protect adjoining lots an", "sb": "Approve", "fc": "Approve"}, "28": {"title": "Amend General Bylaws: Add Right to Farm Bylaw", "text": "To see if the Town will vote to amend the General Bylaws by adding a new section XXXI, Right to Farm Bylaw, as follows, or act in any manner relating thereto. Section 1 Legislative Purpose and Intent The purpose and intent of this Bylaw is to state with emphasis the Right to Farm accorded to all citizens of the Commonwealth under Article 97, of the Constitution, and all state statutes and regulations thereunder including but not limited to Massachusetts General Laws Chapter 40A, Section 3, Paragraph 1; Chapter 90, Section 9, Chapter 111, Section 125A and Chapter 128 Section 1A, subject to stri", "sb": "Approve", "fc": "Approve"}, "29": {"title": "Provide Funds for Urban Renewal Plan Implementation", "text": "To see if the Town will vote to appropriate $1,800,000 to be expended by the Medway Redevelopment Authority for the purpose of implementation of the Town’s Urban Renewal Plan; said appropriation to be expended by the Medway Redevelopment Authority pursuant to an agreement the terms of which shall be determined by the Board of Selectmen to be in the best interest of the Town; and that to meet this appropriation, the Treasurer with the approval of Board of Selectmen is authorized to borrow such sum under Massachusetts General Laws Chapter 44, Section 7, 8, or 20, and/or General Laws Chapter 121B", "sb": "Approve", "fc": "Approve"}, "30": {"title": "Borrowing – Parks Improvement Project and Elementary School\nPlaygrounds", "text": "To see if the Town will vote to appropriate $50,000 for the purpose of funding the construction of park and recreation improvements, as well as the purchase of associated equipment and structures and the provision of construction management and inspection services to complete the Choate Park, Oakland Park and Medway Middle School parks improvement project voted at the November 13, 2017, Fall Town Meeting under Article 11, and for the payment of all other costs incidental and related thereto, and $300,000 for the purpose of funding the construction of playground improvements at the McGovern and", "sb": "To Be Determined", "fc": "Approve"}};
+  const articleData = {"1": {"title": "Debt Stabilization Fund Transfer", "text": "To see if the Town will vote to transfer the sum of $392,000 from the Debt Stabilization Fund to the Fiscal Year 2020 operating budget for the purpose of offsetting a portion of debt exclusion projects, or act in any manner relating thereto.", "sb": "Approve", "fc": "Approve", "html": "", "vote": "", "sponsor": "", "questions": [], "background": {}}, "2": {"title": "Transfers – Ambulance Receipts Reserved and Ambulance Enterprise", "text": "To see if the Town will vote to transfer $500,000 from the Ambulance Receipts Reserved for Appropriation Fund to the Fiscal Year 2020 operating budget, or act in any manner relating thereto.", "sb": "Approve", "fc": "Approve", "html": "", "vote": "", "sponsor": "", "questions": [], "background": {}}, "3": {"title": "Appropriation: FY20 Operating Budget", "text": "To see if the Town will vote to fix the salary and compensation of all elected officers of the Town, provide for a Reserve Fund, and determine what sums of money the Town will raise and appropriate, including appropriation from available funds, to defray charges and expenses of the Town including debt and interest, for the Fiscal Year ending June 30, 2020, or act in any manner relating thereto. 1", "sb": "Approve", "fc": "Approve", "html": "", "vote": "", "sponsor": "", "questions": [], "background": {}}, "4": {"title": "Appropriation: FY20 Water Enterprise Fund", "text": "To see if the Town will vote to raise and appropriate or transfer from available funds the sum of $3,102,333 for the maintenance of the Water Department Enterprise Fund as follows, or act in any manner relating thereto. Direct Costs Amount Salaries $ 779,142 Expenses 632,750 Debt 1,335,488 Direct Costs Total $ 2,747,380 Indirect Costs Indirect costs consisting of health insurance, workers’ compensation, Medicare, liability insurance, administrative and operational services. Indirect Costs Total $354,953 Total $3,102,333 And further that the above listed appropriations be funded as follows: Fee", "sb": "Approve", "fc": "Approve", "html": "", "vote": "", "sponsor": "", "questions": [], "background": {}}, "5": {"title": "Appropriation: FY20 Sewer Enterprise Fund", "text": "To see if the Town will vote to raise and appropriate or transfer from available funds the sum of $1,900,891 for the maintenance of the Sewer Department Enterprise Fund as follows, or act in any manner relating thereto. Direct Costs Amount Salaries $ 286,528 Expenses 1,129,950 Debt 345,212 2 Direct Costs Total $1,761,690 Indirect Costs Indirect costs consisting of health insurance, workers’ compensation, Medicare, liability insurance, administrative and operational services. Indirect Costs Total $139,201 Total $1,900,891 And further that the above listed appropriations be funded as follows: Fe", "sb": "Approve", "fc": "Approve", "html": "", "vote": "", "sponsor": "", "questions": [], "background": {}}, "6": {"title": "Appropriation: FY20 Solid Waste Enterprise Fund", "text": "To see if the Town will vote to raise and appropriate or transfer from available funds the sum of $1,270,261 to operate the Solid Waste/Recycling Department Enterprise Fund as follows, or act in any manner relating thereto. Direct Costs Amount Salaries $ 44,587 Expenses 1,142,750 Debt Service 59,375 Direct Costs Total $1,246,712 Indirect Costs Indirect costs consisting of health insurance, workers’ compensation, Medicare, liability insurance, administrative and operational services. Indirect Costs Total $ 23,549 Total $1,270,261 And further that the above listed appropriations be funded as fol", "sb": "Approve", "fc": "Approve", "html": "", "vote": "", "sponsor": "", "questions": [], "background": {}}, "7": {"title": "Free Cash Appropriation: Capital and Other Items", "text": "To see if the Town will vote to appropriate the sum of $2,723173 from Certified Free Cash for the purpose of funding the following capital and other items, including associated engineering, personnel, maintenance and legal service costs, or act in any manner relating thereto. Project Department Cost Various Road and Sidewalk Repair DPW $750,000 Replace 2008 Ford F350 DPW 55,000 Replace Choate Building Roof DPW 12,000 Replace 2006 Ford F150 DPW 55,000 Replace 2010 Ford F350 DPW 60,000 Walking Trail at Oakland Park DPW 25,000 Replace Dump Truck DPW 175,000 Replace Plow DPW 17,850 Replace 2003 Fo", "sb": "Approve", "fc": "Approve", "html": "", "vote": "", "sponsor": "", "questions": [], "background": {}}, "8": {"title": "Raise & Appropriate: Roads & Sidewalks", "text": "To see if the Town will vote to raise and appropriate the sum of $800,000 for the purposes of making repairs to various roads, sidewalks, bridges and related appurtenances, and to fund, as needed, design, engineering, and construction management services, and for the payment of all other costs incidental and related thereto, or act in any manner relating thereto.", "sb": "Approve", "fc": "Approve", "html": "", "vote": "", "sponsor": "", "questions": [], "background": {}}, "9": {"title": "Borrowing – Water Enterprise – Engineering and Design", "text": "To see if the Town will vote to raise and appropriate, borrow or transfer from available Water Enterprise funds the sum of $2,330,900 for the purpose of funding engineering, design, and permitting for the provision of Water System quality and capacity improvements and expansions, including the associated legal and technical services costs, and for the payment of all other costs incidental and related thereto, any premium received upon the sale of any bonds or notes approved by this vote, less any such premium applied to the payment of the costs of issuance of such bonds or notes, may be applie", "sb": "Approve", "fc": "Approve", "html": "", "vote": "", "sponsor": "", "questions": [], "background": {}}, "10": {"title": "Borrowing – New DPW Facility", "text": "To see if the Town will vote to raise and appropriate, borrow or transfer from available funds the sum of $14,040,000 for the purpose of funding the construction, equipping and furnishing of a new Public Works facility at 46 Broad St, including engineering, design and project management services, site preparation, and for the payment of all other costs incidental and related thereto, and further that any premium received upon the sale of any bonds or notes approved by this vote, less any such premium applied to the payment of the costs of issuance of such bonds or notes, may be applied to the ", "sb": "Approve", "fc": "Approve", "html": "", "vote": "", "sponsor": "", "questions": [], "background": {}}, "11": {"title": "Lease Authorization – Solar Array at New DPW Facility", "text": "To see if the Town will vote to transfer the care, custody, management, and control of the property located at 46 Broad Street to the Board of Selectmen for the purpose for which it is currently held and for the purpose of leasing and the granting of easements on, over, or under such property for the installation of renewable energy facilities and the support thereof; and further authorize the Board of Selectmen to enter into one or more lease agreements for a period of not more than 20 years of all or a portion of the new Department of Public Works (DPW) Facility roof and parking canopy to be", "sb": "To Be Determined", "fc": "To Be Determined", "html": "", "vote": "", "sponsor": "", "questions": [], "background": {}}, "12": {"title": "PILOT Authorization – Solar Array at New DPW Facility", "text": "To see if the Town will vote to authorize the Board of Selectmen to (i) enter into a PILOT (Payment in Lieu of Taxes) agreement with the successful proposer and owner of a solar array to be located on the premises at the new DPW Facility at 46 Broad Street for a term of up to 20 years, and (ii) take any actions and execute any other documents or ancillary agreements necessary, convenient, or appropriate to accomplish the foregoing and to implement and administer the PILOT agreement, which agreement and documents shall be on such terms and conditions and for such consideration as the Board of S", "sb": "To Be Determined", "fc": "To Be Determined", "html": "", "vote": "", "sponsor": "", "questions": [], "background": {}}, "13": {"title": "DPW Stabilization Transfer to DPW Facility Project", "text": "To see if the Town will vote to transfer $512,890 from the DPW Debt Stabilization Fund for the purpose of funding the construction equipping and furnishing of a new Public Works facility at 46 Broad St, including engineering, design and project management services, and for the payment of all other costs incidental and related thereto, or act in any manner relating thereto.", "sb": "Approve", "fc": "Approve", "html": "", "vote": "", "sponsor": "", "questions": [], "background": {}}, "14": {"title": "General Stabilization Appropriation", "text": "To see if the Town will vote to raise and appropriate or transfer from available funds the sum of $100,000 to be allocated to the General Stabilization Fund, or act in any manner relating thereto.", "sb": "Approve", "fc": "Approve", "html": "", "vote": "", "sponsor": "", "questions": [], "background": {}}, "15": {"title": "Appropriation: OPEB Trust", "text": "To see if the Town will vote to raise and appropriate the sum of $300,000 to the Town of Medway Other Post-Employment Benefits (OPEB) Trust account, or act in any manner relating thereto.", "sb": "Approve", "fc": "Approve", "html": "", "vote": "", "sponsor": "", "questions": [], "background": {}}, "16": {"title": "Appropriation: Medway Day", "text": "To see if the Town will vote to raise and appropriate the sum of $9,500 for Medway Day, or act in any manner relating thereto. 7", "sb": "Approve", "fc": "Approve", "html": "", "vote": "", "sponsor": "", "questions": [], "background": {}}, "17": {"title": "Free Cash Transfer: Cultural Council", "text": "To see if the Town will vote to transfer $25,000 from Certified Free Cash for the purpose of providing matching grant funds to the Medway Cultural Council, or act in any manner relating thereto.", "sb": "Approve", "fc": "Approve", "html": "", "vote": "", "sponsor": "", "questions": [], "background": {}}, "18": {"title": "Appropriation: Community Preservation Committee", "text": "To see if the Town will vote to act on the report of the Community Preservation Committee for the Fiscal Year 2020 Community Preservation budget and to appropriate, or reserve for later appropriations, monies from the Community Preservation Fund annual revenues or available funds for the administrative expenses of the Community Preservation Committee, the payment of debt service, the undertaking of community preservation projects and all other necessary and proper expenses for the Fiscal Year 2020, as follows: CPC Administrative Expenses $15,000 CPC Salaries 5,000 CPC Debt Expense 445,575 Ide ", "sb": "Approve", "fc": "Approve", "html": "", "vote": "", "sponsor": "", "questions": [], "background": {}}, "19": {"title": "Fund Affordable Housing Unit Creation", "text": "To see if the Town will vote, in accordance with Massachusetts General Laws Chapter 44B, to appropriate the sum of $1,000,000 from the Community Preservation Fund to fund a grant to Metro West Collaborative Development, Inc. for the purpose of constructing affordable housing units in a development known as Glen Brook Way, and to authorize the Board of Selectmen to enter into a grant agreement on such terms and conditions as the Board of Selectmen shall determine to be appropriate with Metro West Collaborative Development, Inc. outlining the purposes for and the conditions upon which these fund", "sb": "Approve", "fc": "Approve", "html": "", "vote": "", "sponsor": "", "questions": [], "background": {}}, "20": {"title": "Revolving Funds –Authorize FY20 Spending Limits", "text": "To see if the Town will vote, pursuant to Massachusetts General Laws Chapter 44, Section 53E1/2, to set Fiscal Year 2020 spending limits for revolving funds as follows: Program or Purpose FY2020 Spending Limit Self-supporting parks and recreation $350,000 services, including salaries and benefits Dial-a-ride van service for seniors and $120,000 disabled; shuttle service to Norfolk commuter rail station, and other necessary transportation services Library printer, copier and fax expenses $ 3,000 Library meeting room $ 1,000 Thayer Homestead partial self-support of $ 70,000 property, including s", "sb": "Approve", "fc": "Approve", "html": "", "vote": "", "sponsor": "", "questions": [], "background": {}}, "21": {"title": "Amend General Bylaws: Delete Development Review Coordinating\nCouncil", "text": "To see if the Town will vote to delete Section 2.16 of the Town’s General Bylaws (Development Review Coordinating Council) in its entirety, or act in any manner relating thereto.", "sb": "Approve", "fc": "Approve", "html": "", "vote": "", "sponsor": "", "questions": [], "background": {}}, "22": {"title": "Zoning Bylaw Amendments: Misc. Housekeeping", "text": "To see if the Town will vote to amend the Zoning Bylaw as follows; unless otherwise noted, new text is shown in bold and deleted text is shown as stricken through: Section 1.7: Delete the last sentence, so that the section shall read as follows: The Planning and Economic Development Coordinator, under the auspices of the Planning and Economic Development Board, is authorized to edit this Zoning Bylaw for format only through the use of bold, italics, underscores, bullets, font style, font size, spacing and other similar editing measures to improve the Bylaw’s readability and ease of use without", "sb": "Approve", "fc": "Approve", "html": "", "vote": "", "sponsor": "", "questions": [], "background": {}}, "23": {"title": "Amend Zoning Bylaw: Medical Marijuana", "text": "To see if the Town will vote to amend the Zoning Bylaw as follows; unless otherwise noted, new text is shown in bold and deleted text is shown as stricken through: Section 8.9 REGISTERED MEDICAL MARIJUANA FACILITIES: Amend Sections 8.9.D., 8.9.E., and 8.9.J. as follows: D. Eligible Locations for Registered Medical Marijuana Facilities. Registered Medical Marijuana Facilities, other than agricultural operations meeting exemption standards under G.L. c. 40A § 3, may be allowed by special permit from the Planning and Economic Development Board in the following zoning districts, provided the facil", "sb": "Approve", "fc": "Approve", "html": "", "vote": "", "sponsor": "", "questions": [], "background": {}}, "24": {"title": "Zoning Bylaw Amendment: Recreational Marijuana", "text": "To see if the Town will vote to amend the Zoning Bylaw as follows; unless otherwise noted, new text is shown in bold and deleted text is shown as stricken through: Section 8.10 RECREATIONAL MARIJUANA: Amend Sections 8.10.E.1 and 8.10.J. as follows: E. General Requirements and Conditions for all Recreational Marijuana Establishments 1. All non-exempt RMEs shall be contained within a permanent building or structure. No RME shall be located inside a building containing residential units or inside a movable or mobile structure such as a van, trailer, cargo container or truck. J. Special Permit Req", "sb": "Approve", "fc": "Approve", "html": "", "vote": "", "sponsor": "", "questions": [], "background": {}}, "25": {"title": "Amend Zoning Bylaws: Site Plan Review", "text": "To see if the Town will vote to amend portions of Section 3.5 of the Zoning Bylaw, Site Plan Review, as set forth below; unless otherwise noted, new text is shown in bold and deleted text is shown as stricken through: Amend Section 3.5.3. Applicability as follows: A. Site plan review shall apply to the following: 3. Administrative Site Plan Review - New construction or any alteration, reconstruction, renovation or change in use of any multi-family, commercial, industrial, institutional or municipal building or use which is not subject to Major or Minor Site Plan Review but which involves one o", "sb": "Approve", "fc": "Approve", "html": "", "vote": "", "sponsor": "", "questions": [], "background": {}}, "26": {"title": "Amend Zoning Bylaw: Accessory Buildings", "text": "To see if the Town of Medway will vote to amend the Zoning Bylaw, Section 6.3 Accessory Building or Structures by adding Paragraphs F., G., and H. as follows: F. Any detached accessory building or structure less than two hundred square feet in area and less than fifteen feet in height shall have a minimum setback of five feet from the rear and side lot lines. Any detached accessory building or structure that exceeds these limits shall conform to the otherwise applicable yard setback regulations as specified in TABLE 2 in Section 6.1 Schedule of Dimensional and Density Regulations. G. No access", "sb": "Approve", "fc": "Approve", "html": "", "vote": "", "sponsor": "", "questions": [], "background": {}}, "27": {"title": "Amend Zoning Bylaw: Off-Street Parking and Loading", "text": "To see if the Town will vote to amend portions of Section 7.1.1 of the Zoning Bylaw, Off-Street Parking and Loading, as set forth below; unless otherwise noted, new text is shown in bold and deleted text is shown a stricken through. 7.1.1. Off-Street Parking and Loading A. Purposes. The purposes of this Section 7.1 are to ensure the availability of safe and convenient vehicular parking areas; to encourage economic development; to promote safety for pedestrians, bicyclists, motor vehicle occupants, and property and business owners; to reduce impervious surfaces; and to protect adjoining lots an", "sb": "Approve", "fc": "Approve", "html": "", "vote": "", "sponsor": "", "questions": [], "background": {}}, "28": {"title": "Amend General Bylaws: Add Right to Farm Bylaw", "text": "To see if the Town will vote to amend the General Bylaws by adding a new section XXXI, Right to Farm Bylaw, as follows, or act in any manner relating thereto. Section 1 Legislative Purpose and Intent The purpose and intent of this Bylaw is to state with emphasis the Right to Farm accorded to all citizens of the Commonwealth under Article 97, of the Constitution, and all state statutes and regulations thereunder including but not limited to Massachusetts General Laws Chapter 40A, Section 3, Paragraph 1; Chapter 90, Section 9, Chapter 111, Section 125A and Chapter 128 Section 1A, subject to stri", "sb": "Approve", "fc": "Approve", "html": "", "vote": "", "sponsor": "", "questions": [], "background": {}}, "29": {"title": "Provide Funds for Urban Renewal Plan Implementation", "text": "To see if the Town will vote to appropriate $1,800,000 to be expended by the Medway Redevelopment Authority for the purpose of implementation of the Town’s Urban Renewal Plan; said appropriation to be expended by the Medway Redevelopment Authority pursuant to an agreement the terms of which shall be determined by the Board of Selectmen to be in the best interest of the Town; and that to meet this appropriation, the Treasurer with the approval of Board of Selectmen is authorized to borrow such sum under Massachusetts General Laws Chapter 44, Section 7, 8, or 20, and/or General Laws Chapter 121B", "sb": "Approve", "fc": "Approve", "html": "", "vote": "", "sponsor": "", "questions": [], "background": {}}, "30": {"title": "Borrowing – Parks Improvement Project and Elementary School\nPlaygrounds", "text": "To see if the Town will vote to appropriate $50,000 for the purpose of funding the construction of park and recreation improvements, as well as the purchase of associated equipment and structures and the provision of construction management and inspection services to complete the Choate Park, Oakland Park and Medway Middle School parks improvement project voted at the November 13, 2017, Fall Town Meeting under Article 11, and for the payment of all other costs incidental and related thereto, and $300,000 for the purpose of funding the construction of playground improvements at the McGovern and", "sb": "To Be Determined", "fc": "Approve", "html": "", "vote": "", "sponsor": "", "questions": [], "background": {}}};
 
-  function openModal(key) {
+  function openModal(key, mode) {
     const d = articleData[String(key)];
     if (!d) return;
+    const qMode = mode === 'questions' && d.questions && d.questions.length;
+    const bgMode = mode === 'background' && d.background && d.background.html;
+    const bgEl = document.getElementById('modal-bg');
     document.getElementById('modal-eyebrow').textContent = 'Article ' + key;
     document.getElementById('modal-title').textContent   = d.title;
-    document.getElementById('modal-text').textContent    = d.text;
+    const pre = document.getElementById('modal-text'), rich = document.getElementById('modal-html');
+    if (d.html) { rich.innerHTML = d.html; rich.style.display = ''; pre.style.display = 'none'; }
+    else { pre.textContent = d.text; pre.style.display = ''; rich.innerHTML = ''; rich.style.display = 'none'; }
     const recsEl = document.getElementById('modal-recs');
-    recsEl.innerHTML = recHtml('Select Board', d.sb) + recHtml('Finance Committee', d.fc);
+    recsEl.innerHTML = recHtml('Select Board', d.sb) + recHtml('Finance Committee', d.fc)
+      + (d.vote ? `<div><div class="modal-rec-label">Vote required</div><span class="vote-badge" style="margin-left:0">${d.vote}</span></div>` : '')
+      + (d.sponsor ? `<div><div class="modal-rec-label">Sponsor</div><span style="font-size:.8rem;color:#546475">${d.sponsor}</span></div>` : '');
+    const qBox = document.getElementById('modal-questions'), qList = document.getElementById('modal-q-list');
+    qList.innerHTML = '';
+    (d.questions || []).forEach(q => { const li = document.createElement('li'); li.textContent = q; qList.appendChild(li); });
+    qBox.style.display = (d.questions && d.questions.length) ? '' : 'none';
+    // Questions mode: show only the questions, with a link through to the full text
+    qBox.classList.toggle('q-mode', !!qMode);
+    recsEl.style.display = qMode ? 'none' : '';
+    if (qMode) { pre.style.display = 'none'; rich.style.display = 'none'; }
+    const sw = document.getElementById('q-switch');
+    sw.style.display = qMode ? '' : 'none';
+    sw.onclick = () => openModal(key);
+    // Background mode: show only the background summary
+    bgEl.innerHTML = bgMode ? d.background.html : '';
+    bgEl.style.display = bgMode ? '' : 'none';
+    if (bgMode) {
+      document.getElementById('modal-eyebrow').textContent = 'Article ' + key + ' · Background';
+      recsEl.style.display = 'none'; pre.style.display = 'none'; rich.style.display = 'none';
+      qBox.style.display = 'none';
+      sw.style.display = ''; sw.textContent = 'View full article text →';
+    } else { sw.textContent = 'View full article text →'; }
+    document.querySelector('.modal-body').scrollTop = 0;
     document.getElementById('article-modal').classList.add('open');
     document.body.style.overflow = 'hidden';
   }
@@ -592,6 +726,7 @@ Playgrounds</div>
     else if (val === 'Disapprove')            { cls = 'rec-disapprove'; txt = 'Disapprove'; }
     else if (val === 'Pass Over')             { cls = 'rec-pass';       txt = 'Pass Over'; }
     else if (val === 'To Be Determined')      { cls = 'rec-tbd';        txt = 'TBD'; }
+    else if (val === 'No Position')           { cls = 'rec-nopos';      txt = 'No Position'; }
     else if (val && val !== '—')              { cls = 'rec-tbd';        txt = val; }
     return `<div><div class="modal-rec-label">${label}</div><span class="rec-badge ${cls}">${txt}</span></div>`;
   }
@@ -603,6 +738,12 @@ Playgrounds</div>
 
   document.querySelectorAll('.full-text-btn').forEach(btn => {
     btn.addEventListener('click', e => { e.stopPropagation(); openModal(btn.dataset.key); });
+  });
+  document.querySelectorAll('.background-btn').forEach(btn => {
+    btn.addEventListener('click', e => { e.stopPropagation(); openModal(btn.dataset.key, 'background'); });
+  });
+  document.querySelectorAll('.questions-btn').forEach(btn => {
+    btn.addEventListener('click', e => { e.stopPropagation(); openModal(btn.dataset.key, 'questions'); });
   });
   document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
 
