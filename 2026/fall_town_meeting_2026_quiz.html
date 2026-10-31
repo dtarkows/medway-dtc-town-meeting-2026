@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fall Town Meeting 2026 Quiz — Medway</title>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-S6GD81WLBE"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-S6GD81WLBE');
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* ── Readability: larger default size (many readers are older) ─────────── */
+    :root { --zoom: 1; }
+    @media (min-width: 900px)  { :root { --zoom: 1.25; } }
+    @media (min-width: 1200px) { :root { --zoom: 1.5; } }
+    html { zoom: var(--zoom); }
+    @media (max-width: 899.98px) { html { font-size: 118.75%; } }
+
+    /* ── Theme (matches the Fall Town Meeting page) ───────────────────────── */
+    :root {
+      --g1: #4a2410; --g2: #9a4f1c; --acc: #9a4f1c; --light: #fbf2ea;
+      --ink: #1a2e4a; --soft: #546475; --muted: #7a8fa6;
+      --good: #1a6a2a; --good-bg: #e3f0e8; --good-bd: #9ccdaa;
+      --bad: #a01818;  --bad-bg: #fce8e8;  --bad-bd: #ebb0b0;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Inter', sans-serif; background: #eef2f7; color: var(--ink); min-height: calc(100vh / var(--zoom, 1)); }
+
+    .header { background: linear-gradient(135deg, var(--g1) 0%, var(--g2) 100%); color: white; padding: 1.6rem 1.5rem 1.4rem; text-align: center; }
+    .back-link { display: inline-flex; gap: .35rem; font-size: .75rem; font-weight: 600; color: rgba(255,255,255,.75); text-decoration: none; letter-spacing: .04em; margin-bottom: .6rem; }
+    .back-link::before { content: '←'; }
+    .back-link:hover { color: white; }
+    .eyebrow { font-size: .7rem; font-weight: 600; letter-spacing: .18em; text-transform: uppercase; opacity: .7; margin-bottom: .35rem; }
+    .header h1 { font-size: 1.5rem; font-weight: 700; }
+
+    .container { max-width: 760px; margin: 0 auto; padding: 1.5rem 1.25rem 3rem; }
+    .card { background: white; border-radius: 16px; padding: 1.75rem 1.75rem 1.5rem; box-shadow: 0 1px 3px rgba(0,0,0,.07), 0 4px 12px rgba(0,0,0,.04); }
+    .card + .card { margin-top: 1rem; }
+    h2 { font-size: 1.4rem; font-weight: 700; line-height: 1.3; margin-bottom: .75rem; }
+    p { font-size: 1rem; line-height: 1.6; color: #2a3a50; }
+    p + p { margin-top: .7rem; }
+    .lead { font-size: 1.05rem; }
+    .howto { margin: 1rem 0 .25rem; padding-left: 1.2rem; }
+    .howto li { font-size: .95rem; line-height: 1.6; color: #2a3a50; margin-bottom: .35rem; }
+    kbd { display: inline-block; min-width: 1.5em; padding: .05rem .4rem; border: 1px solid #c8d2de; border-bottom-width: 2px; border-radius: 5px; background: #f6f8fb; font-family: inherit; font-size: .85em; font-weight: 600; text-align: center; }
+    a { color: var(--acc); font-weight: 600; }
+
+    .btn { display: inline-flex; align-items: center; gap: .5rem; padding: .75rem 1.6rem; border-radius: 999px; border: none; background: var(--acc); color: white; font-family: inherit; font-size: 1.05rem; font-weight: 700; cursor: pointer; transition: background .15s, transform .15s; }
+    .btn:hover { background: var(--g1); transform: translateY(-1px); }
+    .btn:focus-visible, .choice:focus-visible { outline: 3px solid #f0b37a; outline-offset: 2px; }
+    .btn.secondary { background: white; color: var(--acc); border: 2px solid var(--acc); }
+    .btn.secondary:hover { background: var(--light); }
+    .actions { display: flex; gap: .75rem; flex-wrap: wrap; align-items: center; margin-top: 1.4rem; }
+    .hint { font-size: .8rem; color: var(--muted); }
+
+    .progress { display: flex; justify-content: space-between; align-items: center; font-size: .8rem; font-weight: 600; color: var(--muted); margin-bottom: .5rem; }
+    .bar { height: 8px; background: #dde4ec; border-radius: 999px; overflow: hidden; margin-bottom: 1.1rem; }
+    .bar > span { display: block; height: 100%; background: var(--acc); border-radius: 999px; transition: width .3s; }
+    .q-tag { display: inline-block; font-size: .7rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--acc); margin-bottom: .45rem; }
+
+    .choices { list-style: none; display: flex; flex-direction: column; gap: .65rem; margin-top: 1rem; }
+    .choice { width: 100%; display: flex; align-items: flex-start; gap: .85rem; text-align: left; padding: .85rem 1rem; border: 2px solid #d6dee8; border-radius: 12px; background: white; font-family: inherit; font-size: 1rem; line-height: 1.45; color: var(--ink); cursor: pointer; transition: border-color .15s, background .15s; }
+    .choice:hover:not([disabled]) { border-color: var(--acc); background: #fffaf5; }
+    .choice .letter { flex-shrink: 0; width: 1.9rem; height: 1.9rem; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; background: #eef2f7; font-weight: 700; font-size: .9rem; color: var(--soft); }
+    .choice[disabled] { cursor: default; }
+    .choice.correct { border-color: var(--good-bd); background: var(--good-bg); }
+    .choice.correct .letter { background: var(--good); color: white; }
+    .choice.wrong { border-color: var(--bad-bd); background: var(--bad-bg); }
+    .choice.wrong .letter { background: var(--bad); color: white; }
+    .choice.dim { opacity: .55; }
+
+    .feedback { display: flex; gap: 1rem; align-items: flex-start; margin-top: 1.25rem; padding: 1rem 1.1rem; border-radius: 12px; }
+    .feedback.good { background: var(--good-bg); border: 1px solid var(--good-bd); }
+    .feedback.bad  { background: var(--bad-bg);  border: 1px solid var(--bad-bd); }
+    .feedback svg { flex-shrink: 0; width: 44px; height: 44px; }
+    .feedback .fb-title { font-size: 1.1rem; font-weight: 700; margin-bottom: .2rem; }
+    .feedback.good .fb-title { color: var(--good); }
+    .feedback.bad .fb-title { color: var(--bad); }
+    .feedback p { font-size: .95rem; }
+    .pop { animation: pop .35s ease; }
+    @keyframes pop { 0% { transform: scale(.6); opacity: 0; } 70% { transform: scale(1.1); } 100% { transform: scale(1); opacity: 1; } }
+    @media (prefers-reduced-motion: reduce) { .pop { animation: none; } .bar > span { transition: none; } }
+
+    .score { display: flex; align-items: center; gap: 1.25rem; margin-bottom: 1rem; }
+    .score-num { font-size: 3rem; font-weight: 700; color: var(--acc); line-height: 1; }
+    .results { list-style: none; margin-top: .5rem; }
+    .results li { display: flex; gap: .75rem; align-items: flex-start; padding: .75rem 0; border-top: 1px solid #edf1f5; }
+    .results li:first-child { border-top: none; }
+    .results .mark { flex-shrink: 0; width: 1.6rem; height: 1.6rem; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-weight: 700; font-size: .85rem; color: white; }
+    .results .mark.ok { background: var(--good); }
+    .results .mark.no { background: var(--bad); }
+    .results .mark.skip { background: #b8c4ce; }
+    .results .r-q { font-size: .92rem; font-weight: 600; line-height: 1.45; }
+    .results .r-a { font-size: .85rem; color: var(--soft); line-height: 1.5; margin-top: .15rem; }
+    .results a { font-size: .8rem; }
+
+    .page-footer { text-align: center; padding: 1.5rem 1rem 2rem; color: #9aa8b8; font-size: .75rem; line-height: 1.8; }
+    .page-footer a { color: inherit; font-weight: 400; text-decoration: underline; }
+    h2:focus { outline: none; }
+    .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <a class="back-link" href="../index.html">All meetings</a>
+    <div class="eyebrow">Medway Democratic Town Committee</div>
+    <h1>Fall Town Meeting Quiz</h1>
+  </div>
+
+  <main class="container" id="app" aria-live="polite"></main>
+
+  <div class="page-footer">
+    Produced by the <a href="https://medwaydemocrats.org">Medway Democratic Town Committee</a> · Not an official Town of Medway publication<br>
+    Questions? Email <a href="mailto:info@medwaydemocrats.org">info@medwaydemocrats.org</a> &nbsp;·&nbsp;
+    <a href="https://medwaydemocrats.org">medwaydemocrats.org</a> &nbsp;·&nbsp;
+    <a href="https://www.facebook.com/MedwayDems/">Facebook</a><br>
+    <span style="font-size:.7rem;opacity:.8;">Content produced with AI assistance and reviewed for accuracy, but not 100% independently verified. Consult official town documents for authoritative information.</span>
+  </div>
+
+  <script>
+  // ── Questions ─────────────────────────────────────────────────────────────
+  // Each: q (question), choices (4), answer (index of the correct choice),
+  // yes (shown when right), why (shown when wrong), art (article number for the "read more" link, or null).
+  // One choice in each is meant to be obviously wrong.
+  const QUESTIONS = [
+    {
+      q: "When and where is the 2026 Fall Town Meeting?",
+      choices: [
+        "Tuesday, November 3, at Town Hall",
+        "Monday, November 9, at 7:00 PM in the Medway High School Auditorium",
+        "Monday, November 16, at the Medway Middle School gym",
+        "Midnight on Halloween, in the old cemetery"
+      ],
+      answer: 1,
+      yes: "Yes! Monday, November 9, at 7:00 PM, Medway High School Auditorium, 88 Summer Street.",
+      why: "The Fall Town Meeting is Monday, November 9, at 7:00 PM in the Medway High School Auditorium, 88 Summer Street.",
+      art: null
+    },
+    {
+      q: "How many articles are on the Fall Town Meeting warrant?",
+      choices: ["8", "14", "26", "1,400"],
+      answer: 1,
+      yes: "Yes! There are 14 articles, all handled in one session.",
+      why: "There are 14 articles. (The May Annual Town Meeting had 26.)",
+      art: null
+    },
+    {
+      q: "Which article has the largest dollar amount?",
+      choices: [
+        "Article 6: buying sewer capacity from Franklin",
+        "Article 14: debt service and the Assessors’ revaluation",
+        "Article 2: a transfer to the Capital Stabilization Fund",
+        "Article 10: a giant trail sign visible from space"
+      ],
+      answer: 2,
+      yes: "Yes! Article 2 asks for $4,000,000, about 62% of all the dollars on the warrant.",
+      why: "Article 2 is the biggest at $4,000,000, about 62% of all the dollars on the warrant. Articles 6 and 14 are about $1 million each.",
+      art: 2
+    },
+    {
+      q: "Where does Article 2’s $4,000,000 come from, and where does it go?",
+      choices: [
+        "From Certified Free Cash into the Capital Stabilization Fund",
+        "From the property tax into the General Stabilization Fund",
+        "From sewer savings into the Special Education Stabilization Fund",
+        "From the library’s overdue-book fines into a town-wide pizza party"
+      ],
+      answer: 0,
+      yes: "Yes! Article 2 moves $4,000,000 of Certified Free Cash (last year’s surplus) into the Capital Stabilization Fund, a savings account for future capital needs.",
+      why: "Article 2 moves $4,000,000 of Certified Free Cash (last year’s surplus) into the Capital Stabilization Fund, a savings account for future capital needs.",
+      art: 2
+    },
+    {
+      q: "According to the Town Manager, what is Article 2’s money mainly meant to help pay for in the future?",
+      choices: [
+        "A new moon base for the DPW",
+        "Debt payments on the proposed Municipal Complex",
+        "The Winthrop Street land purchase",
+        "New turf fields at the high school"
+      ],
+      answer: 1,
+      yes: "Yes! At the October 5 Select Board meeting, the Town Manager said the transfers are meant to offset future debt payments on the major municipal facilities project, the proposed Municipal Complex, and to help with vehicle and equipment costs.",
+      why: "At the October 5 Select Board meeting, the Town Manager said the transfers are meant to offset future debt payments on the major municipal facilities project, the proposed Municipal Complex, and to help with vehicle and equipment costs.",
+      art: 2
+    },
+    {
+      q: "Does voting for Article 2 approve the Municipal Complex project?",
+      choices: [
+        "Yes, it approves construction",
+        "Yes, and it also sets a tax increase for the project",
+        "No. It only moves money into a reserve; the project goes to a Special Town Meeting and Special Election on March 1, 2027",
+        "Only if it snows on November 9"
+      ],
+      answer: 2,
+      yes: "Right! Article 2 only moves money into a reserve. Spending from that reserve takes a separate two-thirds Town Meeting vote, and construction funding for the Municipal Complex is planned for March 1, 2027.",
+      why: "Article 2 does not approve the project. It moves money into a reserve; spending from it takes a separate two-thirds vote. Construction funding for the Municipal Complex is planned for a Special Town Meeting and Special Election on March 1, 2027.",
+      art: 2
+    },
+    {
+      q: "About how much Free Cash do Articles 2 through 5 use in total?",
+      choices: ["$42", "About $1.04 million", "About $4.27 million", "All $7.7 million"],
+      answer: 2,
+      yes: "Yes! Articles 2–5 use about $4.27 million. The Town Manager put this year’s Free Cash at about $7.7 million, which would leave roughly $3.4 million.",
+      why: "Articles 2–5 use about $4.27 million ($4,000,000 + $100,000 + $64,000 + $103,533). The Town Manager put this year’s Free Cash at about $7.7 million.",
+      art: 2
+    },
+    {
+      q: "Article 4 puts $64,000 into the Special Education Stabilization Fund. According to the Town Manager, what does that amount reflect?",
+      choices: [
+        "A state reimbursement for transporting students experiencing homelessness (McKinney-Vento)",
+        "Proceeds from the school bake sale, aged five years",
+        "A federal grant for new school buses",
+        "Payments from the Medway Energy Center PILOT"
+      ],
+      answer: 0,
+      yes: "Yes! The $64,000 matches a McKinney-Vento state transportation reimbursement, which is being set aside for future special education costs.",
+      why: "The $64,000 matches a McKinney-Vento state reimbursement for transporting students experiencing homelessness. It’s being set aside for future special education costs.",
+      art: 4
+    },
+    {
+      q: "How much sewer capacity would Article 6 buy from Franklin?",
+      choices: [
+        "One bathtub’s worth",
+        "80,000 gallons per day",
+        "150,000 gallons per day",
+        "1.1 million gallons per day"
+      ],
+      answer: 2,
+      yes: "Yes! 150,000 gallons per day at the Charles River Pollution Control District plant, bringing Medway to just over 1.1 million gallons per day in total.",
+      why: "Article 6 buys 150,000 gallons per day. That brings Medway’s total to just over 1.1 million gallons per day. (80,000 is roughly how much unused capacity Medway has now.)",
+      art: 6
+    },
+    {
+      q: "What price per gallon did Medway, Millis and Franklin negotiate for the sewer capacity?",
+      choices: [
+        "$15.07 per gallon",
+        "$1.10 per gallon",
+        "Free, in exchange for a lifetime supply of Medway Pride t-shirts",
+        "$10.50 per gallon"
+      ],
+      answer: 3,
+      yes: "Yes! The towns negotiated the price down from $15.07 to $10.50 per gallon. 150,000 gallons × $10.50 = $1,575,000.",
+      why: "The price was negotiated down from $15.07 to $10.50 per gallon, for a total of $1,575,000.",
+      art: 6
+    },
+    {
+      q: "Of the money Article 6 takes from sewer savings, $800,000 is expected to be paid back. By whom?",
+      choices: [
+        "The Town of Franklin",
+        "The Tooth Fairy",
+        "The developer of Heritage on Main",
+        "The Town of Millis"
+      ],
+      answer: 2,
+      yes: "Yes! According to the Select Board minutes, the Heritage on Main developer is to reimburse $800,000 when it pulls building and occupancy permits.",
+      why: "According to the Select Board minutes, the Heritage on Main developer is to reimburse $800,000 when it pulls building and occupancy permits. That depends on the project going ahead.",
+      art: 6
+    },
+    {
+      q: "Article 14 raises $1,040,000 on the tax levy. Roughly how much is that per $100,000 of assessed property value?",
+      choices: ["About $2.60", "About $26", "About $260", "One million dollars per household"],
+      answer: 1,
+      yes: "Yes! A rough estimate is about $26 per $100,000 of assessed value, or about $155 on a $600,000 home. It’s an illustration, not a tax-bill projection.",
+      why: "A rough estimate is about $26 per $100,000 of assessed value, or about $155 on a $600,000 home. It’s an illustration, not a tax-bill projection.",
+      art: 14
+    },
+    {
+      q: "What kind of vote do the zoning articles (9, 10, 11 and 13) generally need to pass?",
+      choices: ["A two-thirds vote", "A simple majority", "A nine-tenths vote", "The loudest applause"],
+      answer: 0,
+      yes: "Yes! Zoning changes generally need a two-thirds vote under state law.",
+      why: "Zoning changes generally need a two-thirds vote under state law. (Nine-tenths is what Article 1, paying last year’s bills, needs at this meeting.)",
+      art: 9
+    },
+    {
+      q: "Article 9 updates Medway’s zoning to match state law. How long would a building permit stay protected from later zoning changes?",
+      choices: ["12 months", "5 years", "Forever, plus one day", "24 months"],
+      answer: 3,
+      yes: "Yes! Article 9 extends the protection from 12 months to 24 months.",
+      why: "Article 9 extends the protection from 12 months to 24 months, to match changes in the state Zoning Act.",
+      art: 9
+    },
+    {
+      q: "How did Articles 12 and 13 get on the warrant?",
+      choices: [
+        "The Select Board added them",
+        "They were drawn out of a hat",
+        "The Planning Board proposed them",
+        "By citizens’ petition"
+      ],
+      answer: 3,
+      yes: "Yes! Both were placed on the warrant by citizens’ petition. Anyone can read the full text and both boards’ recommendations on the summary page.",
+      why: "Both were placed on the warrant by citizens’ petition. The full text and both boards’ recommendations are on the summary page.",
+      art: 12
+    }
+  ];
+  </script>
+  <script>
+  // ── App ───────────────────────────────────────────────────────────────────
+  // Routes (in the URL hash, so a question can be bookmarked or shared):
+  //   #/          welcome page
+  //   #/q/3       question 3
+  //   #/results   score summary
+  // Answers live only in memory for this visit; nothing is stored.
+  (function () {
+    const SUMMARY = "fall_town_meeting_2026.html";
+    const DECK = "Medway%202026%20Fall%20Town%20Meeting%20Discussion.pdf";
+    const LETTERS = ["A", "B", "C", "D"];
+    const N = QUESTIONS.length;
+    const answers = {};          // question index -> chosen choice index
+    const app = document.getElementById("app");
+
+    const ICON_OK = '<svg viewBox="0 0 48 48" aria-hidden="true" class="pop"><circle cx="24" cy="24" r="22" fill="#1a6a2a"/><path d="M14 25 L21 32 L35 17" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+    const ICON_NO = '<svg viewBox="0 0 48 48" aria-hidden="true" class="pop"><circle cx="24" cy="24" r="22" fill="#a01818"/><path d="M16 16 L32 32 M32 16 L16 32" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round"/></svg>';
+    const PRAISE = ["Correct!", "Nicely done!", "That’s right!", "You got it!", "Well done!"];
+
+    function esc(t) {
+      return String(t).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+    }
+    function go(hash) { if (location.hash === hash) render(); else location.hash = hash; }
+    function focusHeading() {
+      const h = app.querySelector("h2");
+      if (h) { h.setAttribute("tabindex", "-1"); h.focus({ preventScroll: true }); }
+      window.scrollTo(0, 0);
+    }
+    function route() {
+      const h = location.hash;
+      let m = h.match(/^#\/q\/(\d+)$/);
+      if (m) {
+        const n = parseInt(m[1], 10);
+        if (n >= 1 && n <= N) return { view: "question", i: n - 1 };
+      }
+      if (h === "#/results") return { view: "results" };
+      return { view: "welcome" };
+    }
+
+    // ── Welcome ─────────────────────────────────────────────────────────────
+    function renderWelcome() {
+      document.title = "Fall Town Meeting 2026 Quiz — Medway";
+      app.innerHTML = `
+        <div class="card">
+          <h2>Welcome! How well do you know the warrant?</h2>
+          <p class="lead">Medway’s Fall Town Meeting is <b>Monday, November 9, 2026, at 7:00 PM</b> in the Medway High School Auditorium. This short quiz walks you through what’s on the warrant: where the money goes, the sewer purchase, the zoning changes and more.</p>
+          <p>It’s ${N} questions and takes about five minutes. Nothing is saved, and there’s no penalty for guessing. Each answer comes with a short explanation, so you’ll learn something either way.</p>
+          <ul class="howto">
+            <li>Click an answer, or press <kbd>A</kbd> <kbd>B</kbd> <kbd>C</kbd> <kbd>D</kbd> on your keyboard.</li>
+            <li>After you answer, press <b>Next</b> (or <kbd>Enter</kbd>) to go on.</li>
+            <li>At the end you’ll see your score and a review of every question.</li>
+          </ul>
+          <div class="actions">
+            <button class="btn" id="begin">Begin the quiz →</button>
+            <span class="hint">or press <kbd>Enter</kbd></span>
+          </div>
+        </div>
+        <div class="card">
+          <p>Want to read up first, or check an answer? See the <a href="${SUMMARY}">article-by-article summary of the Fall Town Meeting</a>, with the full text of every article and both boards’ recommendations, or the <a href="${DECK}">discussion slide deck (PDF)</a>.</p>
+        </div>`;
+      document.getElementById("begin").addEventListener("click", () => go("#/q/1"));
+      focusHeading();
+    }
+
+    // ── Question ────────────────────────────────────────────────────────────
+    function renderQuestion(i) {
+      const Q = QUESTIONS[i];
+      const chosen = answers[i];
+      const done = chosen !== undefined;
+      const right = done && chosen === Q.answer;
+      document.title = `Question ${i + 1} of ${N} — Fall Town Meeting Quiz`;
+
+      const items = Q.choices.map((c, k) => {
+        let cls = "choice";
+        if (done) {
+          if (k === Q.answer) cls += " correct";
+          else if (k === chosen) cls += " wrong";
+          else cls += " dim";
+        }
+        const sr = done ? (k === Q.answer ? " (correct answer)" : k === chosen ? " (your answer)" : "") : "";
+        return `<li><button class="${cls}" data-k="${k}" ${done ? "disabled" : ""}>
+          <span class="letter">${LETTERS[k]}</span><span>${esc(c)}<span class="sr-only">${sr}</span></span></button></li>`;
+      }).join("");
+
+      let fb = "";
+      if (done) {
+        const more = Q.art ? ` <a href="${SUMMARY}">Read Article ${Q.art} on the summary page →</a>` : "";
+        fb = right
+          ? `<div class="feedback good" role="status">${ICON_OK}<div><div class="fb-title">${PRAISE[i % PRAISE.length]}</div><p>${esc(Q.yes)}</p></div></div>`
+          : `<div class="feedback bad" role="status">${ICON_NO}<div><div class="fb-title">Not quite. The answer is ${LETTERS[Q.answer]}.</div><p>${esc(Q.why)}${more}</p></div></div>`;
+      }
+      const last = i === N - 1;
+      const nextLabel = last ? "See my results →" : "Next question →";
+
+      app.innerHTML = `
+        <div class="card">
+          <div class="progress"><span>Question ${i + 1} of ${N}</span><span>${Object.keys(answers).length} answered</span></div>
+          <div class="bar" aria-hidden="true"><span style="width:${((i + (done ? 1 : 0)) / N) * 100}%"></span></div>
+          <h2>${esc(Q.q)}</h2>
+          <ul class="choices">${items}</ul>
+          ${fb}
+          <div class="actions">
+            ${done ? `<button class="btn" id="next">${nextLabel}</button><span class="hint">or press <kbd>Enter</kbd></span>`
+                   : `<span class="hint">Click an answer or press <kbd>A</kbd>–<kbd>D</kbd></span>`}
+          </div>
+        </div>`;
+
+      app.querySelectorAll(".choice").forEach(b =>
+        b.addEventListener("click", () => choose(i, parseInt(b.dataset.k, 10))));
+      if (done) {
+        const nx = document.getElementById("next");
+        nx.addEventListener("click", () => next(i));
+        nx.focus({ preventScroll: true });
+        // Bring the feedback and Next button into view (the page is large-print, so they can sit below the fold)
+        const reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        app.querySelector(".actions").scrollIntoView({ block: "end", behavior: reduce ? "auto" : "smooth" });
+      } else {
+        focusHeading();
+      }
+    }
+
+    function choose(i, k) {
+      if (answers[i] !== undefined) return;
+      answers[i] = k;
+      if (typeof gtag === "function") gtag("event", "quiz_answer", { question: i + 1, correct: k === QUESTIONS[i].answer });
+      renderQuestion(i);
+    }
+    function next(i) { go(i === N - 1 ? "#/results" : `#/q/${i + 2}`); }
+
+    // ── Results ─────────────────────────────────────────────────────────────
+    function renderResults() {
+      document.title = "Your results — Fall Town Meeting Quiz";
+      const answered = Object.keys(answers).length;
+      const score = QUESTIONS.reduce((s, Q, i) => s + (answers[i] === Q.answer ? 1 : 0), 0);
+      let msg;
+      if (answered === 0) msg = "You haven’t answered any questions yet.";
+      else if (score === N) msg = "A perfect score! You’re ready for Town Meeting.";
+      else if (score >= 12) msg = "Excellent! You know this warrant well.";
+      else if (score >= 8) msg = "Nice work! A quick look at the summary will fill in the rest.";
+      else msg = "Thanks for playing! The summary page has everything you need before November 9.";
+
+      const rows = QUESTIONS.map((Q, i) => {
+        const a = answers[i];
+        if (a === undefined) {
+          return `<li><span class="mark skip" aria-hidden="true">–</span><div>
+            <div class="r-q">${i + 1}. ${esc(Q.q)}</div>
+            <div class="r-a">Not answered. <a href="#/q/${i + 1}">Try this question</a></div></div></li>`;
+        }
+        const ok = a === Q.answer;
+        return `<li><span class="mark ${ok ? "ok" : "no"}" aria-hidden="true">${ok ? "✓" : "✗"}</span><div>
+          <div class="r-q">${i + 1}. ${esc(Q.q)} <span class="sr-only">${ok ? "Correct." : "Incorrect."}</span></div>
+          <div class="r-a">${ok ? "" : `You answered: ${esc(Q.choices[a])}<br>`}Correct answer: <b>${esc(Q.choices[Q.answer])}</b></div></div></li>`;
+      }).join("");
+
+      app.innerHTML = `
+        <div class="card">
+          <h2>Your results</h2>
+          <div class="score"><div class="score-num">${score}/${N}</div><p class="lead">${msg}${answered < N && answered > 0 ? ` (You answered ${answered} of ${N}.)` : ""}</p></div>
+          <p>Get the full story on every article, including the full text and both boards’ recommendations, in our <a href="${SUMMARY}">Fall Town Meeting summary</a>, or flip through the <a href="${DECK}">discussion slide deck (PDF)</a>.</p>
+          <div class="actions">
+            <a class="btn" href="${SUMMARY}">Read the summary →</a>
+            <button class="btn secondary" id="again">Take the quiz again</button>
+          </div>
+        </div>
+        <div class="card">
+          <h3 style="font-size:1.05rem;margin-bottom:.25rem">Question by question</h3>
+          <ul class="results">${rows}</ul>
+        </div>
+        <div class="card">
+          <p>See you at Town Meeting: <b>Monday, November 9, 7:00 PM</b>, Medway High School Auditorium, 88 Summer Street.</p>
+        </div>`;
+      document.getElementById("again").addEventListener("click", () => {
+        Object.keys(answers).forEach(k => delete answers[k]);
+        go("#/q/1");
+      });
+      if (typeof gtag === "function" && answered === N) gtag("event", "quiz_complete", { score: score });
+      focusHeading();
+    }
+
+    // ── Wiring ──────────────────────────────────────────────────────────────
+    function render() {
+      const r = route();
+      if (r.view === "question") renderQuestion(r.i);
+      else if (r.view === "results") renderResults();
+      else renderWelcome();
+    }
+
+    document.addEventListener("keydown", e => {
+      if (e.ctrlKey || e.metaKey || e.altKey) return;
+      const r = route();
+      const key = e.key.toLowerCase();
+      if (r.view === "welcome" && key === "enter" && !(e.target.closest && e.target.closest("a"))) {
+        e.preventDefault(); go("#/q/1"); return;
+      }
+      if (r.view !== "question") return;
+      const done = answers[r.i] !== undefined;
+      if (!done) {
+        const k = "abcd".indexOf(key) >= 0 ? "abcd".indexOf(key) : "1234".indexOf(key);
+        if (k >= 0 && key.length === 1) { e.preventDefault(); choose(r.i, k); }
+      } else if (key === "enter" || key === "arrowright" || key === "n") {
+        if (e.target.tagName === "A") return;
+        e.preventDefault(); next(r.i);
+      }
+    });
+    window.addEventListener("hashchange", render);
+    render();
+  })();
+  </script>
+</body>
+</html>
